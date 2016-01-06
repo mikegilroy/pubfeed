@@ -81,3 +81,7 @@ struct Post: Equatable, FirebaseType {
     }
 }
 
+func ==(lhs: Post, rhs: Post) -> Bool {
+    
+    return (lhs.identifier == rhs.identifier) && (lhs.timestamp == rhs.timestamp)
+}

@@ -10,13 +10,13 @@ import Foundation
 
 struct Like: Equatable, FirebaseType {
     
-    private let UserIDKey = "username"
-    private let PostIDKey = "post"
+    private let UserIDKey = "userIdentifier"
+    private let PostIDKey = "postIdentifier"
     private let IdentifierKey = "identifier"
     
-    let userIdentifier: String
-    let postIdentifier: String
-    let identifier: String?
+    var userIdentifier: String
+    var postIdentifier: String
+    var identifier: String?
     
     init(userIdentifier: String, postIdentifier: String, identifier: String? = nil) {
         
@@ -28,8 +28,7 @@ struct Like: Equatable, FirebaseType {
     
     // Mark: FirebaseType
     
-    var endPoint: String {
-        
+    var endpoint: String {
         return "likes"
     }
     
@@ -49,7 +48,9 @@ struct Like: Equatable, FirebaseType {
             
             let userIdentifier = json[UserIDKey] as? String else { return nil }
         
-        self.init(userIdentifier: userIdentifier, postIdentifier: postIdentifier, identifier: identifier)
+        self.postIdentifier = postIdentifier
+        self.userIdentifier = userIdentifier
+        self.identifier = identifier
     }
 }
 

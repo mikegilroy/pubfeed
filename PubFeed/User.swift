@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Equatable, FirebaseType {
+struct User { // Equatable, FirebaseType
     
     // MARK: Keys
     private let kUsername = "username"
@@ -39,6 +39,7 @@ struct User: Equatable, FirebaseType {
         if let photo = photo {
             json.updateValue(photo, forKey: kPhoto)
         }
+        return json
     }
     
     init?(json: [String : AnyObject], uid: String) {

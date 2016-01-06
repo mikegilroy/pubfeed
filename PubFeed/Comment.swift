@@ -15,10 +15,10 @@ struct Comment: Equatable, FirebaseType {
     private let postIdentifierKey = "postIdentifier"
     private let identifierKey = "identifier"
     
-    let text: String
-    let userIdentifier: String
-    let postIdentifier: String
-    let identifier: String?
+    var text: String
+    var userIdentifier: String
+    var postIdentifier: String
+    var identifier: String?
     
     init(text: String, userIdentifier: String, postIdentifier: String, identifier: String? = nil) {
         
@@ -31,8 +31,7 @@ struct Comment: Equatable, FirebaseType {
     
     // Mark: FirebaseType
     
-    var endPoint: String {
-        
+    var endpoint: String {
         return "comments"
     }
     
@@ -49,7 +48,10 @@ struct Comment: Equatable, FirebaseType {
             let text = json[textKey] as? String,
             let userIdentifier = json[userIdentifierKey] as? String else { return nil }
         
-        self.init(text: text, userIdentifier: userIdentifier, postIdentifier: postIdentifier, identifier: identifier)
+        self.postIdentifier = postIdentifier
+        self.text = text
+        self.userIdentifier = userIdentifier
+        self.identifier = identifier
     }
 }
 
