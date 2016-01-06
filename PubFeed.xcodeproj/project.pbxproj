@@ -8,20 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		1069A5251C3C4A580018D28F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5241C3C4A580018D28F /* AppDelegate.swift */; };
-		1069A5271C3C4A580018D28F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5261C3C4A580018D28F /* ViewController.swift */; };
 		1069A52A1C3C4A580018D28F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1069A5281C3C4A580018D28F /* Main.storyboard */; };
 		1069A52C1C3C4A580018D28F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1069A52B1C3C4A580018D28F /* Assets.xcassets */; };
 		1069A52F1C3C4A580018D28F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1069A52D1C3C4A580018D28F /* LaunchScreen.storyboard */; };
+		1069A5371C3D81B90018D28F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5361C3D81B90018D28F /* LoginViewController.swift */; };
+		1069A53A1C3D81CE0018D28F /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5391C3D81CE0018D28F /* SignupViewController.swift */; };
+		1069A53C1C3D82760018D28F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A53B1C3D82760018D28F /* TabBarController.swift */; };
+		1069A53F1C3D82910018D28F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A53E1C3D82910018D28F /* MapViewController.swift */; };
+		1069A5411C3D82A80018D28F /* BarFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5401C3D82A80018D28F /* BarFeedViewController.swift */; };
+		1069A5431C3D840F0018D28F /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5421C3D840F0018D28F /* PostDetailViewController.swift */; };
+		1069A5451C3D84270018D28F /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5441C3D84270018D28F /* SelectLocationViewController.swift */; };
+		1069A5471C3D84A40018D28F /* NewPostTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5461C3D84A40018D28F /* NewPostTableTableViewController.swift */; };
+		1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */; };
+		1069A54C1C3D92100018D28F /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */; };
+		1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1069A5211C3C4A580018D28F /* PubFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PubFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1069A5241C3C4A580018D28F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1069A5261C3C4A580018D28F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1069A5291C3C4A580018D28F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1069A52B1C3C4A580018D28F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1069A52E1C3C4A580018D28F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1069A5301C3C4A580018D28F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1069A5361C3D81B90018D28F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1069A5391C3D81CE0018D28F /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		1069A53B1C3D82760018D28F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		1069A53E1C3D82910018D28F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		1069A5401C3D82A80018D28F /* BarFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarFeedViewController.swift; sourceTree = "<group>"; };
+		1069A5421C3D840F0018D28F /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		1069A5441C3D84270018D28F /* SelectLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		1069A5461C3D84A40018D28F /* NewPostTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostTableTableViewController.swift; sourceTree = "<group>"; };
+		1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +75,63 @@
 			isa = PBXGroup;
 			children = (
 				1069A5241C3C4A580018D28F /* AppDelegate.swift */,
-				1069A5261C3C4A580018D28F /* ViewController.swift */,
 				1069A5281C3C4A580018D28F /* Main.storyboard */,
+				1069A5381C3D81C00018D28F /* Views */,
 				1069A52B1C3C4A580018D28F /* Assets.xcassets */,
 				1069A52D1C3C4A580018D28F /* LaunchScreen.storyboard */,
 				1069A5301C3C4A580018D28F /* Info.plist */,
 			);
 			path = PubFeed;
+			sourceTree = "<group>";
+		};
+		1069A5381C3D81C00018D28F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1069A54A1C3D90480018D28F /* Login/Signup Views */,
+				1069A53E1C3D82910018D28F /* MapViewController.swift */,
+				1069A54F1C3D92230018D28F /* Bar Feed */,
+				1069A5501C3D922B0018D28F /* Post Detail */,
+				1069A5441C3D84270018D28F /* SelectLocationViewController.swift */,
+				1069A5461C3D84A40018D28F /* NewPostTableTableViewController.swift */,
+				1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */,
+				1069A53D1C3D827C0018D28F /* Custom Tab Bar */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1069A53D1C3D827C0018D28F /* Custom Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				1069A53B1C3D82760018D28F /* TabBarController.swift */,
+			);
+			name = "Custom Tab Bar";
+			sourceTree = "<group>";
+		};
+		1069A54A1C3D90480018D28F /* Login/Signup Views */ = {
+			isa = PBXGroup;
+			children = (
+				1069A5361C3D81B90018D28F /* LoginViewController.swift */,
+				1069A5391C3D81CE0018D28F /* SignupViewController.swift */,
+			);
+			name = "Login/Signup Views";
+			sourceTree = "<group>";
+		};
+		1069A54F1C3D92230018D28F /* Bar Feed */ = {
+			isa = PBXGroup;
+			children = (
+				1069A5401C3D82A80018D28F /* BarFeedViewController.swift */,
+				1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */,
+			);
+			name = "Bar Feed";
+			sourceTree = "<group>";
+		};
+		1069A5501C3D922B0018D28F /* Post Detail */ = {
+			isa = PBXGroup;
+			children = (
+				1069A5421C3D840F0018D28F /* PostDetailViewController.swift */,
+				1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */,
+			);
+			name = "Post Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +205,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1069A5271C3C4A580018D28F /* ViewController.swift in Sources */,
+				1069A54C1C3D92100018D28F /* CommentTableViewCell.swift in Sources */,
+				1069A53A1C3D81CE0018D28F /* SignupViewController.swift in Sources */,
+				1069A5451C3D84270018D28F /* SelectLocationViewController.swift in Sources */,
+				1069A5431C3D840F0018D28F /* PostDetailViewController.swift in Sources */,
+				1069A53C1C3D82760018D28F /* TabBarController.swift in Sources */,
+				1069A5411C3D82A80018D28F /* BarFeedViewController.swift in Sources */,
+				1069A5371C3D81B90018D28F /* LoginViewController.swift in Sources */,
+				1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */,
+				1069A53F1C3D82910018D28F /* MapViewController.swift in Sources */,
+				1069A5471C3D84A40018D28F /* NewPostTableTableViewController.swift in Sources */,
 				1069A5251C3C4A580018D28F /* AppDelegate.swift in Sources */,
+				1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +331,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PubFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mikegilroy.PubFeed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dev.pubfeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -262,7 +342,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PubFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mikegilroy.PubFeed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dev.pubfeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -286,6 +366,7 @@
 				1069A5351C3C4A580018D28F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
