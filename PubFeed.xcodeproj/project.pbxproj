@@ -146,9 +146,8 @@
 		1069A5181C3C4A580018D28F = {
 			isa = PBXGroup;
 			children = (
-				0236A3661C3DCA3900125BA9 /* CoreLocation.framework */,
-				0236A35E1C3DB3DB00125BA9 /* FirebaseFramework */,
 				1069A5231C3C4A580018D28F /* PubFeed */,
+				DED6E5BE1C3DDE3D005E17D8 /* Framework */,
 				1069A5221C3C4A580018D28F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -225,6 +224,15 @@
 				1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */,
 			);
 			name = "Post Detail";
+			sourceTree = "<group>";
+		};
+		DED6E5BE1C3DDE3D005E17D8 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				0236A35E1C3DB3DB00125BA9 /* FirebaseFramework */,
+				0236A3661C3DCA3900125BA9 /* CoreLocation.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 		E67F0F121C3DB3E300785F12 /* Models */ = {
