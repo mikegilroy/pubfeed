@@ -319,8 +319,12 @@
 				1069A5471C3D84A40018D28F /* NewPostTableTableViewController.swift in Sources */,
 				1069A5251C3C4A580018D28F /* AppDelegate.swift in Sources */,
 				1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */,
+<<<<<<< 68df8ccb66327f54081310b3c6bc9bde496b6ae6
 				0236A3611C3DB41000125BA9 /* FirebaseController.swift in Sources */,
+||||||| merged common ancestors
+=======
 				E67F0F251C3DB70200785F12 /* User.swift in Sources */,
+>>>>>>> Model Classes
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

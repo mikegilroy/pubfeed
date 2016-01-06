@@ -7,14 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0236A3511C3DB2A200125BA9 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A34F1C3DB28100125BA9 /* Firebase.framework */; };
-		0236A3521C3DB2A200125BA9 /* Firebase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A34F1C3DB28100125BA9 /* Firebase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0236A3551C3DB31E00125BA9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3541C3DB31E00125BA9 /* CFNetwork.framework */; };
-		0236A3571C3DB32D00125BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3561C3DB32D00125BA9 /* Security.framework */; };
-		0236A3591C3DB33700125BA9 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3581C3DB33700125BA9 /* libicucore.tbd */; };
-		0236A35B1C3DB33E00125BA9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A35A1C3DB33E00125BA9 /* libc++.tbd */; };
-		0236A35D1C3DB3D600125BA9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A35C1C3DB3D600125BA9 /* SystemConfiguration.framework */; };
-		0236A3611C3DB41000125BA9 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236A3601C3DB41000125BA9 /* FirebaseController.swift */; };
 		1069A5251C3C4A580018D28F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5241C3C4A580018D28F /* AppDelegate.swift */; };
 		1069A52A1C3C4A580018D28F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1069A5281C3C4A580018D28F /* Main.storyboard */; };
 		1069A52C1C3C4A580018D28F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1069A52B1C3C4A580018D28F /* Assets.xcassets */; };
@@ -30,37 +22,9 @@
 		1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */; };
 		1069A54C1C3D92100018D28F /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */; };
 		1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */; };
-		E67F0F181C3DB54600785F12 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F171C3DB54600785F12 /* Bar.swift */; };
-		E67F0F1A1C3DB5C700785F12 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F191C3DB5C700785F12 /* Comment.swift */; };
-		E67F0F1C1C3DB60F00785F12 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F1B1C3DB60F00785F12 /* Like.swift */; };
-		E67F0F1E1C3DB61F00785F12 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F1D1C3DB61F00785F12 /* Post.swift */; };
-		E67F0F211C3DB69A00785F12 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F201C3DB69A00785F12 /* DateExtension.swift */; };
-		E67F0F231C3DB6AB00785F12 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F221C3DB6AB00785F12 /* StringExtension.swift */; };
-		E67F0F251C3DB70200785F12 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F241C3DB70200785F12 /* User.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0236A3531C3DB2A200125BA9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0236A3521C3DB2A200125BA9 /* Firebase.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		0236A34F1C3DB28100125BA9 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
-		0236A3541C3DB31E00125BA9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		0236A3561C3DB32D00125BA9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		0236A3581C3DB33700125BA9 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
-		0236A35A1C3DB33E00125BA9 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		0236A35C1C3DB3D600125BA9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0236A3601C3DB41000125BA9 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		1069A5211C3C4A580018D28F /* PubFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PubFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1069A5241C3C4A580018D28F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1069A5291C3C4A580018D28F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,13 +42,6 @@
 		1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		E67F0F171C3DB54600785F12 /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
-		E67F0F191C3DB5C700785F12 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		E67F0F1B1C3DB60F00785F12 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
-		E67F0F1D1C3DB61F00785F12 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		E67F0F201C3DB69A00785F12 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		E67F0F221C3DB6AB00785F12 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		E67F0F241C3DB70200785F12 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,43 +49,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0236A35D1C3DB3D600125BA9 /* SystemConfiguration.framework in Frameworks */,
-				0236A35B1C3DB33E00125BA9 /* libc++.tbd in Frameworks */,
-				0236A3591C3DB33700125BA9 /* libicucore.tbd in Frameworks */,
-				0236A3571C3DB32D00125BA9 /* Security.framework in Frameworks */,
-				0236A3551C3DB31E00125BA9 /* CFNetwork.framework in Frameworks */,
-				0236A3511C3DB2A200125BA9 /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0236A35E1C3DB3DB00125BA9 /* FirebaseFramework */ = {
-			isa = PBXGroup;
-			children = (
-				0236A35C1C3DB3D600125BA9 /* SystemConfiguration.framework */,
-				0236A35A1C3DB33E00125BA9 /* libc++.tbd */,
-				0236A3581C3DB33700125BA9 /* libicucore.tbd */,
-				0236A3561C3DB32D00125BA9 /* Security.framework */,
-				0236A3541C3DB31E00125BA9 /* CFNetwork.framework */,
-				0236A34F1C3DB28100125BA9 /* Firebase.framework */,
-			);
-			name = FirebaseFramework;
-			sourceTree = "<group>";
-		};
-		0236A35F1C3DB3F200125BA9 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				0236A3601C3DB41000125BA9 /* FirebaseController.swift */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
 		1069A5181C3C4A580018D28F = {
 			isa = PBXGroup;
 			children = (
-				0236A35E1C3DB3DB00125BA9 /* FirebaseFramework */,
 				1069A5231C3C4A580018D28F /* PubFeed */,
 				1069A5221C3C4A580018D28F /* Products */,
 			);
@@ -145,11 +74,8 @@
 		1069A5231C3C4A580018D28F /* PubFeed */ = {
 			isa = PBXGroup;
 			children = (
-				E67F0F1F1C3DB65F00785F12 /* Extensions */,
-				E67F0F121C3DB3E300785F12 /* Models */,
 				1069A5241C3C4A580018D28F /* AppDelegate.swift */,
 				1069A5281C3C4A580018D28F /* Main.storyboard */,
-				0236A35F1C3DB3F200125BA9 /* Controllers */,
 				1069A5381C3D81C00018D28F /* Views */,
 				1069A52B1C3C4A580018D28F /* Assets.xcassets */,
 				1069A52D1C3C4A580018D28F /* LaunchScreen.storyboard */,
@@ -208,27 +134,6 @@
 			name = "Post Detail";
 			sourceTree = "<group>";
 		};
-		E67F0F121C3DB3E300785F12 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E67F0F171C3DB54600785F12 /* Bar.swift */,
-				E67F0F191C3DB5C700785F12 /* Comment.swift */,
-				E67F0F1B1C3DB60F00785F12 /* Like.swift */,
-				E67F0F1D1C3DB61F00785F12 /* Post.swift */,
-				E67F0F241C3DB70200785F12 /* User.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		E67F0F1F1C3DB65F00785F12 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				E67F0F201C3DB69A00785F12 /* DateExtension.swift */,
-				E67F0F221C3DB6AB00785F12 /* StringExtension.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,7 +144,6 @@
 				1069A51D1C3C4A580018D28F /* Sources */,
 				1069A51E1C3C4A580018D28F /* Frameworks */,
 				1069A51F1C3C4A580018D28F /* Resources */,
-				0236A3531C3DB2A200125BA9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,25 +206,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1069A54C1C3D92100018D28F /* CommentTableViewCell.swift in Sources */,
-				E67F0F211C3DB69A00785F12 /* DateExtension.swift in Sources */,
 				1069A53A1C3D81CE0018D28F /* SignupViewController.swift in Sources */,
 				1069A5451C3D84270018D28F /* SelectLocationViewController.swift in Sources */,
 				1069A5431C3D840F0018D28F /* PostDetailViewController.swift in Sources */,
 				1069A53C1C3D82760018D28F /* TabBarController.swift in Sources */,
 				1069A5411C3D82A80018D28F /* BarFeedViewController.swift in Sources */,
-				E67F0F181C3DB54600785F12 /* Bar.swift in Sources */,
 				1069A5371C3D81B90018D28F /* LoginViewController.swift in Sources */,
 				1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */,
-				E67F0F1C1C3DB60F00785F12 /* Like.swift in Sources */,
-				E67F0F1A1C3DB5C700785F12 /* Comment.swift in Sources */,
-				E67F0F1E1C3DB61F00785F12 /* Post.swift in Sources */,
 				1069A53F1C3D82910018D28F /* MapViewController.swift in Sources */,
-				E67F0F231C3DB6AB00785F12 /* StringExtension.swift in Sources */,
 				1069A5471C3D84A40018D28F /* NewPostTableTableViewController.swift in Sources */,
 				1069A5251C3C4A580018D28F /* AppDelegate.swift in Sources */,
 				1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */,
-				0236A3611C3DB41000125BA9 /* FirebaseController.swift in Sources */,
-				E67F0F251C3DB70200785F12 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,10 +329,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = PubFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.pubfeed;
@@ -448,10 +340,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = PubFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.pubfeed;
