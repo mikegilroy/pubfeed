@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct User: Equatable, FirebaseType { // Equatable, FirebaseType
+struct User: Equatable, FirebaseType {
     
     // MARK: Keys
     private let kUsername = "username"

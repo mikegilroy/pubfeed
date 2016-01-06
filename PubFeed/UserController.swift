@@ -12,7 +12,7 @@ import UIKit
 
 class UserController {
     
-      private let UserKey = "user"
+    private let UserKey = "user"
     static var sharedController = UserController()
     
     var currentUser: User! {
@@ -50,7 +50,7 @@ class UserController {
                 authenticateUser(email, password: password, completion: { (user, error) -> Void in
                     completion(user: user, error: error)
                 })
-
+                
             }
         }
         
@@ -94,8 +94,8 @@ class UserController {
     static func updateUser(user: User, username: String, email: String, password: String, completion: (success: Bool, user: User?) -> Void)  {
         
         var updatedUser = User(username: user.username, email: user.email, photo: user.photo, uid: user.identifier!)
-//        user.password = password
-//        user.save()
+        //        user.password = password
+        //        user.save()
         updatedUser.save()
         
         UserController.userWithIdentifier(user.identifier!) { (user) -> Void in
@@ -113,7 +113,7 @@ class UserController {
         FirebaseController.base.unauth()
         sharedController.currentUser = nil
     }
-
+    
     static func deleteUser(user: User, password: String, completion: (success: Bool) -> Void) {
         
     }
@@ -126,6 +126,6 @@ class UserController {
         
         return [user1, user2, user3]
     }
-
-
+    
+    
 }
