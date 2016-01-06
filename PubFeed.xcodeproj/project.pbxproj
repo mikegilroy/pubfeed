@@ -30,6 +30,7 @@
 		1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */; };
 		1069A54C1C3D92100018D28F /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */; };
 		1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */; };
+<<<<<<< a877ebed10bb87b04fad255f98b0d70cb3fa7b6a
 		E67F0F181C3DB54600785F12 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F171C3DB54600785F12 /* Bar.swift */; };
 		E67F0F1A1C3DB5C700785F12 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F191C3DB5C700785F12 /* Comment.swift */; };
 		E67F0F1C1C3DB60F00785F12 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F1B1C3DB60F00785F12 /* Like.swift */; };
@@ -37,6 +38,12 @@
 		E67F0F211C3DB69A00785F12 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F201C3DB69A00785F12 /* DateExtension.swift */; };
 		E67F0F231C3DB6AB00785F12 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F221C3DB6AB00785F12 /* StringExtension.swift */; };
 		E67F0F251C3DB70200785F12 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F241C3DB70200785F12 /* User.swift */; };
+=======
+		DED6E5AC1C3DB48D005E17D8 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5A71C3DB48D005E17D8 /* CommentController.swift */; };
+		DED6E5AE1C3DB48D005E17D8 /* LikeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5A91C3DB48D005E17D8 /* LikeController.swift */; };
+		DED6E5AF1C3DB48D005E17D8 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5AA1C3DB48D005E17D8 /* PostController.swift */; };
+		DED6E5B01C3DB48D005E17D8 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5AB1C3DB48D005E17D8 /* UserController.swift */; };
+>>>>>>> Controller updated
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +85,7 @@
 		1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+<<<<<<< a877ebed10bb87b04fad255f98b0d70cb3fa7b6a
 		E67F0F171C3DB54600785F12 /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 		E67F0F191C3DB5C700785F12 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		E67F0F1B1C3DB60F00785F12 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
@@ -85,6 +93,12 @@
 		E67F0F201C3DB69A00785F12 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		E67F0F221C3DB6AB00785F12 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		E67F0F241C3DB70200785F12 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+=======
+		DED6E5A71C3DB48D005E17D8 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		DED6E5A91C3DB48D005E17D8 /* LikeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeController.swift; sourceTree = "<group>"; };
+		DED6E5AA1C3DB48D005E17D8 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		DED6E5AB1C3DB48D005E17D8 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+>>>>>>> Controller updated
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +237,15 @@
 		E67F0F1F1C3DB65F00785F12 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< a877ebed10bb87b04fad255f98b0d70cb3fa7b6a
 				E67F0F201C3DB69A00785F12 /* DateExtension.swift */,
 				E67F0F221C3DB6AB00785F12 /* StringExtension.swift */,
+=======
+				DED6E5AB1C3DB48D005E17D8 /* UserController.swift */,
+				DED6E5AA1C3DB48D005E17D8 /* PostController.swift */,
+				DED6E5A71C3DB48D005E17D8 /* CommentController.swift */,
+				DED6E5A91C3DB48D005E17D8 /* LikeController.swift */,
+>>>>>>> Controller updated
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -310,6 +331,10 @@
 				1069A5411C3D82A80018D28F /* BarFeedViewController.swift in Sources */,
 				E67F0F181C3DB54600785F12 /* Bar.swift in Sources */,
 				1069A5371C3D81B90018D28F /* LoginViewController.swift in Sources */,
+<<<<<<< a877ebed10bb87b04fad255f98b0d70cb3fa7b6a
+=======
+				DED6E5AF1C3DB48D005E17D8 /* PostController.swift in Sources */,
+>>>>>>> Controller updated
 				1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */,
 				E67F0F1C1C3DB60F00785F12 /* Like.swift in Sources */,
 				E67F0F1A1C3DB5C700785F12 /* Comment.swift in Sources */,
