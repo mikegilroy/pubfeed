@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct User { // Equatable, FirebaseType
+
+struct User: Equatable, FirebaseType { // Equatable, FirebaseType
     
     // MARK: Keys
     private let kUsername = "username"
@@ -19,17 +20,18 @@ struct User { // Equatable, FirebaseType
     var username: String
     var email: String
     var photo: String?
-    var uid: String?
+    var identifier: String?
     
     // MARK: Initializer
     init(username: String, email: String, photo: String?, uid: String? = nil) {
         self.username = username
         self.email = email
         self.photo = photo
-        self.uid = uid
+        self.identifier = uid
     }
     
     // MARK: FirebaseType
+    
     var endpoint: String {
         return "users"
     }
@@ -42,7 +44,7 @@ struct User { // Equatable, FirebaseType
         return json
     }
     
-    init?(json: [String : AnyObject], uid: String) {
+    init?(json: [String : AnyObject], identifier: String) {
         guard let username = json[kUsername] as? String,
             let email = json[kEmail] as? String else {
                 return nil
@@ -52,8 +54,12 @@ struct User { // Equatable, FirebaseType
         if let photo = json[kPhoto] as? String {
             self.photo = photo
         }
-        self.uid = uid
+        self.identifier = identifier
     }
     
 }
 
+func ==(lhs: User, rhs: User) -> Bool {
+    
+    return (lhs.username == rhs.username) && (lhs.identifier == rhs.identifier)
+}

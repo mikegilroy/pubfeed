@@ -51,24 +51,28 @@ protocol FirebaseType {
     mutating func delete()
 }
 
-
-// MARK: Extension - FirebaseType
 extension FirebaseType {
+    
     mutating func save() {
+        
         var endpointBase: Firebase
-        if let identifier = self.identifier {
-            endpointBase = FirebaseController.base.childByAppendingPath(endpoint).childByAppendingPath(identifier)
+        
+        if let childID = self.identifier {
+            endpointBase = FirebaseController.base.childByAppendingPath(endpoint).childByAppendingPath(childID)
         } else {
             endpointBase = FirebaseController.base.childByAppendingPath(endpoint).childByAutoId()
             self.identifier = endpointBase.key
         }
+        
         endpointBase.updateChildValues(self.jsonValue)
+        
     }
     
     func delete() {
-        if let identifier = self.identifier {
-            let endpointBase = FirebaseController.base.childByAppendingPath(endpoint).childByAppendingPath(identifier)
-            endpointBase.removeValue()
-        }
+        
+        let endpointBase: Firebase = FirebaseController.base.childByAppendingPath(endpoint).childByAppendingPath(self.identifier)
+        
+        endpointBase.removeValue()
     }
 }
+
