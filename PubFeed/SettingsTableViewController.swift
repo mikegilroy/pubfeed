@@ -17,6 +17,10 @@ class SettingsTableViewController: UITableViewController {
     
     
     // MARK: Actions
+    @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+        UserController.logoutUser()
+        self.tabBarController?.performSegueWithIdentifier("noCurrentUser", sender: nil)
+    }
     
     
     

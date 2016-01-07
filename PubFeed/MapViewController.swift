@@ -11,7 +11,7 @@ import UIKit
 class MapViewController: UIViewController {
 
     // MARK: Properties
-    
+    var user: User?
     
     // MARK: Outlets
     

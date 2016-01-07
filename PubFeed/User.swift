@@ -23,7 +23,7 @@ struct User: Equatable, FirebaseType {
     var identifier: String?
     
     // MARK: Initializer
-    init(username: String, email: String, photo: String?, uid: String? = nil) {
+    init(username: String, email: String, photo: String? = "", uid: String? = nil) {
         self.username = username
         self.email = email
         self.photo = photo

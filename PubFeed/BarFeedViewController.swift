@@ -12,7 +12,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 
     // MARK: Properties
     
-    
+    var user: User?
     // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
