@@ -56,7 +56,7 @@ extension FirebaseType {
     mutating func save() {
         
         var endpointBase: Firebase
-        
+        // When GeoFire is implemented, this should check to see if the object being saved is a post (i.e. by its endpoint). If a post, this this function should add some geofire stuff to it. (This is the only place in the app that needs to be updated for geofire.)
         if let childID = self.identifier {
             endpointBase = FirebaseController.base.childByAppendingPath(endpoint).childByAppendingPath(childID)
         } else {
