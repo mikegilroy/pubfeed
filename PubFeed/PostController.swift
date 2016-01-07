@@ -65,7 +65,16 @@ class PostController {
     // Remove
     static func deletePost(post: Post) {
         post.delete()
-        // NEED TO DELETE ALL COMMENTS AND LIKES FOR THIS POST
+        CommentController.commentsForPost(post) { (comments) -> Void in
+            for comment in comments {
+                comment.delete()
+            }
+        }
+        LikeController.likesForPost(post) { (likes) -> Void in
+            for like in likes {
+                like.delete()
+            }
+        }
     }
     
     static func mockPosts() -> [Post] {

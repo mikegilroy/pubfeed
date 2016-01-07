@@ -23,11 +23,8 @@ class CommentController {
     // READ
     static func commentsForPost(post: Post, completion: (comments: [Comment]) -> Void) {
         if let postIdentifier = post.identifier {
-            
             FirebaseController.base.childByAppendingPath("comments").childByAppendingPath("postIdentifier").queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: { snapshot in
-                
                 if let commentDictionaries = snapshot.value as? [String:AnyObject] {
-                    
                     let comments = commentDictionaries.flatMap({Comment(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
                     let sortedComments = comments.sort({$0.0.timestamp > $0.1.timestamp})
                     
@@ -42,11 +39,8 @@ class CommentController {
     static func commentsForUser(user:User, completion: (comments: [Comment]) -> Void) {
         if let userIdentifier = user.identifier {
             FirebaseController.base.childByAppendingPath("comments").childByAppendingPath("userIdentifier").queryEqualToValue(userIdentifier).observeSingleEventOfType(.Value, withBlock: { snapshot in
-                
                 if let commentDictionaries = snapshot.value as? [String:AnyObject] {
-                    
                     let comments  = commentDictionaries.flatMap({Comment(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
-                    
                     completion(comments: comments)
                 } else {
                     completion(comments: [])

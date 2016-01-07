@@ -127,9 +127,9 @@ class UserController {
     
 
     // DELETE
-    // Needs to also delete likes, comments, and images for that user
+    // Needs to also delete images for that user
 
-    static func deleteUser(user: User, password: String, completion: (success: Bool) -> Void) {
+    static func deleteUser(user: User, password: String) {
         FirebaseController.base
             .removeUser(user.email, password: password) { (error) -> Void in
                 if error == nil {
@@ -137,9 +137,18 @@ class UserController {
                     PostController.postsForUser(user) { (posts) -> Void in
                         for post in posts {
                             post.delete()
-                            completion(success: true)
                         }
                     }
+                    CommentController.commentsForUser(user, completion: { (comments) -> Void in
+                        for comment in comments {
+                            comment.delete()
+                        }
+                    })
+                    LikeController.likesForUser(user, completion: { (likes) -> Void in
+                        for like in likes {
+                            like.delete()
+                        }
+                    })
                 }
         }
     }

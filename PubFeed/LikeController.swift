@@ -59,7 +59,7 @@ class LikeController {
     
     //UPDATE
     static func toggleLike(like: Like, post: Post, isLiked: Bool, completion: (isLiked: Bool) -> Void)  {
-        //Revisit this after making other changes
+        //Revisit this after making changes to FirebaseType save and delete functions
         if isLiked == true {
             LikeController.deleteLike(like)
             completion(isLiked: false)
