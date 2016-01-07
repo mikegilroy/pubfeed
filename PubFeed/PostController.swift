@@ -65,10 +65,8 @@ class PostController {
     
     
     // Remove
-    static func deletePost(post: Post, completion: (success: Bool) -> Void) {
-        
+    static func deletePost(post: Post) {
         post.delete()
-        completion(success: true)
         // NEED TO DELETE ALL COMMENTS AND LIKES FOR THIS POST
     }
     

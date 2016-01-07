@@ -13,11 +13,8 @@ import UIKit
 class UserController {
     
     private let UserKey = "user"
-<<<<<<< d5e966f07241a2c7b36c3cd08f7e5ab73997d5dc
-    static var sharedController = UserController()
-=======
+
     static let sharedController = UserController()
->>>>>>> Updated PostController / UserController
     
     var currentUser: User? {
         get {
@@ -38,41 +35,17 @@ class UserController {
         }
     }
     
-<<<<<<< d5e966f07241a2c7b36c3cd08f7e5ab73997d5dc
-    static func createUser(username: String, email: String, password: String, photo: String?, completion: (user: User?, error: NSError?) -> Void) {
-        
-        FirebaseController.base.createUser(email, password: password) { (error, response) -> Void in
-            
-            if let uid = response["uid"] as? String {
-                var user = User(username: username, email: email, photo: photo, uid: uid)
-                user.save()
-                
-                authenticateUser(email, password: password, completion: { (user, error) -> Void in
-                    completion(user: user, error: error)
-                })
-                
-            }
-        }
-        
-    }
-    
-=======
     //AUTH & UNAUTH
->>>>>>> Updated PostController / UserController
+
     static func authenticateUser(email: String, password: String, completion: (user: User?, error: NSError?) -> Void) {
-        
         FirebaseController.base.authUser(email, password: password) { (error, response) -> Void in
-            
             if error != nil {
                 completion(user: nil, error: error)
             } else {
                 UserController.userWithIdentifier(response.uid, completion: { (user) -> Void in
-                    
                     if let user = user {
-                        
                         sharedController.currentUser = user
                     }
-                    
                     completion(user: user, error: nil)
                 })
             }
@@ -109,20 +82,35 @@ class UserController {
         }
     }
     
-<<<<<<< d5e966f07241a2c7b36c3cd08f7e5ab73997d5dc
-    static func updateUser(user: User, username: String, email: String, password: String, completion: (success: Bool, user: User?) -> Void)  {
-        
-        var updatedUser = User(username: user.username, email: user.email, photo: user.photo, uid: user.identifier!)
-        //        user.password = password
-        //        user.save()
-        updatedUser.save()
-        
-        UserController.userWithIdentifier(user.identifier!) { (user) -> Void in
-            
-            if let user = user {
-                
-                sharedController.currentUser = user
-=======
+
+    static func updateUser(user: User, username: String, email: String, completion: (user: User?) -> Void)  {
+        if let identifier = user.identifier {
+            var updatedUser = User(username: user.username, email: user.email, photo: user.photo, uid: identifier)
+            updatedUser.save()
+            UserController.userWithIdentifier(identifier) { (user) -> Void in
+                if let user = user {
+                    sharedController.currentUser = user
+                    completion(user: user)
+                } else {
+                    completion(user: nil)
+                }
+            }
+        } else {
+            completion(user: nil)
+        }
+    }
+    
+    static func changePasswordForUser(user: User, oldPassword: String, newPassword: String, completion: (error: NSError?) -> Void) {
+        FirebaseController.base.changePasswordForUser(user.email, fromOld: oldPassword, toNew: newPassword) { (error) -> Void in
+            if let error = error {
+                completion(error: error)
+            } else {
+                completion(error: nil)
+            }
+        }
+    }
+
+    
     // UPDATE
     static func updateUser(user: User, username: String, email: String, password: String, completion: (user: User?) -> Void)  {
         if let identifier = user.identifier {
@@ -133,21 +121,14 @@ class UserController {
                     sharedController.currentUser = user
                 }
                 completion(user: user)
->>>>>>> Updated PostController / UserController
             }
         }
     }
     
-<<<<<<< d5e966f07241a2c7b36c3cd08f7e5ab73997d5dc
-    static func logoutUser() {
-        FirebaseController.base.unauth()
-        sharedController.currentUser = nil
-    }
-    
-=======
+
     // DELETE
     // Needs to also delete likes, comments, and images for that user
->>>>>>> Updated PostController / UserController
+
     static func deleteUser(user: User, password: String, completion: (success: Bool) -> Void) {
         FirebaseController.base
             .removeUser(user.email, password: password) { (error) -> Void in

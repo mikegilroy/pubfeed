@@ -11,14 +11,12 @@ import Foundation
 class CommentController {
     
     
-    static func addCommentWithTextToPost(text: String, post: Post, completion: (success: Bool, post: Post?) -> Void?) {
-        
-        var comment = Comment(text: text, userIdentifier: UserController.sharedController.currentUser.identifier!, postIdentifier: post.identifier!)
-        
-        comment.save()
-        
-        PostController.postFromIdentifier(comment.postIdentifier) { (post) -> Void in
-            completion(success: true, post: post)
+    static func addCommentToPost(post: Post, text: String, completion: (comment: Comment?) -> Void?) {
+        if let userIdentifier = UserController.sharedController.currentUser?.identifier {
+            if let postIdentifier = post.identifier {
+            var comment = Comment(text: text, userIdentifier: userIdentifier, postIdentifier: postIdentifier)
+                comment.save()
+            }
         }
     }
     

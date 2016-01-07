@@ -135,8 +135,8 @@
 			children = (
 				DED6E5B61C3DBFFC005E17D8 /* UserController.swift */,
 				DED6E5B51C3DBFFC005E17D8 /* PostController.swift */,
-				DED6E5B21C3DBFE2005E17D8 /* LikeController.swift */,
 				DED6E5BC1C3DC752005E17D8 /* ImageController.swift */,
+				DED6E5B21C3DBFE2005E17D8 /* LikeController.swift */,
 				DED6E5B41C3DBFFC005E17D8 /* CommentController.swift */,
 				0236A3601C3DB41000125BA9 /* FirebaseController.swift */,
 			);

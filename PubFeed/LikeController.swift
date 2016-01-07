@@ -29,9 +29,12 @@ class LikeController {
     
     
     static func addLikeToPost(post: Post) {
-        
-        var like = Like(userIdentifier: UserController.sharedController.currentUser.identifier!, postIdentifier: post.identifier!)
-        like.save()
+        if let userIdentifier = UserController.sharedController.currentUser?.identifier {
+            if let postIdentifier = post.identifier {
+                var like = Like(userIdentifier: userIdentifier, postIdentifier: postIdentifier)
+                like.save()
+            }
+        }
     }
     
     
