@@ -12,7 +12,7 @@ import Firebase
 class FirebaseController {
     
     // MARK: Properties
-    static let base = Firebase(url: "https:/pubfeed.firebaseio.com")
+    static let base = Firebase(url: "https://pubfeed.firebaseio.com")
     
     // MARK: Methods
     static func dataAtEndpoint(endpoint: String, completion: (data: AnyObject?) -> Void) {
