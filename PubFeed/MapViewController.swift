@@ -15,6 +15,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
     var location: CLLocation?
+    var user: User?
     
     
     // MARK: Outlets
@@ -49,9 +50,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func addBarLocationAnnotation(bar: MKMapItem) {
+    func addBarLocationAnnotation(bar: Bar) {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = bar.placemark.location!.coordinate
+        //annotation.coordinate = bar.placemark.location!.coordinate
         annotation.title = bar.name
         mapView.addAnnotation(annotation)
     }
