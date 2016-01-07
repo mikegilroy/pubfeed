@@ -36,10 +36,9 @@ class UserController {
         }
     }
     
-<<<<<<< ad23d8d928af706908de6d69a033a69d1bb3f81d
+
     //AUTH & UNAUTH
 
-=======
     static func createUser(username: String, email: String, password: String, photo: UIImage, completion: (user: User?, error: NSError?) -> Void) {
         
         FirebaseController.base.createUser(email, password: password) { (error, response) -> Void in
@@ -77,7 +76,8 @@ class UserController {
         }
     }
     
->>>>>>> Login/Signup Views implemented
+// Login/Signup Views implemented
+    
     static func authenticateUser(email: String, password: String, completion: (user: User?, error: NSError?) -> Void) {
         FirebaseController.base.authUser(email, password: password) { (error, response) -> Void in
             if error != nil {
