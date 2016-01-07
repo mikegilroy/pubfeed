@@ -31,4 +31,22 @@ class CommentController {
         }
     }
     
+    
+    static func commentsForUser(user:User, completion: (comments: [Comment]) -> Void) {
+        if let userIdentifier = user.identifier {
+            FirebaseController.base.childByAppendingPath("comments").childByAppendingPath("userIdentifier").queryEqualToValue(userIdentifier).observeSingleEventOfType(.Value, withBlock: { snapshot in
+                
+                if let commentDictionaries = snapshot.value as? [String:AnyObject] {
+                    
+                    let comments  = commentDictionaries.flatMap({Comment(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
+                    
+                    completion(comments: comments)
+                } else {
+                    completion(comments: [])
+                }
+            })
+        }
+        
+    }
+    
 }
