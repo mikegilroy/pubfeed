@@ -59,8 +59,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         if (usernameTextField.text == "") || (emailTextField.text == "") || (passwordTextField.text == "") {
             ErrorHandling.defaultErrorHandler(nil, title: "Missing Information")
         } else {
-            
-            // If user did upload photo
+         /*
+                //User With Photo
             
             if let profilePhoto = self.profilePhoto {
                 UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: profilePhoto, completion: { (user, error) -> Void in
@@ -84,41 +84,52 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
                     }
                 })
             }
-        }
-    }
-    
-    @IBAction func cancelButtonTapped(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    // MARK: viewDid Functions
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    // MARK: UIImagePickerController Delegate
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        self.profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.addProfilePhotoButton.setBackgroundImage(self.profilePhoto, forState: .Normal)
+        }   
+        */
+
+        UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: UIImage(), completion: { (user, error) -> Void in
+            if error == nil {
+                self.user = user
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+            }
         })
     }
+}
+
+@IBAction func cancelButtonTapped(sender: UIButton) {
+    self.dismissViewControllerAnimated(true, completion: nil)
+}
+
+
+// MARK: viewDid Functions
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+}
+
+// MARK: UIImagePickerController Delegate
+
+func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    picker.dismissViewControllerAnimated(true, completion: nil)
+    self.profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.addProfilePhotoButton.setBackgroundImage(self.profilePhoto, forState: .Normal)
+    })
+}
+
+// MARK: Navigation
+
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
-    // MARK: Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        //        if segue.identifier == "fromSignUp" {
-        //            if let destinationController = segue.destinationViewController as? MapViewController {
-        //                _ = destinationController.view
-        //
-        //                destinationController.user = self.user
-        //            }
-        //        }
-    }
-    
+    //        if segue.identifier == "fromSignUp" {
+    //            if let destinationController = segue.destinationViewController as? MapViewController {
+    //                _ = destinationController.view
+    //
+    //                destinationController.user = self.user
+    //            }
+    //        }
+}
+
 }

@@ -44,31 +44,37 @@ class UserController {
         
         FirebaseController.base.createUser(email, password: password) { (error, response) -> Void in
             if error == nil {
-                ImageController.uploadPhoto(photo) { (identifier) -> Void in
-                    if let uid = response["uid"] as? String {
-                        var user: User
-                        if let identifier = identifier {
-                            user = User(username: username, email: email, photo: identifier, uid: uid)
-                        } else {
-                            user = User(username: username, email: email, photo: nil, uid: uid)
-                        }
-                        user.save()
-                        
-                        authenticateUser(email, password: password, completion: { (user, error) -> Void in
-                            completion(user: user, error: error)
-                        })
-                        
-                    }
+                
+                if let uid = response["uid"] as? String {
                     
+                    var user = User(username: username, email: email, photo: nil, uid: uid)
+                    user.save()
+                    
+                    authenticateUser(email, password: password, completion: { (user, error) -> Void in
+                        completion(user: user, error: error)
+                    })
+                    
+                    /*
+                    ImageController.uploadPhoto(photo) { (identifier) -> Void in
+                    if let uid = response["uid"] as? String {
+                    var user: User
+                    if let identifier = identifier {
+                    user = User(username: username, email: email, photo: identifier, uid: uid)
+                    } else {
+                    user = User(username: username, email: email, photo: nil, uid: uid)
+                    }
+                    user.save()
+                    
+                    authenticateUser(email, password: password, completion: { (user, error) -> Void in
+                    completion(user: user, error: error)
+                    })
+                    
+                    } */
+                } else {
+                    completion(user: nil, error: error)
                 }
-
-            } else {
-                completion(user: nil, error: error)
             }
-            
-           
         }
-        
     }
     
 >>>>>>> Login/Signup Views implemented
