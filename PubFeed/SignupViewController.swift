@@ -87,7 +87,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         }   
         */
 
-        UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: UIImage(), completion: { (user, error) -> Void in
+            //This needs to be updates when images are supported
+        UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: "", completion: { (user, error) -> Void in
             if error == nil {
                 self.user = user
                 self.dismissViewControllerAnimated(true, completion: nil)

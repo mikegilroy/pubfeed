@@ -46,8 +46,8 @@ protocol FirebaseType {
     
     init?(json: [String: AnyObject], identifier: String)
     
-    mutating func save()
-    mutating func delete()
+    mutating func save(completion: (error: NSError?) -> Void)
+    mutating func delete(completion: (error: NSError?) -> Void)
 }
 
 extension FirebaseType {

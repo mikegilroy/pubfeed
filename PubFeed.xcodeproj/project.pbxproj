@@ -16,6 +16,7 @@
 		0236A35D1C3DB3D600125BA9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A35C1C3DB3D600125BA9 /* SystemConfiguration.framework */; };
 		0236A3611C3DB41000125BA9 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236A3601C3DB41000125BA9 /* FirebaseController.swift */; };
 		0236A3671C3DCA3900125BA9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3661C3DCA3900125BA9 /* CoreLocation.framework */; };
+		0236A3711C3F192B00125BA9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236A3701C3F192B00125BA9 /* Error.swift */; };
 		100B8DAF1C3EFEF5005C45E4 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DAE1C3EFEF5005C45E4 /* BarController.swift */; };
 		100B8DB11C3EFF96005C45E4 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DB01C3EFF96005C45E4 /* NetworkController.swift */; };
 		1069A5251C3C4A580018D28F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5241C3C4A580018D28F /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 		0236A35C1C3DB3D600125BA9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0236A3601C3DB41000125BA9 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		0236A3661C3DCA3900125BA9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0236A3701C3F192B00125BA9 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		100B8DAE1C3EFEF5005C45E4 /* BarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarController.swift; path = ../BarController.swift; sourceTree = "<group>"; };
 		100B8DB01C3EFF96005C45E4 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		1069A5211C3C4A580018D28F /* PubFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PubFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,6 +266,7 @@
 			children = (
 				E67F0F201C3DB69A00785F12 /* DateExtension.swift */,
 				E67F0F221C3DB6AB00785F12 /* StringExtension.swift */,
+				0236A3701C3F192B00125BA9 /* Error.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */,
 				100B8DB11C3EFF96005C45E4 /* NetworkController.swift in Sources */,
 				0236A3611C3DB41000125BA9 /* FirebaseController.swift in Sources */,
+				0236A3711C3F192B00125BA9 /* Error.swift in Sources */,
 				E67F0F251C3DB70200785F12 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
