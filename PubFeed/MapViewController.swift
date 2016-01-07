@@ -39,14 +39,46 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: Map Functions
     
     func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         mapView.setRegion(coordinateRegion, animated: true)
-        BarController.loadBars(location) { (bars) -> Void in
+        BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) -> Void in
+            print(nextPageToken)
+            var barsArray: [Bar] = []
             if let bars = bars {
                 for bar in bars {
-                    self.addBarLocationAnnotation(bar)
+                    barsArray.append(bar)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.addBarLocationAnnotation(bar)
+                    })
+                }
+                if let secondPageToken = nextPageToken {
+                    BarController.loadBars(location, nextPageToken: secondPageToken, completion: { (bars, nextPageToken) -> Void in
+                        print(nextPageToken)
+                        if let bars = bars {
+                            for bar in bars {
+                                barsArray.append(bar)
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    self.addBarLocationAnnotation(bar)
+                                })
+                            }
+                        }
+                        if let thirdPageToken = nextPageToken {
+                            BarController.loadBars(location, nextPageToken: thirdPageToken, completion: { (bars, nextPageToken) -> Void in
+                                print(nextPageToken)
+                                if let bars = bars {
+                                    for bar in bars {
+                                        barsArray.append(bar)
+                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                            self.addBarLocationAnnotation(bar)
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    })
                 }
             }
+            
         }
     }
     

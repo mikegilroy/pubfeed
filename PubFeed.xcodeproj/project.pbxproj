@@ -192,9 +192,9 @@
 			isa = PBXGroup;
 			children = (
 				1069A54A1C3D90480018D28F /* Login/Signup Views */,
-				1069A53E1C3D82910018D28F /* MapViewController.swift */,
 				1069A54F1C3D92230018D28F /* Bar Feed */,
 				1069A5501C3D922B0018D28F /* Post Detail */,
+				1069A53E1C3D82910018D28F /* MapViewController.swift */,
 				1069A5441C3D84270018D28F /* SelectLocationViewController.swift */,
 				1069A5461C3D84A40018D28F /* NewPostTableTableViewController.swift */,
 				1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */,

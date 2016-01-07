@@ -16,14 +16,17 @@ class NetworkController {
     private let baseURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
     private let endURL = "&types=bar&key=AIzaSyC7yWoWuq6_U8U-kanl9g6Rk4r1ziUU-0E"
     
-    static func searchURL(location: CLLocation, radius: Int) -> NSURL {
+    static func searchURL(location: CLLocation, radius: Int, nextPageToken: String?) -> NSURL {
         let latitude = 40.761838 //location.coordinate.latitude
         let longitude = -111.890994 //location.coordinate.longitude
         
         let locationString  = "\(latitude),\(longitude)"
         let radiusString = "&radius=\(radius)"
         
-        let stringURL = NetworkController.sharedInstance.baseURL + locationString + radiusString + NetworkController.sharedInstance.endURL
+        var stringURL = NetworkController.sharedInstance.baseURL + locationString + radiusString + NetworkController.sharedInstance.endURL
+        if let nextPageToken = nextPageToken {
+            stringURL += "&pagetoken=\(nextPageToken)"
+        }
         return NSURL(string: stringURL)!
     }
     
