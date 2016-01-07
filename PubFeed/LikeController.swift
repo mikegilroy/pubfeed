@@ -10,8 +10,7 @@ import Foundation
 
 class LikeController {
     
-    
-    
+
     static func toggleLike(like: Like, post: Post, completion: (success: Bool, post: Post) -> Void)  {
         let isLiked: Bool = false
         
@@ -57,7 +56,25 @@ class LikeController {
                 }
             })
         }
-        
+    }
+    
+    
+    static func likesForPost(post: Post, completion: (likes: [Like]) -> Void) {
+        if let postIdentifier = post.identifier {
+            
+            FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("postIdentifier").queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: {
+                snapshot in
+                
+                if let postDictionaries = snapshot.value as? [String:AnyObject] {
+                    
+                    let likes = postDictionaries.flatMap({Like(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
+                    
+                    completion(likes: likes)
+                } else {
+                    completion(likes: [])
+                }
+            })
+        }
     }
     
     
