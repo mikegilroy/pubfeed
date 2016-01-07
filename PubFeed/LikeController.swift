@@ -9,25 +9,8 @@
 import Foundation
 
 class LikeController {
-    
 
-    static func toggleLike(like: Like, post: Post, completion: (success: Bool, post: Post) -> Void)  {
-        let isLiked: Bool = false
-        
-        if isLiked == true {
-            LikeController.deleteLike(like)
-            completion(success: true, post: post)
-            
-        } else {
-            LikeController.addLikeToPost(post)
-            completion(success: true, post: post)
-        }
-        PostController.postFromIdentifier(post.identifier!, completion: { (post) -> Void in
-            completion(success: true, post: post!)
-        })
-    }
-    
-    
+    // CREATE
     static func addLikeToPost(post: Post) {
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
             if let postIdentifier = post.identifier {
@@ -37,12 +20,7 @@ class LikeController {
         }
     }
     
-    
-    static func deleteLike(like: Like) {
-        like.delete()
-    }
-    
-    
+    // READ
     static func likesForUser(user: User, completion: (likes: [Like]) -> Void) {
         if let userIdentifier = user.identifier {
             
@@ -60,7 +38,6 @@ class LikeController {
             })
         }
     }
-    
     
     static func likesForPost(post: Post, completion: (likes: [Like]) -> Void) {
         if let postIdentifier = post.identifier {
@@ -80,21 +57,22 @@ class LikeController {
         }
     }
     
-    
-    static func commentsForUser(user:User, completion: (comments: [Comment]) -> Void) {
-        if let userIdentifier = user.identifier {
-            FirebaseController.base.childByAppendingPath("comments").childByAppendingPath("userIdentifier").queryEqualToValue(userIdentifier).observeSingleEventOfType(.Value, withBlock: { snapshot in
-                
-                if let commentDictionaries = snapshot.value as? [String:AnyObject] {
-                    
-                    let comments  = commentDictionaries.flatMap({Comment(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
-                    
-                    completion(comments: comments)
-                } else {
-                    completion(comments: [])
-                }
-            })
+    //UPDATE
+    static func toggleLike(like: Like, post: Post, isLiked: Bool, completion: (isLiked: Bool) -> Void)  {
+        //Revisit this after making other changes
+        if isLiked == true {
+            LikeController.deleteLike(like)
+            completion(isLiked: false)
+            
+        } else {
+            LikeController.addLikeToPost(post)
+            completion(isLiked: true)
         }
-        
+    }
+
+    
+    // DELETE
+    static func deleteLike(like: Like) {
+        like.delete()
     }
 }

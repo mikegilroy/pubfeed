@@ -48,7 +48,6 @@ class PostController {
         })
     }
     
-    
     static func postsForUser(user: User, completion: (posts: [Post]) -> Void) {
         if let userIdentifier = user.identifier {
             FirebaseController.base.childByAppendingPath("posts").queryOrderedByChild("userIdentifier").queryEqualToValue(userIdentifier).observeSingleEventOfType(.Value, withBlock: {
@@ -63,19 +62,12 @@ class PostController {
         }
     }
     
-    
     // Remove
     static func deletePost(post: Post) {
         post.delete()
         // NEED TO DELETE ALL COMMENTS AND LIKES FOR THIS POST
     }
     
-
-    
-
-    
-    
-
     static func mockPosts() -> [Post] {
         
         let sampleImageIdentifier = "-K1l4125TYvKMc7rcp5e"
@@ -84,8 +76,8 @@ class PostController {
         let like2 = Like(userIdentifier: "look", postIdentifier: "4566")
         let like3 = Like(userIdentifier: "em0r0r", postIdentifier: "43212")
         
-        let comment1 = Comment(text: "hola", userIdentifier: "abcdef", postIdentifier: "abc")
-        let comment2 = Comment(text: "hello", userIdentifier: "abcdef", postIdentifier: "abcd")
+        let comment1 = Comment(text: "hey", userIdentifier: "123", postIdentifier: "456", timestamp: NSDate())
+        let comment2 = Comment(text: "hello", userIdentifier: "abcdef", postIdentifier: "abcd", timestamp: NSDate())
         
         
         let post1 = Post(userIdentifier: "abcdef", barID: "abcdfe", timestamp: NSDate(), emojis: "abcde", text: "abc", photo: sampleImageIdentifier)
