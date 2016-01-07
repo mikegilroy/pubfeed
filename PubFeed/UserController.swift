@@ -80,14 +80,16 @@ class UserController {
     
     static func authenticateUser(email: String, password: String, completion: (user: User?, error: NSError?) -> Void) {
         FirebaseController.base.authUser(email, password: password) { (error, response) -> Void in
-            if error != nil {
+            if let error = error {
                 completion(user: nil, error: error)
             } else {
                 UserController.userWithIdentifier(response.uid, completion: { (user) -> Void in
                     if let user = user {
                         sharedController.currentUser = user
+                        completion(user: user, error: nil)
+                    } else {
+                        completion(user: nil, error: Error.defaultError())
                     }
-                    completion(user: user, error: nil)
                 })
             }
         }
@@ -99,14 +101,25 @@ class UserController {
     }
     
     // CREATE
-    static func createUser(username: String, email: String, password: String, photo: String?, completion: (user: User?, createError: NSError?, authError: NSError?) -> Void) {
+    static func createUser(username: String, email: String, password: String, photo: String?, completion: (user: User?, error: NSError?) -> Void) {
         FirebaseController.base.createUser(email, password: password) { (createError, response) -> Void in
             if let uid = response["uid"] as? String {
                 var user = User(username: username, email: email, photo: photo, uid: uid)
-                user.save()
-                authenticateUser(email, password: password, completion: { (user, authError) -> Void in
-                    completion(user: user, createError: createError, authError: authError)
+                user.save({ (error) -> Void in
+                    if error != nil {
+                        completion(user: nil, error: error)
+                    } else {
+                        authenticateUser(email, password: password, completion: { (user, error) -> Void in
+                            if let user = user {
+                                completion(user: user, error: nil)
+                            } else {
+                                completion(user: nil, error: error)
+                            }
+                        })
+                    }
                 })
+            } else {
+                completion(user: nil, error: Error.defaultError())
             }
         }
     }
@@ -117,27 +130,30 @@ class UserController {
             if let json = data as? [String: AnyObject] {
                 let user = User(json: json, identifier: uid)
                 completion(user: user)
-            } else {
-                completion(user: nil)
             }
         }
     }
     
-
-    static func updateUser(user: User, username: String, email: String, completion: (user: User?) -> Void)  {
+    // UPDATE
+    static func updateUser(user: User, username: String, email: String, password: String, completion: (user: User?, error: NSError?) -> Void)  {
         if let identifier = user.identifier {
             var updatedUser = User(username: user.username, email: user.email, photo: user.photo, uid: identifier)
-            updatedUser.save()
-            UserController.userWithIdentifier(identifier) { (user) -> Void in
-                if let user = user {
-                    sharedController.currentUser = user
-                    completion(user: user)
+            updatedUser.save({ (error) -> Void in
+                if let error = error {
+                    completion(user: nil, error: error)
                 } else {
-                    completion(user: nil)
+                    UserController.userWithIdentifier(identifier) { (user) -> Void in
+                        if let user = user {
+                            sharedController.currentUser = user
+                            completion(user: user, error: nil)
+                        } else {
+                            completion (user: nil, error: Error.defaultError())
+                        }
+                    }
                 }
-            }
+            })
         } else {
-            completion(user: nil)
+            completion(user: nil, error: Error.defaultError())
         }
     }
     
@@ -145,57 +161,51 @@ class UserController {
         FirebaseController.base.changePasswordForUser(user.email, fromOld: oldPassword, toNew: newPassword) { (error) -> Void in
             if let error = error {
                 completion(error: error)
-            } else {
-                completion(error: nil)
             }
         }
     }
-
-    
-    // UPDATE
-    static func updateUser(user: User, username: String, email: String, password: String, completion: (user: User?) -> Void)  {
-        if let identifier = user.identifier {
-            var updatedUser = User(username: user.username, email: user.email, photo: user.photo, uid: identifier)
-            updatedUser.save()
-            UserController.userWithIdentifier(identifier) { (user) -> Void in
-                if let user = user {
-                    sharedController.currentUser = user
-                }
-                completion(user: user)
-            }
-        }
-    }
-    
 
     // DELETE
+    
     // Needs to also delete images for that user
-
-    static func deleteUser(user: User, password: String) {
-        FirebaseController.base
-            .removeUser(user.email, password: password) { (error) -> Void in
-                if error == nil {
-                    user.delete()
-                    PostController.postsForUser(user) { (posts) -> Void in
-                        for post in posts {
-                            post.delete()
-                        }
-                    }
-                    CommentController.commentsForUser(user, completion: { (comments) -> Void in
-                        for comment in comments {
-                            comment.delete()
-                        }
-                    })
-                    LikeController.likesForUser(user, completion: { (likes) -> Void in
-                        for like in likes {
-                            like.delete()
-                        }
-                    })
+    static func deleteUser(user: User, password: String, completion:(errors: [NSError]?) -> Void) {
+        var errorArray: [NSError] = []
+        PostController.deleteAllPostsForUser(user) { (errors) -> Void in
+            if let errors = errors {
+                for error in errors {
+                    errorArray.append(error)
                 }
+            }
+        }
+        CommentController.deleteAllCommentsForUser(user) { (error) -> Void in
+            if let error = error {
+                errorArray.append(error)
+            }
+        }
+        LikeController.deleteAllLikesForUser(user) { (error) -> Void in
+            if let error = error {
+                errorArray.append(error)
+            }
+        }
+        FirebaseController.base.removeUser(user.email, password: password) { (error) -> Void in
+            if let error = error {
+                errorArray.append(error)
+            } else {
+                user.delete({ (error) -> Void in
+                    if let error = error {
+                        errorArray.append(error)
+                    }
+                })
+            }
+        }
+        if errorArray.count == 0 {
+            completion(errors: nil)
+        } else {
+            completion(errors: errorArray)
         }
     }
     
     static func mockUsers() -> [User] {
-        
         let user1 = User(username: "Thang", email: "thang@yahoo.com", photo: nil)
         let user2 = User(username: "James", email: "jame@yahoo.com", photo: nil, uid: "ojdoisjvijcxv")
         let user3 = User(username: "Jay", email: "Jay@YAHOO.com", photo: "abc", uid: "abcdef")

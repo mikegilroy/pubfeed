@@ -12,15 +12,21 @@ class PostController {
     
     
     // CREATE
-    static func createPost(location: String, emojis: String, text: String?, photo: String?, bar: Bar, user: User, completion: (post: Post?) -> Void) {
+    static func createPost(location: String, emojis: String, text: String?, photo: String?, bar: Bar, user: User, completion: (post: Post?, error: NSError?) -> Void) {
         // Needs to handle uploading the photo to amazon. This will need correction when the time comes.
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
             var post = Post(userIdentifier: userIdentifier, barID: bar.barID, timestamp: NSDate(), emojis: emojis, text: text, photo: photo)
-            post.save()
-            completion(post: post)
+            post.save({ (error) -> Void in
+                if error != nil {
+                    completion(post: nil, error: error)
+                } else {
+                    completion(post: post, error: nil)
+                }
+            })
         } else {
-            completion(post: nil)
+            completion(post: nil, error: Error.defaultError())
         }
+
     }
     
     // READ
@@ -29,9 +35,7 @@ class PostController {
             if let data = data as? [String: AnyObject] {
                 let post = Post(json: data, identifier: identifier)
                 completion(post: post)
-            } else {
-                completion(post: nil)
-            }
+            } 
         }
     }
     
@@ -63,19 +67,44 @@ class PostController {
     }
     
     // Remove
-    static func deletePost(post: Post) {
-        post.delete()
-        CommentController.commentsForPost(post) { (comments) -> Void in
-            for comment in comments {
-                comment.delete()
+    static func deletePost(post: Post, completion: (errors: [NSError]?) -> Void) {
+        var errorArray: [NSError] = []
+        CommentController.deleteAllCommentsForPost(post, completion: { (error) -> Void in
+            if let error = error {
+                errorArray.append(error)
+            }
+        })
+        LikeController.deleteAllLikesForPost(post, completion: { (error) -> Void in
+            if let error = error {
+                errorArray.append(error)
+            }
+        })
+        post.delete { (error) -> Void in
+            if let error = error {
+                errorArray.append(error)
             }
         }
-        LikeController.likesForPost(post) { (likes) -> Void in
-            for like in likes {
-                like.delete()
+        if errorArray.count == 0 {
+            completion(errors: nil)
+        } else {
+            completion(errors: errorArray)
+        }
+    }
+    
+    static func deleteAllPostsForUser(user: User, completion: (errors: [NSError]?) -> Void) {
+        postsForUser(user) { (posts) -> Void in
+            if posts.count > 0 {
+                for post in posts {
+                    deletePost(post, completion: { (errors) -> Void in
+                        if let errors = errors {
+                            completion(errors: errors)
+                        }
+                    })
+                }
             }
         }
     }
+        
     
     static func mockPosts() -> [Post] {
         

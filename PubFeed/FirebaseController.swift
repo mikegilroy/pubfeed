@@ -52,7 +52,7 @@ protocol FirebaseType {
 
 extension FirebaseType {
     
-    mutating func save() {
+    mutating func save(completion: (error: NSError?) -> Void) {
         var endpointBase: Firebase
         // When GeoFire is implemented, this should check to see if the object being saved is a post (i.e. by its endpoint). If a post, this this function should add some geofire stuff to it.
         if let childID = self.identifier {
@@ -61,17 +61,17 @@ extension FirebaseType {
             endpointBase = FirebaseController.base.childByAppendingPath(endpoint).childByAutoId()
             self.identifier = endpointBase.key
         }
-        
-        
-        endpointBase.updateChildValues(self.jsonValue)
-        
+        endpointBase.updateChildValues(self.jsonValue) { (error, _) -> Void in
+            completion(error: error)
+        }
     }
     
-    func delete() {
-        
-        let endpointBase: Firebase = FirebaseController.base.childByAppendingPath(endpoint).childByAppendingPath(self.identifier)
-        
-        endpointBase.removeValue()
+    
+    func delete(completion: (error: NSError?) -> Void) {
+            let endpointBase: Firebase = FirebaseController.base.childByAppendingPath(endpoint).childByAppendingPath(self.identifier)
+            endpointBase.removeValueWithCompletionBlock { (error, _) -> Void in
+                completion(error: error)
+        }
     }
 }
 

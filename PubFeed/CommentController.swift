@@ -11,12 +11,22 @@ import Foundation
 class CommentController {
     
     // CREATE
-    static func addCommentToPost(post: Post, text: String, completion: (comment: Comment?) -> Void?) {
+    static func addCommentToPost(post: Post, text: String, completion: (comment: Comment?, error: NSError?) -> Void?) {
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
             if let postIdentifier = post.identifier {
             var comment = Comment(text: text, userIdentifier: userIdentifier, postIdentifier: postIdentifier, timestamp: NSDate())
-                comment.save()
+                comment.save({ (error) -> Void in
+                    if error != nil {
+                        completion(comment: nil, error: error)
+                    } else {
+                        completion(comment: comment, error: nil)
+                    }
+                })
+            } else {
+                completion(comment: nil, error: Error.defaultError())
             }
+        } else {
+            completion(comment: nil, error: Error.defaultError())
         }
     }
     
@@ -27,7 +37,6 @@ class CommentController {
                 if let commentDictionaries = snapshot.value as? [String:AnyObject] {
                     let comments = commentDictionaries.flatMap({Comment(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
                     let sortedComments = comments.sort({$0.0.timestamp > $0.1.timestamp})
-                    
                     completion(comments: sortedComments)
                 } else {
                     completion(comments: [])
@@ -50,15 +59,38 @@ class CommentController {
     }
     
     // DELETE
-    static func deleteComment(comment: Comment, completion: (success: Bool, post: Post?) -> Void) {
-        
-        comment.delete()
-        PostController.postFromIdentifier(comment.postIdentifier) { (post) -> Void in
-            completion(success: true, post: post)
+    static func deleteComment(comment: Comment, completion: (error: NSError?) -> Void) {
+        comment.delete { (error) -> Void in
+            completion(error: error)
         }
     }
     
+    static func deleteAllCommentsForPost(post: Post, completion: (error: NSError?) -> Void) {
+        commentsForPost(post) { (comments) -> Void in
+            if comments.count > 0 {
+                for comment in comments {
+                    comment.delete({ (error) -> Void in
+                        if error != nil {
+                            completion(error: error)
+                        }
+                    })
+                }
+            }
+        }
+    }
     
-
+    static func deleteAllCommentsForUser(user: User, completion: (error: NSError?) -> Void) {
+        commentsForUser(user) { (comments) -> Void in
+            if comments.count > 0 {
+                for comment in comments {
+                    comment.delete({ (error) -> Void in
+                        if error != nil {
+                            completion(error: error)
+                        }
+                    })
+                }
+            }
+        }
+    }
     
 }
