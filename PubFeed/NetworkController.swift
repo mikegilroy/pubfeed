@@ -17,8 +17,8 @@ class NetworkController {
     private let endURL = "&types=bar&key=AIzaSyC7yWoWuq6_U8U-kanl9g6Rk4r1ziUU-0E"
     
     static func searchURL(location: CLLocation, radius: Int) -> NSURL {
-        let latitude = location.coordinate.latitude
-        let longitude = location.coordinate.longitude
+        let latitude = 40.761838 //location.coordinate.latitude
+        let longitude = -111.890994 //location.coordinate.longitude
         
         let locationString  = "\(latitude),\(longitude)"
         let radiusString = "&radius=\(radius)"

@@ -51,10 +51,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func addBarLocationAnnotation(bar: Bar) {
-        let annotation = MKPointAnnotation()
-        //annotation.coordinate = bar.placemark.location!.coordinate
-        annotation.title = bar.name
-        mapView.addAnnotation(annotation)
+        if let coordinate = bar.location?.coordinate {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = bar.name
+            mapView.addAnnotation(annotation)
+        }
     }
     
     
@@ -65,6 +67,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         if let location = locations.first {
             print(location)
             centerMapOnLocation(location)
+            
         }
     }
     
