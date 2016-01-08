@@ -105,24 +105,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-            let reuseId = "pin"
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        let rightButton = UIButton(type: UIButtonType.DetailDisclosure)
+        rightButton.titleForState(UIControlState.Normal)
+        
+        if pinView == nil {
             
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.draggable = false
-                
-            let rightButton = UIButton(type: UIButtonType.DetailDisclosure)
-            rightButton.titleForState(UIControlState.Normal)
-            //rightButton.addTarget(self, action: "calloutAccessoryTapped", forControlEvents: .TouchUpInside)
+            pinView!.image = UIImage(named: "weener")
             pinView!.rightCalloutAccessoryView = rightButton
-            
-            return pinView
+
+        } else {
+            pinView!.annotation = annotation
+        }
+    
+        return pinView
     }
     
-    func calloutAccessoryTapped() {
-        performSegueWithIdentifier("toBarDetail", sender: self)
-    }
     
     // MARK: CLLocationManagerDelegate
     
