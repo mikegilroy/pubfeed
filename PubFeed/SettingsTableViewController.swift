@@ -64,7 +64,7 @@ class SettingsTableViewController: UITableViewController {
             saveButton.enabled = false
             
         case .editView:
-    
+            
             if let user = self.user {
                 usernameTextField.text = user.username
                 emailTextField.text = user.email
@@ -101,18 +101,46 @@ class SettingsTableViewController: UITableViewController {
                 }
             })
         }
-
-        
         self.tabBarController?.performSegueWithIdentifier("noCurrentUser", sender: nil)
     }
     
     
     @IBAction func deleteAccountTapped(sender: AnyObject) {
         
+        var userPassword = ""
+        let alertController = UIAlertController(title: "Really delete account?", message: "Please enter your password to continue.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { ACTION in
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+        }
+        
+        let actionInput = UIAlertAction(title: "Input", style: UIAlertActionStyle.Default) { ACTION in
+            
+            if self.user == UserController.sharedController.currentUser {
+                
+                UserController.deleteUser(UserController.sharedController.currentUser!, password: userPassword) { (errors) -> Void in
+                    if let error = errors?.last {
+                        ErrorHandling.defaultErrorHandler(error, title: "\(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+        
+        alertController.addAction(actionCancel)
+        alertController.addAction(actionInput)
+        
+        alertController.addTextFieldWithConfigurationHandler({(txtField: UITextField!) in
+            txtField.placeholder = "password"
+            txtField.keyboardType = UIKeyboardType.NumberPad
+            userPassword = txtField.text!
+        })
+        
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     
     @IBAction func updatePasswordTapped(sender: AnyObject) {
+        
     }
     
     
@@ -125,7 +153,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     
-
+    
     // MARK: viewDid Functions
     
     override func viewDidLoad() {

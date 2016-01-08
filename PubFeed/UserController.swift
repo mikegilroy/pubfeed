@@ -144,7 +144,7 @@ class UserController {
             }
         }
     }
-
+    
     // DELETE
     
     // Needs to also delete images for that user
@@ -155,6 +155,7 @@ class UserController {
                 for error in errors {
                     errorArray.append(error)
                 }
+                FirebaseController.base.authData
             }
         }
         CommentController.deleteAllCommentsForUser(user) { (error) -> Void in
