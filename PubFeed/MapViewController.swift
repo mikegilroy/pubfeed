@@ -32,6 +32,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.delegate = self
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestLocation()
@@ -46,25 +47,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) -> Void in
             if let bars = bars {
                 for bar in bars {
-                    
+                    self.bars.append(bar)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.addBarLocationAnnotation(bar)
                     })
                 }
-                if let secondPageToken = nextPageToken {
-                    BarController.loadBars(location, nextPageToken: secondPageToken, completion: { (bars, nextPageToken) -> Void in
-                        print(secondPageToken)
-                        if let bars = bars {
-                            for bar in bars {
-                                self.bars.append(bar)
-                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                    self.addBarLocationAnnotation(bar)
-                                })
+                if nextPageToken != nil {
+                    BarController.loadBars(location, nextPageToken: nextPageToken, completion: { (bars, nextPageToken) -> Void in
+                            if let bars = bars {
+                                for bar in bars {
+                                    self.bars.append(bar)
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        self.addBarLocationAnnotation(bar)
+                                    })
+                                }
                             }
-                        }
-                        if let thirdPageToken = nextPageToken {
-                            BarController.loadBars(location, nextPageToken: thirdPageToken, completion: { (bars, nextPageToken) -> Void in
-                                print(thirdPageToken)
+                        if nextPageToken != nil {
+                            BarController.loadBars(location, nextPageToken: nextPageToken, completion: { (bars, nextPageToken) -> Void in
                                 if let bars = bars {
                                     for bar in bars {
                                         self.bars.append(bar)
@@ -83,10 +82,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func addBarLocationAnnotation(bar: Bar) {
         if let coordinate = bar.location?.coordinate {
-            let annotation = MKPointAnnotation()
-            let annotationView = MKAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
-            annotation.coordinate = coordinate
-            annotation.title = bar.name
+            let annotation = CustomPin(coordinate: coordinate, title: bar.name, subtitle: "")
             mapView.addAnnotation(annotation)
         }
     }
@@ -108,28 +104,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-            
-            if annotation is MKUserLocation {
-                return nil
-            }
-            
+        
             let reuseId = "pin"
             
             var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-            if pinView == nil {
-                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                pinView?.canShowCallout = true
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.draggable = false
                 
-                let rightButton = UIButton(type: UIButtonType.DetailDisclosure)
-                rightButton.titleForState(UIControlState.Normal)
-                
-                pinView!.rightCalloutAccessoryView = rightButton
-            }
-            else {
-                pinView?.annotation = annotation
-            }
+            let rightButton = UIButton(type: UIButtonType.DetailDisclosure)
+            rightButton.titleForState(UIControlState.Normal)
+            //rightButton.addTarget(self, action: "calloutAccessoryTapped", forControlEvents: .TouchUpInside)
+            pinView!.rightCalloutAccessoryView = rightButton
             
             return pinView
+    }
+    
+    func calloutAccessoryTapped() {
+        performSegueWithIdentifier("toBarDetail", sender: self)
     }
     
     // MARK: CLLocationManagerDelegate
@@ -137,10 +129,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {
-            self.bars = []
             print(location)
             centerMapOnLocation(location)
-            
         }
     }
     

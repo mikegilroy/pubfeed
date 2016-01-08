@@ -24,6 +24,7 @@
 		028A3EA01C3F33A400B9FC3F /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E9B1C3F33A400B9FC3F /* GFGeoHashQuery.m */; };
 		100B8DAF1C3EFEF5005C45E4 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DAE1C3EFEF5005C45E4 /* BarController.swift */; };
 		100B8DB11C3EFF96005C45E4 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DB01C3EFF96005C45E4 /* NetworkController.swift */; };
+		100B8DB51C3F419A005C45E4 /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DB41C3F419A005C45E4 /* CustomPin.swift */; };
 		1069A5251C3C4A580018D28F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5241C3C4A580018D28F /* AppDelegate.swift */; };
 		1069A52A1C3C4A580018D28F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1069A5281C3C4A580018D28F /* Main.storyboard */; };
 		1069A52C1C3C4A580018D28F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1069A52B1C3C4A580018D28F /* Assets.xcassets */; };
@@ -97,6 +98,7 @@
 		028A3E9B1C3F33A400B9FC3F /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
 		100B8DAE1C3EFEF5005C45E4 /* BarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarController.swift; path = ../BarController.swift; sourceTree = "<group>"; };
 		100B8DB01C3EFF96005C45E4 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		100B8DB41C3F419A005C45E4 /* CustomPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomPin.swift; path = ../CustomPin.swift; sourceTree = "<group>"; };
 		1069A5211C3C4A580018D28F /* PubFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PubFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1069A5241C3C4A580018D28F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1069A5291C3C4A580018D28F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				1069A54F1C3D92230018D28F /* Bar Feed */,
 				1069A5501C3D922B0018D28F /* Post Detail */,
 				1069A53E1C3D82910018D28F /* MapViewController.swift */,
+				100B8DB41C3F419A005C45E4 /* CustomPin.swift */,
 				1069A5441C3D84270018D28F /* SelectLocationViewController.swift */,
 				1069A5461C3D84A40018D28F /* NewPostTableTableViewController.swift */,
 				1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */,
@@ -412,6 +415,7 @@
 				1069A53F1C3D82910018D28F /* MapViewController.swift in Sources */,
 				100B8DAF1C3EFEF5005C45E4 /* BarController.swift in Sources */,
 				028A3EA01C3F33A400B9FC3F /* GFGeoHashQuery.m in Sources */,
+				100B8DB51C3F419A005C45E4 /* CustomPin.swift in Sources */,
 				E67F0F231C3DB6AB00785F12 /* StringExtension.swift in Sources */,
 				DED6E5BA1C3DBFFC005E17D8 /* UserController.swift in Sources */,
 				028A3E9C1C3F33A400B9FC3F /* GeoFire.m in Sources */,

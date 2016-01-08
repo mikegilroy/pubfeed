@@ -16,8 +16,10 @@ class BarController {
         var placesURL = NSURL()
         if let nextPageToken = nextPageToken {
             placesURL = NetworkController.searchURL(location, radius: 1000, nextPageToken: nextPageToken)
+            print(nextPageToken)
         } else {
             placesURL = NetworkController.searchURL(location, radius: 1000, nextPageToken: nil)
+            print(nextPageToken)
         }
         
         NetworkController.dataAtURL(placesURL) { (data) -> Void in
