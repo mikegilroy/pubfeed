@@ -114,7 +114,8 @@ class UserController {
     }
     
     // UPDATE
-    static func updateUser(user: User, username: String, email: String, password: String, completion: (user: User?, error: NSError?) -> Void)  {
+    static func updateUser(user: User, username: String, email: String, completion: (user: User?, error: NSError?) -> Void)  {
+        //does this update both users? CHECK
         if let identifier = user.identifier {
             var updatedUser = User(username: user.username, email: user.email, photo: user.photo, uid: identifier)
             updatedUser.save({ (error) -> Void in
