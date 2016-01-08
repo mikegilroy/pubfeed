@@ -82,7 +82,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func addBarLocationAnnotation(bar: Bar) {
         if let coordinate = bar.location?.coordinate {
-            let annotation = CustomPin(coordinate: coordinate, title: bar.name, subtitle: "")
+            let annotation = MKPointAnnotation()
+            annotation.title = bar.name
+            annotation.subtitle = bar.address
+            annotation.coordinate = coordinate
             mapView.addAnnotation(annotation)
         }
     }
@@ -113,10 +116,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         if pinView == nil {
             
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             pinView!.image = UIImage(named: "weener")
             pinView!.rightCalloutAccessoryView = rightButton
+            
 
         } else {
             pinView!.annotation = annotation
