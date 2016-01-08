@@ -66,7 +66,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
             //User With Photo
             
             if let profilePhoto = self.profilePhoto {
-                 let requestKey = self.user!.identifier! + ".png"
+                
+                 let requestKey = self.usernameTextField.text! + ".png"
                 UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: profilePhoto, requestKey: requestKey, completion: { (user, error) -> Void in
                     if error == nil {
                         self.user = user
