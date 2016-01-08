@@ -41,6 +41,8 @@ typedef enum {
 
 typedef void (^GFQueryResultBlock) (NSString *key, CLLocation *location);
 typedef void (^GFReadyBlock) ();
+typedef void (^GFQueryResultsBlock)  (NSDictionary *values);
+
 
 /**
  * A GFQuery object handles geo queries at a Firebase location.
@@ -97,5 +99,8 @@ typedef void (^GFReadyBlock) ();
  * its callbacks.
  */
 - (void)removeAllObservers;
+
+- (void)observeSingleEventOfTypeValue: (GFQueryResultsBlock)block;
+
 
 @end
