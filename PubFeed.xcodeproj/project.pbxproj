@@ -40,11 +40,9 @@
 		1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */; };
 		1069A54C1C3D92100018D28F /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */; };
 		1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */; };
-<<<<<<< 29373e87169fe451efecb58fc8cb9ababe017c5f
-		10ADD2AB1C403048007AAD1B /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ADD2AA1C403048007AAD1B /* IntExtension.swift */; };
-=======
 		6AE39CFBFA9CA1014E052E26 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67669B67958EF44FAAB71027 /* libPods.a */; };
->>>>>>> Amazon S3 framework
+		DE6F1F261C4061DA001E8356 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6F1F251C4061DA001E8356 /* AWSCore.framework */; };
+		DE6F1F281C4061E7001E8356 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6F1F271C4061E7001E8356 /* AWSS3.framework */; };
 		DED6E5B31C3DBFE2005E17D8 /* LikeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5B21C3DBFE2005E17D8 /* LikeController.swift */; };
 		DED6E5B81C3DBFFC005E17D8 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5B41C3DBFFC005E17D8 /* CommentController.swift */; };
 		DED6E5B91C3DBFFC005E17D8 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5B51C3DBFFC005E17D8 /* PostController.swift */; };
@@ -124,12 +122,10 @@
 		1069A5481C3D869B0018D28F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		1069A54B1C3D92100018D28F /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-<<<<<<< 29373e87169fe451efecb58fc8cb9ababe017c5f
-		10ADD2AA1C403048007AAD1B /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
-=======
 		1C724CBDC9338D547B6CD7A3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		67669B67958EF44FAAB71027 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
->>>>>>> Amazon S3 framework
+		DE6F1F251C4061DA001E8356 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCore.framework; sourceTree = "<group>"; };
+		DE6F1F271C4061E7001E8356 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		DED6E5B21C3DBFE2005E17D8 /* LikeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeController.swift; sourceTree = "<group>"; };
 		DED6E5B41C3DBFFC005E17D8 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		DED6E5B51C3DBFFC005E17D8 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
@@ -140,7 +136,6 @@
 		DED6E6021C3F165A005E17D8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		DED6E6261C3F18B4005E17D8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DED6E6281C3F18C2005E17D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		DED6E62B1C3F1A05005E17D8 /* PubFeed-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PubFeed-Bridging-Header.h"; sourceTree = "<group>"; };
 		E67F0F171C3DB54600785F12 /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 		E67F0F191C3DB5C700785F12 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		E67F0F1B1C3DB60F00785F12 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
@@ -157,12 +152,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0236A35D1C3DB3D600125BA9 /* SystemConfiguration.framework in Frameworks */,
+				DE6F1F261C4061DA001E8356 /* AWSCore.framework in Frameworks */,
 				DED6E6291C3F18C2005E17D8 /* libz.tbd in Frameworks */,
 				DED6E6271C3F18B4005E17D8 /* libsqlite3.tbd in Frameworks */,
 				0236A3671C3DCA3900125BA9 /* CoreLocation.framework in Frameworks */,
 				0236A35B1C3DB33E00125BA9 /* libc++.tbd in Frameworks */,
 				0236A3591C3DB33700125BA9 /* libicucore.tbd in Frameworks */,
 				0236A3571C3DB32D00125BA9 /* Security.framework in Frameworks */,
+				DE6F1F281C4061E7001E8356 /* AWSS3.framework in Frameworks */,
 				0236A3551C3DB31E00125BA9 /* CFNetwork.framework in Frameworks */,
 				0236A3511C3DB2A200125BA9 /* Firebase.framework in Frameworks */,
 				6AE39CFBFA9CA1014E052E26 /* libPods.a in Frameworks */,
@@ -255,12 +252,8 @@
 				1069A52B1C3C4A580018D28F /* Assets.xcassets */,
 				1069A52D1C3C4A580018D28F /* LaunchScreen.storyboard */,
 				1069A5301C3C4A580018D28F /* Info.plist */,
-<<<<<<< 29373e87169fe451efecb58fc8cb9ababe017c5f
 				028A3E891C3F2E1F00B9FC3F /* PubFeed-Bridging-Header.h */,
 				028A3E8C1C3F331600B9FC3F /* GeoFire */,
-=======
-				DED6E62B1C3F1A05005E17D8 /* PubFeed-Bridging-Header.h */,
->>>>>>> Amazon S3 framework
 			);
 			path = PubFeed;
 			sourceTree = "<group>";
@@ -319,6 +312,8 @@
 		1A4943FBB2315D276982ABB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE6F1F271C4061E7001E8356 /* AWSS3.framework */,
+				DE6F1F251C4061DA001E8356 /* AWSCore.framework */,
 				DED6E6281C3F18C2005E17D8 /* libz.tbd */,
 				DED6E6261C3F18B4005E17D8 /* libsqlite3.tbd */,
 				67669B67958EF44FAAB71027 /* libPods.a */,
@@ -362,7 +357,6 @@
 				DED6E5C91C3DF19F005E17D8 /* UIViewControllerExtension.swift */,
 				E67F0F201C3DB69A00785F12 /* DateExtension.swift */,
 				E67F0F221C3DB6AB00785F12 /* StringExtension.swift */,
-				10ADD2AA1C403048007AAD1B /* IntExtension.swift */,
 				0236A3701C3F192B00125BA9 /* Error.swift */,
 				DED6E5C11C3DE294005E17D8 /* ErrorHandling.swift */,
 			);
@@ -526,7 +520,6 @@
 				1069A5251C3C4A580018D28F /* AppDelegate.swift in Sources */,
 				1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */,
 				100B8DB11C3EFF96005C45E4 /* NetworkController.swift in Sources */,
-				10ADD2AB1C403048007AAD1B /* IntExtension.swift in Sources */,
 				0236A3611C3DB41000125BA9 /* FirebaseController.swift in Sources */,
 				0236A3711C3F192B00125BA9 /* Error.swift in Sources */,
 				E67F0F251C3DB70200785F12 /* User.swift in Sources */,

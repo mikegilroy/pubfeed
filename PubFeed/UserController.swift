@@ -38,8 +38,7 @@ class UserController {
     
 
     //AUTH & UNAUTH
-<<<<<<< 29373e87169fe451efecb58fc8cb9ababe017c5f
-=======
+
 
     static func createUser(username: String, email: String, password: String, photo: UIImage, requestKey: String, completion: (user: User?, error: NSError?) -> Void) {
         
@@ -64,7 +63,14 @@ class UserController {
                             } else {
                                 user = User(username: username, email: email, photo: nil, uid: uid)
                             }
-                            user.save()
+                            
+                            user.save({ (error) -> Void in
+                                if error != nil {
+                                    print("error")
+                                } else {
+                                    print("success")
+                                }
+                            })
                             
                             authenticateUser(email, password: password, completion: { (user, error) -> Void in
                                 completion(user: user, error: error)
@@ -98,8 +104,7 @@ class UserController {
     }
     
 // Login/Signup Views implemented
-    
->>>>>>> Amazon S3 framework
+
     static func authenticateUser(email: String, password: String, completion: (user: User?, error: NSError?) -> Void) {
         FirebaseController.base.authUser(email, password: password) { (error, response) -> Void in
             if let error = error {
@@ -123,7 +128,7 @@ class UserController {
     }
     
     // CREATE
-<<<<<<< 29373e87169fe451efecb58fc8cb9ababe017c5f
+
     static func createUser(username: String, email: String, password: String, photo: String?, completion: (user: User?, error: NSError?) -> Void) {
         /*
         ImageController.uploadPhoto(photo) { (identifier) -> Void in
@@ -165,7 +170,7 @@ class UserController {
 
     
     
-=======
+
 //    static func createUser(username: String, email: String, password: String, photo: String?, completion: (user: User?, createError: NSError?, authError: NSError?) -> Void) {
 //        FirebaseController.base.createUser(email, password: password) { (createError, response) -> Void in
 //            if let uid = response["uid"] as? String {
@@ -177,7 +182,7 @@ class UserController {
 //            }
 //        }
 //    }
->>>>>>> Amazon S3 framework
+
     
     // READ
     static func userWithIdentifier(uid: String, completion: (user: User?) -> Void) {
