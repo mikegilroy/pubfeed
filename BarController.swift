@@ -43,7 +43,6 @@ class BarController {
                             completion(bars: bars, nextPageToken: nil)
                         }
                         
-                        
                     } else {
                         completion(bars: nil, nextPageToken: nil)
                         print("No bar results")

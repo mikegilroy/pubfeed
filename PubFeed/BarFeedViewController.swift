@@ -13,6 +13,8 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: Properties
     
     var user: User?
+    var bar: Bar?
+    
     // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +27,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadBarDetails()
     }
     
     
@@ -44,6 +47,14 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    
+    // MARK: Helper Functions
+    
+    func loadBarDetails() {
+        if let bar = self.bar {
+            print(bar.name)
+        }
+    }
     
     // MARK: Navigation
 
