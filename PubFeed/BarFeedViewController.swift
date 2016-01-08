@@ -18,6 +18,11 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var openNowLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
     
     
     // MARK: Actions
@@ -53,6 +58,18 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func loadBarDetails() {
         if let bar = self.bar {
             print(bar.name)
+            self.nameLabel.text = bar.name
+            if let priceLevel = bar.priceLevel {
+                self.priceLabel.text = priceLevel.priceLevelStringFromInt()
+            }
+            if let openNow = bar.openNow {
+                if openNow {
+                    self.openNowLabel.text = "OPEN"
+                } else {
+                    self.openNowLabel.text = "CLOSED"
+                }
+            }
+            self.addressLabel.text = bar.address
         }
     }
     

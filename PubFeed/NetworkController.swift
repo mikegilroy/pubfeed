@@ -55,6 +55,4 @@ class NetworkController {
         dataTask.resume()
     }
     
-    
-    
 }

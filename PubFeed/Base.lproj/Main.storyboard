@@ -327,7 +327,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="LSj-cG-wHl">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="167"/>
+                                    <rect key="frame" x="0.0" y="64" width="600" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Green Pig Pub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tee-IU-Mia">
@@ -350,26 +350,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGI-di-24M">
-                                            <rect key="frame" x="8" y="115" width="584" height="21"/>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="Euf-vP-dJs"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1A-6f-ice">
-                                            <rect key="frame" x="8" y="138" width="584" height="21"/>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="w0W-eW-ozR"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="miR-xC-4MA">
                                             <rect key="frame" x="8" y="50" width="584" height="34"/>
                                             <subviews>
@@ -384,14 +364,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0Y-cT-lOw">
-                                                    <rect key="frame" x="254" y="0.0" width="86.5" height="34"/>
+                                                    <rect key="frame" x="254" y="0.0" width="87" height="34"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OPEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLA-UO-MSy">
-                                                    <rect key="frame" x="367.5" y="0.0" width="216.5" height="34"/>
+                                                    <rect key="frame" x="368" y="0.0" width="217" height="34"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -403,30 +383,37 @@
                                                 <constraint firstAttribute="height" constant="34" id="I2Z-XA-RJY"/>
                                             </constraints>
                                         </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1A-6f-ice">
+                                            <rect key="frame" x="8" y="121" width="584" height="21"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="w0W-eW-ozR"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="miR-xC-4MA" firstAttribute="top" secondItem="Tee-IU-Mia" secondAttribute="bottom" constant="8" id="1Jd-3B-Xir"/>
-                                        <constraint firstItem="r1A-6f-ice" firstAttribute="top" secondItem="TGI-di-24M" secondAttribute="bottom" constant="2" id="2QN-ke-ZG8"/>
                                         <constraint firstAttribute="trailing" secondItem="SuE-jV-RWX" secondAttribute="trailing" constant="8" id="9zr-CF-xPl"/>
-                                        <constraint firstAttribute="trailing" secondItem="TGI-di-24M" secondAttribute="trailing" constant="8" id="Avg-WA-lW0"/>
                                         <constraint firstAttribute="trailing" secondItem="miR-xC-4MA" secondAttribute="trailing" constant="8" id="HAz-9y-YgV"/>
                                         <constraint firstItem="miR-xC-4MA" firstAttribute="leading" secondItem="LSj-cG-wHl" secondAttribute="leading" constant="8" id="IY1-4t-A28"/>
                                         <constraint firstAttribute="trailing" secondItem="Tee-IU-Mia" secondAttribute="trailing" constant="8" id="JRy-4o-H5w"/>
                                         <constraint firstItem="SuE-jV-RWX" firstAttribute="top" secondItem="miR-xC-4MA" secondAttribute="bottom" constant="8" id="OQM-Np-c72"/>
                                         <constraint firstAttribute="trailing" secondItem="r1A-6f-ice" secondAttribute="trailing" constant="8" id="POo-TK-sGf"/>
-                                        <constraint firstItem="TGI-di-24M" firstAttribute="leading" secondItem="LSj-cG-wHl" secondAttribute="leading" constant="8" id="Pc0-ei-sh6"/>
                                         <constraint firstItem="Tee-IU-Mia" firstAttribute="top" secondItem="LSj-cG-wHl" secondAttribute="top" constant="8" id="ebU-we-bmG"/>
                                         <constraint firstItem="SuE-jV-RWX" firstAttribute="leading" secondItem="LSj-cG-wHl" secondAttribute="leading" constant="8" id="fJB-Tm-6UD"/>
                                         <constraint firstItem="r1A-6f-ice" firstAttribute="leading" secondItem="LSj-cG-wHl" secondAttribute="leading" constant="8" id="lxS-Yy-yan"/>
                                         <constraint firstItem="Tee-IU-Mia" firstAttribute="leading" secondItem="LSj-cG-wHl" secondAttribute="leading" constant="8" id="pws-Yz-nyd"/>
-                                        <constraint firstItem="TGI-di-24M" firstAttribute="top" secondItem="SuE-jV-RWX" secondAttribute="bottom" constant="2" id="sho-0s-yNr"/>
+                                        <constraint firstItem="r1A-6f-ice" firstAttribute="top" secondItem="SuE-jV-RWX" secondAttribute="bottom" constant="8" id="zmz-yG-TVK"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postCell" rowHeight="239" id="fjl-l1-pdW">
-                                        <rect key="frame" x="0.0" y="259" width="600" height="239"/>
+                                        <rect key="frame" x="0.0" y="242" width="600" height="239"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fjl-l1-pdW" id="vdu-PH-4zi">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="238.5"/>
@@ -549,6 +536,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressLabel" destination="SuE-jV-RWX" id="Me8-7I-Kro"/>
+                        <outlet property="emojiLabel" destination="xhK-QV-D3Z" id="RFo-KA-COD"/>
+                        <outlet property="nameLabel" destination="Tee-IU-Mia" id="32J-Em-rkS"/>
+                        <outlet property="openNowLabel" destination="vLA-UO-MSy" id="xQh-ZF-tjw"/>
+                        <outlet property="priceLabel" destination="l0Y-cT-lOw" id="JvF-cK-msF"/>
                         <outlet property="tableView" destination="9wV-8D-7sf" id="Zz5-45-eEt"/>
                     </connections>
                 </viewController>
