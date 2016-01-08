@@ -164,6 +164,7 @@ class UserController {
                 for error in errors {
                     errorArray.append(error)
                 }
+                FirebaseController.base.authData
             }
         }
         CommentController.deleteAllCommentsForUser(user) { (error) -> Void in
