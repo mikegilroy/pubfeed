@@ -9,13 +9,14 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
-
+    
     // MARK: Properties
     
     var profilePhoto: UIImage?
     var user: User?
     var profilePhotoIdentifier: String?
     var mode: ViewMode = .defaultView
+    
     
     var fieldsAreValid: Bool {
         switch mode {
@@ -41,10 +42,19 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var updateProfilePhotoButton: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var logoutButton: UIButton!
-
+    
     
     
     // MARK: Actions
+    
+    func presentValidationAlertWithTitle(title: String, text: String) {
+        
+        let alert = UIAlertController(title: title, message: text, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
     func updateViewForMode(mode: ViewMode) {
         switch mode {
             
@@ -54,43 +64,46 @@ class SettingsTableViewController: UITableViewController {
             saveButton.enabled = false
             
         case .editView:
-            saveButton.enabled = true
+    
             if let user = self.user {
                 usernameTextField.text = user.username
                 emailTextField.text = user.email
             }
+            
+            saveButton.enabled = true
+            
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "editButtonTapped:")
+            self.navigationController?.navigationItem.leftBarButtonItem = cancelButton
+            self.navigationItem.setLeftBarButtonItem(cancelButton, animated: true)
         }
     }
     
     
     @IBAction func editButtonTapped(sender: AnyObject) {
         updateViewForMode(ViewMode.editView)
-    
     }
     
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         if !fieldsAreValid {
-            ErrorHandling.defaultErrorHandler(nil, title: "Missing Information.")
+            ErrorHandling.defaultErrorHandler(nil, title: "Missing Information!")
             
         } else {
             UserController.updateUser(UserController.sharedController.currentUser!, username: usernameTextField.text!, email: emailTextField.text!, completion: { (user, error) -> Void in
                 
+                if error == nil {
+                    self.user = user
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.presentValidationAlertWithTitle("Success!", text: "Thank you, \(user?.username), your account at \(user?.email) has been updated.")
+                    
+                } else {
+                    ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+                }
             })
         }
+
         
-        
-//        
-//        UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: "", completion: { (user, error) -> Void in
-//            if error == nil {
-//                self.user = user
-//                self.dismissViewControllerAnimated(true, completion: nil)
-//            } else {
-//                ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
-//            }
-//        })
-        
-//        self.tabBarController?.performSegueWithIdentifier("noCurrentUser", sender: nil)
+        self.tabBarController?.performSegueWithIdentifier("noCurrentUser", sender: nil)
     }
     
     
@@ -104,6 +117,7 @@ class SettingsTableViewController: UITableViewController {
     
     
     @IBAction func logoutTapped(sender: AnyObject) {
+        FirebaseController.base.unauth()
     }
     
     @IBAction func updatePhotoTapped(sender: AnyObject) {
@@ -111,12 +125,12 @@ class SettingsTableViewController: UITableViewController {
     }
     
     
-    
+
     // MARK: viewDid Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updateViewForMode(ViewMode.defaultView)
     }
-
+    
 }
