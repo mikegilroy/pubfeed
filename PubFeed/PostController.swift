@@ -110,14 +110,6 @@ class PostController {
         
         let sampleImageIdentifier = "-K1l4125TYvKMc7rcp5e"
         
-        let like1 = Like(userIdentifier: "sdafsdpfas", postIdentifier: "1234")
-        let like2 = Like(userIdentifier: "look", postIdentifier: "4566")
-        let like3 = Like(userIdentifier: "em0r0r", postIdentifier: "43212")
-        
-        let comment1 = Comment(text: "hey", userIdentifier: "123", postIdentifier: "456", timestamp: NSDate())
-        let comment2 = Comment(text: "hello", userIdentifier: "abcdef", postIdentifier: "abcd", timestamp: NSDate())
-        
-        
         let post1 = Post(userIdentifier: "abcdef", barID: "abcdfe", timestamp: NSDate(), emojis: "abcde", text: "abc", photo: sampleImageIdentifier)
         let post2 = Post(userIdentifier: "abcdef", barID: "ab", timestamp: NSDate(), emojis: "hahaha", text: "huhuhu", photo: sampleImageIdentifier)
         

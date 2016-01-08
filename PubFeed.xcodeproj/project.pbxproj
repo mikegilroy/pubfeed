@@ -220,12 +220,10 @@
 		1069A5231C3C4A580018D28F /* PubFeed */ = {
 			isa = PBXGroup;
 			children = (
+				1069A5241C3C4A580018D28F /* AppDelegate.swift */,
+				1069A5281C3C4A580018D28F /* Main.storyboard */,
 				E67F0F1F1C3DB65F00785F12 /* Extensions */,
 				E67F0F121C3DB3E300785F12 /* Models */,
-				1069A5241C3C4A580018D28F /* AppDelegate.swift */,
-				DED6E5C91C3DF19F005E17D8 /* UIViewControllerExtension.swift */,
-				DED6E5C11C3DE294005E17D8 /* ErrorHandling.swift */,
-				1069A5281C3C4A580018D28F /* Main.storyboard */,
 				0236A35F1C3DB3F200125BA9 /* Controllers */,
 				1069A5381C3D81C00018D28F /* Views */,
 				1069A52B1C3C4A580018D28F /* Assets.xcassets */,
@@ -312,9 +310,11 @@
 		E67F0F1F1C3DB65F00785F12 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DED6E5C91C3DF19F005E17D8 /* UIViewControllerExtension.swift */,
 				E67F0F201C3DB69A00785F12 /* DateExtension.swift */,
 				E67F0F221C3DB6AB00785F12 /* StringExtension.swift */,
 				0236A3701C3F192B00125BA9 /* Error.swift */,
+				DED6E5C11C3DE294005E17D8 /* ErrorHandling.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";

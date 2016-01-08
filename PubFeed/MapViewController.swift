@@ -35,7 +35,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.mapView.delegate = self
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.requestLocation()
+        self.locationManager.startUpdatingLocation()
     }
     
     
@@ -131,6 +131,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if let location = locations.first {
             print(location)
             centerMapOnLocation(location)
+            locationManager.stopUpdatingLocation()
         }
     }
     
