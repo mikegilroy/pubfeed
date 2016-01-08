@@ -6,7 +6,9 @@
 //  Copyright © 2016 Mike Gilroy. All rights reserved.
 //
 
+
 import UIKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +17,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let identityPoolId = "us-east-1:fc3aaefd-0d46-475f-b882-a58a5b29c42b"
+        let unauthRoleArn = "arn:aws:iam::117021046850:role/pubfeed_unauth_MOBILEHUB_827307080"
+        let authRoleArn = "arn:aws:iam::117021046850:role/Cognito_PubFeedAuth_Role"
+     
+        
+        
+//        let credentialsProvider = AWSCognitoCredentialsProvider.credentialsWithRegionType(
+//            AWSRegionType.USEast1,
+//            accountId: cognitoAccountId,
+//            identityPoolId: cognitoIdentityPoolId,
+//            unauthRoleArn: cognitoUnauthRoleArn,
+//            authRoleArn: cognitoAuthRoleArn)
+//        let defaultServiceConfiguration = AWSServiceConfiguration(
+//            region: AWSRegionType.USEast1,
+//            credentialsProvider: credentialsProvider)
+//        AWSServiceManager.defaultServiceManager().setDefaultServiceConfiguration(defaultServiceConfiguration)
+
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: identityPoolId)
+        
+        let configuration = AWSServiceConfiguration(region:.USEast1, credentialsProvider:credentialsProvider)
+        
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        
+        
         return true
     }
 

@@ -15,6 +15,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     var profilePhoto: UIImage?
     var user: User?
     var profilePhotoIdentifier: String?
+    var profilePhotoUrl: NSURL?
+   
     
     // MARK: Outlet
     
@@ -24,6 +26,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var addProfilePhotoButton: UIButton!
     
     // MARK: Actions
+   
     
     @IBAction func addProfilePhotoButtonTapped(sender: UIButton) {
         
@@ -59,43 +62,44 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         if (usernameTextField.text == "") || (emailTextField.text == "") || (passwordTextField.text == "") {
             ErrorHandling.defaultErrorHandler(nil, title: "Missing Information")
         } else {
-            /*
+            
             //User With Photo
             
             if let profilePhoto = self.profilePhoto {
-            UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: profilePhoto, completion: { (user, error) -> Void in
-            if error == nil {
-            self.user = user
-            self.dismissViewControllerAnimated(true, completion: nil)
+                 let requestKey = self.user!.identifier! + ".png"
+                UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: profilePhoto, requestKey: requestKey, completion: { (user, error) -> Void in
+                    if error == nil {
+                        self.user = user
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+                    }
+                })
             } else {
-            ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+                
+                // If user has no photo
+               
+                UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: UIImage(), requestKey: "", completion: { (user, error) -> Void in
+                    if error == nil {
+                        self.user = user
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+                    }
+                })
             }
-            })
-            } else {
-            
-            // If user has no photo
-            
-            UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: UIImage(), completion: { (user, error) -> Void in
-            if error == nil {
-            self.user = user
-            self.dismissViewControllerAnimated(true, completion: nil)
-            } else {
-            ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
-            }
-            })
-            }
-            }
-            */
-            
-            UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: UIImage(), completion: { (user, error) -> Void in
-                if error == nil {
-                    self.user = user
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                } else {
-                    ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
-                }
-            })
         }
+        
+        
+        //            UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, photo: UIImage(), completion: { (user, error) -> Void in
+        //                if error == nil {
+        //                    self.user = user
+        //                    self.dismissViewControllerAnimated(true, completion: nil)
+        //                } else {
+        //                    ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+        //                }
+        //            })
+        //        }
     }
     
     @IBAction func cancelButtonTapped(sender: UIButton) {
@@ -114,6 +118,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         self.profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.addProfilePhotoButton.setBackgroundImage(self.profilePhoto, forState: .Normal)
         })

@@ -9,50 +9,103 @@
 import Foundation
 import UIKit
 
+private let bucketKey = "pubfeed-userfiles-mobilehub-827307080/public"
+
 class ImageController {
     
-    static func uploadPhoto(photo: UIImage, completion: (identifier: String?) -> Void) {
+    static func uploadPhoto(photo: UIImage, requestKey: String, completion: (identifier: String?) -> Void) {
         
-        if let base64Image = photo.base64String {
-            let base = FirebaseController.base.childByAppendingPath("images").childByAutoId()
-            base.setValue(base64Image)
-            
-            completion(identifier: base.key)
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        let path = NSTemporaryDirectory().NS.stringByAppendingPathComponent("temp")
+        let photoURL = NSURL(fileURLWithPath: path)
+        let uploadRequest : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
+        let data = UIImageJPEGRepresentation(photo, 0.8)
+        data?.writeToURL(photoURL, atomically: true)
+        
+        uploadRequest.bucket = bucketKey
+        if requestKey == "" {
+            completion(identifier: "")
         } else {
-            completion(identifier: nil)
-        }
-    }
-    
-    static func photoForIdentifier(identifier: String, completion: (photo: UIImage?) -> Void) {
-        
-        FirebaseController.dataAtEndpoint("photos/\(identifier)") { (data) -> Void in
+            uploadRequest.key = requestKey
+            uploadRequest.body = photoURL
             
-            if let data = data as? String {
-                let photo = UIImage(base64: data)
-                completion(photo: photo)
+            let task = transferManager.upload(uploadRequest)
+            task.continueWithSuccessBlock { (task) -> AnyObject? in
+                if task.error != nil {
+                    print("Error: \(task.error)")
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        let base = FirebaseController.base.childByAppendingPath("profileImages").childByAutoId()
+                        base.setValue("\(photoURL)")
+                        completion(identifier: base.key)
+                    })
+                    print("Success")
+                }
+                return nil
             }
         }
     }
+    
+    static func profilePhotoForIdentifier(identifer: String, user: User, completion: (photoUrl: NSURL?) -> Void) {
+        var photoUrl: NSURL?
+        FirebaseController.dataAtEndpoint("profileImages/\(identifer)") { (data) -> Void in
+            if let data = data as? String {
+                photoUrl = NSURL(string: data)
+                completion(photoUrl: photoUrl)
+            }
+        }
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        let downloadRequest: AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+        
+        downloadRequest.bucket = bucketKey
+        downloadRequest.key = user.identifier! + "png"
+        downloadRequest.downloadingFileURL = photoUrl
+        
+        let task = transferManager.download(downloadRequest)
+        task.continueWithSuccessBlock { (task) -> AnyObject? in
+            if task.error != nil {
+                print("Error: \(task.error)")
+            } else {
+                print("Success")
+            }
+            return nil
+        }
+    }
+    
+//    static func photoForIdentifier(identifier: String, completion: (photo: UIImage?) -> Void) {
+//        
+//        FirebaseController.dataAtEndpoint("photos/\(identifier)") { (data) -> Void in
+//            
+//            if let data = data as? String {
+//                let photo = UIImage(base64: data)
+//                completion(photo: photo)
+//            }
+//        }
+//    }
 }
 
-extension UIImage {
-    
-    var base64String: String? {
-        
-        guard let data = UIImageJPEGRepresentation(self, 0.8) else {
-            
-            return nil
-        }
-        
-        return data.base64EncodedStringWithOptions(.EncodingEndLineWithCarriageReturn)
-    }
-    
-    convenience init?(base64: String) {
-        
-        if let photoData = NSData(base64EncodedString: base64, options: .IgnoreUnknownCharacters) {
-            self.init(data: photoData)
-        } else {
-            return nil
-        }
-    }
+public extension String {
+    var NS: NSString { return (self as NSString) }
 }
+
+//extension UIImage {
+//    
+//    var base64String: String? {
+//        
+//        guard let data = UIImageJPEGRepresentation(self, 0.8) else {
+//            
+//            return nil
+//        }
+//        
+//        return data.base64EncodedStringWithOptions(.EncodingEndLineWithCarriageReturn)
+//    }
+//    
+//    convenience init?(base64: String) {
+//        
+//        if let photoData = NSData(base64EncodedString: base64, options: .IgnoreUnknownCharacters) {
+//            self.init(data: photoData)
+//        } else {
+//            return nil
+//        }
+//    }
+//}
