@@ -198,6 +198,7 @@
 				028A3E8D1C3F338F00B9FC3F /* GeoFire-Prefix.pch */,
 			);
 			name = GeoFire;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		1069A5181C3C4A580018D28F = {
@@ -230,6 +231,7 @@
 				1069A52D1C3C4A580018D28F /* LaunchScreen.storyboard */,
 				1069A5301C3C4A580018D28F /* Info.plist */,
 				028A3E891C3F2E1F00B9FC3F /* PubFeed-Bridging-Header.h */,
+				028A3E8C1C3F331600B9FC3F /* GeoFire */,
 			);
 			path = PubFeed;
 			sourceTree = "<group>";
@@ -288,7 +290,6 @@
 		DED6E5BE1C3DDE3D005E17D8 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				028A3E8C1C3F331600B9FC3F /* GeoFire */,
 				0236A35E1C3DB3DB00125BA9 /* FirebaseFramework */,
 				0236A3661C3DCA3900125BA9 /* CoreLocation.framework */,
 			);

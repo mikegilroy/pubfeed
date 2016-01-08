@@ -11,7 +11,7 @@ import UIKit
 class NewPostTableTableViewController: UITableViewController {
 
     // MARK: Properties
-    
+    var selectedBar: Bar?
     
     // MARK: Outlets
     
