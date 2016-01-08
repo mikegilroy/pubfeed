@@ -19,7 +19,8 @@ class ImageController {
         let path = NSTemporaryDirectory().NS.stringByAppendingPathComponent("temp")
         let photoURL = NSURL(fileURLWithPath: path)
         let uploadRequest : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
-        let data = UIImageJPEGRepresentation(photo, 0.8)
+        
+        let data = UIImageJPEGRepresentation(photo, 0.4)
         data?.writeToURL(photoURL, atomically: true)
         
         uploadRequest.bucket = bucketKey
@@ -34,11 +35,11 @@ class ImageController {
                 if task.error != nil {
                     print("Error: \(task.error)")
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
                         let base = FirebaseController.base.childByAppendingPath("profileImages").childByAutoId()
                         base.setValue("\(photoURL)")
                         completion(identifier: base.key)
-                    })
+                
                     print("Success")
                 }
                 return nil

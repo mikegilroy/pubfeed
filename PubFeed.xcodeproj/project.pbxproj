@@ -42,6 +42,7 @@
 		1069A54E1C3D921F0018D28F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069A54D1C3D921F0018D28F /* PostTableViewCell.swift */; };
 		6AE39CFBFA9CA1014E052E26 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67669B67958EF44FAAB71027 /* libPods.a */; };
 		DE6F1F2A1C40644E001E8356 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F1F291C40644E001E8356 /* IntExtension.swift */; };
+		DE6F1F2E1C40762C001E8356 /* AddProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F1F2D1C40762C001E8356 /* AddProfilePhotoViewController.swift */; };
 		DED6E5B31C3DBFE2005E17D8 /* LikeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5B21C3DBFE2005E17D8 /* LikeController.swift */; };
 		DED6E5B81C3DBFFC005E17D8 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5B41C3DBFFC005E17D8 /* CommentController.swift */; };
 		DED6E5B91C3DBFFC005E17D8 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5B51C3DBFFC005E17D8 /* PostController.swift */; };
@@ -125,6 +126,7 @@
 		DE6F1F251C4061DA001E8356 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCore.framework; sourceTree = "<group>"; };
 		DE6F1F291C40644E001E8356 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		DE6F1F2B1C406533001E8356 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
+		DE6F1F2D1C40762C001E8356 /* AddProfilePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		DED6E5B21C3DBFE2005E17D8 /* LikeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeController.swift; sourceTree = "<group>"; };
 		DED6E5B41C3DBFFC005E17D8 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		DED6E5B51C3DBFFC005E17D8 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			children = (
 				1069A5361C3D81B90018D28F /* LoginViewController.swift */,
 				1069A5391C3D81CE0018D28F /* SignupViewController.swift */,
+				DE6F1F2D1C40762C001E8356 /* AddProfilePhotoViewController.swift */,
 			);
 			name = "Login/Signup Views";
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				100B8DB51C3F419A005C45E4 /* CustomPin.swift in Sources */,
 				E67F0F231C3DB6AB00785F12 /* StringExtension.swift in Sources */,
 				DED6E5BA1C3DBFFC005E17D8 /* UserController.swift in Sources */,
+				DE6F1F2E1C40762C001E8356 /* AddProfilePhotoViewController.swift in Sources */,
 				028A3E9C1C3F33A400B9FC3F /* GeoFire.m in Sources */,
 				1069A5471C3D84A40018D28F /* NewPostTableTableViewController.swift in Sources */,
 				DED6E5C21C3DE294005E17D8 /* ErrorHandling.swift in Sources */,

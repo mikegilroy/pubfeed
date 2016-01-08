@@ -14,7 +14,7 @@ import Firebase
 class UserController {
     
     private let UserKey = "user"
-
+    
     static let sharedController = UserController()
     
     var currentUser: User? {
@@ -36,75 +36,12 @@ class UserController {
         }
     }
     
-
+    
     //AUTH & UNAUTH
 
-
-    static func createUser(username: String, email: String, password: String, photo: UIImage, requestKey: String, completion: (user: User?, error: NSError?) -> Void) {
-        
-        FirebaseController.base.createUser(email, password: password) { (error, response) -> Void in
-            if error == nil {
-                
-//                if let uid = response["uid"] as? String {
-                
-//                    var user = User(username: username, email: email, photo: nil, uid: uid)
-//                    user.save()
-//                    
-//                    authenticateUser(email, password: password, completion: { (user, error) -> Void in
-//                        completion(user: user, error: error)
-//                    })
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    ImageController.uploadPhoto(photo, requestKey: requestKey, completion: { (identifier) -> Void in
-                        if let uid = response["uid"] as? String {
-                            var user: User
-                            if let identifier = identifier {
-                                user = User(username: username, email: email, photo: identifier, uid: uid)
-                            } else {
-                                user = User(username: username, email: email, photo: nil, uid: uid)
-                            }
-                            
-                            user.save({ (error) -> Void in
-                                if error != nil {
-                                    print("error")
-                                } else {
-                                    print("success")
-                                }
-                            })
-                            
-                            authenticateUser(email, password: password, completion: { (user, error) -> Void in
-                                completion(user: user, error: error)
-                            })
-                        } else {
-                            completion(user: nil, error: error)
-                        }
-                        
-                    })
-
-                })
-                                       /*
-                    ImageController.uploadPhoto(photo) { (identifier) -> Void in
-                    if let uid = response["uid"] as? String {
-                    var user: User
-                    if let identifier = identifier {
-                    user = User(username: username, email: email, photo: identifier, uid: uid)
-                    } else {
-                    user = User(username: username, email: email, photo: nil, uid: uid)
-                    }
-                    user.save()
-                    
-                    authenticateUser(email, password: password, completion: { (user, error) -> Void in
-                    completion(user: user, error: error)
-                    })
-                    
-                    } */
-//                }
-            }
-        }
-    }
     
-// Login/Signup Views implemented
-
+    // Login/Signup Views implemented
+    
     static func authenticateUser(email: String, password: String, completion: (user: User?, error: NSError?) -> Void) {
         FirebaseController.base.authUser(email, password: password) { (error, response) -> Void in
             if let error = error {
@@ -128,27 +65,12 @@ class UserController {
     }
     
     // CREATE
-
-    static func createUser(username: String, email: String, password: String, photo: String?, completion: (user: User?, error: NSError?) -> Void) {
-        /*
-        ImageController.uploadPhoto(photo) { (identifier) -> Void in
-        if let uid = response["uid"] as? String {
-        var user: User
-        if let identifier = identifier {
-        user = User(username: username, email: email, photo: identifier, uid: uid)
-        } else {
-        user = User(username: username, email: email, photo: nil, uid: uid)
-        }
-        user.save()
-        
-        authenticateUser(email, password: password, completion: { (user, error) -> Void in
-        completion(user: user, error: error)
-        })
-        
-        } */
-        FirebaseController.base.createUser(email, password: password) { (createError, response) -> Void in
+    
+    static func createUser(username: String, email: String, password: String, completion: (user: User?, error: NSError?) -> Void) {
+  
+        FirebaseController.base.createUser(email, password: password) { (error, response) -> Void in
             if let uid = response["uid"] as? String {
-                var user = User(username: username, email: email, photo: photo, uid: uid)
+                var user = User(username: username, email: email, uid: uid)
                 user.save({ (error) -> Void in
                     if error != nil {
                         completion(user: nil, error: error)
@@ -163,26 +85,26 @@ class UserController {
                     }
                 })
             } else {
-                completion(user: nil, error: Error.defaultError())
+                completion(user: nil, error: error)
             }
         }
     }
-
     
     
-
-//    static func createUser(username: String, email: String, password: String, photo: String?, completion: (user: User?, createError: NSError?, authError: NSError?) -> Void) {
-//        FirebaseController.base.createUser(email, password: password) { (createError, response) -> Void in
-//            if let uid = response["uid"] as? String {
-//                var user = User(username: username, email: email, photo: photo, uid: uid)
-//                user.save()
-//                authenticateUser(email, password: password, completion: { (user, authError) -> Void in
-//                    completion(user: user, createError: createError, authError: authError)
-//                })
-//            }
-//        }
-//    }
-
+    
+    
+    //    static func createUser(username: String, email: String, password: String, photo: String?, completion: (user: User?, createError: NSError?, authError: NSError?) -> Void) {
+    //        FirebaseController.base.createUser(email, password: password) { (createError, response) -> Void in
+    //            if let uid = response["uid"] as? String {
+    //                var user = User(username: username, email: email, photo: photo, uid: uid)
+    //                user.save()
+    //                authenticateUser(email, password: password, completion: { (user, authError) -> Void in
+    //                    completion(user: user, createError: createError, authError: authError)
+    //                })
+    //            }
+    //        }
+    //    }
+    
     
     // READ
     static func userWithIdentifier(uid: String, completion: (user: User?) -> Void) {
@@ -225,7 +147,7 @@ class UserController {
             }
         }
     }
-
+    
     // DELETE
     
     // Needs to also delete images for that user
