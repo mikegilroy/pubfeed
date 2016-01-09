@@ -104,7 +104,7 @@ class SettingsTableViewController: UITableViewController {
         self.tabBarController?.performSegueWithIdentifier("noCurrentUser", sender: nil)
     }
     
-    
+    //NOT WORKING YET, GRAB PASSWORD
     @IBAction func deleteAccountTapped(sender: AnyObject) {
         
         var userPassword = ""
@@ -114,29 +114,29 @@ class SettingsTableViewController: UITableViewController {
             self.dismissViewControllerAnimated(true, completion: { () -> Void in })
         }
         
-        let actionInput = UIAlertAction(title: "Input", style: UIAlertActionStyle.Default) { ACTION in
-            
-            if self.user == UserController.sharedController.currentUser {
-                
-                UserController.deleteUser(UserController.sharedController.currentUser!, password: userPassword) { (errors) -> Void in
-                    if let error = errors?.last {
-                        ErrorHandling.defaultErrorHandler(error, title: "\(error.localizedDescription)")
-                    }
-                }
-            }
-        }
-        
         alertController.addAction(actionCancel)
-        alertController.addAction(actionInput)
-        
         alertController.addTextFieldWithConfigurationHandler({(txtField: UITextField!) in
             txtField.placeholder = "password"
             txtField.keyboardType = UIKeyboardType.NumberPad
             userPassword = txtField.text!
         })
         
+        
+        let actionInput = UIAlertAction(title: "Input", style: UIAlertActionStyle.Default) { ACTION in
+                
+                UserController.deleteUser(UserController.sharedController.currentUser!, password: userPassword) { (errors) -> Void in
+                    if let error = errors?.last {
+                        ErrorHandling.defaultErrorHandler(error, title: "\(error.localizedDescription)")
+                    }
+            }
+        }
+        
+        alertController.addAction(actionInput)
+
         presentViewController(alertController, animated: true, completion: nil)
+
     }
+    
     
     
     @IBAction func updatePasswordTapped(sender: AnyObject) {
