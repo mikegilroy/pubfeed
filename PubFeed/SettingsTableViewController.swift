@@ -107,34 +107,41 @@ class SettingsTableViewController: UITableViewController {
     //NOT WORKING YET, GRAB PASSWORD
     @IBAction func deleteAccountTapped(sender: AnyObject) {
         
-        var userPassword = ""
-        let alertController = UIAlertController(title: "Really delete account?", message: "Please enter your password to continue.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let alertController = UIAlertController(title: "Are you sure you want to delete your account?", message: "Please enter your password to continue.", preferredStyle: UIAlertControllerStyle.Alert)
         
         let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { ACTION in
             self.dismissViewControllerAnimated(true, completion: { () -> Void in })
         }
         
         alertController.addAction(actionCancel)
-        alertController.addTextFieldWithConfigurationHandler({(txtField: UITextField!) in
-            txtField.placeholder = "password"
-            txtField.keyboardType = UIKeyboardType.NumberPad
-            userPassword = txtField.text!
-        })
+        //        alertController.addTextFieldWithConfigurationHandler({ (textField: UITextField!) in
+        //            textField.placeholder = "Enter Password"
+        //            textField.keyboardType = UIKeyboardType.Default
+        //            textField.secureTextEntry = true
+        //            userPassword = textField.text!
+        //        })
         
         
-        let actionInput = UIAlertAction(title: "Input", style: UIAlertActionStyle.Default) { ACTION in
+        let actionInput = UIAlertAction(title: "Password", style: UIAlertActionStyle.Default) { ACTION in
+            
+            alertController.addTextFieldWithConfigurationHandler({ (textField: UITextField!) in
+                textField.placeholder = "Enter Password"
+                textField.keyboardType = UIKeyboardType.Default
+                textField.secureTextEntry = true
+                let userPasswordInput = textField.text!
                 
-                UserController.deleteUser(UserController.sharedController.currentUser!, password: userPassword) { (errors) -> Void in
+                UserController.deleteUser(UserController.sharedController.currentUser!, password: userPasswordInput) { (errors) -> Void in
                     if let error = errors?.last {
                         ErrorHandling.defaultErrorHandler(error, title: "\(error.localizedDescription)")
                     }
-            }
+                }
+            })
         }
         
         alertController.addAction(actionInput)
-
         presentViewController(alertController, animated: true, completion: nil)
-
+        
     }
     
     
