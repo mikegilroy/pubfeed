@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     
     // MARK: Navigation
     
@@ -55,6 +55,22 @@ class LoginViewController: UIViewController {
                 destinationController.user = self.user
             }
         }
+    }
+    
+    
+    // MARK: TEXTFIELDS (DELEGATE) & Keyboard Dismissal
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+}
+
+extension LoginViewController: UITextFieldDelegate {
+ 
+    // Dismiss TextField
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

@@ -64,4 +64,20 @@ class SignupViewController: UIViewController {
         }
     }
     
+    
+    // MARK: TEXTFIELDS (DELEGATE) & Keyboard Dismissal
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+}
+
+extension SignupViewController: UITextFieldDelegate {
+    
+    // Dismiss TextField
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
