@@ -69,24 +69,30 @@ class UserController {
     static func createUser(username: String, email: String, password: String, completion: (user: User?, error: NSError?) -> Void) {
   
         FirebaseController.base.createUser(email, password: password) { (error, response) -> Void in
-            if let uid = response["uid"] as? String {
-                var user = User(username: username, email: email, uid: uid)
-                user.save({ (error) -> Void in
-                    if error != nil {
-                        completion(user: nil, error: error)
-                    } else {
-                        authenticateUser(email, password: password, completion: { (user, error) -> Void in
-                            if let user = user {
-                                completion(user: user, error: nil)
-                            } else {
-                                completion(user: nil, error: error)
-                            }
-                        })
-                    }
-                })
+            
+            if error == nil {
+                if let uid = response["uid"] as? String {
+                    var user = User(username: username, email: email, uid: uid)
+                    user.save({ (error) -> Void in
+                        if error != nil {
+                            completion(user: nil, error: error)
+                        } else {
+                            authenticateUser(email, password: password, completion: { (user, error) -> Void in
+                                if let user = user {
+                                    completion(user: user, error: nil)
+                                } else {
+                                    completion(user: nil, error: error)
+                                }
+                            })
+                        }
+                    })
+                } else {
+                    completion(user: nil, error: error)
+                }
             } else {
                 completion(user: nil, error: error)
             }
+           
         }
     }
     
