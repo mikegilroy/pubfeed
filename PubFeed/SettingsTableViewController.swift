@@ -104,44 +104,53 @@ class SettingsTableViewController: UITableViewController {
         self.tabBarController?.performSegueWithIdentifier("noCurrentUser", sender: nil)
     }
     
-    //NOT WORKING YET, GRAB PASSWORD
+    
     @IBAction func deleteAccountTapped(sender: AnyObject) {
         
+        var inputTextField: UITextField?
         
-        let alertController = UIAlertController(title: "Are you sure you want to delete your account?", message: "Please enter your password to continue.", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(title: "Are you sure you want to delete your account?", message: "Please enter password.", preferredStyle: UIAlertControllerStyle.Alert)
         
-        let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { ACTION in
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in })
-        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.performSegueWithIdentifier("fromSettings", sender: nil)
+            })
+        }))
         
-        alertController.addAction(actionCancel)
-        //        alertController.addTextFieldWithConfigurationHandler({ (textField: UITextField!) in
-        //            textField.placeholder = "Enter Password"
-        //            textField.keyboardType = UIKeyboardType.Default
-        //            textField.secureTextEntry = true
-        //            userPassword = textField.text!
-        //        })
-        
-        
-        let actionInput = UIAlertAction(title: "Password", style: UIAlertActionStyle.Default) { ACTION in
-            
-            alertController.addTextFieldWithConfigurationHandler({ (textField: UITextField!) in
-                textField.placeholder = "Enter Password"
-                textField.keyboardType = UIKeyboardType.Default
-                textField.secureTextEntry = true
-                let userPasswordInput = textField.text!
+        alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            if let userPasswordInput = inputTextField!.text {
+                
+                let deleteDispatchGroup = dispatch_group_create()
+                dispatch_group_enter(deleteDispatchGroup)
                 
                 UserController.deleteUser(UserController.sharedController.currentUser!, password: userPasswordInput) { (errors) -> Void in
                     if let error = errors?.last {
                         ErrorHandling.defaultErrorHandler(error, title: "\(error.localizedDescription)")
+                        
+                    } else {
+                        
+                        let successAlertController = UIAlertController(title: "Success!", message: "Your account has been deleted.", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        successAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                            UserController.sharedController.currentUser = nil
+                            self.performSegueWithIdentifier("fromSettings", sender: nil)
+                        }))
+                        
+                        self.presentViewController(successAlertController, animated: true, completion: nil)
                     }
+                    dispatch_group_leave(deleteDispatchGroup)
                 }
-            })
-        }
+            }
+        }))
         
-        alertController.addAction(actionInput)
+        alertController.addTextFieldWithConfigurationHandler( { (userInputTextField: UITextField!) -> Void in
+            userInputTextField.placeholder = "Enter Password"
+            userInputTextField.keyboardType = UIKeyboardType.Default
+            userInputTextField.secureTextEntry = true
+            inputTextField = userInputTextField
+        })
+        
         presentViewController(alertController, animated: true, completion: nil)
-        
     }
     
     
@@ -159,7 +168,16 @@ class SettingsTableViewController: UITableViewController {
         
     }
     
+    // MARK: Navigation 
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "fromSettings" {
+            if let destinationController = segue.destinationViewController as? LoginViewController {
+                _ = destinationController.view
+                
+            }
+        }
+    }
     
     // MARK: viewDid Functions
     

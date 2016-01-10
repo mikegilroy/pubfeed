@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ANR-Gl-O4t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nPB-Ge-5xc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -101,10 +101,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K95-e5-CqV">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K95-e5-CqV">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhh-a0-6t9">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uhh-a0-6t9">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-OM-4ch">
@@ -123,14 +123,6 @@
                                                     <action selector="loginButtonTapped:" destination="ANR-Gl-O4t" eventType="touchUpInside" id="9ek-ua-lpa"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-LR-AUl">
-                                                <rect key="frame" x="271" y="428" width="57" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Signup"/>
-                                                <connections>
-                                                    <segue destination="nPB-Ge-5xc" kind="show" id="f6o-PH-9nZ"/>
-                                                </connections>
-                                            </button>
                                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zbU-3m-CUB">
                                                 <rect key="frame" x="20" y="100" width="560" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -139,6 +131,14 @@
                                                     <outlet property="delegate" destination="ANR-Gl-O4t" id="Rfj-CQ-eZC"/>
                                                 </connections>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-LR-AUl">
+                                                <rect key="frame" x="272" y="311" width="57" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Signup"/>
+                                                <connections>
+                                                    <segue destination="nPB-Ge-5xc" kind="show" id="f6o-PH-9nZ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -147,11 +147,11 @@
                                             <constraint firstItem="Hrs-OM-4ch" firstAttribute="leading" secondItem="Uhh-a0-6t9" secondAttribute="leading" constant="20" id="CXD-xe-drR"/>
                                             <constraint firstItem="Hrs-OM-4ch" firstAttribute="top" secondItem="zbU-3m-CUB" secondAttribute="bottom" constant="1" id="Cs7-ZF-AhZ"/>
                                             <constraint firstItem="zbU-3m-CUB" firstAttribute="leading" secondItem="Uhh-a0-6t9" secondAttribute="leading" constant="20" id="Ju7-JT-CPB"/>
+                                            <constraint firstItem="VSd-LR-AUl" firstAttribute="centerX" secondItem="fBe-Og-Pwy" secondAttribute="centerX" id="Juq-pF-chr"/>
                                             <constraint firstAttribute="trailing" secondItem="fBe-Og-Pwy" secondAttribute="trailing" constant="20" id="ROg-gV-klb"/>
                                             <constraint firstItem="zbU-3m-CUB" firstAttribute="top" secondItem="Uhh-a0-6t9" secondAttribute="top" constant="100" id="Ui8-1Y-yyJ"/>
-                                            <constraint firstItem="VSd-LR-AUl" firstAttribute="centerX" secondItem="Uhh-a0-6t9" secondAttribute="centerX" id="UyR-Cy-GwQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="VSd-LR-AUl" secondAttribute="bottom" constant="74" id="Vf0-Lm-wTN"/>
                                             <constraint firstItem="fBe-Og-Pwy" firstAttribute="top" secondItem="Hrs-OM-4ch" secondAttribute="bottom" constant="10" id="WeI-6R-3pE"/>
+                                            <constraint firstAttribute="bottom" secondItem="VSd-LR-AUl" secondAttribute="bottom" constant="191" id="d4N-Ez-jRW"/>
                                             <constraint firstItem="fBe-Og-Pwy" firstAttribute="leading" secondItem="Uhh-a0-6t9" secondAttribute="leading" constant="20" id="ktf-pQ-rJI"/>
                                         </constraints>
                                     </view>
@@ -1206,6 +1206,7 @@
                         <outlet property="saveButton" destination="E0c-zW-MGe" id="cZ6-vL-zI0"/>
                         <outlet property="updateProfilePhotoButton" destination="Nqs-qT-s8J" id="bnJ-5B-8bL"/>
                         <outlet property="usernameTextField" destination="afz-u9-wlX" id="TXy-jo-4ED"/>
+                        <segue destination="ANR-Gl-O4t" kind="showDetail" identifier="fromSettings" id="3Ja-sh-hDx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xZU-yJ-BF6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1257,6 +1258,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vu9-Ok-3qe"/>
+        <segue reference="3Ja-sh-hDx"/>
         <segue reference="vK1-jv-tsR"/>
     </inferredMetricsTieBreakers>
 </document>
