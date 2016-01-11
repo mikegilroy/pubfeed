@@ -16,7 +16,7 @@ class PostController {
         // Needs to handle uploading the photo to amazon. This will need correction when the time comes.
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
             var post = Post(userIdentifier: userIdentifier, barID: bar.barID, timestamp: NSDate(), emojis: emojis, text: text, photo: photo)
-            post.save({ (error) -> Void in
+            post.saveWithLocation(location, completion: { (error) -> Void in
                 if error != nil {
                     completion(post: nil, error: error)
                 } else {
