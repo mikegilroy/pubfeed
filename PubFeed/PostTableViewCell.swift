@@ -42,8 +42,6 @@ class PostTableViewCell: UITableViewCell {
             self.likeCountLabel.text = ""
         }
         
-        
-        
         // Get comments for post
         if post.comments > 0 {
             self.commentCountLabel.text = "\(post.comments)"
