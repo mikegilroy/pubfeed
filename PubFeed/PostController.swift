@@ -30,6 +30,32 @@ class PostController {
     }
     
     // READ
+    static func postsForLocation(location: CLLocation, radius: Double, completion: (posts: [Post]?, error: NSError?) -> Void) {
+        var posts: [Post] = []
+        let locationBase = FirebaseController.base.childByAppendingPath("modelobjects")
+        let geoFire = GeoFire(firebaseRef: locationBase)
+        let circleQuery = geoFire.queryAtLocation(location, withRadius: radius)
+        circleQuery.observeSingleEventOfTypeValue({ (json) -> Void in
+            let keys = Array(json.keys)
+            for key in keys {
+                if let identifier = key as? String {
+                    postFromIdentifier(identifier, completion: { (post) -> Void in
+                        if let post = post {
+                            posts.append(post)
+                            if let posts.count = keys.count {
+                                completion(posts: posts, error: nil)
+                            }
+                        } else {
+                            completion(posts: nil, error: Error.defaultError())
+                        }
+                    })
+                } else {
+                    completion(posts: nil, error: Error.defaultError())
+                }
+            }
+        })
+    }
+    
     static func postFromIdentifier(identifier: String, completion: (post: Post?) -> Void) {
         FirebaseController.dataAtEndpoint("posts/\(identifier)") { (data) -> Void in
             if let data = data as? [String: AnyObject] {
