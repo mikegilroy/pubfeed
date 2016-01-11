@@ -12,7 +12,7 @@ class PostController {
     
     
     // CREATE
-    static func createPost(location: String, emojis: String, text: String?, photo: String?, bar: Bar, user: User, completion: (post: Post?, error: NSError?) -> Void) {
+    static func createPost(location: CLLocation, emojis: String, text: String?, photo: String?, bar: Bar, user: User, completion: (post: Post?, error: NSError?) -> Void) {
         // Needs to handle uploading the photo to amazon. This will need correction when the time comes.
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
             var post = Post(userIdentifier: userIdentifier, barID: bar.barID, timestamp: NSDate(), emojis: emojis, text: text, photo: photo)
@@ -42,7 +42,7 @@ class PostController {
                     postFromIdentifier(identifier, completion: { (post) -> Void in
                         if let post = post {
                             posts.append(post)
-                            if let posts.count = keys.count {
+                            if posts.count == keys.count {
                                 completion(posts: posts, error: nil)
                             }
                         } else {
