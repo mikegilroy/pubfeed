@@ -68,7 +68,7 @@ class PostController {
     static func incrementLikesOnPost(identifier: String, completion: (post: Post?) -> Void) {
         PostController.postFromIdentifier(identifier) { (post) -> Void in
             if let post = post {
-                post.
+                post.likes
             }
         }
     }
