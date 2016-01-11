@@ -76,22 +76,32 @@ class LikeController {
         //Revisit this after making changes to FirebaseType save and delete functions
         if isLiked == true {
             like.delete({ (error) -> Void in
-                if error != nil {
+                if let error = error {
                     completion(isLiked: true, error: error)
                 } else {
-                    completion(isLiked: false, error: nil)
+                    PostController.decrementLikesOnPost(post, completion: { (post, error) -> Void in
+                        if let error = error {
+                            completion(isLiked: false, error: error)
+                        } else {
+                            completion(isLiked: false, error: nil)
+                        }
+                    })
                 }
             })
         } else {
             LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
-                if error != nil {
+                if let error = error {
                     completion(isLiked: false, error: error)
                 } else {
-                    completion(isLiked: true, error: nil)
+                    PostController.incrementLikesOnPost(post, completion: { (post, error) -> Void in
+                        if let error = error {
+                            completion(isLiked: true, error: error)
+                        } else {
+                            completion(isLiked: true, error: nil)
+                        }
+                    })
                 }
-
             })
-            
         }
     }
     

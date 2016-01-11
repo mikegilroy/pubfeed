@@ -16,10 +16,16 @@ class CommentController {
             if let postIdentifier = post.identifier {
             var comment = Comment(text: text, userIdentifier: userIdentifier, postIdentifier: postIdentifier, timestamp: NSDate())
                 comment.save({ (error) -> Void in
-                    if error != nil {
+                    if let error = error {
                         completion(comment: nil, error: error)
                     } else {
-                        completion(comment: comment, error: nil)
+                        PostController.incrementCommentsOnPost(post, completion: { (post, error) -> Void in
+                            if let error = error {
+                                completion(comment: nil, error: error)
+                            } else {
+                                completion(comment: comment, error: nil)
+                            }
+                        })
                     }
                 })
             } else {
@@ -59,9 +65,19 @@ class CommentController {
     }
     
     // DELETE
-    static func deleteComment(comment: Comment, completion: (error: NSError?) -> Void) {
+    static func deleteComment(post: Post, comment: Comment, completion: (error: NSError?) -> Void) {
         comment.delete { (error) -> Void in
-            completion(error: error)
+            if let error = error {
+                completion(error: error)
+            } else {
+                PostController.decrementCommentsOnPost(post, completion: { (post, error) -> Void in
+                    if let error = error {
+                        completion(error: error)
+                    } else {
+                        completion(error: nil)
+                    }
+                })
+            }
         }
     }
     

@@ -26,7 +26,7 @@ class PostController {
         } else {
             completion(post: nil, error: Error.defaultError())
         }
-
+        
     }
     
     // READ
@@ -61,25 +61,70 @@ class PostController {
             if let data = data as? [String: AnyObject] {
                 let post = Post(json: data, identifier: identifier)
                 completion(post: post)
-            } 
+            }
         }
     }
     
-    static func incrementLikesOnPost(post: Post, completion: (post: Post?) -> Void) {
+    static func incrementLikesOnPost(post: Post, completion: (post: Post?, error: NSError?) -> Void) {
         let likes = post.likes + 1
         
-        if let identifier = post.identifier {
-            FirebaseController.dataAtEndpoint("posts/\(identifier)/l", completion: { (data) -> Void in
-                print(data)
-                if let data = data as? [Int: Double] {
-                    let latitude = data[0]
-                    let longitude = data[1]
-                    let location = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-                    
-                    var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: likes, comments: post.comments)
-                    
+        var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: likes, comments: post.comments)
+        
+        updatedPost.save { (error) -> Void in
+            if error != nil {
+                completion(post: nil, error: error)
+            } else {
+                completion(post: updatedPost, error: nil)
+            }
+        }
+    }
+    
+    
+    static func decrementLikesOnPost(post: Post, completion: (post: Post?, error: NSError?) -> Void) {
+        if post.likes > 0 {
+            let likes = post.likes - 1
+            
+            var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: likes, comments: post.comments)
+            
+            updatedPost.save { (error) -> Void in
+                if error != nil {
+                    completion(post: nil, error: error)
+                } else {
+                    completion(post: updatedPost, error: nil)
                 }
-            })
+            }
+        }
+    }
+    
+    
+    static func incrementCommentsOnPost(post: Post, completion: (post: Post?, error: NSError?) -> Void) {
+        let comments = post.comments + 1
+        
+        var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: post.likes, comments: comments)
+        
+        updatedPost.save { (error) -> Void in
+            if error != nil {
+                completion(post: nil, error: error)
+            } else {
+                completion(post: updatedPost, error: nil)
+            }
+        }
+    }
+    
+    
+    static func decrementCommentsOnPost(post: Post, completion: (post: Post?, error: NSError?) -> Void) {
+        if post.comments > 0 {
+            let comments = post.comments - 1
+            
+            var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: post.likes, comments: comments)
+            
+            updatedPost.save { (error) -> Void in
+                if error != nil {
+                    completion(post: nil, error: error)
+                } else {
+                    completion(post: updatedPost, error: nil)
+                }
+            }
         }
     }
     
@@ -148,7 +193,7 @@ class PostController {
             }
         }
     }
-        
+    
     
     static func mockPosts() -> [Post] {
         
@@ -159,7 +204,7 @@ class PostController {
         
         return [post1, post2]
     }
-
+    
     
     
     

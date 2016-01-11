@@ -36,21 +36,19 @@ class PostTableViewCell: UITableViewCell {
         self.timestampLabel.text = String(post.timestamp)
         
         // Get likes for post
-        LikeController.likesForPost(post) { (likes) -> Void in
-            if likes.count > 0  {
-                // Set likes count
-            } else {
-                // Set likes count to zero
-            }
+        if post.likes > 0 {
+            self.likeCountLabel.text = "\(post.likes)"
+        } else {
+            self.likeCountLabel.text = ""
         }
         
+        
+        
         // Get comments for post
-        CommentController.commentsForPost(post) { (comments) -> Void in
-            if comments.count > 0 {
-                // Set comments count
-            } else {
-                
-            }
+        if post.comments > 0 {
+            self.commentCountLabel.text = "\(post.comments)"
+        } else {
+            self.commentCountLabel.text = ""
         }
         
         
