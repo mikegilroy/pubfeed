@@ -9,10 +9,10 @@
 import UIKit
 
 class NewPostTableTableViewController: UITableViewController {
-//
-//    // MARK: Properties
-//    var selectedBar: Bar?
-//    var selectedEmoji: String?
+
+    // MARK: Properties
+    var selectedBar: Bar?
+//    var selectedEmoji = emojiMenu[0]
 //    var emojiMenu = ["❤️", "💦", "💋", "😰", "😤", "🔥", "💣", "🍆", "🤗", "🍑", "🍼", "✊🏿", "😥", "🐣", "😘", "😈"]
 //    
 //    // MARK: Outlets
@@ -221,7 +221,7 @@ class NewPostTableTableViewController: UITableViewController {
 //            print("emoji selection error")
 //        }
 //    }
-//        
+    
 
     
 }
