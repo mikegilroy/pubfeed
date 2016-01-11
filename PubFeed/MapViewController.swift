@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-
+    
     // MARK: Properties
     
     var locationManager = CLLocationManager()
@@ -43,51 +43,80 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
-        mapView.setRegion(coordinateRegion, animated: true)
-        BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) -> Void in
-            if let bars = bars {
-                for bar in bars {
-                    self.bars.append(bar)
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.addBarLocationAnnotation(bar)
-                    })
+        mapView.setRegion(coordinateRegion, animated: false)
+        
+        let googleGroup = dispatch_group_create()
+        let googleQueue1 = dispatch_queue_create("com.pubFeed.google1", nil)
+        let googleQueue2 = dispatch_queue_create("com.pubFeed.google2", nil)
+        let googleQueue3 = dispatch_queue_create("com.pubFeed.google3", nil)
+        
+        dispatch_group_enter(googleGroup)
+        
+        dispatch_async(googleQueue1) { () -> Void in
+            
+            BarController.loadBars(location, nextPageToken: nil, completion:  { (bars, nextPageToken) -> Void in
+                if let bars = bars {
+                    for bar in bars {
+                        self.bars.append(bar)
+                        
+                    }
                 }
-                if nextPageToken != nil {
-                    BarController.loadBars(location, nextPageToken: nextPageToken, completion: { (bars, nextPageToken) -> Void in
+                
+                if let secondPageToken = nextPageToken {
+                    dispatch_group_enter(googleGroup)
+                    dispatch_async(googleQueue2) { () -> Void in
+                        
+                        BarController.loadBars(location, nextPageToken: secondPageToken, completion: { (bars, nextPageToken) -> Void in
                             if let bars = bars {
                                 for bar in bars {
                                     self.bars.append(bar)
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        self.addBarLocationAnnotation(bar)
-                                    })
                                 }
                             }
-                        if nextPageToken != nil {
-                            BarController.loadBars(location, nextPageToken: nextPageToken, completion: { (bars, nextPageToken) -> Void in
-                                if let bars = bars {
-                                    for bar in bars {
-                                        self.bars.append(bar)
-                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                            self.addBarLocationAnnotation(bar)
-                                        })
-                                    }
+                            if let thirdPageToken = nextPageToken {
+                                dispatch_group_enter(googleGroup)
+                                dispatch_async(googleQueue3) { () -> Void in
+                                    
+                                    BarController.loadBars(location, nextPageToken: thirdPageToken, completion: { (bars, nextPageToken) -> Void in
+                                        if let bars = bars {
+                                            for bar in bars {
+                                                self.bars.append(bar)
+                                            }
+                                        }
+                                        dispatch_group_leave(googleGroup)
+                                    })
                                 }
-                            })
-                        }
-                    })
+                            } else {
+                                print("No thirdPageToken")
+                            }
+                            dispatch_group_leave(googleGroup)
+                        })
+                        
+                    }
+                } else {
+                    print("No secondPageToken")
                 }
+                dispatch_group_leave(googleGroup)
+            })
+        }
+        
+        dispatch_group_notify(googleGroup, dispatch_get_main_queue()) { () -> Void in
+            for bar in self.bars {
+                self.addBarLocationAnnotation(bar)
             }
         }
     }
     
     func addBarLocationAnnotation(bar: Bar) {
-        if let coordinate = bar.location?.coordinate {
-            let annotation = MKPointAnnotation()
-            annotation.title = bar.name
-            annotation.subtitle = bar.address
-            annotation.coordinate = coordinate
-            mapView.addAnnotation(annotation)
-        }
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            
+            if let coordinate = bar.location?.coordinate {
+                let annotation = MKPointAnnotation()
+                annotation.title = bar.name
+                annotation.subtitle = bar.address
+                annotation.coordinate = coordinate
+                self.mapView.addAnnotation(annotation)
+            }
+        })
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -121,11 +150,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             pinView!.image = UIImage(named: "weener")
             pinView!.rightCalloutAccessoryView = rightButton
             
-
+            
         } else {
             pinView!.annotation = annotation
         }
-    
+        
         return pinView
     }
     
@@ -144,10 +173,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
     }
-
+    
     
     // MARK: Navigation
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toBarDetail" {
             
@@ -156,5 +185,5 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-
+    
 }
