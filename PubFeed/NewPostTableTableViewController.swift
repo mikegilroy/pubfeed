@@ -14,7 +14,7 @@ class NewPostTableTableViewController: UITableViewController {
 
     // MARK: Properties
     var selectedBar: Bar?
-    var selectedEmoji = emojiMenu[0]
+    var selectedEmoji: String?
 
     // MARK: Outlets
     
@@ -184,47 +184,48 @@ class NewPostTableTableViewController: UITableViewController {
     
     // MARK: Functions
     func resetSelectedEmojiToDefaultAlpha(alpha: CGFloat) {
-        if let index = emojiMenu.indexOf(selectedEmoji) {
-            switch Int(index) {
-            case 0:
-                emoji1.alpha = alpha
-            case 1:
-                emoji2.alpha = alpha
-            case 2:
-                emoji3.alpha = alpha
-            case 3:
-                emoji4.alpha = alpha
-            case 4:
-                emoji5.alpha = alpha
-            case 5:
-                emoji6.alpha = alpha
-            case 6:
-                emoji7.alpha = alpha
-            case 7:
-                emoji8.alpha = alpha
-            case 8:
-                emoji9.alpha = alpha
-            case 9:
-                emoji10.alpha = alpha
-            case 10:
-                emoji11.alpha = alpha
-            case 11:
-                emoji12.alpha = alpha
-            case 12:
-                emoji13.alpha = alpha
-            case 13:
-                emoji14.alpha = alpha
-            case 14:
-                emoji15.alpha = alpha
-            case 15:
-                emoji16.alpha = alpha
-            default:
-                print("emoji selection error")
+        if let selectedEmoji = self.selectedEmoji {
+            if let index = emojiMenu.indexOf(selectedEmoji) {
+                switch Int(index) {
+                case 0:
+                    emoji1.alpha = alpha
+                case 1:
+                    emoji2.alpha = alpha
+                case 2:
+                    emoji3.alpha = alpha
+                case 3:
+                    emoji4.alpha = alpha
+                case 4:
+                    emoji5.alpha = alpha
+                case 5:
+                    emoji6.alpha = alpha
+                case 6:
+                    emoji7.alpha = alpha
+                case 7:
+                    emoji8.alpha = alpha
+                case 8:
+                    emoji9.alpha = alpha
+                case 9:
+                    emoji10.alpha = alpha
+                case 10:
+                    emoji11.alpha = alpha
+                case 11:
+                    emoji12.alpha = alpha
+                case 12:
+                    emoji13.alpha = alpha
+                case 13:
+                    emoji14.alpha = alpha
+                case 14:
+                    emoji15.alpha = alpha
+                case 15:
+                    emoji16.alpha = alpha
+                default:
+                    print("emoji selection error")
+                }
             }
         }
     }
+    
 }
 
-
-    
 
