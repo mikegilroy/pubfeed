@@ -62,6 +62,7 @@ class NewPostTableTableViewController: UITableViewController {
     // MARK: Actions
     
     @IBAction func reselectBarButtonTapped(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func emoji1(sender: UIButton) {
