@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
             ErrorHandling.defaultErrorHandler(nil, title: "Missing information")
         } else {
             UserController.authenticateUser(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) -> Void in
+                
                 if error == nil {
                     self.user = user
                     self.emailTextField.text = ""

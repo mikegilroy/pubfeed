@@ -131,11 +131,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         var inputTextField: UITextField?
         let alertController = UIAlertController(title: "Are you sure you want to delete your account?", message: "Please enter password.", preferredStyle: UIAlertControllerStyle.Alert)
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.performSegueWithIdentifier("fromSettings", sender: nil)
-            })
-        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in }))
         
         alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             if let userPasswordInput = inputTextField!.text {
@@ -172,11 +168,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         var inputNewPassTextField: UITextField?
         
         let alertController = UIAlertController(title: "Are you sure you want to change your password?", message: "Please enter your old and new passwords.", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.performSegueWithIdentifier("fromSettings", sender: nil)
-            })
-        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in }))
         
         alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             if let oldPasswordInput = inputOldPassTextField?.text {
@@ -218,6 +210,8 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     
     @IBAction func logoutTapped(sender: AnyObject) {
         FirebaseController.base.unauth()
+        UserController.sharedController.currentUser = nil
+        self.performSegueWithIdentifier("fromSettings", sender: nil)
     }
     
     
@@ -264,6 +258,8 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         
         updateProfilePhotoButton.setBackgroundImage(profilePhoto, forState: .Normal)
         updateProfilePhotoButton.setTitle(nil, forState: .Normal)
+        
+        //SAVE IMAGE TO AMAZON
     }
     
     
