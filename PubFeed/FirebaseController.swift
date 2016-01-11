@@ -47,6 +47,7 @@ protocol FirebaseType {
     init?(json: [String: AnyObject], identifier: String)
     
     mutating func save(completion: (error: NSError?) -> Void)
+    mutating func saveWithLocation(location: CLLocation, completion: (error: NSError?) -> Void)
     mutating func delete(completion: (error: NSError?) -> Void)
 }
 
@@ -64,6 +65,29 @@ extension FirebaseType {
         endpointBase.updateChildValues(self.jsonValue) { (error, _) -> Void in
             completion(error: error)
         }
+    }
+    
+    mutating func saveWithLocation(location: CLLocation, completion: (error: NSError?) -> Void) {
+        var endpointBase: Firebase
+        if let childID = self.identifier {
+            endpointBase = FirebaseController.base.childByAppendingPath(endpoint).childByAppendingPath(childID)
+        } else {
+            endpointBase = FirebaseController.base.childByAppendingPath(endpoint).childByAutoId()
+            self.identifier = endpointBase.key
+        }
+        let key = self.identifier
+        let firebaseRef = FirebaseController.base.childByAppendingPath(endpoint)
+        let geoFire = GeoFire(firebaseRef: firebaseRef)
+        geoFire.setLocation(location, forKey: key)
+        
+        endpointBase.updateChildValues(self.jsonValue) { (error, _) -> Void in
+            if let error = error {
+                completion(error: error)
+            } else {
+                completion(error: nil)
+            }
+        }
+        
     }
     
     
