@@ -26,6 +26,8 @@ struct Post: Equatable, GeoFireType {
     var text: String?
     var photo: String?
     var identifier: String?
+    var likes: Int = 0
+    var comments: Int = 0
     
     // MARK: Initializer
     init(userIdentifier: String, barID: String, timestamp: NSDate, emojis: String, text: String?, photo: String?, identifier: String? = nil) {

@@ -65,6 +65,14 @@ class PostController {
         }
     }
     
+    static func incrementLikesOnPost(identifier: String, completion: (post: Post?) -> Void) {
+        PostController.postFromIdentifier(identifier) { (post) -> Void in
+            if let post = post {
+                post.
+            }
+        }
+    }
+    
     static func postsForBar(bar: Bar, completion: (posts: [Post]) -> Void) {
         FirebaseController.base.childByAppendingPath("posts").queryOrderedByChild("barID").queryEqualToValue(bar.barID).observeSingleEventOfType(.Value, withBlock: { snapshot in
             
