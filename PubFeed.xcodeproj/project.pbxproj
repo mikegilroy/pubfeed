@@ -129,8 +129,6 @@
 		DED6E5BC1C3DC752005E17D8 /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		DED6E5C11C3DE294005E17D8 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		DED6E5C91C3DF19F005E17D8 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		DED6E6261C3F18B4005E17D8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		DED6E6281C3F18C2005E17D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E67F0F171C3DB54600785F12 /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 		E67F0F191C3DB5C700785F12 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		E67F0F1B1C3DB60F00785F12 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
@@ -302,8 +300,6 @@
 		1A4943FBB2315D276982ABB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DED6E6281C3F18C2005E17D8 /* libz.tbd */,
-				DED6E6261C3F18B4005E17D8 /* libsqlite3.tbd */,
 				67669B67958EF44FAAB71027 /* libPods.a */,
 			);
 			name = Frameworks;
