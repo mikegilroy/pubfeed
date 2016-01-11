@@ -7,6 +7,7 @@ PODS:
 
 DEPENDENCIES:
   - AWSCognito
+  - AWSCore
   - AWSS3
 
 SPEC CHECKSUMS:

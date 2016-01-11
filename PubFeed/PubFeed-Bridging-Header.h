@@ -5,4 +5,5 @@
 
 #import "GeoFire.h"
 #import <AWSS3/AWSS3.h>
+#import <AWSCore/AWSCore.h>
 #import <AWSCognito/AWSCognito.h>
