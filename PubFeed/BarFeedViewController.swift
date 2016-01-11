@@ -14,6 +14,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var user: User?
     var bar: Bar?
+    var posts: [Post]?
     
     // MARK: Outlets
     
@@ -33,6 +34,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBarDetails()
+        loadPostsForBar()
     }
     
     
@@ -43,12 +45,20 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if let postsArray = posts {
+            return postsArray.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath)
-        cell.textLabel?.text = "Piper is the best"
+        let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! PostTableViewCell
+        
+        if let posts = self.posts {
+            let post = posts[indexPath.row]
+            cell.updateCellWithPost(post)
+        }
         return cell
     }
     
@@ -70,6 +80,18 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
             self.addressLabel.text = bar.address
+        }
+    }
+    
+    func loadPostsForBar() {
+        if let bar = self.bar {
+            print(bar.barID)
+            PostController.postsForBar(bar) { (posts) -> Void in
+                    self.posts = posts
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
+            }
         }
     }
     

@@ -10,15 +10,18 @@ import Foundation
 
 extension String {
     
+//    func dateValue() -> NSDate? {
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateStyle = .LongStyle
+//        dateFormatter.timeStyle = .LongStyle
+//        let date = dateFormatter.dateFromString(self)
+//        return date
+//    }
+
     func dateValue() -> NSDate? {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        dateFormatter.timeStyle = .LongStyle
-        if let date: NSDate = dateFormatter.dateFromString(self) {
-            return date
-        } else {
-            return nil
-        }
+        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm:ss"
+        return dateFormatter.dateFromString(self)
     }
     
 }

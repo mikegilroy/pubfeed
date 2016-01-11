@@ -60,16 +60,19 @@ struct Post: Equatable, FirebaseType {
         guard let userIdentifier = json[kUserIdentifier] as? String,
             let barID = json[kBarID] as? String,
             let timestampString = json[kTimestamp] as? String,
-            let timestamp: NSDate? = timestampString.dateValue(),
             let emojis = json[kEmojis] as? String else {
                 return nil
         }
-        if timestamp == nil {
+        
+        print(timestampString)
+        if let timestamp = timestampString.dateValue() {
+            self.timestamp = timestamp
+        } else {
             return nil
         }
+
         self.userIdentifier = userIdentifier
         self.barID = barID
-        self.timestamp = timestamp!
         self.emojis = emojis
         if let text = json[kText] as? String {
             self.text = text

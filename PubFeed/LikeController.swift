@@ -64,6 +64,12 @@ class LikeController {
         }
     }
     
+    static func likesForBar(bar: Bar, completion: (likes: [Like]) -> Void) {
+//        if let barID = bar.barID {
+//            FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("barID")
+//        }
+    }
+    
     //UPDATE
     static func toggleLike(like: Like, post: Post, isLiked: Bool, completion: (isLiked: Bool, error: NSError?) -> Void)  {
         //Revisit this after making changes to FirebaseType save and delete functions

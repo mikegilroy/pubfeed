@@ -58,7 +58,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 if let bars = bars {
                     for bar in bars {
                         self.bars.append(bar)
-                        
+                        print(bar.barID)
                     }
                 }
                 
