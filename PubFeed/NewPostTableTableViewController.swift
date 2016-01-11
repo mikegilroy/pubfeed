@@ -124,63 +124,13 @@ class NewPostTableTableViewController: UITableViewController {
     
     
     
-    
-    
-    
-    @IBAction func emoji2(sender: UIButton) {
-    }
-    
-    
-    @IBAction func emoji3(sender: UIButton) {
-    }
-    
-    
-    @IBAction func emoji4(sender: UIButton) {
-    }
-    
-    @IBAction func emoji5(sender: UIButton) {
-    }
-    
-    @IBAction func emoji6(sender: UIButton) {
-    }
-    
-    @IBAction func emoji7(sender: UIButton) {
-    }
-    
-    @IBAction func emoji8(sender: UIButton) {
-    }
-    
-    @IBAction func emoji9(sender: UIButton) {
-    }
-    
-    @IBAction func emoji10(sender: UIButton) {
-    }
-    
-    @IBAction func emoji11(sender: UIButton) {
-    }
-    
-    @IBAction func emoji12(sender: UIButton) {
-    }
-    
-    
-    @IBAction func emoji13(sender: UIButton) {
-    }
-    
-    @IBAction func emoji14(sender: UIButton) {
-    }
-    
-    
-    @IBAction func emoji15(sender: UIButton) {
-    }
-    
-    
-    @IBAction func emoji16(sender: UIButton) {
-    }
-    
-    // MARK: viewDid Functions
+        // MARK: viewDid Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let name = selectedBar?.name {
+            self.barLabel.text = name
+        }
     }
     
     // MARK: Functions
