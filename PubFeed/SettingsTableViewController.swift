@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     // MARK: Properties
     
@@ -214,8 +214,6 @@ class SettingsTableViewController: UITableViewController {
     
     
     
-    
-    
     @IBAction func logoutTapped(sender: AnyObject) {
         FirebaseController.base.unauth()
     }
@@ -223,7 +221,49 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func updatePhotoTapped(sender: AnyObject) {
         
+        let dispatchGroup = dispatch_group_create()
+        dispatch_group_enter(dispatchGroup)
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let photoChoiceAlert = UIAlertController(title: "Select Photo Location", message: nil, preferredStyle: .ActionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+            photoChoiceAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (_) -> Void in
+                imagePicker.sourceType = .PhotoLibrary
+                
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            
+            photoChoiceAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (_) -> Void in
+                imagePicker.sourceType = .Camera
+                
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        photoChoiceAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        self.presentViewController(photoChoiceAlert, animated: true, completion: nil)
+        
+        dispatch_group_leave(dispatchGroup)
     }
+    
+    
+    //MARK: - Image Picker Controller Delegate Methods
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        updateProfilePhotoButton.setBackgroundImage(profilePhoto, forState: .Normal)
+        updateProfilePhotoButton.setTitle(nil, forState: .Normal)
+    }
+    
     
     // MARK: Navigation
     
@@ -236,11 +276,14 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
+    
     // MARK: viewDid Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.updateViewForMode(ViewMode.defaultView)
+        self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
     }
     
 }
