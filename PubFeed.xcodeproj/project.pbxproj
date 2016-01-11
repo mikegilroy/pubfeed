@@ -13,7 +13,6 @@
 		0236A3571C3DB32D00125BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3561C3DB32D00125BA9 /* Security.framework */; };
 		0236A3591C3DB33700125BA9 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3581C3DB33700125BA9 /* libicucore.tbd */; };
 		0236A35B1C3DB33E00125BA9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A35A1C3DB33E00125BA9 /* libc++.tbd */; };
-		0236A35D1C3DB3D600125BA9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A35C1C3DB3D600125BA9 /* SystemConfiguration.framework */; };
 		0236A3611C3DB41000125BA9 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236A3601C3DB41000125BA9 /* FirebaseController.swift */; };
 		0236A3671C3DCA3900125BA9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3661C3DCA3900125BA9 /* CoreLocation.framework */; };
 		0236A3711C3F192B00125BA9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236A3701C3F192B00125BA9 /* Error.swift */; };
@@ -50,8 +49,6 @@
 		DED6E5BD1C3DC752005E17D8 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5BC1C3DC752005E17D8 /* ImageController.swift */; };
 		DED6E5C21C3DE294005E17D8 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5C11C3DE294005E17D8 /* ErrorHandling.swift */; };
 		DED6E5CA1C3DF19F005E17D8 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6E5C91C3DF19F005E17D8 /* UIViewControllerExtension.swift */; };
-		DED6E6271C3F18B4005E17D8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DED6E6261C3F18B4005E17D8 /* libsqlite3.tbd */; };
-		DED6E6291C3F18C2005E17D8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DED6E6281C3F18C2005E17D8 /* libz.tbd */; };
 		E67F0F181C3DB54600785F12 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F171C3DB54600785F12 /* Bar.swift */; };
 		E67F0F1A1C3DB5C700785F12 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F191C3DB5C700785F12 /* Comment.swift */; };
 		E67F0F1C1C3DB60F00785F12 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F1B1C3DB60F00785F12 /* Like.swift */; };
@@ -149,9 +146,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0236A35D1C3DB3D600125BA9 /* SystemConfiguration.framework in Frameworks */,
-				DED6E6291C3F18C2005E17D8 /* libz.tbd in Frameworks */,
-				DED6E6271C3F18B4005E17D8 /* libsqlite3.tbd in Frameworks */,
 				0236A3671C3DCA3900125BA9 /* CoreLocation.framework in Frameworks */,
 				0236A35B1C3DB33E00125BA9 /* libc++.tbd in Frameworks */,
 				0236A3591C3DB33700125BA9 /* libicucore.tbd in Frameworks */,
