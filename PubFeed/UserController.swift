@@ -38,7 +38,7 @@ class UserController {
     
     
     //AUTH & UNAUTH
-
+    
     
     // Login/Signup Views implemented
     
@@ -67,7 +67,7 @@ class UserController {
     // CREATE
     
     static func createUser(username: String, email: String, password: String, completion: (user: User?, error: NSError?) -> Void) {
-  
+        
         FirebaseController.base.createUser(email, password: password) { (error, response) -> Void in
             
             if error == nil {
@@ -92,7 +92,7 @@ class UserController {
             } else {
                 completion(user: nil, error: error)
             }
-           
+            
         }
     }
     
@@ -124,9 +124,11 @@ class UserController {
     
     // UPDATE
     static func updateUser(user: User, username: String, email: String, completion: (user: User?, error: NSError?) -> Void)  {
-        //does this update both users? CHECK
+        
         if let identifier = user.identifier {
-            var updatedUser = User(username: user.username, email: user.email, photo: user.photo, uid: identifier)
+            
+            var updatedUser = User(username: username, email: email, photo: user.photo, uid: identifier)
+            
             updatedUser.save({ (error) -> Void in
                 if let error = error {
                     completion(user: nil, error: error)

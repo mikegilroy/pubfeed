@@ -63,9 +63,13 @@ class SettingsTableViewController: UITableViewController {
             emailTextField.text = ""
             saveButton.enabled = false
             
+            let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editButtonTapped:")
+            self.navigationController?.navigationItem.leftBarButtonItem = editButton
+            self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
+            
         case .editView:
             
-            if let user = self.user {
+            if let user = UserController.sharedController.currentUser {
                 usernameTextField.text = user.username
                 emailTextField.text = user.email
             }
@@ -79,36 +83,50 @@ class SettingsTableViewController: UITableViewController {
     }
     
     
-    @IBAction func editButtonTapped(sender: AnyObject) {
-        updateViewForMode(ViewMode.editView)
+    @IBAction func editButtonTapped(sender: UIBarButtonItem) {
+        
+        if let buttonTitle = sender.title {
+            switch buttonTitle {
+            case "Edit":
+                self.mode = .editView
+                updateViewForMode(mode)
+            case "Cancel":
+                self.mode = .defaultView
+                updateViewForMode(mode)
+            default:
+                updateViewForMode(mode)
+            }
+        }
     }
     
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
-        if !fieldsAreValid {
-            ErrorHandling.defaultErrorHandler(nil, title: "Missing Information!")
+        
+        if (usernameTextField.text == "") || (emailTextField.text == "") {
+            ErrorHandling.defaultErrorHandler(nil, title: "Missing Information")
+            updateViewForMode(ViewMode.defaultView)
             
         } else {
             UserController.updateUser(UserController.sharedController.currentUser!, username: usernameTextField.text!, email: emailTextField.text!, completion: { (user, error) -> Void in
                 
-                if error == nil {
-                    self.user = user
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    self.presentValidationAlertWithTitle("Success!", text: "Thank you, \(user?.username), your account at \(user?.email) has been updated.")
+                if let user = UserController.sharedController.currentUser {
+                    
+                    self.presentValidationAlertWithTitle("Success!", text: "Thank you, \(user.username), your account at \(user.email) has been updated.")
+                    
+                    if error == nil {
+                        self.updateViewForMode(ViewMode.defaultView)
+                    }
                     
                 } else {
                     ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
                 }
             })
         }
-        self.tabBarController?.performSegueWithIdentifier("noCurrentUser", sender: nil)
     }
     
     
     @IBAction func deleteAccountTapped(sender: AnyObject) {
-        
         var inputTextField: UITextField?
-        
         let alertController = UIAlertController(title: "Are you sure you want to delete your account?", message: "Please enter password.", preferredStyle: UIAlertControllerStyle.Alert)
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
@@ -120,15 +138,10 @@ class SettingsTableViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             if let userPasswordInput = inputTextField!.text {
                 
-                let deleteDispatchGroup = dispatch_group_create()
-                dispatch_group_enter(deleteDispatchGroup)
-                
                 UserController.deleteUser(UserController.sharedController.currentUser!, password: userPasswordInput) { (errors) -> Void in
                     if let error = errors?.last {
                         ErrorHandling.defaultErrorHandler(error, title: "\(error.localizedDescription)")
-                        
                     } else {
-                        
                         let successAlertController = UIAlertController(title: "Success!", message: "Your account has been deleted.", preferredStyle: UIAlertControllerStyle.Alert)
                         
                         successAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
@@ -138,7 +151,6 @@ class SettingsTableViewController: UITableViewController {
                         
                         self.presentViewController(successAlertController, animated: true, completion: nil)
                     }
-                    dispatch_group_leave(deleteDispatchGroup)
                 }
             }
         }))
@@ -149,13 +161,13 @@ class SettingsTableViewController: UITableViewController {
             userInputTextField.secureTextEntry = true
             inputTextField = userInputTextField
         })
-        
         presentViewController(alertController, animated: true, completion: nil)
     }
     
     
     
     @IBAction func updatePasswordTapped(sender: AnyObject) {
+        
         
     }
     
@@ -168,7 +180,7 @@ class SettingsTableViewController: UITableViewController {
         
     }
     
-    // MARK: Navigation 
+    // MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "fromSettings" {
