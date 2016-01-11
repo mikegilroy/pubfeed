@@ -62,6 +62,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             usernameTextField.text = ""
             emailTextField.text = ""
             saveButton.enabled = false
+            updateProfilePhotoButton.enabled = false
             
             let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editButtonTapped:")
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
@@ -75,6 +76,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             }
             
             saveButton.enabled = true
+            updateProfilePhotoButton.enabled = true
             
             let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "editButtonTapped:")
             self.navigationController?.navigationItem.leftBarButtonItem = cancelButton
@@ -221,11 +223,11 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     
     @IBAction func updatePhotoTapped(sender: AnyObject) {
         
-        let dispatchGroup = dispatch_group_create()
-        dispatch_group_enter(dispatchGroup)
-        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        
+        let dispatchGroup = dispatch_group_create()
+        dispatch_group_enter(dispatchGroup)
         
         let photoChoiceAlert = UIAlertController(title: "Select Photo Location", message: nil, preferredStyle: .ActionSheet)
         
