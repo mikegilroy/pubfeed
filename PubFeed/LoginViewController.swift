@@ -38,12 +38,54 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func forgotPasswordTapped(sender: UIButton) {
+        
+        var inputTextField: UITextField?
+        let alertController = UIAlertController(title: "Are you sure you want to delete your account?", message: "Please enter email and press reset.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.performSegueWithIdentifier("fromSettings", sender: nil)
+            })
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Reset", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            
+            if let userEmail = inputTextField!.text {
+                
+                UserController.resetPasswordForUser(userEmail, completion: { (error) -> Void in
+                    if let error = error {
+                        ErrorHandling.defaultErrorHandler(error, title: "\(error.localizedDescription)")
+                    } else {
+                        let successAlertController = UIAlertController(title: "Thank you!", message: "Check your email for a link to reset your password.", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        successAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                        }))
+                        self.presentViewController(successAlertController, animated: true, completion: nil)
+                    }
+                })
+            }
+        }))
+        
+        alertController.addTextFieldWithConfigurationHandler( { (userInputTextField: UITextField!) -> Void in
+            userInputTextField.placeholder = "Enter Email"
+            userInputTextField.keyboardType = UIKeyboardType.Default
+            userInputTextField.secureTextEntry = true
+            inputTextField = userInputTextField
+        })
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+    
     // MARK: viewDid Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     
     // MARK: Navigation
     
@@ -66,7 +108,7 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
- 
+    
     // Dismiss TextField
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

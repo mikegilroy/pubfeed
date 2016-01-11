@@ -154,27 +154,72 @@ class SettingsTableViewController: UITableViewController {
                 }
             }
         }))
-        
         alertController.addTextFieldWithConfigurationHandler( { (userInputTextField: UITextField!) -> Void in
             userInputTextField.placeholder = "Enter Password"
             userInputTextField.keyboardType = UIKeyboardType.Default
             userInputTextField.secureTextEntry = true
             inputTextField = userInputTextField
-        })
+            })
         presentViewController(alertController, animated: true, completion: nil)
     }
     
     
     
     @IBAction func updatePasswordTapped(sender: AnyObject) {
+        var inputOldPassTextField: UITextField?
+        var inputNewPassTextField: UITextField?
         
+        let alertController = UIAlertController(title: "Are you sure you want to change your password?", message: "Please enter your old and new passwords.", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.performSegueWithIdentifier("fromSettings", sender: nil)
+            })
+        }))
         
+        alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            if let oldPasswordInput = inputOldPassTextField?.text {
+                 if let newPasswordInput = inputNewPassTextField?.text {
+                    
+                    UserController.changePasswordForUser(UserController.sharedController.currentUser!, oldPassword: oldPasswordInput, newPassword: newPasswordInput) { (error) -> Void in
+                        if let error = error {
+                            ErrorHandling.defaultErrorHandler(error, title: "\(error.localizedDescription)")
+                        } else {
+                            let successAlertController = UIAlertController(title: "Success!", message: "Your password has been changed.", preferredStyle: UIAlertControllerStyle.Alert)
+                            
+                            successAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                                self.dismissViewControllerAnimated(true, completion: { () })
+                            }))
+                            
+                            self.presentViewController(successAlertController, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        }))
+        
+        alertController.addTextFieldWithConfigurationHandler { (userInputOldPass: UITextField!) -> Void in
+            userInputOldPass.placeholder = "Enter Old Password"
+            userInputOldPass.keyboardType = UIKeyboardType.Default
+            userInputOldPass.secureTextEntry = true
+            inputOldPassTextField = userInputOldPass
+        }
+        alertController.addTextFieldWithConfigurationHandler { (userInputNewPass: UITextField!) -> Void in
+            userInputNewPass.placeholder = "Enter New Password"
+            userInputNewPass.keyboardType = UIKeyboardType.Default
+            userInputNewPass.secureTextEntry = true
+            inputNewPassTextField = userInputNewPass
+        }
+        presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    
+    
     
     
     @IBAction func logoutTapped(sender: AnyObject) {
         FirebaseController.base.unauth()
     }
+    
     
     @IBAction func updatePhotoTapped(sender: AnyObject) {
         

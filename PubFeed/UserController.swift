@@ -148,15 +148,27 @@ class UserController {
         }
     }
     
+    
     static func changePasswordForUser(user: User, oldPassword: String, newPassword: String, completion: (error: NSError?) -> Void) {
         FirebaseController.base.changePasswordForUser(user.email, fromOld: oldPassword, toNew: newPassword) { (error) -> Void in
             if let error = error {
                 completion(error: error)
+            } else {
+                completion(error: nil)
             }
         }
     }
     
-    // DELETE
+    static func resetPasswordForUser(email: String, completion: (error: NSError?) -> Void) {
+        FirebaseController.base.resetPasswordForUser(email) { (Error) -> Void in
+            if let Error = Error {
+                completion(error: Error)
+            } else {
+                completion(error: nil)
+            }
+        }
+    }
+
     
     // Needs to also delete images for that user
     static func deleteUser(user: User, password: String, completion:(errors: [NSError]?) -> Void) {
