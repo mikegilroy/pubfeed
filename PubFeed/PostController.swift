@@ -15,7 +15,7 @@ class PostController {
     static func createPost(location: CLLocation, emojis: String, text: String?, photo: String?, bar: Bar, user: User, completion: (post: Post?, error: NSError?) -> Void) {
         // Needs to handle uploading the photo to amazon. This will need correction when the time comes.
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
-            var post = Post(userIdentifier: userIdentifier, barID: bar.barID, timestamp: NSDate(), emojis: emojis, text: text, photo: photo)
+            var post = Post(userIdentifier: userIdentifier, barID: bar.barID, timestamp: NSDate(), emojis: emojis, text: text, photo: photo, likes: 0, comments: 0)
             post.saveWithLocation(location, completion: { (error) -> Void in
                 if error != nil {
                     completion(post: nil, error: error)
@@ -32,7 +32,7 @@ class PostController {
     // READ
     static func postsForLocation(location: CLLocation, radius: Double, completion: (posts: [Post]?, error: NSError?) -> Void) {
         var posts: [Post] = []
-        let locationBase = FirebaseController.base.childByAppendingPath("modelobjects")
+        let locationBase = FirebaseController.base.childByAppendingPath("posts")
         let geoFire = GeoFire(firebaseRef: locationBase)
         let circleQuery = geoFire.queryAtLocation(location, withRadius: radius)
         circleQuery.observeSingleEventOfTypeValue({ (json) -> Void in
@@ -65,11 +65,21 @@ class PostController {
         }
     }
     
-    static func incrementLikesOnPost(identifier: String, completion: (post: Post?) -> Void) {
-        PostController.postFromIdentifier(identifier) { (post) -> Void in
-            if let post = post {
-                post.likes
-            }
+    static func incrementLikesOnPost(post: Post, completion: (post: Post?) -> Void) {
+        let likes = post.likes + 1
+        
+        if let identifier = post.identifier {
+            FirebaseController.dataAtEndpoint("posts/\(identifier)/l", completion: { (data) -> Void in
+                print(data)
+                if let data = data as? [Int: Double] {
+                    let latitude = data[0]
+                    let longitude = data[1]
+                    let location = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                    
+                    var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: likes, comments: post.comments)
+                    
+                }
+            })
         }
     }
     
@@ -144,8 +154,8 @@ class PostController {
         
         let sampleImageIdentifier = "-K1l4125TYvKMc7rcp5e"
         
-        let post1 = Post(userIdentifier: "abcdef", barID: "abcdfe", timestamp: NSDate(), emojis: "abcde", text: "abc", photo: sampleImageIdentifier)
-        let post2 = Post(userIdentifier: "abcdef", barID: "ab", timestamp: NSDate(), emojis: "hahaha", text: "huhuhu", photo: sampleImageIdentifier)
+        let post1 = Post(userIdentifier: "abcdef", barID: "abcdfe", timestamp: NSDate(), emojis: "abcde", text: "abc", photo: sampleImageIdentifier, likes: 1, comments: 2)
+        let post2 = Post(userIdentifier: "abcdef", barID: "ab", timestamp: NSDate(), emojis: "hahaha", text: "huhuhu", photo: sampleImageIdentifier, likes: 12, comments: 1)
         
         return [post1, post2]
     }

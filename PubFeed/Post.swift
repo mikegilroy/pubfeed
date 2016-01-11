@@ -17,6 +17,8 @@ struct Post: Equatable, FirebaseType {
     private let kText = "text"
     private let kPhoto = "photo"
     private let kBarID = "barID"
+    private let kLikesCount = "likesCount"
+    private let kCommentsCount = "commentsCount"
     
     // MARK: Properties
     var userIdentifier: String
@@ -30,7 +32,7 @@ struct Post: Equatable, FirebaseType {
     var comments: Int = 0
     
     // MARK: Initializer
-    init(userIdentifier: String, barID: String, timestamp: NSDate, emojis: String, text: String?, photo: String?, identifier: String? = nil) {
+    init(userIdentifier: String, barID: String, timestamp: NSDate, emojis: String, text: String?, photo: String?, identifier: String? = nil, likes: Int, comments: Int) {
         self.userIdentifier = userIdentifier
         self.barID = barID
         self.timestamp = timestamp
@@ -38,6 +40,8 @@ struct Post: Equatable, FirebaseType {
         self.text = text
         self.photo = photo
         self.identifier = identifier
+        self.likes = likes
+        self.comments = comments
     }
     
     // MARK: FirebaseType
@@ -47,7 +51,7 @@ struct Post: Equatable, FirebaseType {
     
     
     var jsonValue: [String: AnyObject] {
-        var json: [String: AnyObject] = [kUserIdentifier: userIdentifier, kBarID: barID, kTimestamp: timestamp.stringValue(), kEmojis: emojis]
+        var json: [String: AnyObject] = [kUserIdentifier: userIdentifier, kBarID: barID, kTimestamp: timestamp.stringValue(), kEmojis: emojis, kLikesCount:likes, kCommentsCount:comments]
         if let text = text {
             json.updateValue(text, forKey: kText)
         }
@@ -62,7 +66,9 @@ struct Post: Equatable, FirebaseType {
         guard let userIdentifier = json[kUserIdentifier] as? String,
             let barID = json[kBarID] as? String,
             let timestampString = json[kTimestamp] as? String,
-            let emojis = json[kEmojis] as? String else {
+            let emojis = json[kEmojis] as? String,
+            let likes = json[kLikesCount] as? Int,
+            let comments = json[kCommentsCount] as? Int else {
                 return nil
         }
         
@@ -83,6 +89,8 @@ struct Post: Equatable, FirebaseType {
             self.photo = photo
         }
         self.identifier = identifier
+        self.likes = likes
+        self.comments = comments
     }
 }
 
