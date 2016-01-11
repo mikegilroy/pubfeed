@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Post: Equatable, FirebaseType {
+struct Post: Equatable, GeoFireType {
     
     // MARK: Keys
     private let kUserIdentifier = "userIdentifier"

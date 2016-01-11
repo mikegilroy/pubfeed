@@ -16,6 +16,7 @@
 		0236A3611C3DB41000125BA9 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236A3601C3DB41000125BA9 /* FirebaseController.swift */; };
 		0236A3671C3DCA3900125BA9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3661C3DCA3900125BA9 /* CoreLocation.framework */; };
 		0236A3711C3F192B00125BA9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236A3701C3F192B00125BA9 /* Error.swift */; };
+		0237966A1C4421FC0090B858 /* GeoFireProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023796691C4421FC0090B858 /* GeoFireProtocol.swift */; };
 		028A3E9C1C3F33A400B9FC3F /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E931C3F33A400B9FC3F /* GeoFire.m */; };
 		028A3E9D1C3F33A400B9FC3F /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E951C3F33A400B9FC3F /* GFQuery.m */; };
 		028A3E9E1C3F33A400B9FC3F /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E971C3F33A400B9FC3F /* GFBase32Utils.m */; };
@@ -82,6 +83,7 @@
 		0236A3601C3DB41000125BA9 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		0236A3661C3DCA3900125BA9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0236A3701C3F192B00125BA9 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		023796691C4421FC0090B858 /* GeoFireProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFireProtocol.swift; sourceTree = "<group>"; };
 		028A3E891C3F2E1F00B9FC3F /* PubFeed-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PubFeed-Bridging-Header.h"; sourceTree = "<group>"; };
 		028A3E8D1C3F338F00B9FC3F /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
 		028A3E8E1C3F339900B9FC3F /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				DED6E5B21C3DBFE2005E17D8 /* LikeController.swift */,
 				DED6E5B41C3DBFFC005E17D8 /* CommentController.swift */,
 				0236A3601C3DB41000125BA9 /* FirebaseController.swift */,
+				023796691C4421FC0090B858 /* GeoFireProtocol.swift */,
 				100B8DAE1C3EFEF5005C45E4 /* BarController.swift */,
 				100B8DB01C3EFF96005C45E4 /* NetworkController.swift */,
 			);
@@ -474,6 +477,7 @@
 				1069A54C1C3D92100018D28F /* CommentTableViewCell.swift in Sources */,
 				DED6E5B81C3DBFFC005E17D8 /* CommentController.swift in Sources */,
 				E67F0F211C3DB69A00785F12 /* DateExtension.swift in Sources */,
+				0237966A1C4421FC0090B858 /* GeoFireProtocol.swift in Sources */,
 				1069A53A1C3D81CE0018D28F /* SignupViewController.swift in Sources */,
 				1069A5451C3D84270018D28F /* SelectLocationViewController.swift in Sources */,
 				1069A5431C3D840F0018D28F /* PostDetailViewController.swift in Sources */,
