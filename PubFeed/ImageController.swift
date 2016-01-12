@@ -35,7 +35,6 @@ class ImageController {
                 if task.error != nil {
                     print("Error: \(task.error)")
                 } else {
-
                         let base = FirebaseController.base.childByAppendingPath("profileImages").childByAutoId()
                         base.setValue("\(photoURL)")
                         completion(identifier: base.key)

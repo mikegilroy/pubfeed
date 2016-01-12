@@ -157,7 +157,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             userInputTextField.keyboardType = UIKeyboardType.Default
             userInputTextField.secureTextEntry = true
             inputTextField = userInputTextField
-            })
+        })
         presentViewController(alertController, animated: true, completion: nil)
     }
     
@@ -172,7 +172,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         
         alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             if let oldPasswordInput = inputOldPassTextField?.text {
-                 if let newPasswordInput = inputNewPassTextField?.text {
+                if let newPasswordInput = inputNewPassTextField?.text {
                     
                     UserController.changePasswordForUser(UserController.sharedController.currentUser!, oldPassword: oldPasswordInput, newPassword: newPasswordInput) { (error) -> Void in
                         if let error = error {
@@ -249,6 +249,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     }
     
     
+    
     //MARK: - Image Picker Controller Delegate Methods
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -259,7 +260,20 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         updateProfilePhotoButton.setBackgroundImage(profilePhoto, forState: .Normal)
         updateProfilePhotoButton.setTitle(nil, forState: .Normal)
         
-        //SAVE IMAGE TO AMAZON
+        if let profilePhoto = profilePhoto  {
+            //HARDCODED REQUESTKEY
+            ImageController.uploadPhoto(profilePhoto, requestKey: "-K7n5WUV2q7er3NxmuGT", completion: { (identifier) -> Void in
+                if identifier != nil {
+                    let successAlert = UIAlertController(title: "Success!", message: "Image posted.", preferredStyle: .Alert)
+                    successAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(successAlert, animated: true, completion: nil)
+                } else {
+                    let failedAlert = UIAlertController(title: "Failed!", message: "Image failed to post. Please try again.", preferredStyle: .Alert)
+                    failedAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(failedAlert, animated: true, completion: nil)
+                }
+            })
+        }
     }
     
     
