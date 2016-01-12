@@ -47,7 +47,7 @@ class PostTableViewCell: UITableViewCell {
                     self.usernameLabel.text = user.username
                 
                 if let profileImageString = user.photo {
-                    ImageController.profilePhotoForIdentifier(profileImageString, user: user, completion: { (photoUrl) -> Void in
+                    ImageController.profilePhotoForIdentifier(profileImageString, completion: { (photoUrl) -> Void in
                         if let imageData = NSData(contentsOfURL: photoUrl) {
                             if let image = UIImage(data: imageData) {
                                 self.profileImageView.image = image

@@ -15,20 +15,26 @@ struct Comment: Equatable, FirebaseType {
     private let postIdentifierKey = "postIdentifier"
     private let identifierKey = "identifier"
     private let timestampKey = "timestamp"
+    private let usernameKey = "username"
+    private let userPhotoKey = "userPhoto"
     
     var text: String
     var userIdentifier: String
     var postIdentifier: String
     var timestamp: NSDate
     var identifier: String?
+    var username: String
+    var userPhotoUrl: String?
     
-    init(text: String, userIdentifier: String, postIdentifier: String, timestamp: NSDate, identifier: String? = nil) {
+    init(username: String, text: String, userIdentifier: String, userPhotoUrl: String?, postIdentifier: String, timestamp: NSDate, identifier: String? = nil) {
         
         self.text = text
         self.userIdentifier = userIdentifier
         self.postIdentifier = postIdentifier
         self.timestamp = timestamp
         self.identifier = identifier
+        self.username = username
+        self.userPhotoUrl = userPhotoUrl
     }
     
     // Mark: FirebaseType
@@ -48,6 +54,8 @@ struct Comment: Equatable, FirebaseType {
             let text = json[textKey] as? String,
             let userIdentifier = json[userIdentifierKey] as? String,
             let timestampString = json[timestampKey] as? String,
+            let username = json[usernameKey] as? String,
+            let userPhotoUrl = json[userPhotoKey] as? String,
             let timestamp: NSDate? = timestampString.dateValue() else {
                 return nil
         }
@@ -60,6 +68,8 @@ struct Comment: Equatable, FirebaseType {
         self.userIdentifier = userIdentifier
         self.timestamp = timestamp!
         self.identifier = identifier
+        self.username = username
+        self.userPhotoUrl = userPhotoUrl
     }
 }
 

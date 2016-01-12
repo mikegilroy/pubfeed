@@ -46,9 +46,9 @@ class ImageController {
         
     }
     
-    static func profilePhotoForIdentifier(identifier: String, user: User, completion: (photoUrl: NSURL) -> Void) {
+    static func profilePhotoForIdentifier(profilePhotoEndpoint: String, completion: (photoUrl: NSURL) -> Void) {
         
-        FirebaseController.dataAtEndpoint("profileImages/\(identifier)") { (data) -> Void in
+        FirebaseController.dataAtEndpoint("profileImages/\(profilePhotoEndpoint)") { (data) -> Void in
             if let data = data as? String {
                let photoUrl = NSURL(string: data)
               completion(photoUrl: photoUrl!)

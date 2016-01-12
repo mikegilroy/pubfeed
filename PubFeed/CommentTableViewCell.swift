@@ -8,10 +8,11 @@
 
 import UIKit
 
+
 class CommentTableViewCell: UITableViewCell {
     
     var user: User?
-
+    
     @IBOutlet weak var profilePhoto: UIImageView!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -26,19 +27,23 @@ class CommentTableViewCell: UITableViewCell {
     
     func updateWithComment(comment: Comment) {
         
-//        ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.photo)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
-//            self.profilePhoto.image = photoUrl
-//        
-//        }
-        self.profilePhoto.image = UIImage(named: (UserController.sharedController.currentUser?.photo)!)
-        self.usernameLabel.text = UserController.sharedController.currentUser?.username
+        if let userPhoto = comment.userPhotoUrl {
+            ImageController.profilePhotoForIdentifier(userPhoto) { (photoUrl) -> Void in
+                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.profilePhoto.image = image
+                    })
+                })
+            }
+        }
+        self.usernameLabel.text = comment.username
         self.commentLabel.text = comment.text
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

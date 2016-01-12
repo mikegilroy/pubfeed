@@ -12,9 +12,9 @@ class CommentController {
     
     // CREATE
     static func addCommentToPost(post: Post, text: String, completion: (comment: Comment?, error: NSError?) -> Void?) {
-        if let userIdentifier = UserController.sharedController.currentUser?.identifier {
+        if let currentUser = UserController.sharedController.currentUser {
             if let postIdentifier = post.identifier {
-            var comment = Comment(text: text, userIdentifier: userIdentifier, postIdentifier: postIdentifier, timestamp: NSDate())
+                var comment = Comment(username: currentUser.username, text: text, userIdentifier: currentUser.identifier!, userPhotoUrl: currentUser.photo, postIdentifier: postIdentifier, timestamp: NSDate())
                 comment.save({ (error) -> Void in
                     if let error = error {
                         completion(comment: nil, error: error)
