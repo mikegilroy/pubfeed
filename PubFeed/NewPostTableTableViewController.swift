@@ -15,6 +15,7 @@ class NewPostTableTableViewController: UITableViewController {
     // MARK: Properties
     var selectedBar: Bar?
     var selectedEmoji: String?
+    var selectedPhoto: String?
 
     // MARK: Outlets
     
@@ -25,7 +26,6 @@ class NewPostTableTableViewController: UITableViewController {
     @IBOutlet weak var emoji1: UIButton!
     
     @IBOutlet weak var emoji2: UIButton!
-    
     
     @IBOutlet weak var emoji3: UIButton!
     
@@ -39,7 +39,6 @@ class NewPostTableTableViewController: UITableViewController {
     
     @IBOutlet weak var emoji8: UIButton!
     
-    
     @IBOutlet weak var emoji9: UIButton!
     
     @IBOutlet weak var emoji10: UIButton!
@@ -50,9 +49,7 @@ class NewPostTableTableViewController: UITableViewController {
     
     @IBOutlet weak var emoji13: UIButton!
     
-    
     @IBOutlet weak var emoji14: UIButton!
-    
     
     @IBOutlet weak var emoji15: UIButton!
     
@@ -64,6 +61,31 @@ class NewPostTableTableViewController: UITableViewController {
     @IBAction func reselectBarButtonTapped(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+        guard let emojis = self.selectedEmoji else {
+            print("NO EMOJI SELECTED")
+            return
+        }
+        if let user = UserController.sharedController.currentUser {
+            if let bar = selectedBar {
+                if let location = bar.location {
+                    PostController.createPost(location, emojis: emojis, text: self.textView.text, photo: selectedPhoto, bar: bar, user: user, completion: { (post, error) -> Void in
+                        if let error = error {
+                            print("Error creating post")
+                        }
+                    })
+                } else {
+                    print("selected bar has no location")
+                }
+            } else {
+                print("selected bar is nil")
+            }
+        } else {
+            print("current user is nil")
+        }
+    }
+    
     
     @IBAction func emoji1(sender: UIButton) {
         let alpha = CGFloat(0.5)
