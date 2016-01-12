@@ -68,6 +68,13 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
+            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.photo!)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
+                
+                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                    self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                })
+            }
+            
         case .editView:
             
             if let user = UserController.sharedController.currentUser {
@@ -261,12 +268,15 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         updateProfilePhotoButton.setTitle(nil, forState: .Normal)
         
         if let profilePhoto = profilePhoto  {
-            //HARDCODED REQUESTKEY
-            ImageController.uploadPhoto(profilePhoto, requestKey: "-K7n5WUV2q7er3NxmuGT", completion: { (identifier) -> Void in
+            
+            //IF PHOTO IS NEW, THEN CREATE CHILDBYAUTOID
+            //OTHERWISE UPDATE EXISTING PHOTO AT CURRENTUSER.photo
+            ImageController.uploadPhoto(profilePhoto, completion: { (identifier) -> Void in
                 if identifier != nil {
                     let successAlert = UIAlertController(title: "Success!", message: "Image posted.", preferredStyle: .Alert)
                     successAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                     self.presentViewController(successAlert, animated: true, completion: nil)
+
                 } else {
                     let failedAlert = UIAlertController(title: "Failed!", message: "Image failed to post. Please try again.", preferredStyle: .Alert)
                     failedAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -297,5 +307,4 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         self.updateViewForMode(ViewMode.defaultView)
         self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
     }
-    
 }
