@@ -1082,7 +1082,7 @@
         <scene sceneID="T9E-Qq-98V">
             <objects>
                 <tableViewController id="XMn-XD-ptt" customClass="SettingsTableViewController" customModule="PubFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="USE-px-GjC">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="USE-px-GjC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1101,7 +1101,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Nqs-qT-s8J" secondAttribute="height" multiplier="75:71" id="OiJ-Lq-l1d"/>
                                                     </constraints>
-                                                    <state key="normal" title="Edit Profile Photo"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="updatePhotoTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="igh-Cs-qCg"/>
                                                     </connections>

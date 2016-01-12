@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class SettingsTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
     // MARK: Properties
     
@@ -55,35 +55,65 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     }
     
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.textColor = UIColor.blackColor()
+    }
+    
+    
     func updateViewForMode(mode: ViewMode) {
         switch mode {
             
         case .defaultView:
-            usernameTextField.text = ""
-            emailTextField.text = ""
+            
+            if let user = UserController.sharedController.currentUser {
+                usernameTextField.text = user.username
+                emailTextField.text = user.email
+                usernameTextField.userInteractionEnabled = false
+                emailTextField.userInteractionEnabled = false
+                usernameTextField.textColor = UIColor.blackColor()
+                emailTextField.textColor = UIColor.blackColor()
+            }
+            
             saveButton.enabled = false
-            updateProfilePhotoButton.enabled = false
+            updateProfilePhotoButton.userInteractionEnabled = false
+            updateProfilePhotoButton.setTitle("", forState: .Normal)
+            updateProfilePhotoButton.alpha = 1
             
             let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editButtonTapped:")
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
             ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.photo!)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
-                
                 ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                    self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                    })
                 })
             }
             
         case .editView:
             
-            if let user = UserController.sharedController.currentUser {
-                usernameTextField.text = user.username
-                emailTextField.text = user.email
-            }
+            let textFieldGrayColor = colorWithHexString("d4d4d6")
+            
+            usernameTextField.text = ""
+            emailTextField.text = ""
+            usernameTextField.userInteractionEnabled = true
+            emailTextField.userInteractionEnabled = true
+            usernameTextField.enabled = true
+            emailTextField.enabled = true
+            usernameTextField.textColor = textFieldGrayColor
+            emailTextField.textColor = textFieldGrayColor
+            
+            textFieldDidBeginEditing(usernameTextField)
+            textFieldDidBeginEditing(emailTextField)
             
             saveButton.enabled = true
             updateProfilePhotoButton.enabled = true
+            updateProfilePhotoButton.alpha = 0.70
+            updateProfilePhotoButton.userInteractionEnabled = true
+            updateProfilePhotoButton.setTitle("Edit Profile Photo", forState: .Normal)
+            updateProfilePhotoButton.titleLabel?.textColor = UIColor.blueColor()
             
             let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "editButtonTapped:")
             self.navigationController?.navigationItem.leftBarButtonItem = cancelButton
@@ -112,7 +142,12 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         
         if (usernameTextField.text == "") || (emailTextField.text == "") {
-            ErrorHandling.defaultErrorHandler(nil, title: "Missing Information")
+            ErrorHandling.defaultErrorHandler(nil, title: "Missing Information in both fields.  Please supply missing field.")
+            
+            if usernameTextField.text == "" {
+                usernameTextField.text = UserController.sharedController.currentUser?.username
+            }
+            
             updateViewForMode(ViewMode.defaultView)
             
         } else {
@@ -188,7 +223,6 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                             let successAlertController = UIAlertController(title: "Success!", message: "Your password has been changed.", preferredStyle: UIAlertControllerStyle.Alert)
                             
                             successAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-                                self.dismissViewControllerAnimated(true, completion: { () })
                             }))
                             
                             self.presentViewController(successAlertController, animated: true, completion: nil)
@@ -276,7 +310,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                     let successAlert = UIAlertController(title: "Success!", message: "Image posted.", preferredStyle: .Alert)
                     successAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                     self.presentViewController(successAlert, animated: true, completion: nil)
-
+                    
                 } else {
                     let failedAlert = UIAlertController(title: "Failed!", message: "Image failed to post. Please try again.", preferredStyle: .Alert)
                     failedAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -305,6 +339,39 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         super.viewDidLoad()
         
         self.updateViewForMode(ViewMode.defaultView)
+        updateProfilePhotoButton.titleLabel?.text = ""
         self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+        
+        //textField delegate
+        usernameTextField.delegate = self
+        emailTextField.delegate = self
+    }
+    
+    
+    // MARK: helper funcs
+    
+    // Creates a UIColor from a Hex string.
+    func colorWithHexString (hex:String) -> UIColor {
+        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
+        
+        if (cString.hasPrefix("#")) {
+            cString = (cString as NSString).substringFromIndex(1)
+        }
+        
+        if (cString.characters.count != 6) {
+            return UIColor.grayColor()
+        }
+        
+        let rString = (cString as NSString).substringToIndex(2)
+        let gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
+        let bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
+        
+        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+        NSScanner(string: rString).scanHexInt(&r)
+        NSScanner(string: gString).scanHexInt(&g)
+        NSScanner(string: bString).scanHexInt(&b)
+        
+        
+        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
     }
 }
