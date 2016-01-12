@@ -27,7 +27,6 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
     // MARK: viewDid Functions
     
     override func viewDidLoad() {
@@ -82,7 +81,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     
     // MARK: - Navigation
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toNewPost" {
             if let newPostTableTableViewController = segue.destinationViewController as? NewPostTableTableViewController {

@@ -71,8 +71,9 @@ class NewPostTableTableViewController: UITableViewController {
             if let bar = selectedBar {
                 if let location = bar.location {
                     PostController.createPost(location, emojis: emojis, text: self.textView.text, photo: selectedPhoto, bar: bar, user: user, completion: { (post, error) -> Void in
-                        if let error = error {
+                        if let _ = error {
                             print("Error creating post")
+                        } else {
                         }
                     })
                 } else {
