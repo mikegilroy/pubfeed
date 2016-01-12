@@ -815,7 +815,7 @@
             </objects>
             <point key="canvasLocation" x="2189" y="130"/>
         </scene>
-        <!--Create New Post-->
+        <!--Create Post-->
         <scene sceneID="DIC-Wn-CQm">
             <objects>
                 <tableViewController id="E9B-tb-cRA" customClass="NewPostTableTableViewController" customModule="PubFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -851,27 +851,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4F4-Yy-Xzl">
-                                                    <rect key="frame" x="8" y="8" width="584" height="36"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <state key="normal">
-                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="reselectBarButtonTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="WEw-Zo-6mJ"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="4F4-Yy-Xzl" firstAttribute="top" secondItem="jIT-pk-ipp" secondAttribute="top" id="9Zr-XU-jQg"/>
-                                                <constraint firstItem="4F4-Yy-Xzl" firstAttribute="trailing" secondItem="3EZ-sb-c0n" secondAttribute="trailing" id="F2g-kh-1K2"/>
                                                 <constraint firstItem="3EZ-sb-c0n" firstAttribute="bottom" secondItem="FkO-jR-vKz" secondAttribute="bottomMargin" id="F9n-oZ-7uV"/>
-                                                <constraint firstItem="4F4-Yy-Xzl" firstAttribute="leading" secondItem="jIT-pk-ipp" secondAttribute="leading" id="HaU-S0-RNT"/>
                                                 <constraint firstItem="jIT-pk-ipp" firstAttribute="bottom" secondItem="FkO-jR-vKz" secondAttribute="bottomMargin" id="KUK-oe-ztd"/>
                                                 <constraint firstItem="3EZ-sb-c0n" firstAttribute="top" secondItem="FkO-jR-vKz" secondAttribute="topMargin" id="MWZ-Yy-D06"/>
                                                 <constraint firstItem="3EZ-sb-c0n" firstAttribute="trailing" secondItem="FkO-jR-vKz" secondAttribute="trailingMargin" id="Zx9-dT-pDq"/>
                                                 <constraint firstItem="3EZ-sb-c0n" firstAttribute="leading" secondItem="jIT-pk-ipp" secondAttribute="trailing" constant="8" id="arn-H9-b74"/>
-                                                <constraint firstItem="4F4-Yy-Xzl" firstAttribute="bottom" secondItem="jIT-pk-ipp" secondAttribute="bottom" id="eYm-i4-Fw6"/>
                                                 <constraint firstItem="jIT-pk-ipp" firstAttribute="top" secondItem="FkO-jR-vKz" secondAttribute="topMargin" id="gr5-yT-BJX"/>
                                                 <constraint firstItem="jIT-pk-ipp" firstAttribute="leading" secondItem="FkO-jR-vKz" secondAttribute="leadingMargin" id="tuf-2I-Pty"/>
                                             </constraints>
@@ -1058,7 +1044,7 @@
                             <outlet property="delegate" destination="E9B-tb-cRA" id="S6o-Xy-zoU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Create New Post" id="t5n-dA-Dc8">
+                    <navigationItem key="navigationItem" title="Create Post" id="t5n-dA-Dc8">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="uES-Nm-wqo">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="E9B-tb-cRA" id="AaL-fe-AvS"/>
@@ -1090,7 +1076,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Br2-yg-O1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="V0A-33-4T6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2967" y="125"/>
+            <point key="canvasLocation" x="2930" y="130"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="T9E-Qq-98V">
