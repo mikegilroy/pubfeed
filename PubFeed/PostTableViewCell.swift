@@ -33,7 +33,7 @@ class PostTableViewCell: UITableViewCell {
             self.postTextLabel.text = ""
         }
         
-        self.timestampLabel.text = String(post.timestamp)
+        self.timestampLabel.text = post.timestamp.offsetFrom(NSDate())
         
         // Get likes for posts
         self.likeCountLabel.text = "\(post.likes)"
