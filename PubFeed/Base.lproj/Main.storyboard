@@ -760,7 +760,7 @@
             </objects>
             <point key="canvasLocation" x="1405" y="-605"/>
         </scene>
-        <!--Select Location View Controller-->
+        <!--Select Bar-->
         <scene sceneID="lEw-0x-8qI">
             <objects>
                 <viewController id="rZd-3p-awZ" customClass="SelectLocationViewController" customModule="PubFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -799,7 +799,7 @@
                             <constraint firstItem="otr-y4-2h1" firstAttribute="leading" secondItem="01Z-vt-FFb" secondAttribute="leading" id="x0T-eM-ZpB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="OLJ-RU-EuL">
+                    <navigationItem key="navigationItem" title="Select Bar" id="OLJ-RU-EuL">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="tKm-p9-Nei">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="rZd-3p-awZ" id="m1n-fu-ar8"/>
@@ -815,7 +815,7 @@
             </objects>
             <point key="canvasLocation" x="2189" y="130"/>
         </scene>
-        <!--New Post Table Table View Controller-->
+        <!--Create New Post-->
         <scene sceneID="DIC-Wn-CQm">
             <objects>
                 <tableViewController id="E9B-tb-cRA" customClass="NewPostTableTableViewController" customModule="PubFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -1058,7 +1058,7 @@
                             <outlet property="delegate" destination="E9B-tb-cRA" id="S6o-Xy-zoU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="t5n-dA-Dc8">
+                    <navigationItem key="navigationItem" title="Create New Post" id="t5n-dA-Dc8">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="uES-Nm-wqo">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="E9B-tb-cRA" id="AaL-fe-AvS"/>
