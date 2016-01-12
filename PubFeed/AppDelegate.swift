@@ -16,6 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        if UserController.sharedController.currentUser == nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let rootVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
+            if let window = window {
+                window.rootViewController = rootVC
+            }
+        }
+
+        
         // Override point for customization after application launch.
         
         let identityPoolId = "us-east-1:fc3aaefd-0d46-475f-b882-a58a5b29c42b"
