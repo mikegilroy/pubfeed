@@ -12,7 +12,7 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
 
     // MARK: Properties
     var user: User?
-    var comment: Comment?
+    var comment: [Comment] = []
     
     // MARK: Outlets
     
@@ -38,19 +38,15 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: TableView Datasource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return comment.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath)
-//        ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.photo)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
-////            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-////                 cell.imageView?.image = photoUrl
-//////            })
-////            tableView.reloadData()
-//            
-//        }
-  
+        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
+        
+        let comment = self.comment[indexPath.row]
+        cell.updateWithComment(comment)
+        
         return cell
     }
 
