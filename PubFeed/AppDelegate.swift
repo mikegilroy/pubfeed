@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let identityPoolId = "us-east-1:fc3aaefd-0d46-475f-b882-a58a5b29c42b"
         let unauthRoleArn = "arn:aws:iam::117021046850:role/pubfeed_unauth_MOBILEHUB_827307080"
-        let authRoleArn = "arn:aws:iam::117021046850:role/Cognito_PubFeedAuth_Role"
+        let authRoleArn = "arn:awsiam::117021046850:role/Cognito_PubFeedAuth_Role"
      
         
         
@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            region: AWSRegionType.USEast1,
 //            credentialsProvider: credentialsProvider)
 //        AWSServiceManager.defaultServiceManager().setDefaultServiceConfiguration(defaultServiceConfiguration)
+
 
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: identityPoolId)
         

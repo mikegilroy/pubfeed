@@ -57,8 +57,10 @@
                 <false/>
                 <key>NSIncludesSubdomains</key>
                 <true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
             </dict>
-            <key>amazonaws.com.cn</key>
+            <key>s3.amazonaws.com</key>
             <dict>
                 <key>NSThirdPartyExceptionMinimumTLSVersion</key>
                 <string>TLSv1.0</string>
@@ -66,14 +68,18 @@
                 <false/>
                 <key>NSIncludesSubdomains</key>
                 <true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
             </dict>
-            <key>console.aws.amazon.com</key>
+            <key>amazon.com.cn</key>
             <dict>
                 <key>NSThirdPartyExceptionMinimumTLSVersion</key>
                 <string>TLSv1.0</string>
                 <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
                 <false/>
                 <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
                 <true/>
             </dict>
         </dict>
