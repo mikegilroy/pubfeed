@@ -19,6 +19,8 @@ struct Post: Equatable, FirebaseType {
     private let kBarID = "barID"
     private let kLikesCount = "likes"
     private let kCommentsCount = "comments"
+    private let kLatitude = "latitude"
+    private let kLongitude = "longitude"
     
     // MARK: Properties
     var userIdentifier: String
@@ -30,9 +32,11 @@ struct Post: Equatable, FirebaseType {
     var identifier: String?
     var likes: Int = 0
     var comments: Int = 0
+    var latitude: Double
+    var longitude: Double
     
     // MARK: Initializer
-    init(userIdentifier: String, barID: String, timestamp: NSDate, emojis: String, text: String?, photo: String?, identifier: String? = nil, likes: Int, comments: Int) {
+    init(userIdentifier: String, barID: String, timestamp: NSDate, emojis: String, text: String?, photo: String?, identifier: String? = nil, likes: Int, comments: Int, latitude: Double, longitude: Double) {
         self.userIdentifier = userIdentifier
         self.barID = barID
         self.timestamp = timestamp
@@ -42,6 +46,8 @@ struct Post: Equatable, FirebaseType {
         self.identifier = identifier
         self.likes = likes
         self.comments = comments
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     // MARK: FirebaseType
@@ -51,7 +57,7 @@ struct Post: Equatable, FirebaseType {
     
     
     var jsonValue: [String: AnyObject] {
-        var json: [String: AnyObject] = [kUserIdentifier: userIdentifier, kBarID: barID, kTimestamp: timestamp.stringValue(), kEmojis: emojis, kLikesCount:likes, kCommentsCount:comments]
+        var json: [String: AnyObject] = [kUserIdentifier: userIdentifier, kBarID: barID, kTimestamp: timestamp.stringValue(), kEmojis: emojis, kLikesCount:likes, kCommentsCount:comments, kLatitude:latitude, kLongitude:longitude]
         if let text = text {
             json.updateValue(text, forKey: kText)
         }
@@ -68,7 +74,9 @@ struct Post: Equatable, FirebaseType {
             let timestampString = json[kTimestamp] as? String,
             let emojis = json[kEmojis] as? String,
             let likes = json[kLikesCount] as? Int,
-            let comments = json[kCommentsCount] as? Int else {
+            let comments = json[kCommentsCount] as? Int,
+            let latitude = json[kLatitude] as? Double,
+            let longitude = json[kLongitude] as? Double else {
                 return nil
         }
 
@@ -90,6 +98,8 @@ struct Post: Equatable, FirebaseType {
         self.identifier = identifier
         self.likes = likes
         self.comments = comments
+        self.latitude = latitude
+        self.longitude = longitude
     }
 }
 
