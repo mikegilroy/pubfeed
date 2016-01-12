@@ -147,7 +147,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.image = UIImage(named: "weener")
+            pinView!.image = UIImage(named: "dancing")
             pinView!.rightCalloutAccessoryView = rightButton
             
             

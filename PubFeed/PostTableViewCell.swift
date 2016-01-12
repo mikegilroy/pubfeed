@@ -35,20 +35,11 @@ class PostTableViewCell: UITableViewCell {
         
         self.timestampLabel.text = String(post.timestamp)
         
-        // Get likes for post
-        if post.likes > 0 {
-            self.likeCountLabel.text = "\(post.likes)"
-        } else {
-            self.likeCountLabel.text = ""
-        }
+        // Get likes for posts
+        self.likeCountLabel.text = "\(post.likes)"
         
         // Get comments for post
-        if post.comments > 0 {
-            self.commentCountLabel.text = "\(post.comments)"
-        } else {
-            self.commentCountLabel.text = ""
-        }
-        
+        self.commentCountLabel.text = "\(post.comments)"
         
         // Get user for post and set user attributes
         UserController.userWithIdentifier(post.userIdentifier) { (user) -> Void in
