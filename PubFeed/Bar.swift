@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-struct Bar: Equatable {
+struct Bar {
     
     // MARK: Keys
     let kID = "id"
@@ -27,7 +27,7 @@ struct Bar: Equatable {
     var rating: Double?
     var openNow: Bool?
     var barID: String
-    var topEmojis: [String]?
+    var topEmojis: [String] = []
     
     // MARK: Initializer
     
@@ -74,12 +74,7 @@ struct Bar: Equatable {
         }
         
         self.barID = barID
+
     }
-
 }
-
-func ==(lhs: Bar, rhs: Bar) -> Bool {
-    return lhs.barID == rhs.barID
-}
-
 
