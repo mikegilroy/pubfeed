@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 private let bucketKey = "profilephotopubfeed"
-private let AWSUrl = "s3.amazonaws.com"
+private let AWSUrl = "https://s3.amazonaws.com"
 
 class ImageController {
     
@@ -73,11 +73,10 @@ class ImageController {
                 completion(image: image!)
             } else {
                 print("no data")
+                print(error?.localizedDescription)
             }
         }
         session.resume()
-
-        
             
     }
         
