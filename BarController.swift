@@ -11,6 +11,10 @@ import CoreLocation
 
 class BarController {
     
+    static let sharedController = BarController()
+    
+    var currentBar: Bar?
+    
     static func loadBars(location: CLLocation, nextPageToken: String?, completion: (bars: [Bar]?, nextPageToken: String?) -> Void) {
         
         var placesURL = NSURL()
