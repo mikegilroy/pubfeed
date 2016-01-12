@@ -83,15 +83,15 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
-            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.photo!)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
-                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
-                    })
-                })
-            }
+//            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.photo!)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
+//                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+//                    })
+//                })
             
+    
         case .editView:
             
             let textFieldGrayColor = colorWithHexString("d4d4d6")

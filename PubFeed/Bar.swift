@@ -27,6 +27,7 @@ struct Bar {
     var rating: Double?
     var openNow: Bool?
     var barID: String
+    var topEmojis: [String]?
     
     // MARK: Initializer
     
