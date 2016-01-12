@@ -17,8 +17,8 @@ struct Post: Equatable, FirebaseType {
     private let kText = "text"
     private let kPhoto = "photo"
     private let kBarID = "barID"
-    private let kLikesCount = "likesCount"
-    private let kCommentsCount = "commentsCount"
+    private let kLikesCount = "likes"
+    private let kCommentsCount = "comments"
     
     // MARK: Properties
     var userIdentifier: String
