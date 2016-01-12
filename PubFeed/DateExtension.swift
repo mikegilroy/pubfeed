@@ -12,7 +12,9 @@ extension NSDate: Comparable {
     
     func stringValue() -> String {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm:ss"
+        //dateFormatter.dateFormat = "dd MMMM yyyy HH:mm:ss"
+        dateFormatter.timeStyle = .LongStyle
+        dateFormatter.dateStyle = .LongStyle
         return dateFormatter.stringFromDate(self)
     }
     
