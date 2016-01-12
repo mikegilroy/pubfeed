@@ -35,8 +35,8 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         loadBarDetails()
         loadPostsForBar()
+        BarController.sharedController.currentBar = bar
     }
-    
     
     // MARK: TableView Datasource
     
