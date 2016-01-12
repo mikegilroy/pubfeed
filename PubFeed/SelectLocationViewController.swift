@@ -39,16 +39,36 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: TableView Datasource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if BarController.sharedController.currentBar != nil {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bars.count
+        if BarController.sharedController.currentBar != nil {
+            if section == 0 {
+                return 1
+            } else {
+                return bars.count
+            }
+        } else {
+            return bars.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("placeCell", forIndexPath: indexPath) 
-        cell.textLabel?.text = bars[indexPath.row].name
+        let cell = tableView.dequeueReusableCellWithIdentifier("placeCell", forIndexPath: indexPath)
+        if let currentBar = BarController.sharedController.currentBar {
+            if indexPath.section == 0 {
+                cell.textLabel?.text = currentBar.name
+            } else {
+                cell.textLabel?.text = bars[indexPath.row].name
+            }
+        } else {
+            cell.textLabel?.text = bars[indexPath.row].name
+        }
         return cell
     }
     
