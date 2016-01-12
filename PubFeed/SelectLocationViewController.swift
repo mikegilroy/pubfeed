@@ -79,12 +79,27 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         performSegueWithIdentifier("toNewPost", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if BarController.sharedController.currentBar != nil {
+            if section == 0 {
+                return "Recently Viewed"
+            } else {
+                return "Bars Near You"
+            }
+        } else {
+            return "Bars Near You"
+        }
+    }
+    
     // MARK: CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+        if let location = locations.last {
             BarController.loadBars(location, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
                 if let bars = bars {
-                    self.bars = bars
+                    let sortedBars = bars.sort({ (bar1, bar2) -> Bool in
+                        bar1.location?.distanceFromLocation(location) < bar2.location?.distanceFromLocation(location)
+                    })
+                    self.bars = sortedBars
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tableView.reloadData()
                         self.locationManager.stopUpdatingLocation()
