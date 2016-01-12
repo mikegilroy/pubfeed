@@ -16,7 +16,7 @@ class ImageController {
     
     
     
-    static func uploadPhoto(photo: UIImage, requestKey: String, completion: (String?) -> Void) {
+    static func uploadPhoto(photo: UIImage, completion: (String?) -> Void) {
         
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
         let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".jpg")
@@ -28,9 +28,7 @@ class ImageController {
         data?.writeToURL(photoURL, atomically: true)
         
         uploadRequest.bucket = bucketKey
-        if requestKey == "" {
-            completion("")
-        } else {
+       
             uploadRequest.key = fileName
             uploadRequest.body = photoURL
             print(uploadRequest)
@@ -45,7 +43,7 @@ class ImageController {
                 }
                 return nil
             })
-        }
+        
     }
     
 

@@ -50,7 +50,7 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
     
     @IBAction func submitButtonTapped(sender: UIButton) {
         
-        ImageController.uploadPhoto(self.profilePhoto!, requestKey: user!.identifier!) { (path) -> Void in
+        ImageController.uploadPhoto(self.profilePhoto!) { (path) -> Void in
             if let path = path {
                 
                 let base = FirebaseController.base.childByAppendingPath("profileImages").childByAutoId()
