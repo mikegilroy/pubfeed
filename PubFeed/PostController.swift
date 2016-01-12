@@ -43,7 +43,10 @@ class PostController {
                         if let post = post {
                             posts.append(post)
                             if posts.count == keys.count {
-                                completion(posts: posts, error: nil)
+                                let sortedPosts = posts.sort({ (post1, post2) -> Bool in
+                                    post1.barID < post2.barID
+                                })
+                                completion(posts: sortedPosts, error: nil)
                             }
                         } else {
                             completion(posts: nil, error: Error.defaultError())

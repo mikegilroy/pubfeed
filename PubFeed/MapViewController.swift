@@ -18,6 +18,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var user: User?
     var bars: [Bar] = []
     var selectedBar: Bar?
+    var posts: [Post]?
     
     
     // MARK: Outlets
@@ -42,6 +43,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: Map Functions
     
     func centerMapOnLocation(location: CLLocation) {
+        PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
+            // Continue working here
+        
+        }
+        
         let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         mapView.setRegion(coordinateRegion, animated: false)
         
