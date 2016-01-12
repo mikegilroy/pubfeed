@@ -39,7 +39,6 @@ class BarController {
                             
                             if let bar = Bar(jsonDictionary: place) {
                                 bars.append(bar)
-                                print(bar.name)
                             }
                         }
                         if let nextPageToken = jsonData["next_page_token"] as? String {
@@ -65,13 +64,15 @@ class BarController {
     
     
     
-    static func loadBarsAllPages(location: CLLocation, nextPageToken: String?, completion: (bars: [Bar]?, nextPageToken: String?) -> Void) {
+    static func loadBarsAllPages(location: CLLocation, nextPageToken: String?, completion: (bars: [Bar], nextPageToken: String?) -> Void) {
 
         if let nextPageToken = nextPageToken {
             BarController.loadBars(location, nextPageToken: nextPageToken, completion: { (bars, nextPageToken) -> Void in
                 if let bars = bars {
                     for bar in bars {
-                        BarController.sharedController.loadedBars.append(bar)
+                        if !BarController.sharedController.loadedBars.contains(bar) {
+                            BarController.sharedController.loadedBars.append(bar)
+                        }
                     }
                 }
                 if let nextPageToken = nextPageToken {
@@ -88,7 +89,9 @@ class BarController {
             BarController.loadBars(location, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
                 if let bars = bars {
                     for bar in bars {
-                        BarController.sharedController.loadedBars.append(bar)
+                        if !BarController.sharedController.loadedBars.contains(bar) {
+                            BarController.sharedController.loadedBars.append(bar)
+                        }
                     }
                 }
                 if let nextPageToken = nextPageToken {

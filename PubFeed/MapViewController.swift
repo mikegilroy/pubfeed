@@ -45,38 +45,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func centerMapOnLocation(location: CLLocation) {
         PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
             // Continue working here
-        
+            
         }
         
         let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         mapView.setRegion(coordinateRegion, animated: false)
         
-//        let googleGroup = dispatch_group_create()
-//        let googleQueue1 = dispatch_queue_create("com.pubFeed.google1", nil)
-//        let googleQueue2 = dispatch_queue_create("com.pubFeed.google2", nil)
-//        let googleQueue3 = dispatch_queue_create("com.pubFeed.google3", nil)
-        
-        BarController.loadBarsAllPages(location, nextPageToken: nil) { (bars, nextPageToken) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if let bars = bars {
-                    for bar in bars {
-                        self.bars.append(bar)
-                        self.addBarLocationAnnotation(bar)
-                    }
+        BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) -> Void in
+            if let bars = bars {
+                for bar in bars {
+                    self.bars.append(bar)
+                    print(bar.name)
+                    self.addBarLocationAnnotation(bar)
                 }
-            })
+            }
         }
         
-//        dispatch_group_notify(googleGroup, dispatch_get_main_queue()) { () -> Void in
-//            for bar in self.bars {
-//                self.addBarLocationAnnotation(bar)
-//            }
-//        }
     }
     
     func addBarLocationAnnotation(bar: Bar) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            
             if let coordinate = bar.location?.coordinate {
                 let annotation = MKPointAnnotation()
                 annotation.title = bar.name

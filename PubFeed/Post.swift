@@ -71,8 +71,7 @@ struct Post: Equatable, FirebaseType {
             let comments = json[kCommentsCount] as? Int else {
                 return nil
         }
-        
-        print(timestampString)
+
         if let timestamp = timestampString.dateValue() {
             self.timestamp = timestamp
         } else {
