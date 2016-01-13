@@ -19,14 +19,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var bars: [Bar] = []
     var selectedBar: Bar?
     var posts: [Post]?
+    var annotations: [MKAnnotation] = []
     
     
     // MARK: Outlets
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     
     
     // MARK: Actions
+    
+    @IBAction func refreshButtonTapped(sender: AnyObject) {
+        self.bars = []
+        mapView.removeAnnotations(mapView.annotations)
+        let centerLocation = CLLocation(latitude: mapView.region.center.latitude, longitude:mapView.region.center.longitude)
+        loadBars(centerLocation)
+        if self.bars.count > 0 {
+            centerMapOnLocation(centerLocation)
+        }
+    }
     
     
     // MARK: viewDid Functions
@@ -60,6 +72,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             largestDelta = latitudeDelta * 3
         } else {
             largestDelta = longitudeDelta * 3
+        }
+        if largestDelta < 0 {
+            largestDelta = largestDelta * -1
         }
         
         let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: largestDelta, longitudeDelta: largestDelta))
@@ -95,6 +110,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        self.annotations.append(annotation)
         
         let reuseId = "pin"
         
@@ -123,10 +139,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let centerLocation = CLLocation(latitude: mapView.region.center.latitude, longitude:mapView.region.center.longitude)
-        //loadBars(centerLocation)
         
     }
+    
     
     // MARK: CLLocationManagerDelegate
     
@@ -136,13 +151,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             locationManager.stopUpdatingLocation()
             print(location)
             loadBars(location)
-            centerMapOnLocation(location)
         }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
     }
+    
     
     // MARK: Helper Functions
     
@@ -157,9 +172,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     }
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.centerMapOnLocation(location)
+                    if self.bars.count > 0 {
+                        self.centerMapOnLocation(location)
+                    }
                 })
             }
+        }
+    }
+    
+    func clearAnnotations() {
+        for bar in self.bars {
+           
         }
     }
     
