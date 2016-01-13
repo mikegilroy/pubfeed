@@ -25,8 +25,9 @@ struct Comment: Equatable, FirebaseType {
     var identifier: String?
     var username: String
     var userPhotoUrl: String?
+    var user: User?
     
-    init(username: String, text: String, userIdentifier: String, userPhotoUrl: String?, postIdentifier: String, timestamp: NSDate, identifier: String? = nil) {
+    init(user: User, username: String, text: String, userIdentifier: String, userPhotoUrl: String?, postIdentifier: String, timestamp: NSDate, identifier: String? = nil) {
         
         self.text = text
         self.userIdentifier = userIdentifier
@@ -35,6 +36,7 @@ struct Comment: Equatable, FirebaseType {
         self.identifier = identifier
         self.username = username
         self.userPhotoUrl = userPhotoUrl
+        self.user = user
     }
     
     // Mark: FirebaseType
