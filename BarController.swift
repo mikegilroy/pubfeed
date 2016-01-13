@@ -61,49 +61,4 @@ class BarController {
             }
         }
     }
-    
-    
-    
-    static func loadBarsAllPages(location: CLLocation, nextPageToken: String?, completion: (bars: [Bar], nextPageToken: String?) -> Void) {
-
-        if let nextPageToken = nextPageToken {
-            BarController.loadBars(location, nextPageToken: nextPageToken, completion: { (bars, nextPageToken) -> Void in
-                if let bars = bars {
-                    for bar in bars {
-                        if !BarController.sharedController.loadedBars.contains(bar) {
-                            BarController.sharedController.loadedBars.append(bar)
-                        }
-                    }
-                }
-                if let nextPageToken = nextPageToken {
-                    loadBarsAllPages(location, nextPageToken: nextPageToken, completion: { (bars, nextPageToken) -> Void in
-                        
-                    })
-                } else {
-                    completion(bars: BarController.sharedController.loadedBars, nextPageToken: nil)
-                }
-            })
-            
-        } else {
-            BarController.sharedController.loadedBars = []
-            BarController.loadBars(location, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
-                if let bars = bars {
-                    for bar in bars {
-                        if !BarController.sharedController.loadedBars.contains(bar) {
-                            BarController.sharedController.loadedBars.append(bar)
-                        }
-                    }
-                }
-                if let nextPageToken = nextPageToken {
-                    print(nextPageToken)
-                    loadBarsAllPages(location, nextPageToken: nextPageToken, completion: { (bars, nextPageToken) -> Void in
-                        
-                    })
-                } else {
-                    completion(bars: BarController.sharedController.loadedBars, nextPageToken: nil)
-                }
-            })
-        }
-    }
-    
 }

@@ -34,6 +34,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
+        self.mapView.showsUserLocation = true
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
@@ -45,22 +46,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func centerMapOnLocation(location: CLLocation) {
         PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
             // Continue working here
-            
         }
         
-        let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
-        mapView.setRegion(coordinateRegion, animated: false)
-        
-        BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) -> Void in
-            if let bars = bars {
-                for bar in bars {
-                    self.bars.append(bar)
-                    print(bar.name)
-                    self.addBarLocationAnnotation(bar)
-                }
-            }
+        var latitudeDelta = 0.02
+        var longitudeDelta = 0.02
+        if let furthestBarLocation = self.bars.last?.location {
+            latitudeDelta = furthestBarLocation.coordinate.latitude - location.coordinate.latitude
+            longitudeDelta = furthestBarLocation.coordinate.longitude - location.coordinate.longitude
         }
         
+        var largestDelta = 0.02
+        if latitudeDelta > longitudeDelta {
+            largestDelta = latitudeDelta * 3
+        } else {
+            largestDelta = longitudeDelta * 3
+        }
+        
+        let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: largestDelta, longitudeDelta: largestDelta))
+        mapView.setRegion(coordinateRegion, animated: true)
     }
     
     func addBarLocationAnnotation(bar: Bar) {
@@ -111,23 +114,53 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             pinView!.annotation = annotation
         }
         
-        return pinView
+        // Check if annotation location matches user location - if so return nil to show user location
+        if (annotation.coordinate.latitude == self.mapView.userLocation.coordinate.latitude) && (annotation.coordinate.longitude == self.mapView.userLocation.coordinate.longitude) {
+            return nil
+        } else {
+            return pinView
+        }
     }
     
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let centerLocation = CLLocation(latitude: mapView.region.center.latitude, longitude:mapView.region.center.longitude)
+        //loadBars(centerLocation)
+        
+    }
     
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {
-            print(location)
-            centerMapOnLocation(location)
             locationManager.stopUpdatingLocation()
+            print(location)
+            loadBars(location)
+            centerMapOnLocation(location)
         }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
+    }
+    
+    // MARK: Helper Functions
+    
+    func loadBars(location: CLLocation) {
+        BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) -> Void in
+            if let bars = bars {
+                for bar in bars {
+                    if !self.bars.contains(bar) {
+                        self.bars.append(bar)
+                        print(bar.name)
+                        self.addBarLocationAnnotation(bar)
+                    }
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.centerMapOnLocation(location)
+                })
+            }
+        }
     }
     
     
