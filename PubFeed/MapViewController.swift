@@ -27,7 +27,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     
-    
+
     // MARK: Actions
     
     @IBAction func refreshButtonTapped(sender: AnyObject) {
@@ -35,6 +35,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.removeAnnotations(mapView.annotations)
         let centerLocation = CLLocation(latitude: mapView.region.center.latitude, longitude:mapView.region.center.longitude)
         loadBars(centerLocation)
+        self.setPostsForLocation(centerLocation)
         if self.bars.count > 0 {
             centerMapOnLocation(centerLocation)
         }
@@ -56,9 +57,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: Map Functions
     
     func centerMapOnLocation(location: CLLocation) {
-        PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
-            // Continue working here
-        }
         
         var latitudeDelta = 0.02
         var longitudeDelta = 0.02
@@ -124,8 +122,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             pinView!.canShowCallout = true
             pinView!.image = UIImage(named: "dancing")
             pinView!.rightCalloutAccessoryView = rightButton
-            
-            
+            let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+            let emojisForLocation = self.topEmojisForLocation(location)
+            print(emojisForLocation)
+
         } else {
             pinView!.annotation = annotation
         }
@@ -149,8 +149,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         if let location = locations.first {
             locationManager.stopUpdatingLocation()
-            print(location)
             loadBars(location)
+            self.setPostsForLocation(location)
         }
     }
     
@@ -167,7 +167,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 for bar in bars {
                     if !self.bars.contains(bar) {
                         self.bars.append(bar)
-                        print(bar.name)
                         self.addBarLocationAnnotation(bar)
                     }
                 }
@@ -180,11 +179,45 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    func clearAnnotations() {
-        for bar in self.bars {
-           
+    func setPostsForLocation(location: CLLocation) {
+        PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
+            self.posts = posts
         }
     }
+    
+    // The returned array is ordered by frequency. First is most used, last is least.
+    func topEmojisForLocation(location: CLLocation) -> [String] {
+        if let posts = self.posts {
+            // Get an array of emojis for the current location
+            var emojis: [String] = []
+            for post in posts {
+                let postLocation = CLLocation(latitude: post.latitude, longitude: post.longitude)
+                if postLocation == location {
+                    emojis.append(post.emojis)
+                }
+            }
+            // Get a dictionary where keys are emojis and the values are counts
+            var emojiCounts: [String: Int] = [:]
+            for emoji in emojis {
+                emojiCounts[emoji] = (emojiCounts[emoji] ?? 0) + 1
+            }
+            //Sort the dictionary by count. It becomes an array of tuples.
+            let sortedEmojiCounts = emojiCounts.sort({ (emojiCount1, emojiCount2) -> Bool in
+                emojiCount1.1 > emojiCount2.1
+            })
+            // Create an array of emojis ordered by frequency. First is highest.
+            var topEmojiArray: [String] = []
+            for tuple in sortedEmojiCounts {
+                topEmojiArray.append(tuple.0)
+            }
+            return topEmojiArray
+        } else {
+            return []
+        }
+    }
+
+    
+    
     
     
     // MARK: Navigation
