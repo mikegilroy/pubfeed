@@ -136,6 +136,4 @@ extension PostDetailViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
-    
 }
