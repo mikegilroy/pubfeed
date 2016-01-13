@@ -98,6 +98,19 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "toDetailView" {
+            if let postDetailDestination = segue.destinationViewController as? PostDetailViewController {
+                _ = postDetailDestination.view
+                
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    if let post = self.posts?[indexPath.row] {
+                    postDetailDestination.post = post
+                }
+            }
+            }
+        }
+        
   
     }
     

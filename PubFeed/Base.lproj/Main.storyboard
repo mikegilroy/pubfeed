@@ -644,7 +644,7 @@
                                             <outlet property="profileImageView" destination="qZf-qy-Dnj" id="6NG-I5-hV3"/>
                                             <outlet property="timestampLabel" destination="zLl-Rc-bB2" id="NgV-1V-I92"/>
                                             <outlet property="usernameLabel" destination="pfw-T6-ukf" id="wE1-PN-uPV"/>
-                                            <segue destination="r5a-3l-V8N" kind="show" id="kTe-HK-tqH"/>
+                                            <segue destination="r5a-3l-V8N" kind="show" identifier="toDetailView" id="kTe-HK-tqH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -734,7 +734,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addCommentCell" rowHeight="44" id="FHN-7M-IbS" userLabel="addCommentCell" customClass="AddCommentTableViewCell" customModule="PubFeed" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addComment" rowHeight="44" id="FHN-7M-IbS" userLabel="addCommentCell" customClass="AddCommentTableViewCell" customModule="PubFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="455" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="FHN-7M-IbS" id="1Ey-Z4-AQZ">
@@ -758,13 +758,13 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="trailing" secondItem="1Ey-Z4-AQZ" secondAttribute="trailingMargin" id="0cK-A2-9RX"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="J1j-BL-miL" secondAttribute="bottom" id="3T9-Vg-h31"/>
-                                                <constraint firstItem="VZt-yu-d21" firstAttribute="top" secondItem="1Ey-Z4-AQZ" secondAttribute="topMargin" constant="-1" id="5ag-FY-p35"/>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="leading" secondItem="J1j-BL-miL" secondAttribute="trailing" constant="8" symbolic="YES" id="DX9-XI-U78"/>
                                                 <constraint firstItem="J1j-BL-miL" firstAttribute="top" secondItem="1Ey-Z4-AQZ" secondAttribute="topMargin" id="IgT-oh-YaA"/>
-                                                <constraint firstItem="VZt-yu-d21" firstAttribute="centerY" secondItem="J1j-BL-miL" secondAttribute="centerY" id="V3I-bO-Kwp"/>
-                                                <constraint firstItem="VZt-yu-d21" firstAttribute="trailing" secondItem="1Ey-Z4-AQZ" secondAttribute="trailingMargin" id="VPB-tz-2tF"/>
-                                                <constraint firstItem="VZt-yu-d21" firstAttribute="centerY" secondItem="1Ey-Z4-AQZ" secondAttribute="centerY" id="gUt-yK-MX2"/>
-                                                <constraint firstItem="VZt-yu-d21" firstAttribute="leading" secondItem="J1j-BL-miL" secondAttribute="trailing" constant="8" symbolic="YES" id="jUV-30-qBX"/>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="centerY" secondItem="1Ey-Z4-AQZ" secondAttribute="centerY" id="J8h-tH-q4v"/>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="top" secondItem="1Ey-Z4-AQZ" secondAttribute="topMargin" constant="-1" id="Zbq-vC-7rs"/>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="centerY" secondItem="J1j-BL-miL" secondAttribute="centerY" id="h3n-J8-E9y"/>
                                                 <constraint firstItem="J1j-BL-miL" firstAttribute="leading" secondItem="1Ey-Z4-AQZ" secondAttribute="leadingMargin" id="py7-n9-md6"/>
                                             </constraints>
                                         </tableViewCellContentView>

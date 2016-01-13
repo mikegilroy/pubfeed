@@ -52,7 +52,13 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
         
         ImageController.uploadPhoto(self.profilePhoto!) { (path) -> Void in
             if let path = path {
+<<<<<<< 452cda065cdbfdfd23c5ce7c6bac0ccd1c2adfef
                 
+=======
+//                
+//                let base = FirebaseController.base.childByAppendingPath("profileImages").childByAutoId()
+//                base.setValue("\(path)")
+>>>>>>> comment View + Post Detail
                 self.user!.photo = "\(path)"
                 self.user?.save({ (error) -> Void in
                     if error == nil {

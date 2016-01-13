@@ -9,10 +9,12 @@
 import UIKit
 
 class PostDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     // MARK: Properties
+    var post: Post?
     var user: User?
-    var comment: [Comment] = []
+    var comments: [Comment] = []
+    var delegate: PostDetailViewControllerDelegate?
     
     // MARK: Outlets
     
@@ -24,7 +26,33 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     // MARK: Actions
     
-    
+    func updateWithPost(post: Post) {
+        CommentController.commentsForPost(post) { (comments) -> Void in
+            self.comments = comments
+        }
+        
+        ImageController.profilePhotoForIdentifier((user?.photo)!) { (photoUrl) -> Void in
+            ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.profilePhoto.image = image
+                })
+            })
+        }
+        
+        if let postPhoto = post.photo {
+            ImageController.postPhotoForIdentifier(postPhoto, post: post) { (postPhotoUrl) -> Void in
+                ImageController.fetchImageAtUrl(postPhotoUrl, completion: { (image) -> () in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.postImage.image = image
+                    })
+                })
+            }
+        } else {
+            self.postImage.removeFromSuperview()
+        }
+        
+        self.postText.text = post.text
+    }
     
     
     
@@ -32,24 +60,77 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCommentTableView", name: "updateComment", object: nil)
+        if let post = self.post {
+        self.updateWithPost(post)
+        }
     }
     
+    func reloadCommentTableView () {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+        })
+    }
     
     // MARK: TableView Datasource
-    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return comment.count
+        
+        switch section {
+        case 0:
+            return 1
+        default:
+            if let postComment = post?.comments {
+            return postComment
+            } else {
+                return 1
+            }
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
         
-        let comment = self.comment[indexPath.row]
-        cell.updateWithComment(comment)
-        
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("addComment", forIndexPath: indexPath) as! AddCommentTableViewCell
+            
+            if let user = UserController.sharedController.currentUser {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                cell.updateWithUser(user)
+            })
+            }
+            
+            self.delegate = cell
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
+            
+            let comment = self.comments[indexPath.row]
+            cell.updateWithComment(comment)
+            
+            return cell
+        }
     }
+}
 
-  
+protocol PostDetailViewControllerDelegate {
+    func addComment()
+    func addDoneButtonOnKeyboard()
+}
 
+extension PostDetailViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.delegate?.addDoneButtonOnKeyboard()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
 }
