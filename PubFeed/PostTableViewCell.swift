@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol PostTableViewCellDelegate {
+    func likeButtonTapped()
+}
+
 class PostTableViewCell: UITableViewCell {
+    
+    // Properties
+    
+    var delegate: PostTableViewCellDelegate?
     
     // Outlets
     
@@ -20,6 +28,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var commentCountLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     
     
     func updateCellWithPost(post: Post) {
@@ -59,6 +68,10 @@ class PostTableViewCell: UITableViewCell {
                 }
             }
         }
+    }
+    
+    @IBAction func likeButtonTapped(sender: AnyObject) {
+        self.delegate?.likeButtonTapped()
     }
     
     

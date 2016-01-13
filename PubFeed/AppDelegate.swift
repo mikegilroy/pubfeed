@@ -24,9 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 window.rootViewController = rootVC
             }
         }
-
         
         // Override point for customization after application launch.
+        
+        // Appearance
+        
+        UINavigationBar.appearance().barStyle = .Black
+        UINavigationBar.appearance().translucent = false
+        UITabBar.appearance().barStyle = .Black
+        UITabBar.appearance().translucent = false
+        
+        
         
         let identityPoolId = "us-east-1:fc3aaefd-0d46-475f-b882-a58a5b29c42b"
 //        let unauthRoleArn = "arn:aws:iam::117021046850:role/pubfeed_unauth_MOBILEHUB_827307080"
@@ -47,9 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: identityPoolId)
-        
         let configuration = AWSServiceConfiguration(region:.USEast1, credentialsProvider:credentialsProvider)
-        
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
         
         
