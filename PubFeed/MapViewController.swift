@@ -122,9 +122,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             pinView!.canShowCallout = true
             pinView!.image = UIImage(named: "dancing")
             pinView!.rightCalloutAccessoryView = rightButton
-            let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-            let emojisForLocation = self.topEmojisForLocation(location)
-            print(emojisForLocation)
 
         } else {
             pinView!.annotation = annotation
@@ -182,6 +179,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func setPostsForLocation(location: CLLocation) {
         PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
             self.posts = posts
+            BarController.loadBars(location, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
+                if let bars = bars {
+                    for bar in bars {
+                        if let location = bar.location {
+                            let location = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                            let emojisForLocation = self.topEmojisForLocation(location)
+                            print("\(emojisForLocation) for \(bar.name)")
+                        }
+                    }
+                }
+            })
         }
     }
     
