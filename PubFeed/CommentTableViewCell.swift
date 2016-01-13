@@ -29,7 +29,7 @@ class CommentTableViewCell: UITableViewCell {
         
         if let userPhoto = comment.userPhotoUrl {
             
-            ImageController.profilePhotoForIdentifier(userPhoto, user: comment.user!) { (photoUrl) -> Void in
+            ImageController.profilePhotoForIdentifier(userPhoto) { (photoUrl) -> Void in
                 if let photoUrl = photoUrl {
                     ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in

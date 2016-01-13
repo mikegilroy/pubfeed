@@ -82,16 +82,19 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editButtonTapped:")
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
-        
             
             
-            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
-                ImageController.fetchImageAtUrl(photoUrl!, completion: { (image) -> () in
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+            
+            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!) { (photoUrl) -> Void in
+                
+                if let photoUrl = photoUrl {
+                    ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                        
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                        })
                     })
-                })
+                }
             }
             
         case .editView:
@@ -306,39 +309,41 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             var currentUser = UserController.sharedController.currentUser
             
             //BUG ON UPLOAD HERE
-            ImageController.profilePhotoForIdentifier((currentUser!.identifier!), user: user!, completion: { (photoUrl) -> Void in
-                
-                ImageController.fetchImageAtUrl(photoUrl!, completion: { (var image) -> () in
-                    
-                    image = self.profilePhoto!
-                    
-                    ImageController.uploadPhoto(image, completion: { (identifier) -> Void in
+            ImageController.profilePhotoForIdentifier((currentUser!.identifier!), completion: { (photoUrl) -> Void in
+                if let photoUrl = photoUrl {
+                    ImageController.fetchImageAtUrl(photoUrl, completion: { (var image) -> () in
                         
-                        if identifier != nil {
-                           
-                            currentUser!.photo = "\(identifier)"
+                        image = self.profilePhoto!
+                        
+                        ImageController.uploadPhoto(image, completion: { (identifier) -> Void in
                             
-//                            self.user!.photo = "\(identifier)"
-                            currentUser!.save({ (error) -> Void in
-                                if error == nil {
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                    })
-                                } else {
-                                    ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
-                                }
-                            })
-                            
-                            let successAlert = UIAlertController(title: "Success!", message: "Photo:\(photo) updated.", preferredStyle: .Alert)
-                            successAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                            self.presentViewController(successAlert, animated: true, completion: nil)
-                            
-                        } else {
-                            let failedAlert = UIAlertController(title: "Failed!", message: "Image failed to update. Please try again.", preferredStyle: .Alert)
-                            failedAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                            self.presentViewController(failedAlert, animated: true, completion: nil)
-                        }
+                            if identifier != nil {
+                                
+                                currentUser!.photo = "\(identifier)"
+                                
+                                //                            self.user!.photo = "\(identifier)"
+                                currentUser!.save({ (error) -> Void in
+                                    if error == nil {
+                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        })
+                                    } else {
+                                        ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+                                    }
+                                })
+                                
+                                let successAlert = UIAlertController(title: "Success!", message: "Photo:\(photo) updated.", preferredStyle: .Alert)
+                                successAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                                self.presentViewController(successAlert, animated: true, completion: nil)
+                                
+                            } else {
+                                let failedAlert = UIAlertController(title: "Failed!", message: "Image failed to update. Please try again.", preferredStyle: .Alert)
+                                failedAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                                self.presentViewController(failedAlert, animated: true, completion: nil)
+                            }
+                        })
+                        
                     })
-                })
+                }
             })
             
         } else {

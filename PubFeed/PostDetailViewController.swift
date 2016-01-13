@@ -31,17 +31,17 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
             self.comments = comments
         }
         
-        if let userPhoto = user!.photo {
-            ImageController.profilePhotoForIdentifier(userPhoto, user: user!) { (photoUrl) -> Void in
-                if let photoUrl = photoUrl {
-                    ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.profilePhoto.image = image
-                        })
+        
+        ImageController.profilePhotoForIdentifier(post.userIdentifier) { (photoUrl) -> Void in
+            if let photoUrl = photoUrl {
+                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.profilePhoto.image = image
                     })
-                }
-                
+                })
             }
+            
+            
         }
         
         if let postPhoto = post.photo {
@@ -113,8 +113,8 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
             
-            let comment = self.comments[indexPath.row]
-            cell.updateWithComment(comment)
+            //            let comment = self.comments[indexPath.row]
+            //            cell.updateWithComment(comment)
             
             return cell
         }

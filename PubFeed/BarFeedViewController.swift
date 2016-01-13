@@ -9,7 +9,7 @@
 import UIKit
 
 class BarFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     // MARK: Properties
     
     var user: User?
@@ -87,16 +87,16 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if let bar = self.bar {
             print(bar.barID)
             PostController.postsForBar(bar) { (posts) -> Void in
-                    self.posts = posts
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.tableView.reloadData()
-                    })
+                self.posts = posts
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
             }
         }
     }
     
     // MARK: Navigation
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "toDetailView" {
@@ -105,14 +105,14 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 if let indexPath = tableView.indexPathForSelectedRow {
                     if let post = self.posts?[indexPath.row] {
-                    postDetailDestination.post = post
+                        postDetailDestination.updateWithPost(post)
+                    }
                 }
-            }
             }
         }
         
-  
+        
     }
     
-
+    
 }
