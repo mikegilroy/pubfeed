@@ -120,14 +120,22 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toNewPost" {
             if let newPostTableTableViewController = segue.destinationViewController as? NewPostTableTableViewController {
-                    if let cell = sender as? UITableViewCell,
-                        let indexPath = tableView.indexPathForCell(cell) {
+                if let cell = sender as? UITableViewCell {
+                    if let indexPath = tableView.indexPathForCell(cell) {
+                        if let currentBar = BarController.sharedController.currentBar {
+                            if indexPath.section == 0 {
+                                newPostTableTableViewController.selectedBar = currentBar
+                            } else {
+                                newPostTableTableViewController.selectedBar = self.bars[indexPath.row]
+                            }
+                        } else {
                             newPostTableTableViewController.selectedBar = self.bars[indexPath.row]
+                        }
+                    }
                 }
             }
-            
         }
     }
-    
+
 
 }

@@ -185,10 +185,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    // The returned array is ordered by frequency. First is most used, last is least.
+    // The top emoji is first in the array.
     func topEmojisForLocation(location: CLLocation) -> [String] {
         if let posts = self.posts {
-            // Get an array of emojis for the current location
             var emojis: [String] = []
             for post in posts {
                 let postLocation = CLLocation(latitude: post.latitude, longitude: post.longitude)
@@ -196,16 +195,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     emojis.append(post.emojis)
                 }
             }
-            // Get a dictionary where keys are emojis and the values are counts
             var emojiCounts: [String: Int] = [:]
             for emoji in emojis {
                 emojiCounts[emoji] = (emojiCounts[emoji] ?? 0) + 1
             }
-            //Sort the dictionary by count. It becomes an array of tuples.
             let sortedEmojiCounts = emojiCounts.sort({ (emojiCount1, emojiCount2) -> Bool in
                 emojiCount1.1 > emojiCount2.1
             })
-            // Create an array of emojis ordered by frequency. First is highest.
             var topEmojiArray: [String] = []
             for tuple in sortedEmojiCounts {
                 topEmojiArray.append(tuple.0)
@@ -216,9 +212,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
 
-    
-    
-    
     
     // MARK: Navigation
     
