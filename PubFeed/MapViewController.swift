@@ -21,7 +21,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var posts: [Post]?
     var annotations: [MKAnnotation] = []
     
-    
     // MARK: Outlets
     
     @IBOutlet weak var mapView: MKMapView!
@@ -35,10 +34,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.removeAnnotations(mapView.annotations)
         let centerLocation = CLLocation(latitude: mapView.region.center.latitude, longitude:mapView.region.center.longitude)
         loadBars(centerLocation)
-        self.setPostsForLocation(centerLocation)
-        if self.bars.count > 0 {
-            centerMapOnLocation(centerLocation)
-        }
     }
     
     
@@ -86,6 +81,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 annotation.title = bar.name
                 annotation.subtitle = bar.address
                 annotation.coordinate = coordinate
+                print("calling mapView.addAnnotation")
                 self.mapView.addAnnotation(annotation)
             }
         })
@@ -120,8 +116,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.image = UIImage(named: "dancing")
+            let annotationLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+            for bar in bars {
+                if let barLocation = bar.location {
+                    if barLocation == annotationLocation {
+                        if let _ = bar.topEmojis.first {
+                            pinView!.image = UIImage(named: "❤️")
+                        } else {
+                            pinView!.image = UIImage(named: "dancing")
+                        }
+                    }
+                }
+            }
             pinView!.rightCalloutAccessoryView = rightButton
+
 
         } else {
             pinView!.annotation = annotation
@@ -147,7 +155,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if let location = locations.first {
             locationManager.stopUpdatingLocation()
             loadBars(location)
-            self.setPostsForLocation(location)
         }
     }
     
@@ -159,41 +166,64 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: Helper Functions
     
     func loadBars(location: CLLocation) {
-        BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) -> Void in
+        BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) ->
+            Void in
             if let bars = bars {
-                for bar in bars {
-                    if !self.bars.contains(bar) {
-                        self.bars.append(bar)
-                        self.addBarLocationAnnotation(bar)
-                    }
-                }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if self.bars.count > 0 {
-                        self.centerMapOnLocation(location)
-                    }
-                })
+                self.loadPosts(location, bars: bars)
             }
         }
     }
-    
-    func setPostsForLocation(location: CLLocation) {
-        PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
-            self.posts = posts
-            BarController.loadBars(location, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
-                if let bars = bars {
-                    for bar in bars {
-                        if let location = bar.location {
-                            let location = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                            let emojisForLocation = self.topEmojisForLocation(location)
-                            print("\(emojisForLocation) for \(bar.name)")
-                        }
+
+    func loadPosts(location: CLLocation, bars: [Bar]) {
+        PostController.postsForLocation(location, radius: 1.0, completion: { (posts, error) -> Void in
+            if let posts = posts {
+                self.posts = posts
+                for var bar in bars {
+                    if let barLocation = bar.location {
+                        bar.topEmojis = self.topEmojisForLocation(barLocation)
+                        self.bars.append(bar)
+                        print(bar.topEmojis)
+                        print("Calling addBarLocationAnnotation")
+                        self.addBarLocationAnnotation(bar)
                     }
                 }
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if self.bars.count > 0 {
+                    self.centerMapOnLocation(location)
+                }
             })
-        }
+        })
     }
     
-    // The top emoji is first in the array.
+
+
+    
+    
+//    func setPostsForLocation(location: CLLocation) {
+//        PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
+//            self.posts = posts
+//            BarController.loadBars(location, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
+//                if let bars = bars {
+//                    for bar in bars {
+//                        if let barLocation = bar.location {
+//                            if self.topEmojisForLocation(barLocation).count > 0 {
+//                                print(self.topEmojisForLocation(barLocation))
+//                                self.locationEmojiDictionary[barLocation] = self.topEmojisForLocation(barLocation)
+//                                print("MADE IT: \(self.locationAnnotationDictionary[barLocation])")
+//                                if let annotation = self.locationAnnotationDictionary[barLocation] {
+//                                    print("\(annotation) CHANGED!!!")
+//                                    self.mapView.removeAnnotation(annotation)
+//                                    self.mapView.addAnnotation(annotation)
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            })
+//        }
+//    }
+
     func topEmojisForLocation(location: CLLocation) -> [String] {
         if let posts = self.posts {
             var emojis: [String] = []
@@ -220,7 +250,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
 
-    
+
     // MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
