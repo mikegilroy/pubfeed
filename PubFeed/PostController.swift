@@ -37,24 +37,28 @@ class PostController {
         let circleQuery = geoFire.queryAtLocation(location, withRadius: radius)
         circleQuery.observeSingleEventOfTypeValue({ (json) -> Void in
             let keys = Array(json.keys)
-            for key in keys {
-                if let identifier = key as? String {
-                    postFromIdentifier(identifier, completion: { (post) -> Void in
-                        if let post = post {
-                            posts.append(post)
-                            if posts.count == keys.count {
-                                let sortedPosts = posts.sort({ (post1, post2) -> Bool in
-                                    post1.barID < post2.barID
-                                })
-                                completion(posts: sortedPosts, error: nil)
+            if keys.count > 0 {
+                for key in keys {
+                    if let identifier = key as? String {
+                        postFromIdentifier(identifier, completion: { (post) -> Void in
+                            if let post = post {
+                                posts.append(post)
+                                if posts.count == keys.count {
+                                    let sortedPosts = posts.sort({ (post1, post2) -> Bool in
+                                        post1.barID < post2.barID
+                                    })
+                                    completion(posts: sortedPosts, error: nil)
+                                }
+                            } else {
+                                completion(posts: nil, error: Error.defaultError())
                             }
-                        } else {
-                            completion(posts: nil, error: Error.defaultError())
-                        }
-                    })
-                } else {
-                    completion(posts: nil, error: Error.defaultError())
+                        })
+                    } else {
+                        completion(posts: nil, error: Error.defaultError())
+                    }
                 }
+            } else {
+                completion(posts: [], error: nil)
             }
         })
     }
