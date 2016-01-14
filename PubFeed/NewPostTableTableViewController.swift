@@ -61,10 +61,6 @@ class NewPostTableTableViewController: UITableViewController {
     
     // MARK: Actions
     
-    @IBAction func reselectBarButtonTapped(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         guard let emojis = self.selectedEmoji else {
             print("NO EMOJI SELECTED")
@@ -159,6 +155,8 @@ class NewPostTableTableViewController: UITableViewController {
         if let name = selectedBar?.name {
             self.barLabel.text = name
         }
+        emoji1.setBackgroundImage(UIImage(named: emojiMenu[2]), forState: .Normal)
+        
     }
     
     // MARK: Functions
