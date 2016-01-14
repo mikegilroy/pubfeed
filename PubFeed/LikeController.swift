@@ -30,6 +30,19 @@ class LikeController {
             completion(like: nil, error: Error.defaultError())
         }
     }
+
+    
+    static func deleteLike(like: Like, completion: (success: Bool, post: Post?, error: NSError?) -> Void) {
+        like.delete { (error) -> Void in
+            if let error = error {
+                completion(success: false, post: nil, error: error)
+            } else {
+                PostController.postFromIdentifier(like.postIdentifier) { (post) -> Void in
+                    completion(success: true, post: post, error: nil)
+                }
+            }
+        }
+    }
     
     // READ
     static func likesForUser(user: User, completion: (likes: [Like]) -> Void) {
@@ -124,6 +137,8 @@ class LikeController {
         likesForUser(user) { (likes) -> Void in
             if likes.count > 0 {
                 for like in likes {
+                    //
+                    
                     like.delete({ (error) -> Void in
                         if error != nil {
                             completion(error: error)

@@ -551,7 +551,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="SvM-TG-1Hu"/>
                                                         <constraint firstAttribute="width" constant="31" id="vyt-5e-BRa"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="heartIcon"/>
+                                                    <state key="normal" backgroundImage="heartIconGrey"/>
                                                     <connections>
                                                         <action selector="likeButtonTapped:" destination="fjl-l1-pdW" eventType="touchUpInside" id="o8M-Dy-H1N"/>
                                                     </connections>
@@ -606,7 +606,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="O5D-p4-cUv"/>
                                                         <constraint firstAttribute="width" constant="30" id="l0Z-os-oTf"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="commentIcon"/>
+                                                    <state key="normal" backgroundImage="commentIconGrey"/>
                                                 </button>
                                             </subviews>
                                             <animations/>
@@ -1496,8 +1496,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="commentIcon" width="50" height="48"/>
-        <image name="heartIcon" width="50" height="50"/>
+        <image name="commentIconGrey" width="50" height="48"/>
+        <image name="heartIconGrey" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vu9-Ok-3qe"/>

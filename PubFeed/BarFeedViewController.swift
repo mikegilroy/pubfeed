@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BarFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BarFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PostTableViewCellDelegate {
     
     // MARK: Properties
     
@@ -58,10 +58,22 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if let posts = self.posts {
             let post = posts[indexPath.row]
             cell.updateCellWithPost(post)
+            cell.updateUserLikesPost(post)
         }
         return cell
     }
     
+    
+    // MARK: PostTableViewCellDelegate
+    
+    func likeButtonTapped(sender: PostTableViewCell) {
+        if let indexPath = tableView.indexPathForCell(sender) {
+            if let posts = self.posts {
+                let post = posts[indexPath.row]
+                
+            }
+        }
+    }
     
     // MARK: Helper Functions
     

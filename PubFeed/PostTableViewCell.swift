@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PostTableViewCellDelegate {
-    func likeButtonTapped()
+    func likeButtonTapped(sender: PostTableViewCell)
 }
 
 class PostTableViewCell: UITableViewCell {
@@ -34,7 +34,6 @@ class PostTableViewCell: UITableViewCell {
     func updateCellWithPost(post: Post) {
         
         self.emojiLabel.text = post.emojis
-        
         
         if let postText = post.text {
             self.postTextLabel.text = postText
@@ -70,8 +69,21 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func likeButtonTapped(sender: AnyObject) {
-        self.delegate?.likeButtonTapped()
+    func updateUserLikesPost(post: Post) {
+        // Check if user likes post
+        LikeController.likesForPost(post) { (likes) -> Void in
+            for like in likes {
+                if like.userIdentifier == UserController.sharedController.currentUser?.identifier {
+                    // Change image to red heart
+                } else {
+                    // Change image to grey heart
+                }
+            }
+        }
+    }
+    
+    @IBAction func likeButtonTapped(sender: PostTableViewCell) {
+        self.delegate?.likeButtonTapped(sender)
     }
     
     
