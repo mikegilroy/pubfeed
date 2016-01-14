@@ -181,7 +181,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 for var bar in bars {
                     if let barLocation = bar.location {
                         bar.topEmojis = self.topEmojisForLocation(barLocation)
-                        self.bars.append(bar)
+                        if !self.bars.contains(bar) {
+                            self.bars.append(bar)
+                        }
                         print(bar.topEmojis)
                         print("Calling addBarLocationAnnotation")
                         self.addBarLocationAnnotation(bar)
