@@ -16,8 +16,6 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     var user: User?
     var profilePhotoIdentifier: String?
     var mode: ViewMode = .defaultView
-    
-    
     var fieldsAreValid: Bool {
         switch mode {
             
@@ -65,6 +63,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             
         case .defaultView:
             
+            
             if let user = UserController.sharedController.currentUser {
                 usernameTextField.text = user.username
                 emailTextField.text = user.email
@@ -83,26 +82,24 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
-            
-            
-            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!) { (photoUrl) -> Void in
-                
-                if let photoUrl = photoUrl {
-                    ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                        
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
-                        })
+            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
+                ImageController.fetchImageAtUrl(photoUrl!, completion: { (image) -> () in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                        self.updateProfilePhotoButton.titleLabel?.text = ""
+                        self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
                     })
-                }
+                    
+                })
             }
+            
             
         case .editView:
             
             let textFieldGrayColor = colorWithHexString("d4d4d6")
             
-            usernameTextField.text = ""
-            emailTextField.text = ""
+            usernameTextField.text = UserController.sharedController.currentUser?.username
+            emailTextField.text = UserController.sharedController.currentUser?.email
             usernameTextField.userInteractionEnabled = true
             emailTextField.userInteractionEnabled = true
             usernameTextField.enabled = true
@@ -152,10 +149,13 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             if usernameTextField.text == "" {
                 usernameTextField.text = UserController.sharedController.currentUser?.username
             }
-            
-            updateViewForMode(ViewMode.defaultView)
+            //if text fields aren't changed, save photo
+            if (usernameTextField.text == UserController.sharedController.currentUser?.username) || (emailTextField.text == UserController.sharedController.currentUser?.email) {
+            }
             
         } else {
+            
+            
             UserController.updateUser(UserController.sharedController.currentUser!, username: usernameTextField.text!, email: emailTextField.text!, completion: { (user, error) -> Void in
                 
                 if let user = UserController.sharedController.currentUser {
@@ -170,7 +170,11 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                     ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
                 }
             })
+            
+            
         }
+        
+        self.updateViewForMode(ViewMode.defaultView)
     }
     
     
@@ -295,82 +299,44 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     }
     
     
-    
     //MARK: - Image Picker Controller Delegate Methods
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
-        profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        updateProfilePhotoButton.setBackgroundImage(profilePhoto, forState: .Normal)
-        updateProfilePhotoButton.setTitle(nil, forState: .Normal)
-        
-        if let photo = UserController.sharedController.currentUser?.photo {
-            var currentUser = UserController.sharedController.currentUser
+        if let identifier = UserController.sharedController.currentUser?.identifier {
             
-            //BUG ON UPLOAD HERE
-            ImageController.profilePhotoForIdentifier((currentUser!.identifier!), completion: { (photoUrl) -> Void in
-                if let photoUrl = photoUrl {
-                    ImageController.fetchImageAtUrl(photoUrl, completion: { (var image) -> () in
-                        
-                        image = self.profilePhoto!
-                        
-                        ImageController.uploadPhoto(image, completion: { (identifier) -> Void in
-                            
-                            if identifier != nil {
-                                
-                                currentUser!.photo = "\(identifier)"
-                                
-                                //                            self.user!.photo = "\(identifier)"
-                                currentUser!.save({ (error) -> Void in
-                                    if error == nil {
-                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        })
-                                    } else {
-                                        ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
-                                    }
-                                })
-                                
-                                let successAlert = UIAlertController(title: "Success!", message: "Photo:\(photo) updated.", preferredStyle: .Alert)
-                                successAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                                self.presentViewController(successAlert, animated: true, completion: nil)
-                                
-                            } else {
-                                let failedAlert = UIAlertController(title: "Failed!", message: "Image failed to update. Please try again.", preferredStyle: .Alert)
-                                failedAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                                self.presentViewController(failedAlert, animated: true, completion: nil)
-                            }
-                        })
-                        
-                    })
-                }
-            })
+            self.profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+            self.updateProfilePhotoButton.setBackgroundImage(self.profilePhoto, forState: .Normal)
+            self.updateProfilePhotoButton.setTitle(nil, forState: .Normal)
             
-        } else {
-            ImageController.uploadPhoto(self.profilePhoto!) { (path) -> Void in
-                if let path = path {
+            let successAlertController = UIAlertController(title: "Update Photo?", message: "Press Ok or Cancel.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            successAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                
+                self.updateViewForMode(ViewMode.defaultView)
+                
+            }))
+            
+            successAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                
+                ImageController.updateProfilePhoto(identifier, image: self.profilePhoto!, completion: { (success, error) -> Void in
                     
-                    
-                    self.user!.photo = "\(path)"
-                    self.user?.save({ (error) -> Void in
-                        if error == nil {
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                let successAlert = UIAlertController(title: "Success!", message: "Photo posted.", preferredStyle: .Alert)
-                                successAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                                self.presentViewController(successAlert, animated: true, completion: nil)
-                            })
-                        } else {
-                            ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
-                            let failedAlert = UIAlertController(title: "Failed!", message: "Image failed to post. Please try again.", preferredStyle: .Alert)
-                            failedAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                            self.presentViewController(failedAlert, animated: true, completion: nil)
-                        }
-                    })
-                }
-            }
+                    if success == true {
+                        let successAlertController = UIAlertController(title: "Success!", message: "Photo updated.", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        successAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                            self.updateViewForMode(ViewMode.defaultView)
+                        }))
+                        self.presentViewController(successAlertController, animated: true, completion: nil)
+                    } else {
+                        ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+                    }
+                })
+            }))
+            self.presentViewController(successAlertController, animated: true, completion: nil)
         }
     }
-    
     
     
     // MARK: Navigation
@@ -390,19 +356,31 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
+            ImageController.fetchImageAtUrl(photoUrl!, completion: { (image) -> () in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                    self.updateProfilePhotoButton.titleLabel?.text = ""
+                    self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                })
+                
+            })
+        }
+        
         self.updateViewForMode(ViewMode.defaultView)
-        updateProfilePhotoButton.titleLabel?.text = ""
-        self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
         
         //textField delegate
-        usernameTextField.delegate = self
-        emailTextField.delegate = self
+        self.usernameTextField.delegate = self
+        self.emailTextField.delegate = self
+        
+        
     }
     
     
-    // MARK: helper funcs
+    // MARK: UI Helpers
     
-    // Creates a UIColor from a Hex string.
     func colorWithHexString (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         

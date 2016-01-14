@@ -52,9 +52,10 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
         
         ImageController.uploadPhoto(self.profilePhoto!) { (path) -> Void in
             if let path = path {
-            
-                self.user!.photo = "\(path)"
+              
+                self.user?.photo = "\(path)"
                 self.user?.save({ (error) -> Void in
+                    
                     if error == nil {
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                              self.performSegueWithIdentifier("toFirstTabView", sender: nil)
@@ -64,6 +65,7 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
                         ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
                     }
                 })
+                
             }
         }
     }
