@@ -64,7 +64,9 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
                     } else {
                         ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
                     }
+                    
                 })
+                
                 
             }
         }

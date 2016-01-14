@@ -11,6 +11,10 @@ import UIKit
 
 private let bucketKey = "profilephotopubfeed"
 private let AWSUrl = "https://s3.amazonaws.com"
+private let kPhoto = "photo"
+
+var profilePhoto = UserController.sharedController.currentUser?.photo
+var user = UserController.sharedController.currentUser
 
 class ImageController {
     
@@ -41,9 +45,18 @@ class ImageController {
             }
             return nil
         })
+        
+//        let imageData : NSData = UIImageJPEGRepresentation(photo, (0.7))!
+//        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: kPhoto)
     }
+
     
     static func updateProfilePhoto(identifier: String, image: UIImage, completion: (success: Bool, error: NSError?) -> Void) {
+        
+        let imageData : NSData = UIImageJPEGRepresentation(image, (0.7))!
+        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: kPhoto)
+
+        
         if let user = UserController.sharedController.currentUser {
             var currentUser = user
             ImageController.profilePhotoForIdentifier((user.identifier!), completion: { (photoUrl) -> Void in
@@ -61,6 +74,8 @@ class ImageController {
                             })
                         }
                     })
+                
+                
             })
         } else {
             print("no user")
@@ -111,11 +126,7 @@ class ImageController {
         session.resume()
         
     }
-    
-    
 }
-
-
 
 
 public extension String {

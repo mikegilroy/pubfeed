@@ -12,6 +12,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     
     // MARK: Properties
     
+    private let kPhoto = "photo"
     var profilePhoto: UIImage?
     var user: User?
     var profilePhotoIdentifier: String?
@@ -63,6 +64,12 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             
         case .defaultView:
             
+            let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as! NSData
+            let image = UIImage(data: imageData)
+            self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+            self.updateProfilePhotoButton.titleLabel?.text = ""
+            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+            
             
             if let user = UserController.sharedController.currentUser {
                 usernameTextField.text = user.username
@@ -83,14 +90,23 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
             ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!) { (photoUrl) -> Void in
+                
                 if let photoUrl = photoUrl {
-                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
-                        self.updateProfilePhotoButton.titleLabel?.text = ""
-                        self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                    ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            
+                            self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                            self.updateProfilePhotoButton.titleLabel?.text = ""
+                            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                        })
                     })
-                })
+                } else {
+                    
+                    let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as! NSData
+                    let image = UIImage(data: imageData)
+                    self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                    self.updateProfilePhotoButton.titleLabel?.text = ""
+                    self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
                 }
             }
             
@@ -168,7 +184,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                     }
                     
                 } else {
-                    ErrorHandling.defaultErrorHandler(error, title: "\(error?.localizedDescription)")
+                    ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
                 }
             })
             
@@ -358,19 +374,25 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         super.viewDidLoad()
         
         
-        
-        ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!) { (photoUrl) -> Void in
-            if let photoUrl = photoUrl {
-            ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
-                    self.updateProfilePhotoButton.titleLabel?.text = ""
-                    self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
-                })
+        if let identifier = UserController.sharedController.currentUser?.identifier {
+            
+            ImageController.profilePhotoForIdentifier(identifier) { (photoUrl) -> Void in
                 
-            })
+                if let url = photoUrl{
+                    ImageController.fetchImageAtUrl(url, completion: { (image) -> () in
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                            self.updateProfilePhotoButton.titleLabel?.text = ""
+                            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                        })
+                        
+                    })
+                }
             }
+        } else {
+            print("no photo identifier")
         }
+        
         
         self.updateViewForMode(ViewMode.defaultView)
         
