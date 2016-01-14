@@ -32,9 +32,9 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
             
             CommentController.addCommentToPost(self.post!, text: self.commentTextField.text!, completion: { (comment, error) -> Void in
                 if error == nil {
+                    
                     NSNotificationCenter.defaultCenter().postNotificationName("updateComment", object: nil)
                     self.commentTextField.text = ""
-                    print("success")
                 } else {
                     print(error!.localizedDescription)
                 }
@@ -42,20 +42,18 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
         }
     }
     
-    func updateWithUser(user: User) {
+    func updateWithUser(post: Post, user: User) {
+        self.post = post
         
-        if let userPhoto = user.photo {
-            ImageController.profilePhotoForIdentifier(userPhoto) { (photoUrl) -> Void in
-                if let photoUrl = photoUrl {
-                    ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.profileImage.image = image
-                        })
+        ImageController.profilePhotoForIdentifier(user.identifier!) { (photoUrl) -> Void in
+            if let photoUrl = photoUrl {
+                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.profileImage.image = image
                     })
-                }
+                })
             }
         }
-        
     }
     
     //MARK: - Keyboard customize

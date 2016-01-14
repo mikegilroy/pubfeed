@@ -14,7 +14,7 @@ class CommentController {
     static func addCommentToPost(post: Post, text: String, completion: (comment: Comment?, error: NSError?) -> Void) {
         if let currentUser = UserController.sharedController.currentUser {
             if let postIdentifier = post.identifier {
-                var comment = Comment(user: UserController.sharedController.currentUser!, username: currentUser.username, text: text, userIdentifier: currentUser.identifier!, userPhotoUrl: currentUser.photo, postIdentifier: postIdentifier, timestamp: NSDate())
+                var comment = Comment(username: currentUser.username, text: text, userIdentifier: currentUser.identifier!, userPhotoUrl: currentUser.photo, postIdentifier: postIdentifier, timestamp: NSDate())
                 comment.save({ (error) -> Void in
                     if let error = error {
                         completion(comment: nil, error: error)
@@ -39,9 +39,7 @@ class CommentController {
     // READ
     static func commentsForPost(post: Post, completion: (comments: [Comment]) -> Void) {
         if let postIdentifier = post.identifier {
-            
-            
-            FirebaseController.base.childByAppendingPath("comments").childByAppendingPath("postIdentifier").queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            FirebaseController.base.childByAppendingPath("comments").queryOrderedByChild("postIdentifier").queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: { snapshot in
                 if let commentDictionaries = snapshot.value as? [String:AnyObject] {
                     let comments = commentDictionaries.flatMap({Comment(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
                     let sortedComments = comments.sort({$0.0.timestamp > $0.1.timestamp})

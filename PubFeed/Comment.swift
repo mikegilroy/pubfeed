@@ -25,9 +25,8 @@ struct Comment: Equatable, FirebaseType {
     var identifier: String?
     var username: String
     var userPhotoUrl: String?
-    var user: User?
     
-    init(user: User, username: String, text: String, userIdentifier: String, userPhotoUrl: String?, postIdentifier: String, timestamp: NSDate, identifier: String? = nil) {
+    init(username: String, text: String, userIdentifier: String, userPhotoUrl: String?, postIdentifier: String, timestamp: NSDate, identifier: String? = nil) {
         
         self.text = text
         self.userIdentifier = userIdentifier
@@ -36,7 +35,7 @@ struct Comment: Equatable, FirebaseType {
         self.identifier = identifier
         self.username = username
         self.userPhotoUrl = userPhotoUrl
-        self.user = user
+   
     }
     
     // Mark: FirebaseType
@@ -45,24 +44,27 @@ struct Comment: Equatable, FirebaseType {
     }
     
     var jsonValue: [String: AnyObject] {
-        return [textKey: text, userIdentifierKey: userIdentifier, postIdentifierKey: postIdentifier, timestampKey: timestamp.stringValue()]
+        return [textKey: text, userIdentifierKey: userIdentifier, postIdentifierKey: postIdentifier, timestampKey: timestamp.stringValue(), usernameKey: username]
     }
     
     
     init?(json: [String:AnyObject], identifier: String) {
-        
+        print(json)
+        print(identifier)
         guard let postIdentifier = json[postIdentifierKey] as? String,
             
             let text = json[textKey] as? String,
             let userIdentifier = json[userIdentifierKey] as? String,
             let timestampString = json[timestampKey] as? String,
             let username = json[usernameKey] as? String,
-            let userPhotoUrl = json[userPhotoKey] as? String,
             let timestamp: NSDate? = timestampString.dateValue() else {
                 return nil
         }
         if timestamp == nil {
             return nil
+        }
+        if let userPhotoUrl = json[userPhotoKey] as? String{
+            self.userPhotoUrl = userPhotoUrl
         }
         
         self.postIdentifier = postIdentifier
@@ -71,7 +73,6 @@ struct Comment: Equatable, FirebaseType {
         self.timestamp = timestamp!
         self.identifier = identifier
         self.username = username
-        self.userPhotoUrl = userPhotoUrl
     }
 }
 

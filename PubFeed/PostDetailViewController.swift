@@ -27,10 +27,14 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: Actions
     
     func updateWithPost(post: Post) {
+        
+        self.post = post
         CommentController.commentsForPost(post) { (comments) -> Void in
             self.comments = comments
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
         }
-        
         
         ImageController.profilePhotoForIdentifier(post.userIdentifier) { (photoUrl) -> Void in
             if let photoUrl = photoUrl {
@@ -40,25 +44,22 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
                     })
                 })
             }
-            
-            
         }
         
-        if let postPhoto = post.photo {
-            ImageController.postPhotoForIdentifier(postPhoto, post: post) { (postPhotoUrl) -> Void in
-                ImageController.fetchImageAtUrl(postPhotoUrl, completion: { (image) -> () in
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.postImage.image = image
-                    })
-                })
-            }
-        } else {
-            self.postImage.removeFromSuperview()
-        }
+        //        if let postPhoto = post.photo {
+        //            ImageController.postPhotoForIdentifier(postPhoto, post: post) { (postPhotoUrl) -> Void in
+        //                ImageController.fetchImageAtUrl(postPhotoUrl, completion: { (image) -> () in
+        //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        //                        self.postImage.image = image
+        //                    })
+        //                })
+        //            }
+        //        } else {
+        //            self.postImage.removeFromSuperview()
+        //        }
         
         self.postText.text = post.text
     }
-    
     
     
     // MARK: viewDid Functions
@@ -88,11 +89,7 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
         case 0:
             return 1
         default:
-            if let postComment = post?.comments {
-                return postComment
-            } else {
-                return 1
-            }
+            return self.comments.count
         }
     }
     
@@ -103,7 +100,7 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
             
             if let user = UserController.sharedController.currentUser {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    cell.updateWithUser(user)
+                    cell.updateWithUser(self.post!, user: user)
                 })
             }
             
@@ -111,10 +108,11 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
             return cell
             
         } else {
+            
             let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
             
-            //            let comment = self.comments[indexPath.row]
-            //            cell.updateWithComment(comment)
+            let comment = self.comments[indexPath.row]
+            cell.updateWithComment(comment)
             
             return cell
         }
