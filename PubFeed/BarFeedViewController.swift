@@ -12,10 +12,15 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: Properties
     
+
     var user: User?
     var bar: Bar?
     var posts: [Post]?
+<<<<<<< f4aa5066304ff1a21e81e5a910364cab8c461cb8
     var selectedPost: Post?
+=======
+        var oldIndexPath: NSIndexPath? = nil
+>>>>>>> Comment View/Bar Feed View for comment
     
     // MARK: Outlets
     
@@ -35,8 +40,18 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBarDetails()
-        loadPostsForBar()
+        //loadPostsForBar()
         BarController.sharedController.currentBar = bar
+     
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        loadPostsForBar()
+
+        if let indexPath = oldIndexPath as NSIndexPath! {
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,6 +79,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             let post = posts[indexPath.row]
             cell.updateCellWithPost(post)
             cell.updateUserLikesPost(post)
+            cell.delegate = self
         }
         return cell
     }
@@ -121,6 +137,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 _ = postDetailDestination.view
                 
                 if let indexPath = tableView.indexPathForSelectedRow {
+                     self.oldIndexPath = indexPath
                     if let post = self.posts?[indexPath.row] {
                         self.selectedPost = post
                         postDetailDestination.updateWithPost(post)
@@ -128,9 +145,5 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         }
-        
-        
     }
-    
-    
 }

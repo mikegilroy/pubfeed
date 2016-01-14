@@ -36,7 +36,7 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
-
+            
         }
         
         ImageController.profilePhotoForIdentifier(post.userIdentifier) { (photoUrl) -> Void in
@@ -69,12 +69,17 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCommentTableView", name: "updateComment", object: nil)
-//        
-//        if let post = self.post {
-//            self.updateWithPost(post)
-//        }
+        
+        if let post = self.post {
+            self.updateWithPost(post)
+        }
     }
     
     func reloadCommentTableView () {

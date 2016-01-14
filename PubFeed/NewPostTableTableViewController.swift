@@ -76,6 +76,7 @@ class NewPostTableTableViewController: UITableViewController {
                             print("Error creating post")
                         } else {
                             self.performSegueWithIdentifier("unwindToTabBar", sender: nil)
+//                            let segue = 
                         }
                     })
                 } else {
