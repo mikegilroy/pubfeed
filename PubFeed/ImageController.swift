@@ -42,19 +42,11 @@ class ImageController {
             return nil
         })
     }
-<<<<<<< 031e7ccf0360959d27c2d27c59421ae7b7b8a251
-
-    static func profilePhotoForIdentifier(identifier: String, completion: (photoUrl: NSURL?) -> Void) {
-||||||| merged common ancestors
-
-    static func profilePhotoForIdentifier(identifier: String, user: User, completion: (photoUrl: NSURL?) -> Void) {
-=======
-    
     
     static func updateProfilePhoto(identifier: String, image: UIImage, completion: (success: Bool, error: NSError?) -> Void) {
         if let user = UserController.sharedController.currentUser {
             var currentUser = user
-            ImageController.profilePhotoForIdentifier((user.identifier!), user: user, completion: { (photoUrl) -> Void in
+            ImageController.profilePhotoForIdentifier((user.identifier!), completion: { (photoUrl) -> Void in
                
                     ImageController.uploadPhoto(image, completion: { (identifier) -> Void in
                         if let identifier = identifier {
@@ -76,8 +68,8 @@ class ImageController {
     }
     
     
-    static func profilePhotoForIdentifier(identifier: String, user: User, completion: (photoUrl: NSURL?) -> Void) {
->>>>>>> SettingTableViewController done
+    static func profilePhotoForIdentifier(identifier: String, completion: (photoUrl: NSURL?) -> Void) {
+
         
         FirebaseController.dataAtEndpoint("users/\(identifier)/photo") { (data) -> Void in
             if let data = data as? String {

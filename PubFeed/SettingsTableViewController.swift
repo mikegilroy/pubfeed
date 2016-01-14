@@ -82,7 +82,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
-            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
+            ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!) { (photoUrl) -> Void in
                 ImageController.fetchImageAtUrl(photoUrl!, completion: { (image) -> () in
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
@@ -358,7 +358,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         
         
         
-        ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!, user: UserController.sharedController.currentUser!) { (photoUrl) -> Void in
+        ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!) { (photoUrl) -> Void in
             ImageController.fetchImageAtUrl(photoUrl!, completion: { (image) -> () in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
