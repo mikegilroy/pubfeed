@@ -11,7 +11,9 @@ import UIKit
 
 class NewPostTableTableViewController: UITableViewController {
 
-    let emojiMenu = ["❤️", "💦", "💋", "😰", "😤", "🔥", "💣", "🍆", "🤗", "🍑", "🍼", "✊🏿", "😥", "🐣", "😘", "😈"]
+    let emojiMenu = ["☠", "💃", "🙈", "🍴", "😈", "🔥",
+                     "🍼", "🍑", "🍆", "👴🏼", "💩", "🎸",
+                    "🐌", "🌈", "⚽️", "🎉", "🎤", "🦄"]
 
     // MARK: Properties
     var selectedBar: Bar?
