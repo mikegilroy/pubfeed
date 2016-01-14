@@ -938,42 +938,42 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="98" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="WD8-Jz-CEB"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="nuf-uf-ARt"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBg-SP-ySY" userLabel="1">
                                                                     <rect key="frame" x="98" y="0.0" width="97" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="c0Q-tA-nVQ"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="brx-n3-2lZ"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NI-sy-ir4" userLabel="2">
                                                                     <rect key="frame" x="195" y="0.0" width="98" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="DCx-A7-FmK"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Yuk-Vw-dou"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DS8-7u-DGh" userLabel="3">
                                                                     <rect key="frame" x="292" y="0.0" width="98" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Rw3-mk-fn6"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="qtD-fG-4vz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0U-Du-pHe" userLabel="4">
                                                                     <rect key="frame" x="390" y="0.0" width="97" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="IGG-Ca-5iw"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Q6x-kY-b9T"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iK-2X-BSu" userLabel="5">
                                                                     <rect key="frame" x="487" y="0.0" width="98" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="RJk-fA-Jla"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Bv5-an-F4g"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -985,42 +985,42 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="98" height="42"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="CqE-t6-vlF"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="UlV-6H-Avz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZs-eO-5qo" userLabel="7">
                                                                     <rect key="frame" x="98" y="0.0" width="97" height="42"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="n4b-Qd-CxK"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="kLP-hH-r3W"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFc-Di-Pgp" userLabel="8">
                                                                     <rect key="frame" x="195" y="0.0" width="98" height="42"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="xCs-X0-y3K"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="UsF-BR-rH7"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I80-Hy-Ihi" userLabel="9">
                                                                     <rect key="frame" x="292" y="0.0" width="98" height="42"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="HMc-uA-cIV"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="b7a-WP-iKS"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKT-Kb-kSi" userLabel="10">
                                                                     <rect key="frame" x="390" y="0.0" width="97" height="42"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Bhp-uw-M01"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="YUA-Gr-3z0"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knT-LZ-2N2" userLabel="11">
                                                                     <rect key="frame" x="487" y="0.0" width="98" height="42"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="hsG-RJ-3ex"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="NVG-2y-U7u"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -1032,42 +1032,42 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="98" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Lie-zc-nv5"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="VTM-4t-tr7"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNW-d3-Vk8" userLabel="13">
                                                                     <rect key="frame" x="98" y="0.0" width="97" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="xIu-w6-uft"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="uFA-98-wV1"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C07-F2-0HQ" userLabel="14">
                                                                     <rect key="frame" x="195" y="0.0" width="98" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Ij7-n9-LVB"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="NMj-kL-5bu"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk7-6D-bCq" userLabel="15">
                                                                     <rect key="frame" x="292" y="0.0" width="98" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="k5R-Nb-opk"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="3B0-fh-Zbz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0s-4n-g5V" userLabel="16">
                                                                     <rect key="frame" x="390" y="0.0" width="97" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="YnI-To-fPp"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="V7g-Bq-QKG"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ah9-Lv-Sln" userLabel="17">
                                                                     <rect key="frame" x="487" y="0.0" width="98" height="43"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.038836428919999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <connections>
-                                                                        <action selector="emoji1:" destination="E9B-tb-cRA" eventType="touchUpInside" id="2r5-lh-QEe"/>
+                                                                        <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="rOy-Vm-o6g"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -1129,20 +1129,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="barLabel" destination="jIT-pk-ipp" id="DCU-iO-siZ"/>
-                        <outlet property="emoji1" destination="4rN-QW-7Y8" id="bay-ph-fIx"/>
-                        <outlet property="emoji10" destination="LNW-d3-Vk8" id="igs-0N-rDr"/>
-                        <outlet property="emoji11" destination="C07-F2-0HQ" id="tta-zS-bfI"/>
-                        <outlet property="emoji12" destination="pk7-6D-bCq" id="nhA-lL-CXp"/>
-                        <outlet property="emoji13" destination="v0s-4n-g5V" id="lh8-TF-vFE"/>
-                        <outlet property="emoji14" destination="Ah9-Lv-Sln" id="wBE-Xf-ctP"/>
-                        <outlet property="emoji2" destination="I80-Hy-Ihi" id="7vR-zF-OHR"/>
-                        <outlet property="emoji3" destination="OZs-eO-5qo" id="Gx7-f8-Y3C"/>
-                        <outlet property="emoji4" destination="YKT-Kb-kSi" id="bm5-ot-Lmi"/>
-                        <outlet property="emoji5" destination="knT-LZ-2N2" id="ODv-sa-LM6"/>
-                        <outlet property="emoji8" destination="nFc-Di-Pgp" id="shH-0J-m3t"/>
-                        <outlet property="emoji9" destination="bRD-XY-NXT" id="ob9-yB-PmA"/>
-                        <outlet property="textView" destination="xx9-S2-l5Z" id="ekJ-rR-vOB"/>
+                        <outlet property="barLabel" destination="jIT-pk-ipp" id="ot2-ck-8Kr"/>
+                        <outlet property="textView" destination="xx9-S2-l5Z" id="t3x-HT-IjK"/>
                         <segue destination="V0A-33-4T6" kind="unwind" identifier="unwindToTabBar" unwindAction="unwindToVC:" id="mb7-Fp-VZK"/>
                     </connections>
                 </tableViewController>
