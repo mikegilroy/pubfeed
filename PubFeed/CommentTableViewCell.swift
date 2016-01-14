@@ -27,9 +27,9 @@ class CommentTableViewCell: UITableViewCell {
     
     func updateWithComment(comment: Comment) {
         
-        if let userPhoto = comment.userPhotoUrl {
+
             
-            ImageController.profilePhotoForIdentifier(userPhoto) { (photoUrl) -> Void in
+            ImageController.profilePhotoForIdentifier(comment.userIdentifier) { (photoUrl) -> Void in
                 if let photoUrl = photoUrl {
                     ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -37,7 +37,7 @@ class CommentTableViewCell: UITableViewCell {
                         })
                     })
                 }
-            }
+            
         }
         self.usernameLabel.text = comment.username
         self.commentLabel.text = comment.text

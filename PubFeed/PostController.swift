@@ -71,7 +71,7 @@ class PostController {
     static func incrementLikesOnPost(post: Post, completion: (post: Post?, error: NSError?) -> Void) {
         let likes = post.likes + 1
         
-        var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: likes, comments: post.comments, latitude: post.latitude, longitude: post.longitude)
+        var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, identifier: post.identifier, likes: likes, comments: post.comments, latitude: post.latitude, longitude: post.longitude)
         
         updatedPost.save { (error) -> Void in
             if error != nil {
@@ -87,7 +87,7 @@ class PostController {
         if post.likes > 0 {
             let likes = post.likes - 1
             
-            var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: likes, comments: post.comments, latitude: post.latitude, longitude: post.longitude)
+            var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, identifier: post.identifier, likes: likes, comments: post.comments, latitude: post.latitude, longitude: post.longitude)
             
             updatedPost.save { (error) -> Void in
                 if error != nil {
@@ -103,7 +103,7 @@ class PostController {
     static func incrementCommentsOnPost(post: Post, completion: (post: Post?, error: NSError?) -> Void) {
         let comments = post.comments + 1
         
-        var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: post.likes, comments: comments, latitude: post.latitude, longitude: post.longitude)
+        var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, identifier: post.identifier, likes: post.likes, comments: comments, latitude: post.latitude, longitude: post.longitude)
         
         updatedPost.save { (error) -> Void in
             if error != nil {
@@ -119,7 +119,7 @@ class PostController {
         if post.comments > 0 {
             let comments = post.comments - 1
             
-            var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, likes: post.likes, comments: comments, latitude: post.latitude, longitude: post.longitude)
+            var updatedPost = Post(userIdentifier: post.userIdentifier, barID: post.barID, timestamp: post.timestamp, emojis: post.emojis, text: post.text, photo: post.photo, identifier: post.identifier, likes: post.likes, comments: comments, latitude: post.latitude, longitude: post.longitude)
             
             updatedPost.save { (error) -> Void in
                 if error != nil {

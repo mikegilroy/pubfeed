@@ -34,6 +34,7 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
                 if error == nil {
                     
                     NSNotificationCenter.defaultCenter().postNotificationName("updateComment", object: nil)
+               
                     self.commentTextField.text = ""
                 } else {
                     print(error!.localizedDescription)

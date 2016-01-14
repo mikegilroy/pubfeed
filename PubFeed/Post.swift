@@ -30,8 +30,8 @@ struct Post: Equatable, FirebaseType {
     var text: String?
     var photo: String?
     var identifier: String?
-    var likes: Int = 0
-    var comments: Int = 0
+    var likes: Int
+    var comments: Int
     var latitude: Double
     var longitude: Double
     
