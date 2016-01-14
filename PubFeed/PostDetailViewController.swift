@@ -77,13 +77,17 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCommentTableView", name: "updateComment", object: nil)
         
-        if let post = self.post {
-            self.updateWithPost(post)
-        }
+//        if let post = self.post {
+//            self.updateWithPost(post)
+//        }
     }
     
     func reloadCommentTableView () {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            
+            if let post = self.post {
+                self.updateWithPost(post)
+            }
             self.tableView.reloadData()
         })
     }
