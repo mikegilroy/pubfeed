@@ -23,6 +23,7 @@
 		028A3E9F1C3F33A400B9FC3F /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E991C3F33A400B9FC3F /* GFGeoHash.m */; };
 		028A3EA01C3F33A400B9FC3F /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E9B1C3F33A400B9FC3F /* GFGeoHashQuery.m */; };
 		02E9B17A1C45EC29004627D3 /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E9B1791C45EC29004627D3 /* LocationExtension.swift */; };
+		02E9B1A01C48132C004627D3 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E9B19F1C48132C004627D3 /* DoubleExtension.swift */; };
 		100B8DAF1C3EFEF5005C45E4 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DAE1C3EFEF5005C45E4 /* BarController.swift */; };
 		100B8DB11C3EFF96005C45E4 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DB01C3EFF96005C45E4 /* NetworkController.swift */; };
 		100B8DB51C3F419A005C45E4 /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DB41C3F419A005C45E4 /* CustomPin.swift */; };
@@ -103,6 +104,7 @@
 		028A3E9A1C3F33A400B9FC3F /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
 		028A3E9B1C3F33A400B9FC3F /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
 		02E9B1791C45EC29004627D3 /* LocationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
+		02E9B19F1C48132C004627D3 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		100B8DAE1C3EFEF5005C45E4 /* BarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarController.swift; path = ../BarController.swift; sourceTree = "<group>"; };
 		100B8DB01C3EFF96005C45E4 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		100B8DB41C3F419A005C45E4 /* CustomPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomPin.swift; path = ../CustomPin.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				DED6E5C91C3DF19F005E17D8 /* UIViewControllerExtension.swift */,
 				E67F0F201C3DB69A00785F12 /* DateExtension.swift */,
 				E67F0F221C3DB6AB00785F12 /* StringExtension.swift */,
+				02E9B19F1C48132C004627D3 /* DoubleExtension.swift */,
 				02E9B1791C45EC29004627D3 /* LocationExtension.swift */,
 				0236A3701C3F192B00125BA9 /* Error.swift */,
 				DE6F1F291C40644E001E8356 /* IntExtension.swift */,
@@ -492,6 +495,7 @@
 				1069A5411C3D82A80018D28F /* BarFeedViewController.swift in Sources */,
 				DED6E5B31C3DBFE2005E17D8 /* LikeController.swift in Sources */,
 				E67F0F181C3DB54600785F12 /* Bar.swift in Sources */,
+				02E9B1A01C48132C004627D3 /* DoubleExtension.swift in Sources */,
 				1069A5371C3D81B90018D28F /* LoginViewController.swift in Sources */,
 				DED6E5CA1C3DF19F005E17D8 /* UIViewControllerExtension.swift in Sources */,
 				1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */,

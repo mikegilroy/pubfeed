@@ -9,13 +9,18 @@
 import Foundation
 
 extension NSDate: Comparable {
+//    
+//    func stringValue() -> String {
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm:ss zzz"
+////        dateFormatter.timeStyle = .LongStyle
+////        dateFormatter.dateStyle = .LongStyle
+//        return dateFormatter.stringFromDate(self)
+//    }
     
-    func stringValue() -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm:ss zzz"
-//        dateFormatter.timeStyle = .LongStyle
-//        dateFormatter.dateStyle = .LongStyle
-        return dateFormatter.stringFromDate(self)
+    func doubleValue() -> Double {
+        let date = NSDate(timeIntervalSince1970: 0)
+        return Double(self.secondsFrom(date))
     }
     
     

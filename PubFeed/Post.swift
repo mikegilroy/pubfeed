@@ -57,7 +57,7 @@ struct Post: Equatable, FirebaseType {
     
     
     var jsonValue: [String: AnyObject] {
-        var json: [String: AnyObject] = [kUserIdentifier: userIdentifier, kBarID: barID, kTimestamp: timestamp.stringValue(), kEmojis: emojis, kLikesCount:likes, kCommentsCount:comments, kLatitude:latitude, kLongitude:longitude]
+        var json: [String: AnyObject] = [kUserIdentifier: userIdentifier, kBarID: barID, kTimestamp: timestamp.doubleValue(), kEmojis: emojis, kLikesCount:likes, kCommentsCount:comments, kLatitude:latitude, kLongitude:longitude]
         if let text = text {
             json.updateValue(text, forKey: kText)
         }
@@ -71,7 +71,7 @@ struct Post: Equatable, FirebaseType {
     init?(json: [String : AnyObject], identifier: String) {
         guard let userIdentifier = json[kUserIdentifier] as? String,
             let barID = json[kBarID] as? String,
-            let timestampString = json[kTimestamp] as? String,
+            let timestampDouble = json[kTimestamp] as? Double,
             let emojis = json[kEmojis] as? String,
             let likes = json[kLikesCount] as? Int,
             let comments = json[kCommentsCount] as? Int,
@@ -80,12 +80,7 @@ struct Post: Equatable, FirebaseType {
                 return nil
         }
 
-        if let timestamp = timestampString.dateValue() {
-            self.timestamp = timestamp
-        } else {
-            return nil
-        }
-
+        self.timestamp = timestampDouble.dateValue()
         self.userIdentifier = userIdentifier
         self.barID = barID
         self.emojis = emojis

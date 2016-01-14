@@ -17,11 +17,11 @@ extension String {
 //        let date = dateFormatter.dateFromString(self)
 //        return date
 //    }
-
-    func dateValue() -> NSDate? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm:ss zzz"
-        return dateFormatter.dateFromString(self)
-    }
+//
+//    func dateValue() -> NSDate? {
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm:ss zzz"
+//        return dateFormatter.dateFromString(self)
+//    }
     
 }

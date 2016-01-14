@@ -44,7 +44,7 @@ struct Comment: Equatable, FirebaseType {
     }
     
     var jsonValue: [String: AnyObject] {
-        return [textKey: text, userIdentifierKey: userIdentifier, postIdentifierKey: postIdentifier, timestampKey: timestamp.stringValue(), usernameKey: username]
+        return [textKey: text, userIdentifierKey: userIdentifier, postIdentifierKey: postIdentifier, timestampKey: timestamp.doubleValue(), usernameKey: username]
     }
     
     
@@ -55,13 +55,9 @@ struct Comment: Equatable, FirebaseType {
             
             let text = json[textKey] as? String,
             let userIdentifier = json[userIdentifierKey] as? String,
-            let timestampString = json[timestampKey] as? String,
-            let username = json[usernameKey] as? String,
-            let timestamp: NSDate? = timestampString.dateValue() else {
+            let timestampDouble = json[timestampKey] as? Double,
+            let username = json[usernameKey] as? String else {
                 return nil
-        }
-        if timestamp == nil {
-            return nil
         }
         if let userPhotoUrl = json[userPhotoKey] as? String{
             self.userPhotoUrl = userPhotoUrl
@@ -70,7 +66,7 @@ struct Comment: Equatable, FirebaseType {
         self.postIdentifier = postIdentifier
         self.text = text
         self.userIdentifier = userIdentifier
-        self.timestamp = timestamp!
+        self.timestamp = timestampDouble.dateValue()
         self.identifier = identifier
         self.username = username
     }
