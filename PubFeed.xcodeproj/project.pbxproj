@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0236A3511C3DB2A200125BA9 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A34F1C3DB28100125BA9 /* Firebase.framework */; };
-		0236A3521C3DB2A200125BA9 /* Firebase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A34F1C3DB28100125BA9 /* Firebase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0236A3551C3DB31E00125BA9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3541C3DB31E00125BA9 /* CFNetwork.framework */; };
 		0236A3571C3DB32D00125BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3561C3DB32D00125BA9 /* Security.framework */; };
 		0236A3591C3DB33700125BA9 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3581C3DB33700125BA9 /* libicucore.tbd */; };
@@ -69,7 +68,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0236A3521C3DB2A200125BA9 /* Firebase.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +394,7 @@
 				TargetAttributes = {
 					1069A5201C3C4A580018D28F = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = WHJ2JK5E8R;
 					};
 				};
 			};
@@ -640,17 +639,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = PubFeed/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dev.pubfeed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DevMountain.PubFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PubFeed/PubFeed-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -660,16 +662,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = PubFeed/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dev.pubfeed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DevMountain.PubFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PubFeed/PubFeed-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
