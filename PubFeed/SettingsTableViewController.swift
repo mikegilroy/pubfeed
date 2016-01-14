@@ -83,14 +83,15 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
             ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!) { (photoUrl) -> Void in
-                ImageController.fetchImageAtUrl(photoUrl!, completion: { (image) -> () in
+                if let photoUrl = photoUrl {
+                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
                         self.updateProfilePhotoButton.titleLabel?.text = ""
                         self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
                     })
-                    
                 })
+                }
             }
             
             
@@ -167,7 +168,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                     }
                     
                 } else {
-                    ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+                    ErrorHandling.defaultErrorHandler(error, title: "\(error?.localizedDescription)")
                 }
             })
             
@@ -359,7 +360,8 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         
         
         ImageController.profilePhotoForIdentifier((UserController.sharedController.currentUser?.identifier)!) { (photoUrl) -> Void in
-            ImageController.fetchImageAtUrl(photoUrl!, completion: { (image) -> () in
+            if let photoUrl = photoUrl {
+            ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
                     self.updateProfilePhotoButton.titleLabel?.text = ""
@@ -367,6 +369,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                 })
                 
             })
+            }
         }
         
         self.updateViewForMode(ViewMode.defaultView)
