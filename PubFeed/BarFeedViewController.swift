@@ -15,6 +15,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     var user: User?
     var bar: Bar?
     var posts: [Post]?
+    var selectedPost: Post?
     
     // MARK: Outlets
     
@@ -36,6 +37,10 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         loadBarDetails()
         loadPostsForBar()
         BarController.sharedController.currentBar = bar
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        loadPostsForBar()
     }
     
     // MARK: TableView Datasource
@@ -117,6 +122,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 if let indexPath = tableView.indexPathForSelectedRow {
                     if let post = self.posts?[indexPath.row] {
+                        self.selectedPost = post
                         postDetailDestination.updateWithPost(post)
                     }
                 }
