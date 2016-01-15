@@ -36,11 +36,6 @@ class NewPostTableTableViewController: UITableViewController {
     
     // MARK: Actions
     
-    @IBAction func selectBarButtonTapped(sender: UIButton) {
-        
-    }
-    
-    
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("unwindToTabBar", sender: nil)
     }
@@ -112,6 +107,27 @@ class NewPostTableTableViewController: UITableViewController {
             return 0
         }
     }
+
+    
+    
+    func viewSaysNo(view: UIView) {
+        
+        // Border turns red and wiggles
+        
+        view.layer.borderWidth = 2.5
+        view.layer.cornerRadius = 5.0
+        view.layer.borderColor = UIColor(red: 255/255, green: 29/255, blue: 96/255, alpha: 1.0).CGColor
+        
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = NSValue(CGPoint: CGPointMake(view.center.x - 10, view.center.y))
+        animation.toValue = NSValue(CGPoint: CGPointMake(view.center.x + 10, view.center.y))
+        view.layer.addAnimation(animation, forKey: "position")
+        
+    }
+    
 
 }
 
