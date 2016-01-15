@@ -129,7 +129,17 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: TableView Delegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        bars[indexPath.row].setAsCurrent()
+        if searchedBarsExist {
+            searchedBars[indexPath.row].setAsCurrent()
+        } else if recentBarsExist {
+            if indexPath.section == 0 {
+                BarController.sharedController.recentBars[indexPath.row].setAsCurrent()
+            } else if indexPath.section == 1 {
+                bars[indexPath.row].setAsCurrent()
+            }
+        } else {
+            bars[indexPath.row].setAsCurrent()
+        }
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
