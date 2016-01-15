@@ -956,14 +956,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPO-nU-MOH">
-                                                    <rect key="frame" x="535" y="11" width="57" height="30"/>
+                                                    <rect key="frame" x="562" y="11" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="57" id="HEm-af-EDe"/>
+                                                        <constraint firstAttribute="width" secondItem="TPO-nU-MOH" secondAttribute="height" multiplier="1:1" id="5Tb-rB-huB"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="advance"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a bar to post to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIT-pk-ipp">
-                                                    <rect key="frame" x="8" y="8" width="506" height="36"/>
+                                                    <rect key="frame" x="8" y="8" width="533" height="36"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" button="YES" staticText="YES"/>
                                                     </accessibility>
