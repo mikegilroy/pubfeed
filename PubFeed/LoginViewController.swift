@@ -43,11 +43,10 @@ class LoginViewController: UIViewController {
     @IBAction func forgotPasswordTapped(sender: UIButton) {
         
         var inputTextField: UITextField?
-        let alertController = UIAlertController(title: "Are you sure you want to delete your account?", message: "Please enter email and press reset.", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(title: "It looks like you forgot your account!", message: "Please enter email and press reset.", preferredStyle: UIAlertControllerStyle.Alert)
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.performSegueWithIdentifier("fromSettings", sender: nil)
             })
         }))
         
