@@ -20,8 +20,6 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
         // Initialization code
     }
     
-    
-    
     // MARK: - Add Comment Function
     
     func addComment() {

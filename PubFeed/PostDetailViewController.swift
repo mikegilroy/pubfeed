@@ -11,13 +11,14 @@ import UIKit
 class PostDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
+
     var post: Post?
     var user: User?
     var comments: [Comment] = []
     var delegate: PostDetailViewControllerDelegate?
     
     // MARK: Outlets
-    
+    @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var postImage: UIImageView!
@@ -61,6 +62,7 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
         //            self.postImage.removeFromSuperview()
         //        }
         
+        self.emojiLabel.text = post.emojis
         self.postText.text = post.text
     }
     
