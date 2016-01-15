@@ -110,11 +110,25 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             if let openNow = bar.openNow {
                 if openNow {
                     self.openNowLabel.text = "OPEN"
+                    self.openNowLabel.textColor = UIColor.greenColor()
                 } else {
                     self.openNowLabel.text = "CLOSED"
+                    self.openNowLabel.textColor = UIColor.redColor()
                 }
             }
             self.addressLabel.text = bar.address
+            let topEmojis = bar.topEmojis
+            if topEmojis.count > 0 {
+                if topEmojis.count == 1 {
+                    self.emojiLabel.text = "\(topEmojis[0])"
+                } else if topEmojis.count == 2 {
+                    self.emojiLabel.text = "\(topEmojis[0]) \(topEmojis[1])"
+                } else {
+                    self.emojiLabel.text = "\(topEmojis[0]) \(topEmojis[1]) \(topEmojis[2])"
+                }
+            } else {
+                self.emojiLabel.text = "❓❓❓"
+            }
         }
     }
     
