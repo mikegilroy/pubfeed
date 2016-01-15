@@ -125,10 +125,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             for bar in bars {
                 if let barLocation = bar.location {
                     if barLocation == annotationLocation {
-                        if let _ = bar.topEmojis.first {
-                            pinView!.image = UIImage(named: "default")
+                        if let emoji = bar.topEmojis.first {
+                            let imageName = ("\(emoji)pin")
+                            pinView!.image = UIImage(named: imageName)
                         } else {
-                            pinView!.image = UIImage(named: "default")
+                            pinView!.image = UIImage(named: "blackDefault")
                         }
                     }
                 }
