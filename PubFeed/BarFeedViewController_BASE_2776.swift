@@ -26,6 +26,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var openNowLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
@@ -49,6 +50,10 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewWillAppear(true)
         
         loadPostsForBar()
+        
+        if let indexPath = oldIndexPath as NSIndexPath! {
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+        }
     }
     
     
@@ -78,38 +83,6 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header:UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.backgroundView?.backgroundColor = UIColor.blackColor()
-        header.backgroundView?.alpha = 0.9
-        header.textLabel!.textColor = UIColor().greenTintColor()
-        header.textLabel!.frame = header.frame
-        header.textLabel!.textAlignment = NSTextAlignment.Left
-        header.textLabel?.font = UIFont(name: "CaviarDreams", size: 18)
-        header.textLabel!.text = "⏲ Recent Activity"
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? PostTableViewCell {
-//            if let posts = posts {
-//                let post = posts[indexPath.row]
-//                if let _ = post.photo {
-//                    //has photo
-//                    let imageViewHeight = cell.postImageView.frame.height
-//                    return (205 - 80.5) + imageViewHeight
-//                } else {
-//                    //no photo
-//                    return 205 - 80.5
-//                }
-//            }
-//        }
-        return 222 - 66.5
-    }
-
     
     // MARK: PostTableViewCellDelegate
     var isLiked: Bool?
@@ -117,14 +90,10 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func likeButtonTapped(sender: PostTableViewCell) {
         if let indexPath = tableView.indexPathForCell(sender) {
             if let posts = self.posts {
-<<<<<<< c4aaeb35e3e3733a4f041c8a35268b0ed8f34cad
-
-=======
                 let post = posts[indexPath.row]
-                   LikeController.toggleLike(<#T##like: Like##Like#>, post: post, isLiked: isLiked, completion: { (isLiked, error) -> Void in
-                sdfs
-                   })
->>>>>>> spinning added on Login Sign Up
+//                    LikeController.toggleLike(<#T##like: Like##Like#>, post: post, isLiked: self.isLiked, completion: { (isLiked, error) -> Void in
+//                        <#code#>
+//                    })
             }
         }
     }
@@ -135,28 +104,17 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if let bar = self.bar {
             print(bar.name)
             self.nameLabel.text = bar.name
+            if let priceLevel = bar.priceLevel {
+                self.priceLabel.text = priceLevel.priceLevelStringFromInt()
+            }
             if let openNow = bar.openNow {
                 if openNow {
                     self.openNowLabel.text = "OPEN"
-                    self.openNowLabel.textColor = UIColor().greenTintColor()
                 } else {
                     self.openNowLabel.text = "CLOSED"
-                    self.openNowLabel.textColor = UIColor.redColor()
                 }
             }
             self.addressLabel.text = bar.address
-            let topEmojis = bar.topEmojis
-            if topEmojis.count > 0 {
-                if topEmojis.count == 1 {
-                    self.emojiLabel.text = "\(topEmojis[0])"
-                } else if topEmojis.count == 2 {
-                    self.emojiLabel.text = "\(topEmojis[0]) \(topEmojis[1])"
-                } else {
-                    self.emojiLabel.text = "\(topEmojis[0]) \(topEmojis[1]) \(topEmojis[2])"
-                }
-            } else {
-                self.emojiLabel.text = "❓❓❓"
-            }
         }
     }
     
@@ -178,9 +136,13 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if segue.identifier == "toDetailView" {
             if let postDetailDestination = segue.destinationViewController as? PostDetailViewController {
+                _ = postDetailDestination.view
+                
                 if let indexPath = tableView.indexPathForSelectedRow {
+                    self.oldIndexPath = indexPath
                     if let post = self.posts?[indexPath.row] {
-                        postDetailDestination.post = post
+                        self.selectedPost = post
+                        postDetailDestination.updateWithPost(post)
                     }
                 }
             }

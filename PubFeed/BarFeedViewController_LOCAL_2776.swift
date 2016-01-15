@@ -117,14 +117,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func likeButtonTapped(sender: PostTableViewCell) {
         if let indexPath = tableView.indexPathForCell(sender) {
             if let posts = self.posts {
-<<<<<<< c4aaeb35e3e3733a4f041c8a35268b0ed8f34cad
 
-=======
-                let post = posts[indexPath.row]
-                   LikeController.toggleLike(<#T##like: Like##Like#>, post: post, isLiked: isLiked, completion: { (isLiked, error) -> Void in
-                sdfs
-                   })
->>>>>>> spinning added on Login Sign Up
             }
         }
     }

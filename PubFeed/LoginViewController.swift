@@ -13,7 +13,8 @@ class LoginViewController: UIViewController {
     // MARK: Properties
     
     var user: User?
-    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView ()
+
     // MARK: Outlet
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -21,11 +22,36 @@ class LoginViewController: UIViewController {
     
     // MARK: Actions
     
+    
+    
     @IBAction func loginButtonTapped(sender: UIButton) {
+        
+        //Activity Indicator View
+        
+        self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = .Gray
+        self.view.addSubview(self.activityIndicator)
+        
+
+        
+        self.activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
         if emailTextField.text == "" || passwordTextField.text == "" {
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
             ErrorHandling.defaultErrorHandler(nil, title: "Missing information")
         } else {
             UserController.authenticateUser(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) -> Void in
+                
+             
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
                 if error == nil {
                     self.user = user

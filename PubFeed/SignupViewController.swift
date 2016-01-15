@@ -13,6 +13,8 @@ class SignupViewController: UIViewController {
     // MARK: Properties
     
     var user: User?
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView ()
+
     
     // MARK: Outlet
     
@@ -25,10 +27,23 @@ class SignupViewController: UIViewController {
     
     @IBAction func signUpButtonTapped(sender: UIButton) {
         
+        
+        self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = .Gray
+        self.view.addSubview(self.activityIndicator)
+        
         if (usernameTextField.text == "") || (emailTextField.text == "") || (passwordTextField.text == "") {
+            self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
             ErrorHandling.defaultErrorHandler(nil, title: "Missing Information")
             
         } else {
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
             UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) -> Void in
                 if error == nil {
                     self.user = user
