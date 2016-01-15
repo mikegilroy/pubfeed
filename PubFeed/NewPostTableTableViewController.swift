@@ -31,7 +31,7 @@ class NewPostTableTableViewController: UITableViewController {
     
     @IBOutlet weak var emojiStackCell: UITableViewCell!
     
-    
+    @IBOutlet weak var emojiStack: UIStackView!
     
     
     // MARK: Actions

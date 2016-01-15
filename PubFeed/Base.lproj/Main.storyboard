@@ -1191,6 +1191,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="barLabel" destination="jIT-pk-ipp" id="ot2-ck-8Kr"/>
+                        <outlet property="emojiStack" destination="56m-L7-dLu" id="LrB-iU-8TJ"/>
                         <outlet property="emojiStackCell" destination="zfh-Qw-HiQ" id="dQE-bX-WUb"/>
                         <outlet property="textView" destination="xx9-S2-l5Z" id="t3x-HT-IjK"/>
                         <outletCollection property="emojiButton" destination="bhg-Ua-ea4" collectionClass="NSMutableArray" id="GWF-u8-ch0"/>
