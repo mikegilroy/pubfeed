@@ -64,13 +64,13 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             
         case .defaultView:
             
-            let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as! NSData
+            if let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as? NSData {
             let image = UIImage(data: imageData)
             self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
             self.updateProfilePhotoButton.titleLabel?.text = ""
             self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
             
-            
+        }
             if let user = UserController.sharedController.currentUser {
                 usernameTextField.text = user.username
                 emailTextField.text = user.email
@@ -102,11 +102,12 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                     })
                 } else {
                     
-                    let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as! NSData
-                    let image = UIImage(data: imageData)
-                    self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
-                    self.updateProfilePhotoButton.titleLabel?.text = ""
-                    self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                    if let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as? NSData {
+                        let image = UIImage(data: imageData)
+                        self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                        self.updateProfilePhotoButton.titleLabel?.text = ""
+                        self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                    }
                 }
             }
             
@@ -184,7 +185,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                     }
                     
                 } else {
-                    ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
+                    ErrorHandling.defaultErrorHandler(error, title: "\(error?.localizedDescription)")
                 }
             })
             
@@ -202,7 +203,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in }))
         
         alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            if let userPasswordInput = inputTextField!.text {
+            if let userPasswordInput = inputTextField?.text {
                 
                 UserController.deleteUser(UserController.sharedController.currentUser!, password: userPasswordInput) { (errors) -> Void in
                     if let error = errors?.last {

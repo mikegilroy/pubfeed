@@ -139,6 +139,7 @@ protocol PostDetailViewControllerDelegate {
 extension PostDetailViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
         self.delegate?.addDoneButtonOnKeyboard()
     }
     
