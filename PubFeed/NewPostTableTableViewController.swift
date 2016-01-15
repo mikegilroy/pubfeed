@@ -32,6 +32,8 @@ class NewPostTableTableViewController: UITableViewController {
     @IBOutlet weak var emojiStackCell: UITableViewCell!
     
     
+    
+    
     // MARK: Actions
     
     @IBAction func selectBarButtonTapped(sender: UIButton) {

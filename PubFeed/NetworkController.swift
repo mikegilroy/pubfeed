@@ -33,6 +33,22 @@ class NetworkController {
         return NSURL(string: stringURL)!
     }
     
+    static func textSearchURL(text: String, nextPageToken: String?) -> NSURL {
+        
+        let textBaseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="
+        
+        let searchTerm = String(text.characters.map {
+            $0 == " " ? "&" : $0
+            })
+        
+        var stringURL = textBaseURL + searchTerm +  NetworkController.sharedInstance.typeURL + NetworkController.sharedInstance.endKEYURL
+        if let nextPageToken = nextPageToken {
+            stringURL = NetworkController.sharedInstance.baseURL + "pagetoken=\(nextPageToken)"
+        }
+        print(stringURL)
+        return NSURL(string: stringURL)!
+    }
+    
     static func dataAtURL(url: NSURL, completion: (data: NSData?) -> Void) {
         
         let session = NSURLSession.sharedSession()

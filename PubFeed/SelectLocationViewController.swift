@@ -15,9 +15,13 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     var locationManager = CLLocationManager()
     var searchedBars: [Bar] = []
+    var searchedBarCities: [String] = []
     var bars: [Bar] = []
     var recentBarsExist: Bool {
         return BarController.sharedController.recentBars.count > 0
+    }
+    var searchedBarsExist: Bool {
+        return searchedBars.count > 0
     }
     
     // MARK: Outlets
@@ -26,12 +30,18 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var clearButton: UIBarButtonItem!
+    
     
     // MARK: Actions
     
-    @IBAction func cancelButtonTapped(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func clearButtonTapped(sender: UIBarButtonItem) {
+        self.searchedBars.removeAll()
+        self.searchedBarCities.removeAll()
+        tableView.reloadData()
+        clearButton.enabled = false
     }
+    
     
     // MARK: viewDid Functions
     
@@ -41,12 +51,15 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        clearButton.enabled = false
     }
     
     // MARK: TableView Datasource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if recentBarsExist {
+        if searchedBarsExist {
+            return 1
+        } else if recentBarsExist {
             return 2
         } else {
             return 1
@@ -54,7 +67,9 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if recentBarsExist {
+        if searchedBarsExist {
+            return searchedBars.count
+        } else if recentBarsExist {
             if section == 0 {
                 return BarController.sharedController.recentBars.count
             } else {
@@ -67,7 +82,10 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("placeCell", forIndexPath: indexPath)
-        if recentBarsExist {
+        if searchedBarsExist {
+            cell.textLabel?.text = searchedBars[indexPath.row].name
+            cell.detailTextLabel?.text = searchedBarCities[indexPath.row]
+        } else if recentBarsExist {
             if indexPath.section == 0 {
                 cell.textLabel?.text = BarController.sharedController.recentBars[indexPath.row].name
             } else {
@@ -85,8 +103,25 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
             BarController.searchBarsByName(name, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
                 if let bars = bars {
                     self.searchedBars = bars
+                    for bar in self.searchedBars {
+                        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: bar.location!.coordinate.latitude, longitude: bar.location!.coordinate.longitude), completionHandler: { (placemarks, error) -> Void in
+                            if let placemarks = placemarks {
+                                
+                                if let city = placemarks[0].addressDictionary!["City"] as? NSString {
+                                    self.searchedBarCities.append(String(city))
+                                    if self.searchedBars.count == self.searchedBarCities.count {
+                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                            self.clearButton.enabled = true
+                                            self.tableView.reloadData()
+                                        })
+                                    }
+                                }
+                            }
+                        })
+                    }
                 }
             })
+            
         }
     }
     
