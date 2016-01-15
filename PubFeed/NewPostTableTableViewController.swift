@@ -28,6 +28,9 @@ class NewPostTableTableViewController: UITableViewController {
     
     @IBOutlet weak var textView: UITextView!
 
+    @IBOutlet var emojiButton: [UIButton]!
+    
+    @IBOutlet weak var emojiStackCell: UITableViewCell!
     
     
     // MARK: Actions
@@ -76,7 +79,31 @@ class NewPostTableTableViewController: UITableViewController {
         if let name = selectedBar?.name {
             self.barLabel.text = name
         }
+        for button in emojiButton {
+            button.setBackgroundImage(UIImage(named: emojiMenu[button.tag]), forState: .Normal)
+            
+        }
+        
     }
+    
+    // MARK: TableView Delegate
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if indexPath.row == 1 {
+            let width = emojiStackCell.frame.width - 16
+            let height = width/6
+//            emojiStackCell.sizeThatFits(CGSize(width: emojiStackCell.frame.width, height: (height*3) + 15))
+            return CGFloat((height * 3) + 15)
+        } else if indexPath.row == 0 {
+            return 51
+        } else if indexPath.row == 2 {
+            return 97
+        } else {
+            return 0
+        }
+    }
+
     
 //    // MARK: Functions
 //    func resetSelectedEmojiToDefaultAlpha(alpha: CGFloat) {
