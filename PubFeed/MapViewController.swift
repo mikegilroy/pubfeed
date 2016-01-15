@@ -48,6 +48,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.locationManager.startUpdatingLocation()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        BarController.sharedController.currentBar = nil
+    }
+    
     
     // MARK: Map Functions
     

@@ -78,6 +78,23 @@ struct Bar: Equatable {
     }
 }
 
+extension Bar {
+    func setAsCurrent() {
+        BarController.sharedController.currentBar = self
+        for bar in BarController.sharedController.recentBars {
+            if bar == self {
+                let index = BarController.sharedController.recentBars.indexOf(bar)
+                BarController.sharedController.recentBars.removeAtIndex(index!)
+            }
+        }
+        BarController.sharedController.recentBars.insert(self, atIndex: 0)
+        if BarController.sharedController.recentBars.count == 5 {
+            BarController.sharedController.recentBars.popLast()
+        }
+    }
+    
+}
+
 func ==(lhs: Bar, rhs: Bar) -> Bool {
     return lhs.barID == rhs.barID
 }

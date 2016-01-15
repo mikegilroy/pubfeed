@@ -16,7 +16,6 @@ class NewPostTableTableViewController: UITableViewController {
                     "🐌", "🌈", "⚽️", "🎉", "🎤", "🦄"]
 
     // MARK: Properties
-    var selectedBar: Bar?
     var selectedEmoji: String?
     var selectedPhoto: String?
     var selectedButton: UIButton?
@@ -35,13 +34,23 @@ class NewPostTableTableViewController: UITableViewController {
     
     // MARK: Actions
     
+    @IBAction func selectBarButtonTapped(sender: UIButton) {
+        
+    }
+    
+    
+    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("unwindToTabBar", sender: nil)
+    }
+    
+    
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         guard let emojis = self.selectedEmoji else {
             print("NO EMOJI SELECTED")
             return
         }
         if let user = UserController.sharedController.currentUser {
-            if let bar = selectedBar {
+            if let bar = BarController.sharedController.currentBar {
                 if let location = bar.location {
                     PostController.createPost(location, emojis: emojis, text: self.textView.text, photo: selectedPhoto, bar: bar, user: user, completion: { (post, error) -> Void in
                         if let _ = error {
@@ -76,12 +85,11 @@ class NewPostTableTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let name = selectedBar?.name {
-            self.barLabel.text = name
+        if let currentBar = BarController.sharedController.currentBar {
+            self.barLabel.text = currentBar.name
         }
         for button in emojiButton {
             button.setBackgroundImage(UIImage(named: emojiMenu[button.tag]), forState: .Normal)
-            
         }
         
     }
@@ -93,7 +101,6 @@ class NewPostTableTableViewController: UITableViewController {
         if indexPath.row == 1 {
             let width = emojiStackCell.frame.width - 16
             let height = width/6
-//            emojiStackCell.sizeThatFits(CGSize(width: emojiStackCell.frame.width, height: (height*3) + 15))
             return CGFloat((height * 3) + 15)
         } else if indexPath.row == 0 {
             return 51
@@ -103,50 +110,6 @@ class NewPostTableTableViewController: UITableViewController {
             return 0
         }
     }
-
-    
-//    // MARK: Functions
-//    func resetSelectedEmojiToDefaultAlpha(alpha: CGFloat) {
-//        if let selectedEmoji = self.selectedEmoji {
-//            if let index = emojiMenu.indexOf(selectedEmoji) {
-//                switch Int(index) {
-//                case 0:
-//                    emoji1.alpha = alpha
-//                case 1:
-//                    emoji2.alpha = alpha
-//                case 2:
-//                    emoji3.alpha = alpha
-//                case 3:
-//                    emoji4.alpha = alpha
-//                case 4:
-//                    emoji5.alpha = alpha
-//                case 5:
-//                    emoji6.alpha = alpha
-//                case 6:
-//                    emoji7.alpha = alpha
-//                case 7:
-//                    emoji8.alpha = alpha
-//                case 8:
-//                    emoji9.alpha = alpha
-//                case 9:
-//                    emoji10.alpha = alpha
-//                case 10:
-//                    emoji11.alpha = alpha
-//                case 11:
-//                    emoji12.alpha = alpha
-//                case 12:
-//                    emoji13.alpha = alpha
-//                case 13:
-//                    emoji14.alpha = alpha
-//                case 14:
-//                    emoji15.alpha = alpha
-//                case 15:
-//                    emoji16.alpha = alpha
-//                default:
-//                    print("emoji selection error")
-//                }
-//            }
-//        }
 
 }
 

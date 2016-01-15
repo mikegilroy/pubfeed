@@ -9,16 +9,22 @@
 import UIKit
 import Firebase
 
-class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
 
     // MARK: Properties
     
     var locationManager = CLLocationManager()
+    var searchedBars: [Bar] = []
     var bars: [Bar] = []
+    var recentBarsExist: Bool {
+        return BarController.sharedController.recentBars.count > 0
+    }
     
     // MARK: Outlets
 
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     
     // MARK: Actions
@@ -31,6 +37,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -39,7 +46,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: TableView Datasource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if BarController.sharedController.currentBar != nil {
+        if recentBarsExist {
             return 2
         } else {
             return 1
@@ -47,9 +54,9 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if BarController.sharedController.currentBar != nil {
+        if recentBarsExist {
             if section == 0 {
-                return 1
+                return BarController.sharedController.recentBars.count
             } else {
                 return bars.count
             }
@@ -60,9 +67,9 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("placeCell", forIndexPath: indexPath)
-        if let currentBar = BarController.sharedController.currentBar {
+        if recentBarsExist {
             if indexPath.section == 0 {
-                cell.textLabel?.text = currentBar.name
+                cell.textLabel?.text = BarController.sharedController.recentBars[indexPath.row].name
             } else {
                 cell.textLabel?.text = bars[indexPath.row].name
             }
@@ -72,22 +79,31 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
+    // MARK: Search Bar Delegate
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if let name = searchBar.text {
+            BarController.searchBarsByName(name, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
+                if let bars = bars {
+                    self.searchedBars = bars
+                }
+            })
+        }
+    }
+    
     
     // MARK: TableView Delegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("toNewPost", sender: tableView.cellForRowAtIndexPath(indexPath))
+        bars[indexPath.row].setAsCurrent()
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if BarController.sharedController.currentBar != nil {
-            if section == 0 {
-                return "Recently Viewed"
-            } else {
-                return "Bars Near You"
-            }
-        } else {
+        if section == 0 {
+            return "Recently Viewed"
+        } else if section == 1 {
             return "Bars Near You"
+        } else {
+            return ""
         }
     }
     
@@ -114,28 +130,6 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         print(error.localizedDescription)
     }
     
-    
-    // MARK: - Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toNewPost" {
-            if let newPostTableTableViewController = segue.destinationViewController as? NewPostTableTableViewController {
-                if let cell = sender as? UITableViewCell {
-                    if let indexPath = tableView.indexPathForCell(cell) {
-                        if let currentBar = BarController.sharedController.currentBar {
-                            if indexPath.section == 0 {
-                                newPostTableTableViewController.selectedBar = currentBar
-                            } else {
-                                newPostTableTableViewController.selectedBar = self.bars[indexPath.row]
-                            }
-                        } else {
-                            newPostTableTableViewController.selectedBar = self.bars[indexPath.row]
-                        }
-                    }
-                }
-            }
-        }
-    }
 
 
 }

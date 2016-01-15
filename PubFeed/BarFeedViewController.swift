@@ -40,7 +40,9 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         loadBarDetails()
         //loadPostsForBar()
-        BarController.sharedController.currentBar = bar
+        if let bar = bar {
+            bar.setAsCurrent()
+        }
         
     }
     

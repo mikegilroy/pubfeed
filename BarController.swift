@@ -14,7 +14,48 @@ class BarController {
     static let sharedController = BarController()
     
     var currentBar: Bar?
-    var loadedBars: [Bar] = []
+    var recentBars: [Bar] = []
+    
+    static func searchBarsByName(name: String, nextPageToken: String?, completion: (bars: [Bar]?, nextPageToken: String?) -> Void) {
+        var placesURL = NSURL()
+        
+        placesURL = NetworkController.textSearchURL(name, nextPageToken: nil)
+        
+        NetworkController.dataAtURL(placesURL) { (data) -> Void in
+            guard let data = data else { completion(bars: nil, nextPageToken: nil); return }
+            
+            do {
+                if let jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject] {
+                    
+                    if let placesResultsArray = jsonData["results"] as? [[String: AnyObject]] {
+                        
+                        var bars: [Bar] = []
+                        for place in placesResultsArray {
+                            
+                            if let bar = Bar(jsonDictionary: place) {
+                                bars.append(bar)
+                            }
+                        }
+                        if let nextPageToken = jsonData["next_page_token"] as? String {
+                            completion(bars: bars, nextPageToken: nextPageToken)
+                        } else {
+                            completion(bars: bars, nextPageToken: nil)
+                        }
+                        
+                    } else {
+                        completion(bars: nil, nextPageToken: nil)
+                        print("No bar results")
+                    }
+                } else {
+                    completion(bars: nil, nextPageToken: nil)
+                    print("Error serialising json data")
+                }
+            } catch {
+                completion(bars: nil, nextPageToken: nil)
+                print("Error getting json data")
+            }
+        }
+    }
     
     static func loadBars(location: CLLocation, nextPageToken: String?, completion: (bars: [Bar]?, nextPageToken: String?) -> Void) {
         

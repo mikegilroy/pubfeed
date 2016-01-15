@@ -404,6 +404,10 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        BarController.sharedController.currentBar = nil
+    }
     
     // MARK: UI Helpers
     
