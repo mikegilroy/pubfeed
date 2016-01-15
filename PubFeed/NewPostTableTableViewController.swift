@@ -33,6 +33,9 @@ class NewPostTableTableViewController: UITableViewController {
     
     @IBOutlet weak var emojiStack: UIStackView!
     
+    @IBOutlet weak var barCellContent: UIView!
+    
+    
     
     // MARK: Actions
     
@@ -42,8 +45,12 @@ class NewPostTableTableViewController: UITableViewController {
     
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+        guard let bar = BarController.sharedController.currentBar else {
+            animateView(barCellContent)
+            return
+        }
         guard let emojis = self.selectedEmoji else {
-            print("NO EMOJI SELECTED")
+            animateView(emojiStack)
             return
         }
         if let user = UserController.sharedController.currentUser {
@@ -109,15 +116,9 @@ class NewPostTableTableViewController: UITableViewController {
     }
 
     
+    // MARK: Helper Functions
     
-    func viewSaysNo(view: UIView) {
-        
-        // Border turns red and wiggles
-        
-        view.layer.borderWidth = 2.5
-        view.layer.cornerRadius = 5.0
-        view.layer.borderColor = UIColor(red: 255/255, green: 29/255, blue: 96/255, alpha: 1.0).CGColor
-        
+    func animateView(view: UIView) {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.07
         animation.repeatCount = 2

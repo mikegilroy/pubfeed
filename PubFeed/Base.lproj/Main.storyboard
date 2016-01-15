@@ -1190,7 +1190,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="barCellContent" destination="FkO-jR-vKz" id="r8M-Hq-jjm"/>
+                        <outlet property="barCellContent" destination="FkO-jR-vKz" id="WVu-gO-eim"/>
                         <outlet property="barLabel" destination="jIT-pk-ipp" id="ot2-ck-8Kr"/>
                         <outlet property="emojiStack" destination="56m-L7-dLu" id="LrB-iU-8TJ"/>
                         <outlet property="emojiStackCell" destination="zfh-Qw-HiQ" id="dQE-bX-WUb"/>
