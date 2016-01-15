@@ -89,9 +89,9 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if let indexPath = tableView.indexPathForCell(sender) {
             if let posts = self.posts {
                 let post = posts[indexPath.row]
-                    LikeController.toggleLike(<#T##like: Like##Like#>, post: post, isLiked: self.isLiked, completion: { (isLiked, error) -> Void in
-                        <#code#>
-                    })
+//                    LikeController.toggleLike(<#T##like: Like##Like#>, post: post, isLiked: self.isLiked, completion: { (isLiked, error) -> Void in
+//                        <#code#>
+//                    })
             }
         }
     }
