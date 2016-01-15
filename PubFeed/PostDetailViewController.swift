@@ -129,6 +129,33 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
             return cell
         }
     }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        
+        let comment = comments[indexPath.row]
+        
+        if comment.userIdentifier == UserController.sharedController.currentUser?.identifier! {
+            return .Delete
+        } else {
+            return .None
+        }
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        guard let post = self.post else { return }
+        
+        let comment = self.comments[indexPath.row]
+        if editingStyle == .Delete {
+            CommentController.deleteComment(post, comment: comment, completion: { (error) -> Void in
+                if let error = error {
+                    print(error)
+                } else {
+                    self.comments.removeAtIndex(indexPath.row)
+                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                }
+            })
+        }
+    }
 }
 
 protocol PostDetailViewControllerDelegate {
