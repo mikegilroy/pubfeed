@@ -29,6 +29,7 @@
             <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
+            <string>CaviarDreams-Bold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -127,13 +128,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K95-e5-CqV">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K95-e5-CqV">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhh-a0-6t9">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uhh-a0-6t9">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pexels-photo_darker" translatesAutoresizingMaskIntoConstraints="NO" id="faJ-kK-c27">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pexels-photo_darker" translatesAutoresizingMaskIntoConstraints="NO" id="faJ-kK-c27">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                             </imageView>
                                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBe-Og-Pwy">
@@ -169,13 +170,13 @@
                                                     <action selector="forgotPasswordTapped:" destination="ANR-Gl-O4t" eventType="touchUpInside" id="SRf-Af-Hws"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-LR-AUl">
+                                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-LR-AUl">
                                                 <rect key="frame" x="20" y="551" width="560" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="560" id="aiI-4r-xZh"/>
                                                     <constraint firstAttribute="height" constant="34" id="yuX-jc-zmn"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="19"/>
                                                 <state key="normal" title="Don't have an account? Sign up!">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -274,67 +275,111 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwO-Ll-Mq3">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vwO-Ll-Mq3">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TED-Pd-daF">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TED-Pd-daF">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YSe-7p-oen">
-                                                <rect key="frame" x="20" y="278" width="560" height="30"/>
-                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="nPB-Ge-5xc" id="MHI-Vl-t3G"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yHK-pF-kgc">
-                                                <rect key="frame" x="20" y="240" width="560" height="30"/>
-                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="14"/>
+                                            <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pexels-photo_darker" translatesAutoresizingMaskIntoConstraints="NO" id="spA-ah-tSF">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yHK-pF-kgc">
+                                                <rect key="frame" x="20" y="245" width="560" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="nPB-Ge-5xc" id="cF4-Uu-cvU"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Kr-0a-lnV">
-                                                <rect key="frame" x="20" y="316" width="560" height="30"/>
-                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="14"/>
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Kr-0a-lnV">
+                                                <rect key="frame" x="20" y="325" width="560" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="nPB-Ge-5xc" id="S9K-f2-lqj"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ril-Uu-07P">
-                                                <rect key="frame" x="20" y="356" width="560" height="34"/>
-                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="18"/>
-                                                <state key="normal" title="Signup"/>
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YSe-7p-oen">
+                                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="nPB-Ge-5xc" id="MHI-Vl-t3G"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ril-Uu-07P">
+                                                <rect key="frame" x="255" y="377" width="90" height="40"/>
+                                                <color key="backgroundColor" red="0.91764705879999997" green="0.19215686269999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="4K3-Id-Kw2"/>
+                                                    <constraint firstAttribute="height" constant="40" id="hFO-PY-ajI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="19"/>
+                                                <state key="normal" title="Signup">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="signUpButtonTapped:" destination="nPB-Ge-5xc" eventType="touchUpInside" id="dK6-MB-dYw"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfd-eH-tev">
-                                                <rect key="frame" x="20" y="558" width="30" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="X"/>
+                                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfd-eH-tev">
+                                                <rect key="frame" x="255" y="439" width="90" height="40"/>
+                                                <color key="backgroundColor" red="0.91764705879999997" green="0.19215686269999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="Mas-nV-f6T"/>
+                                                    <constraint firstAttribute="height" constant="40" id="tbd-ts-HMF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="19"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="cancelButtonTapped:" destination="nPB-Ge-5xc" eventType="touchUpInside" id="sFt-BM-9vf"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="regular" translatesAutoresizingMaskIntoConstraints="NO" id="W3f-O8-TgI">
+                                                <rect key="frame" x="225" y="73" width="150" height="150"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Vh2-v6-3UA"/>
+                                                    <constraint firstAttribute="width" constant="150" id="naa-lN-A1g"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="Ril-Uu-07P" firstAttribute="top" secondItem="3Kr-0a-lnV" secondAttribute="bottom" constant="10" id="51l-j1-jqR"/>
-                                            <constraint firstItem="yHK-pF-kgc" firstAttribute="top" secondItem="TED-Pd-daF" secondAttribute="top" constant="240" id="HLz-1Z-nP8"/>
-                                            <constraint firstItem="Ril-Uu-07P" firstAttribute="leading" secondItem="TED-Pd-daF" secondAttribute="leading" constant="20" id="JHc-eP-eG9"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ril-Uu-07P" secondAttribute="trailing" constant="20" id="Rpv-Xz-cwY"/>
-                                            <constraint firstAttribute="trailing" secondItem="yHK-pF-kgc" secondAttribute="trailing" constant="20" id="fNz-kS-7H3"/>
-                                            <constraint firstItem="3Kr-0a-lnV" firstAttribute="leading" secondItem="TED-Pd-daF" secondAttribute="leading" constant="20" id="kHe-tm-4Ed"/>
-                                            <constraint firstItem="YSe-7p-oen" firstAttribute="top" secondItem="yHK-pF-kgc" secondAttribute="bottom" constant="8" id="kfr-7A-chr"/>
-                                            <constraint firstItem="yHK-pF-kgc" firstAttribute="leading" secondItem="TED-Pd-daF" secondAttribute="leading" constant="20" id="oJH-cv-dS9"/>
-                                            <constraint firstAttribute="trailing" secondItem="YSe-7p-oen" secondAttribute="trailing" constant="20" id="qGl-KJ-mkN"/>
-                                            <constraint firstItem="3Kr-0a-lnV" firstAttribute="top" secondItem="YSe-7p-oen" secondAttribute="bottom" constant="8" id="t5b-VW-E3k"/>
-                                            <constraint firstAttribute="trailing" secondItem="3Kr-0a-lnV" secondAttribute="trailing" constant="20" id="uOZ-Ud-S4O"/>
-                                            <constraint firstItem="YSe-7p-oen" firstAttribute="leading" secondItem="TED-Pd-daF" secondAttribute="leading" constant="20" id="wNe-c4-Lhe"/>
+                                            <constraint firstItem="3Kr-0a-lnV" firstAttribute="trailing" secondItem="YSe-7p-oen" secondAttribute="trailing" id="0vx-LR-C3I"/>
+                                            <constraint firstItem="spA-ah-tSF" firstAttribute="centerX" secondItem="Ril-Uu-07P" secondAttribute="centerX" id="1Bz-nl-Gvp"/>
+                                            <constraint firstItem="spA-ah-tSF" firstAttribute="top" secondItem="TED-Pd-daF" secondAttribute="top" id="6mv-YM-QE1"/>
+                                            <constraint firstItem="3Kr-0a-lnV" firstAttribute="leading" secondItem="YSe-7p-oen" secondAttribute="leading" id="8CJ-tC-MAt"/>
+                                            <constraint firstItem="3Kr-0a-lnV" firstAttribute="top" secondItem="YSe-7p-oen" secondAttribute="bottom" constant="10" id="9Hp-P2-q1h"/>
+                                            <constraint firstItem="Gfd-eH-tev" firstAttribute="centerX" secondItem="Ril-Uu-07P" secondAttribute="centerX" id="BW1-Jo-zNZ"/>
+                                            <constraint firstItem="YSe-7p-oen" firstAttribute="top" secondItem="yHK-pF-kgc" secondAttribute="bottom" constant="10" id="E3P-db-ovF"/>
+                                            <constraint firstItem="yHK-pF-kgc" firstAttribute="trailing" secondItem="W3f-O8-TgI" secondAttribute="trailing" constant="205" id="EWC-1i-Aua"/>
+                                            <constraint firstItem="YSe-7p-oen" firstAttribute="leading" secondItem="yHK-pF-kgc" secondAttribute="leading" id="GtY-dp-Yn7"/>
+                                            <constraint firstAttribute="bottom" secondItem="Gfd-eH-tev" secondAttribute="bottom" constant="121" id="Xwz-8j-xZO"/>
+                                            <constraint firstItem="Ril-Uu-07P" firstAttribute="centerX" secondItem="3Kr-0a-lnV" secondAttribute="centerX" id="YoQ-1y-Qxa"/>
+                                            <constraint firstAttribute="bottom" secondItem="spA-ah-tSF" secondAttribute="bottom" id="ZlL-b3-tb8"/>
+                                            <constraint firstItem="spA-ah-tSF" firstAttribute="leading" secondItem="TED-Pd-daF" secondAttribute="leading" id="fQp-zs-jvL"/>
+                                            <constraint firstItem="yHK-pF-kgc" firstAttribute="top" secondItem="W3f-O8-TgI" secondAttribute="bottom" constant="22" id="j3e-bR-9Ua"/>
+                                            <constraint firstItem="yHK-pF-kgc" firstAttribute="leading" secondItem="W3f-O8-TgI" secondAttribute="leading" constant="-205" id="ou0-lA-Qzb"/>
+                                            <constraint firstItem="Ril-Uu-07P" firstAttribute="top" secondItem="3Kr-0a-lnV" secondAttribute="bottom" constant="22" id="pSL-vE-453"/>
+                                            <constraint firstItem="YSe-7p-oen" firstAttribute="trailing" secondItem="yHK-pF-kgc" secondAttribute="trailing" id="skx-qm-MzF"/>
+                                            <constraint firstItem="Gfd-eH-tev" firstAttribute="centerX" secondItem="TED-Pd-daF" secondAttribute="centerX" id="vYa-Jv-hN4"/>
+                                            <constraint firstItem="Gfd-eH-tev" firstAttribute="top" secondItem="Ril-Uu-07P" secondAttribute="bottom" constant="22" id="xnA-1N-Sgd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -350,11 +395,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nfY-ne-Eqq" firstAttribute="top" secondItem="Gfd-eH-tev" secondAttribute="bottom" constant="8" id="0lv-Qy-tII"/>
                             <constraint firstItem="vwO-Ll-Mq3" firstAttribute="top" secondItem="F5H-Cu-rps" secondAttribute="bottom" constant="-20" id="EbW-j7-UT6"/>
                             <constraint firstItem="nfY-ne-Eqq" firstAttribute="top" secondItem="vwO-Ll-Mq3" secondAttribute="bottom" id="HJn-46-BTy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vwO-Ll-Mq3" secondAttribute="trailing" constant="-20" id="pXJ-BH-u2a"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Gfd-eH-tev" secondAttribute="leading" id="tYr-gQ-JXv"/>
                             <constraint firstItem="vwO-Ll-Mq3" firstAttribute="leading" secondItem="QC4-5P-2sg" secondAttribute="leadingMargin" constant="-20" id="tsO-kh-BU6"/>
                         </constraints>
                     </view>
@@ -369,7 +412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Bj-h0-Rkj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050" y="-1473"/>
+            <point key="canvasLocation" x="1066" y="-1336"/>
         </scene>
         <!--Add Profile Photo View Controller-->
         <scene sceneID="knd-R2-ZEZ">
@@ -1503,7 +1546,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vu9-Ok-3qe"/>
-        <segue reference="3Ja-sh-hDx"/>
+        <segue reference="WCI-aq-fCv"/>
         <segue reference="FFj-pW-z9U"/>
     </inferredMetricsTieBreakers>
 </document>
