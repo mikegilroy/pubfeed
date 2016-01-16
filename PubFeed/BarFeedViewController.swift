@@ -83,6 +83,22 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header:UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.backgroundView?.backgroundColor = UIColor().pinkTintColor()
+        header.backgroundView?.alpha = 0.9
+        header.textLabel!.textColor = UIColor.whiteColor()//UIColor().pinkTintColor()
+        header.textLabel!.frame = header.frame
+        header.textLabel!.textAlignment = NSTextAlignment.Left
+        header.textLabel?.font = UIFont(name: "CaviarDreams", size: 20)
+        header.textLabel!.text = "⏲ Recent Activity"
+    }
+    
+
     
     // MARK: PostTableViewCellDelegate
     var isLiked: Bool?
@@ -106,6 +122,10 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             self.nameLabel.text = bar.name
             if let priceLevel = bar.priceLevel {
                 self.priceLabel.text = priceLevel.priceLevelStringFromInt()
+                print(priceLevel)
+                print(priceLevel.priceLevelStringFromInt())
+            } else {
+                self.priceLabel.text = ""
             }
             if let openNow = bar.openNow {
                 if openNow {

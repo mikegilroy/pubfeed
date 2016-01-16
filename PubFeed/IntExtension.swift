@@ -12,13 +12,13 @@ extension Int {
     
     func priceLevelStringFromInt() -> String {
         switch self {
-        case 0:
+        case 0, 1:
             return "💰"
-        case 1:
-            return "💰💰"
         case 2:
-            return "💰💰💰"
+            return "💰💰"
         case 3:
+            return "💰💰💰"
+        case 4:
             return "💰💰💰💰"
         default:
             return ""
