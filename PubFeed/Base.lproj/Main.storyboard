@@ -942,14 +942,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="otr-y4-2h1">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="search bars" id="CHZ-3s-pOQ">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="placeCell" textLabel="3r5-lS-G06" detailTextLabel="fXL-t5-U7l" style="IBUITableViewCellStyleValue1" id="NIr-wt-9F7">
-                                        <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NIr-wt-9F7" id="Tdo-20-Fy5">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -987,16 +982,8 @@
                             <constraint firstItem="otr-y4-2h1" firstAttribute="leading" secondItem="01Z-vt-FFb" secondAttribute="leading" id="x0T-eM-ZpB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Select Bar" id="OLJ-RU-EuL">
-                        <barButtonItem key="rightBarButtonItem" title="Clear" id="sZA-Jc-F9a">
-                            <connections>
-                                <action selector="clearButtonTapped:" destination="rZd-3p-awZ" id="nLk-mt-EbS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Select Bar" id="OLJ-RU-EuL"/>
                     <connections>
-                        <outlet property="clearButton" destination="sZA-Jc-F9a" id="ICH-Tn-f7U"/>
-                        <outlet property="searchBar" destination="CHZ-3s-pOQ" id="naS-cK-xqk"/>
                         <outlet property="tableView" destination="otr-y4-2h1" id="fkx-Eq-zqD"/>
                         <segue destination="91K-Sp-8cC" kind="unwind" identifier="unwindToNewPost" unwindAction="unwindToVC:" id="gDt-tI-KgV"/>
                     </connections>

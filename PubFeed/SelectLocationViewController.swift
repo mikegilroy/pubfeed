@@ -9,148 +9,53 @@
 import UIKit
 import Firebase
 
-class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
+class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
 
     // MARK: Properties
     
     var locationManager = CLLocationManager()
-    var searchedBars: [Bar] = []
-    var searchedBarCities: [String] = []
     var bars: [Bar] = []
-    var recentBarsExist: Bool {
-        return BarController.sharedController.recentBars.count > 0
-    }
-    var searchedBarsExist: Bool {
-        return searchedBars.count > 0
-    }
     
     // MARK: Outlets
 
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    @IBOutlet weak var clearButton: UIBarButtonItem!
-    
-    
-    // MARK: Actions
-    
-    @IBAction func clearButtonTapped(sender: UIBarButtonItem) {
-        self.searchedBars.removeAll()
-        self.searchedBarCities.removeAll()
-        tableView.reloadData()
-        clearButton.enabled = false
-    }
     
     
     // MARK: viewDid Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        clearButton.enabled = false
     }
     
     // MARK: TableView Datasource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if searchedBarsExist {
-            return 1
-        } else if recentBarsExist {
-            return 2
-        } else {
-            return 1
-        }
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchedBarsExist {
-            return searchedBars.count
-        } else if recentBarsExist {
-            if section == 0 {
-                return BarController.sharedController.recentBars.count
-            } else {
-                return bars.count
-            }
-        } else {
-            return bars.count
-        }
+        return bars.count
+    
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("placeCell", forIndexPath: indexPath)
-        if searchedBarsExist {
-            cell.textLabel?.text = searchedBars[indexPath.row].name
-            cell.detailTextLabel?.text = searchedBarCities[indexPath.row]
-        } else if recentBarsExist {
-            if indexPath.section == 0 {
-                cell.textLabel?.text = BarController.sharedController.recentBars[indexPath.row].name
-            } else {
-                cell.textLabel?.text = bars[indexPath.row].name
-            }
-        } else {
-            cell.textLabel?.text = bars[indexPath.row].name
-        }
+        cell.textLabel?.text = bars[indexPath.row].name
         return cell
     }
-    
-    // MARK: Search Bar Delegate
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if let name = searchBar.text {
-            BarController.searchBarsByName(name, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
-                if let bars = bars {
-                    self.searchedBars = bars
-                    for bar in self.searchedBars {
-                        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: bar.location!.coordinate.latitude, longitude: bar.location!.coordinate.longitude), completionHandler: { (placemarks, error) -> Void in
-                            if let placemarks = placemarks {
-                                
-                                if let city = placemarks[0].addressDictionary!["City"] as? NSString {
-                                    self.searchedBarCities.append(String(city))
-                                    if self.searchedBars.count == self.searchedBarCities.count {
-                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                            self.clearButton.enabled = true
-                                            self.tableView.reloadData()
-                                        })
-                                    }
-                                }
-                            }
-                        })
-                    }
-                }
-            })
-            
-        }
-    }
-    
     
     // MARK: TableView Delegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if searchedBarsExist {
-            searchedBars[indexPath.row].setAsCurrent()
-        } else if recentBarsExist {
-            if indexPath.section == 0 {
-                BarController.sharedController.recentBars[indexPath.row].setAsCurrent()
-            } else if indexPath.section == 1 {
-                bars[indexPath.row].setAsCurrent()
-            }
-        } else {
-            bars[indexPath.row].setAsCurrent()
-        }
+        bars[indexPath.row].setAsCurrent()
         self.performSegueWithIdentifier("unwindToNewPost", sender: nil)
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Recently Viewed"
-        } else if section == 1 {
-            return "Bars Near You"
-        } else {
-            return ""
-        }
+        return "Bars Near You"
     }
     
     // MARK: CLLocationManagerDelegate
