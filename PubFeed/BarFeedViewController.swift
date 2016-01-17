@@ -26,7 +26,6 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emojiLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var openNowLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
@@ -89,12 +88,12 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header:UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.backgroundView?.backgroundColor = UIColor().pinkTintColor()
+        header.backgroundView?.backgroundColor = UIColor.blackColor()
         header.backgroundView?.alpha = 0.9
-        header.textLabel!.textColor = UIColor.whiteColor()//UIColor().pinkTintColor()
+        header.textLabel!.textColor = UIColor().greenTintColor()
         header.textLabel!.frame = header.frame
         header.textLabel!.textAlignment = NSTextAlignment.Left
-        header.textLabel?.font = UIFont(name: "CaviarDreams", size: 20)
+        header.textLabel?.font = UIFont(name: "CaviarDreams", size: 18)
         header.textLabel!.text = "⏲ Recent Activity"
     }
     
@@ -106,10 +105,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func likeButtonTapped(sender: PostTableViewCell) {
         if let indexPath = tableView.indexPathForCell(sender) {
             if let posts = self.posts {
-                let post = posts[indexPath.row]
-//                    LikeController.toggleLike(<#T##like: Like##Like#>, post: post, isLiked: self.isLiked, completion: { (isLiked, error) -> Void in
-//                        <#code#>
-//                    })
+
             }
         }
     }
@@ -120,17 +116,10 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if let bar = self.bar {
             print(bar.name)
             self.nameLabel.text = bar.name
-            if let priceLevel = bar.priceLevel {
-                self.priceLabel.text = priceLevel.priceLevelStringFromInt()
-                print(priceLevel)
-                print(priceLevel.priceLevelStringFromInt())
-            } else {
-                self.priceLabel.text = ""
-            }
             if let openNow = bar.openNow {
                 if openNow {
                     self.openNowLabel.text = "OPEN"
-                    self.openNowLabel.textColor = UIColor.greenColor()
+                    self.openNowLabel.textColor = UIColor().greenTintColor()
                 } else {
                     self.openNowLabel.text = "CLOSED"
                     self.openNowLabel.textColor = UIColor.redColor()

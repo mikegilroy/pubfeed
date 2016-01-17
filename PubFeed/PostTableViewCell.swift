@@ -41,7 +41,7 @@ class PostTableViewCell: UITableViewCell {
             self.postTextLabel.text = ""
         }
         
-        self.timestampLabel.text = post.timestamp.offsetFrom(NSDate())
+        self.timestampLabel.text = "\(post.timestamp)"
         
         // Get likes for posts
         self.likeCountLabel.text = "\(post.likes)"
@@ -59,7 +59,7 @@ class PostTableViewCell: UITableViewCell {
                         if let photoUrl = photoUrl {
                         ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                 self.profileImageView.image = image
+                                self.profileImageView.image = image
                             })
                         })
                         }
@@ -67,6 +67,11 @@ class PostTableViewCell: UITableViewCell {
                 }
             }
         }
+        
+        self.profileImageView.layer.cornerRadius = 15
+        self.profileImageView.layer.borderColor = UIColor.blackColor().CGColor
+        self.profileImageView.layer.borderWidth = 1
+        self.profileImageView.clipsToBounds = true
     }
     
     func updateUserLikesPost(post: Post) {
