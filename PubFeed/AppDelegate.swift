@@ -31,10 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barStyle = .Black
         UINavigationBar.appearance().translucent = false
-        UINavigationBar.appearance().tintColor = UIColor().pinkTintColor()
+        UINavigationBar.appearance().tintColor = UIColor().greenTintColor()
         UITabBar.appearance().barStyle = .Black
         UITabBar.appearance().translucent = false
-        UITabBar.appearance().tintColor = UIColor().pinkTintColor()
+        UITabBar.appearance().tintColor = UIColor().greenTintColor()
         
         
         
