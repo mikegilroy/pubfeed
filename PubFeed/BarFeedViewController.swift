@@ -97,6 +97,22 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         header.textLabel!.text = "⏲ Recent Activity"
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? PostTableViewCell {
+//            if let posts = posts {
+//                let post = posts[indexPath.row]
+//                if let _ = post.photo {
+//                    //has photo
+//                    let imageViewHeight = cell.postImageView.frame.height
+//                    return (205 - 80.5) + imageViewHeight
+//                } else {
+//                    //no photo
+//                    return 205 - 80.5
+//                }
+//            }
+//        }
+        return 222 - 66.5
+    }
 
     
     // MARK: PostTableViewCellDelegate

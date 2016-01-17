@@ -32,6 +32,7 @@ class PostTableViewCell: UITableViewCell {
     
     
     func updateCellWithPost(post: Post) {
+        addCustomSeperator()
         
         self.emojiLabel.text = post.emojis
         
@@ -40,8 +41,10 @@ class PostTableViewCell: UITableViewCell {
         } else {
             self.postTextLabel.text = ""
         }
+        postTextLabel.lineBreakMode = .ByWordWrapping
         
-        self.timestampLabel.text = "\(post.timestamp)"
+        self.timestampLabel.text = "\(post.timestamp.offsetFrom(NSDate()))"
+        print(post.timestamp)
         
         // Get likes for posts
         self.likeCountLabel.text = "\(post.likes)"
@@ -52,16 +55,16 @@ class PostTableViewCell: UITableViewCell {
         // Get user for post and set user attributes
         UserController.userWithIdentifier(post.userIdentifier) { (user) -> Void in
             if let user = user {
-                    self.usernameLabel.text = user.username
+                self.usernameLabel.text = user.username
                 
                 if let userID = user.identifier {
                     ImageController.profilePhotoForIdentifier(userID, completion: { (photoUrl) -> Void in
                         if let photoUrl = photoUrl {
-                        ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                self.profileImageView.image = image
+                            ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    self.profileImageView.image = image
+                                })
                             })
-                        })
                         }
                     })
                 }
@@ -72,6 +75,23 @@ class PostTableViewCell: UITableViewCell {
         self.profileImageView.layer.borderColor = UIColor.blackColor().CGColor
         self.profileImageView.layer.borderWidth = 1
         self.profileImageView.clipsToBounds = true
+        
+        if let imageString = post.photo {
+            if let imageURL = NSURL(string: imageString) {
+                ImageController.fetchImageAtUrl(imageURL, completion: { (image) -> () in
+                    self.postImageView.image = image
+                    // imageview width = screenwidth - 64
+                    let imageViewWidth = self.frame.width - 64
+                    let imageWidth = image.size.width
+                    let ratio = imageWidth / imageViewWidth
+                    let imageViewHeight = image.size.height / ratio
+                    
+                    self.postImageView.frame = CGRect(x: self.postImageView.frame.origin.x, y: self.postImageView.frame.origin.y, width: imageViewWidth, height: imageViewHeight)
+                })
+            } else {
+                self.postImageView.frame = CGRect(x: self.postImageView.frame.origin.x, y: self.postImageView.frame.origin.y, width: 0, height: 0)
+            }
+        }
     }
     
     func updateUserLikesPost(post: Post) {
@@ -91,5 +111,10 @@ class PostTableViewCell: UITableViewCell {
         self.delegate?.likeButtonTapped(sender)
     }
     
+    func addCustomSeperator() {
+        let seperatorView = UIView(frame: CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1))
+        seperatorView.backgroundColor = UIColor.lightGrayColor()
+        self.addSubview(seperatorView)
+    }
     
 }

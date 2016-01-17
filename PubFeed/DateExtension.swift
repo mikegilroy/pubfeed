@@ -23,43 +23,57 @@ extension NSDate: Comparable {
         return Double(self.secondsFrom(date))
     }
     
-    
     func yearsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
+        let years = NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
+        return years
     }
     
-    func monthsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Month, fromDate: date, toDate: self, options: []).month
+    func monthsFrom(date:NSDate) -> Int {
+        let months =  NSCalendar.currentCalendar().components(.Month, fromDate: date, toDate: self, options: []).month
+        return months
     }
     
-    func weeksFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
+    func weeksFrom(date:NSDate) -> Int {
+        let weeks =  NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
+        return weeks
     }
     
     func daysFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Day, fromDate: date, toDate: self, options: []).day
+        let days =  NSCalendar.currentCalendar().components(.Day, fromDate: date, toDate: self, options: []).day
+        return days
     }
     
     func hoursFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
+        let hours =  NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
+        return hours
     }
     
     func minutesFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
+        let minutes =  NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
+        return minutes
     }
     
     func secondsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
+        let seconds =  NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
+        return seconds
     }
     
     func offsetFrom(date:NSDate) -> String {
-        if yearsFrom(date)   > 0 { return "\(yearsFrom(date))y"   }
-        if monthsFrom(date)  > 0 { return "\(monthsFrom(date))M"  }
-        if weeksFrom(date)   > 0 { return "\(weeksFrom(date))w"   }
-        if daysFrom(date)    > 0 { return "\(daysFrom(date))d"    }
-        if hoursFrom(date)   > 0 { return "\(hoursFrom(date))h"   }
-        if minutesFrom(date) > 0 { return "\(minutesFrom(date))m" }
-        if secondsFrom(date) > 0 { return "\(secondsFrom(date))s" }
+        print(yearsFrom(date))
+        print(date)
+        if yearsFrom(date)   <= -1 { return "\(yearsFrom(date) * -1)y"   }
+        print(monthsFrom(date))
+        if monthsFrom(date)  <= -1 { return "\(monthsFrom(date) * -1)M"  }
+        print(weeksFrom(date))
+        if weeksFrom(date)   <= -1 { return "\(weeksFrom(date) * -1)w"   }
+        print(daysFrom(date))
+        if daysFrom(date)    <= -1 { return "\(daysFrom(date) * -1)d"    }
+        print(hoursFrom(date))
+        if hoursFrom(date)   <= -1 { return "\(hoursFrom(date) * -1)h"   }
+        print(minutesFrom(date))
+        if minutesFrom(date) <= -1 { return "\(minutesFrom(date) * -1)m" }
+        print(secondsFrom(date))
+        if secondsFrom(date) <= -1 { return "\(secondsFrom(date) * -1)s" }
         return ""
     }
 }
