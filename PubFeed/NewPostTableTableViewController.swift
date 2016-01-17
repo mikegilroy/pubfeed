@@ -89,13 +89,16 @@ class NewPostTableTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let currentBar = BarController.sharedController.currentBar {
-            self.barLabel.text = currentBar.name
-        }
         for button in emojiButton {
             button.setBackgroundImage(UIImage(named: emojiMenu[button.tag]), forState: .Normal)
         }
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        if let currentBar = BarController.sharedController.currentBar {
+            self.barLabel.text = currentBar.name
+        }
     }
     
     // MARK: TableView Delegate
@@ -128,6 +131,11 @@ class NewPostTableTableViewController: UITableViewController {
         view.layer.addAnimation(animation, forKey: "position")
         
     }
+    
+    // MARK: Navigation
+    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+    }
+
     
 
 }

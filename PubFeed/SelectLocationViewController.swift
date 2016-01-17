@@ -140,6 +140,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         } else {
             bars[indexPath.row].setAsCurrent()
         }
+        self.performSegueWithIdentifier("unwindToNewPost", sender: nil)
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -174,6 +175,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         print(error)
         print(error.localizedDescription)
     }
+    
     
 
 
