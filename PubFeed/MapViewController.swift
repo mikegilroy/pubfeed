@@ -129,7 +129,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                             let imageName = ("\(emoji)pin")
                             pinView!.image = UIImage(named: imageName)
                         } else {
-                            pinView!.image = UIImage(named: "blackDefault")
+                            pinView!.image = UIImage(named: "beerIcon")
                         }
                     }
                 }
