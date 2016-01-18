@@ -110,6 +110,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Bqo-9i-bTB">
+                        <barButtonItem key="leftBarButtonItem" image="location" id="BUT-pV-AJh">
+                            <connections>
+                                <action selector="locationButtonTapped:" destination="eJp-cG-gxJ" id="ZKR-pk-SXD"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="067-Ua-Vg8">
                             <connections>
                                 <action selector="refreshButtonTapped:" destination="eJp-cG-gxJ" id="kaD-zs-GyS"/>
@@ -1542,6 +1547,7 @@
         <image name="commentIconGrey" width="50" height="48"/>
         <image name="edit" width="160" height="160"/>
         <image name="heartIconGrey" width="50" height="50"/>
+        <image name="location" width="21" height="21"/>
         <image name="pexels-photo_darker" width="4000" height="2667"/>
         <image name="regular" width="174" height="174"/>
     </resources>

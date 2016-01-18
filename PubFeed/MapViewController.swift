@@ -37,6 +37,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     
+    @IBAction func locationButtonTapped(sender: UIBarButtonItem) {
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    
+    
     // MARK: viewDid Functions
     
     override func viewDidLoad() {
