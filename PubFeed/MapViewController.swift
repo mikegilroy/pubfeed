@@ -117,29 +117,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let rightButton = UIButton(type: UIButtonType.DetailDisclosure)
         rightButton.titleForState(UIControlState.Normal)
         
-        if pinView == nil {
-            
-            pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            let annotationLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-            for bar in bars {
-                if let barLocation = bar.location {
-                    if barLocation == annotationLocation {
-                        if let emoji = bar.topEmojis.first {
-                            let imageName = ("\(emoji)pin")
-                            pinView!.image = UIImage(named: imageName)
-                        } else {
-                            pinView!.image = UIImage(named: "beerIcon")
-                        }
+        pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        pinView!.canShowCallout = true
+        let annotationLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        for bar in bars {
+            if let barLocation = bar.location {
+                if barLocation == annotationLocation {
+                    if let emoji = bar.topEmojis.first {
+                        let imageName = ("\(emoji)pin")
+                        pinView!.image = UIImage(named: imageName)
+                    } else {
+                        pinView!.image = UIImage(named: "beerIcon")
                     }
                 }
             }
-            pinView!.rightCalloutAccessoryView = rightButton
-
-
-        } else {
-            pinView!.annotation = annotation
         }
+        pinView!.rightCalloutAccessoryView = rightButton
         
         // Check if annotation location matches user location - if so return nil to show user location
         if (annotation.coordinate.latitude == self.mapView.userLocation.coordinate.latitude) && (annotation.coordinate.longitude == self.mapView.userLocation.coordinate.longitude) {
@@ -238,7 +231,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             for post in posts {
                 let postLocation = CLLocation(latitude: post.latitude, longitude: post.longitude)
                 if postLocation == location {
-                    emojis.append(post.emojis)
+                    //Add a constant of one for each like
+                    let constant = post.likes
+                    // Algorithm for date multiplier
+                    var multiplier = 0
+                    let now = Double(NSDate().timeIntervalSince1970)
+                    let postDate = post.timestamp.doubleValue()
+                    // 6 hours
+                    if (now - postDate) < 21600 {
+                        multiplier = 10
+                    // 1 day
+                    } else if (now - postDate) < 86400 {
+                        multiplier = 7
+                    // 10 days
+                    } else if (now - postDate) < 864000 {
+                        multiplier = 3
+                    // 30 days
+                    } else if (now - postDate) < 2592000 {
+                        multiplier = 1
+                    }
+                    if multiplier > 0 {
+                        var powerPoints = (multiplier + constant)
+                        while powerPoints > 0 {
+                            emojis.append(post.emojis)
+                            powerPoints--
+                        }
+                    }
                 }
             }
             var emojiCounts: [String: Int] = [:]
