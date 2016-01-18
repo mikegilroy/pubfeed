@@ -15,10 +15,6 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var commentTextField: UITextField!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     // MARK: - Add Comment Function
     
@@ -43,6 +39,11 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
     
     func updateWithUser(post: Post, user: User) {
         self.post = post
+        
+        self.profileImage.clipsToBounds = true
+        self.profileImage.layer.cornerRadius = 16
+        self.profileImage.layer.borderWidth = 1
+        self.profileImage.layer.borderColor = UIColor.blackColor().CGColor
         
         ImageController.profilePhotoForIdentifier(user.identifier!) { (photoUrl) -> Void in
             if let photoUrl = photoUrl {
@@ -77,13 +78,6 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
     
     func doneButtonAction() {
         self.addComment()
-    }
-    
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
 }

@@ -23,6 +23,8 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postText: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     
     // MARK: Actions
@@ -30,6 +32,18 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     func updateWithPost(post: Post) {
         
         self.post = post
+        self.timestampLabel.text = "\(post.timestamp.offsetFrom(NSDate()))"
+        self.emojiLabel.text = post.emojis
+        self.postText.text = post.text
+        
+        UserController.userWithIdentifier(post.userIdentifier) { (user) -> Void in
+            if let user = user {
+                self.usernameLabel.text = user.username
+            } else {
+                self.usernameLabel.text = ""
+                print("unknown username on post detail")
+            }
+        }
         
         CommentController.commentsForPost(post) { (comments) -> Void in
             self.comments = comments
@@ -62,8 +76,6 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
         //            self.postImage.removeFromSuperview()
         //        }
         
-        self.emojiLabel.text = post.emojis
-        self.postText.text = post.text
     }
     
     
@@ -71,20 +83,25 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if let post = self.post {
+            updateWithPost(post)
+        }
+        
+        // Rounded profile photo
+        self.profilePhoto.layer.cornerRadius = 26
+        self.profilePhoto.layer.borderWidth = 1
+        self.profilePhoto.layer.borderColor = UIColor.blackColor().CGColor
+        self.profilePhoto.clipsToBounds = true
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCommentTableView", name: "updateComment", object: nil)
-        
-//        if let post = self.post {
-//            self.updateWithPost(post)
-//        }
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCommentTableView", name: "updateComment", object: nil)
     }
     
-    func reloadCommentTableView () {
+    func reloadCommentTableView() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             
             if let post = self.post {
@@ -98,6 +115,7 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
@@ -156,6 +174,15 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
                     self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                 }
             })
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0:
+            return 44
+        default:
+            return 89
         }
     }
 }

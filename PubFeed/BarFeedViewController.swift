@@ -49,10 +49,6 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewWillAppear(true)
         
         loadPostsForBar()
-        
-        if let indexPath = oldIndexPath as NSIndexPath! {
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-        }
     }
     
     
@@ -175,13 +171,9 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if segue.identifier == "toDetailView" {
             if let postDetailDestination = segue.destinationViewController as? PostDetailViewController {
-                _ = postDetailDestination.view
-                
                 if let indexPath = tableView.indexPathForSelectedRow {
-                    self.oldIndexPath = indexPath
                     if let post = self.posts?[indexPath.row] {
-                        self.selectedPost = post
-                        postDetailDestination.updateWithPost(post)
+                        postDetailDestination.post = post
                     }
                 }
             }

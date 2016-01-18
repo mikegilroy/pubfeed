@@ -14,9 +14,7 @@ class CommentTableViewCell: UITableViewCell {
     var user: User?
     
     @IBOutlet weak var profilePhoto: UIImageView!
-    
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var commentLabel: UILabel!
     
     
@@ -26,9 +24,7 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     func updateWithComment(comment: Comment) {
-        
 
-            
             ImageController.profilePhotoForIdentifier(comment.userIdentifier) { (photoUrl) -> Void in
                 if let photoUrl = photoUrl {
                     ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
@@ -37,7 +33,6 @@ class CommentTableViewCell: UITableViewCell {
                         })
                     })
                 }
-            
         }
         self.usernameLabel.text = comment.username
         self.commentLabel.text = comment.text
