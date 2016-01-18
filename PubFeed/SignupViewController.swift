@@ -22,6 +22,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var addProfilePhotoButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var secondView: UIView!
     
     // MARK: Actions
     
@@ -50,6 +52,11 @@ class SignupViewController: UIViewController {
             
             UserController.createUser(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) -> Void in
                 if error == nil {
+                    self.view.endEditing(true)
+                    self.emailTextField.resignFirstResponder()
+                    self.passwordTextField.resignFirstResponder()
+                    self.usernameTextField.resignFirstResponder()
+                    self.addProfilePhotoButton.resignFirstResponder()
                     self.user = user
                     self.performSegueWithIdentifier("toAddPhoto", sender: nil)
                     
@@ -69,6 +76,16 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        usernameTextField.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        
+        let tapRecogniser = UITapGestureRecognizer(target: self, action: "userTappedView:")
+        secondView.addGestureRecognizer(tapRecogniser)
     }
     
     
@@ -85,11 +102,12 @@ class SignupViewController: UIViewController {
     
     
     // MARK: TEXTFIELDS (DELEGATE) & Keyboard Dismissal
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func userTappedView(sender: AnyObject) -> Void {
         view.endEditing(true)
     }
     
 }
+
 
 extension SignupViewController: UITextFieldDelegate {
     
@@ -97,6 +115,23 @@ extension SignupViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    // MARK: Shift View on Keyboard Appearance and Removal
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            
+            let yCoordinate = self.view.frame.origin.y + keyboardSize.height
+            let scrollDestination = CGPointMake(0.0, yCoordinate)
+            scrollView.setContentOffset(scrollDestination, animated: true)
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        let yNewCoordinate = self.view.frame.origin.y
+        let scrollNewDestination = CGPointMake(0.0, yNewCoordinate)
+        scrollView.setContentOffset(scrollNewDestination, animated: true)
     }
     
 }

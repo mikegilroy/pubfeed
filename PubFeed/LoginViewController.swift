@@ -19,6 +19,9 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var secondView: UIView!
+    
     
     // MARK: Actions
     
@@ -50,6 +53,11 @@ class LoginViewController: UIViewController {
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
                 if error == nil {
+                    
+                    let yNewCoordinate = self.view.frame.origin.y
+                    let scrollNewDestination = CGPointMake(0.0, yNewCoordinate)
+                    self.scrollView.setContentOffset(scrollNewDestination, animated: true)
+                    
                     self.user = user
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
@@ -106,7 +114,19 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        
+        let tapRecogniser = UITapGestureRecognizer(target: self, action: "userTappedView:")
+        secondView.addGestureRecognizer(tapRecogniser)
+        
     }
+    
+    
     
     
     // MARK: Navigation
@@ -120,21 +140,39 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    
-    // MARK: TEXTFIELDS (DELEGATE) & Keyboard Dismissal
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
 }
+
 
 extension LoginViewController: UITextFieldDelegate {
     
-    // Dismiss TextField
+    // MARK: Dismiss TextField
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    //     MARK: TEXTFIELDS (DELEGATE) & Keyboard Dismissal
+    func userTappedView(sender: AnyObject) -> Void {
+        view.endEditing(true)
+    }
+        
+    
+    // MARK: Shift View on Keyboard Appearance and Removal
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            
+            let yCoordinate = self.view.frame.origin.y + keyboardSize.height
+            let scrollDestination = CGPointMake(0.0, yCoordinate)
+            scrollView.setContentOffset(scrollDestination, animated: true)
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+            
+            let yNewCoordinate = self.view.frame.origin.y
+            let scrollNewDestination = CGPointMake(0.0, yNewCoordinate)
+            scrollView.setContentOffset(scrollNewDestination, animated: true)
+    }
+    
     
 }

@@ -65,12 +65,12 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         case .defaultView:
             
             if let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as? NSData {
-            let image = UIImage(data: imageData)
-            self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
-            self.updateProfilePhotoButton.titleLabel?.text = ""
-            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
-            
-        }
+                let image = UIImage(data: imageData)
+                self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
+                self.updateProfilePhotoButton.titleLabel?.text = ""
+                self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                
+            }
             if let user = UserController.sharedController.currentUser {
                 usernameTextField.text = user.username
                 emailTextField.text = user.email
@@ -85,7 +85,10 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             updateProfilePhotoButton.setTitle("", forState: .Normal)
             updateProfilePhotoButton.alpha = 1
             
-            let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editButtonTapped:")
+            //            let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editButtonTapped:")
+            
+            let editButton = UIBarButtonItem(image: UIImage(named: "editButton"), style: .Plain, target: self, action: "editButtonTapped:")
+            
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
@@ -135,27 +138,66 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             updateProfilePhotoButton.setTitle("Edit Profile Photo", forState: .Normal)
             updateProfilePhotoButton.titleLabel?.textColor = UIColor.blueColor()
             
-            let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "editButtonTapped:")
+            let cancelButton = UIBarButtonItem(title: "X", style: .Plain, target: self, action: "editButtonTapped:")
             self.navigationController?.navigationItem.leftBarButtonItem = cancelButton
             self.navigationItem.setLeftBarButtonItem(cancelButton, animated: true)
         }
     }
     
     
+    //    @IBAction func editPencilButtonTapped(sender: UIBarButtonItem) {
+    //
+    //        if let buttonAppearance = sender.image {
+    //
+    //            switch buttonAppearance {
+    //            case UIImage(named: "editButton")!:
+    //                self.mode = .editView
+    //                updateViewForMode(mode)
+    //            case "X":
+    //                self.mode = .defaultView
+    //                updateViewForMode(mode)
+    //            default:
+    //                updateViewForMode(mode)
+    //            }
+    //        }
+    //    }
+    
     @IBAction func editButtonTapped(sender: UIBarButtonItem) {
         
-        if let buttonTitle = sender.title {
-            switch buttonTitle {
-            case "Edit":
+        if let buttonAppearance = sender.image {
+            switch buttonAppearance {
+            case UIImage(named: "editButton")!:
                 self.mode = .editView
                 updateViewForMode(mode)
-            case "Cancel":
+            case "X":
                 self.mode = .defaultView
                 updateViewForMode(mode)
             default:
                 updateViewForMode(mode)
             }
         }
+        if let buttonTitle = sender.title {
+            switch buttonTitle {
+            case "X":
+                self.mode = .defaultView
+                updateViewForMode(mode)
+            default:
+                updateViewForMode(mode)
+            }
+        }
+        
+        //        if let buttonTitle = sender.title {
+        //            switch buttonTitle {
+        //            case "Edit":
+        //                self.mode = .editView
+        //                updateViewForMode(mode)
+        //            case "X":
+        //                self.mode = .defaultView
+        //                updateViewForMode(mode)
+        //            default:
+        //                updateViewForMode(mode)
+        //            }
+        //        }
     }
     
     
