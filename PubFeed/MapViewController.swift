@@ -57,25 +57,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: Map Functions
     
     func centerMapOnLocation(location: CLLocation) {
-        
-        var latitudeDelta = 0.02
-        var longitudeDelta = 0.02
-        if let furthestBarLocation = self.bars.last?.location {
-            latitudeDelta = furthestBarLocation.coordinate.latitude - location.coordinate.latitude
-            longitudeDelta = furthestBarLocation.coordinate.longitude - location.coordinate.longitude
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        var latitudeDelta = 0.0
+        var longitudeDelta = 0.0
+        if let farthestBar = self.bars.last {
+            if let barLocation = farthestBar.location {
+                let signedLatitudeDelta = latitude - barLocation.coordinate.latitude
+                let signedLongitudeDelta = longitude - barLocation.coordinate.longitude
+                let trueLatitudeDelta = (abs(signedLatitudeDelta) * 2)
+                let trueLongitudeDelta = (abs(signedLongitudeDelta) * 2)
+                latitudeDelta = (trueLatitudeDelta * 1.5)
+                longitudeDelta = (trueLongitudeDelta * 1.5)
+            }
         }
-        
-        var largestDelta = 0.02
-        if latitudeDelta > longitudeDelta {
-            largestDelta = latitudeDelta * 3
-        } else {
-            largestDelta = longitudeDelta * 3
-        }
-        if largestDelta < 0 {
-            largestDelta = largestDelta * -1
-        }
-        
-        let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: largestDelta, longitudeDelta: largestDelta))
+        let coordinateRegion = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta))
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
