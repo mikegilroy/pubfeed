@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -65,6 +65,13 @@
 	<string>We require your location to find pubs and bars near you</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We require your location to find pubs and bars near you</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>CaviarDreams_Italic.ttf</string>
+		<string>CaviarDreams_BoldItalic.ttf</string>
+		<string>CaviarDreams.ttf</string>
+		<string>Caviar_Dreams_Bold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -83,13 +90,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>CaviarDreams_Italic.ttf</string>
-		<string>CaviarDreams_BoldItalic.ttf</string>
-		<string>CaviarDreams.ttf</string>
-		<string>Caviar_Dreams_Bold.ttf</string>
 	</array>
 </dict>
 </plist>
