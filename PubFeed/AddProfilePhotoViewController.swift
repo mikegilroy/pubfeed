@@ -93,8 +93,10 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
         self.profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
         self.submitButton.enabled = true
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.addProfilePhotoButton.setBackgroundImage(self.profilePhoto, forState: .Normal)
+            self.addProfilePhotoButton.setImage(self.profilePhoto, forState: .Normal)
+//            self.addProfilePhotoButton.setBackgroundImage(, forState: .Normal)
             self.addProfilePhotoButton.setTitle("", forState: .Normal)
+            
         })
     }
     

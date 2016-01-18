@@ -56,7 +56,7 @@ class SignupViewController: UIViewController {
                     self.emailTextField.resignFirstResponder()
                     self.passwordTextField.resignFirstResponder()
                     self.usernameTextField.resignFirstResponder()
-                    self.addProfilePhotoButton.resignFirstResponder()
+                   
                     self.user = user
                     self.performSegueWithIdentifier("toAddPhoto", sender: nil)
                     
