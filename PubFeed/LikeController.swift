@@ -116,67 +116,10 @@ class LikeController {
         //        }
     }
     
-    //UPDATE
-    static func toggleLike(like: Like, post: Post, isLiked: Bool, completion: (isLiked: Bool, error: NSError?) -> Void)  {
-        //Revisit this after making changes to FirebaseType save and delete functions
-        if isLiked == true {
-            like.delete({ (error) -> Void in
-                if let error = error {
-                    completion(isLiked: true, error: error)
-                } else {
-                    PostController.decrementLikesOnPost(post, completion: { (post, error) -> Void in
-                        if let error = error {
-                            completion(isLiked: false, error: error)
-                        } else {
-                            completion(isLiked: false, error: nil)
-                        }
-                    })
-                }
-            })
-        } else {
-            LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
-                if let error = error {
-                    completion(isLiked: false, error: error)
-                } else {
-                    PostController.incrementLikesOnPost(post, completion: { (post, error) -> Void in
-                        if let error = error {
-                            completion(isLiked: true, error: error)
-                        } else {
-                            completion(isLiked: true, error: nil)
-                        }
-                    })
-                }
-            })
-        }
-    }
-    
-    // DELETE
-    static func deleteAllLikesForPost(post: Post, completion: (error: NSError?) -> Void) {
-        //        likesForPost(post) { (likes) -> Void in
-        //            if likes.count > 0 {
-        //                for like in likes {
-        //                    like.delete({ (error) -> Void in
-        //                        if error != nil {
-        //                            completion(error: error)
-        //                        }
-        //                    })
-        //                }
-        //            }
-        //        }
-    }
-    
     static func deleteAllLikesForUser(user: User, completion: (error: NSError?) -> Void) {
-        likesForUser(user) { (likes) -> Void in
+        likesForUser(user) { (var likes) -> Void in
             if likes.count > 0 {
-                for like in likes {
-                    //
-                    
-                    like.delete({ (error) -> Void in
-                        if error != nil {
-                            completion(error: error)
-                        }
-                    })
-                }
+             likes.removeAll()
             }
         }
     }

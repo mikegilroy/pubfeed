@@ -170,11 +170,11 @@ class PostController {
                 errorArray.append(error)
             }
         })
-        LikeController.deleteAllLikesForPost(post, completion: { (error) -> Void in
-            if let error = error {
-                errorArray.append(error)
-            }
-        })
+//        LikeController.deleteAllLikesForPost(post, completion: { (error) -> Void in
+//            if let error = error {
+//                errorArray.append(error)
+//            }
+//        })
         post.delete { (error) -> Void in
             if let error = error {
                 errorArray.append(error)

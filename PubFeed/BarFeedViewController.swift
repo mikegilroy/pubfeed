@@ -30,6 +30,9 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func likeButtonTapped(sender: PostTableViewCell) {
         
+    
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
         let cell = sender.superview?.superview as! UITableViewCell
         if let indexPath = tableView.indexPathForCell(cell) {
             self.myIndexPath = indexPath
@@ -40,8 +43,13 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 LikeController.likesForPost(UserController.sharedController.currentUser!, post: post, completion: { (likes) -> Void in
                     if let likes = likes {
+
                         LikeController.deleteLike(likes.first!, post: post, completion: { (success, post, error) -> Void in
+                            
                             if success {
+                                
+                                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
                                 self.updateLike()
                                 print("success delete like")
                             } else {
@@ -51,9 +59,13 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     } else {
                         LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
                             if error == nil {
+                                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
                                 self.updateLike()
                                 print("success add Like")
                             } else {
+                                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
                                 print(error?.localizedDescription)
                                 print("failed to like")
                             }
