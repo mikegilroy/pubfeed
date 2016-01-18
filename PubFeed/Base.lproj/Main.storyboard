@@ -138,6 +138,7 @@
                     <connections>
                         <outlet property="mapView" destination="WFE-pj-cvZ" id="5GS-Yj-SxU"/>
                         <outlet property="refreshButton" destination="067-Ua-Vg8" id="TDD-8K-jhn"/>
+                        <outlet property="tableView" destination="sxi-Pm-aly" id="Srs-K9-tZ0"/>
                         <segue destination="51t-Te-QpQ" kind="show" identifier="toBarDetail" id="vK1-jv-tsR"/>
                     </connections>
                 </viewController>

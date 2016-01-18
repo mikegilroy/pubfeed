@@ -22,9 +22,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var annotations: [MKAnnotation] = []
     
     // MARK: Outlets
-    
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
+    
 
     // MARK: Actions
     
