@@ -416,6 +416,9 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateProfilePhotoButton.layer.borderColor = UIColor.darkGrayColor().CGColor
+        updateProfilePhotoButton.layer.borderWidth = 2
+        updateProfilePhotoButton.layer.cornerRadius = updateProfilePhotoButton.frame.size.width/2
         
         if let identifier = UserController.sharedController.currentUser?.identifier {
             
@@ -442,8 +445,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         //textField delegate
         self.usernameTextField.delegate = self
         self.emailTextField.delegate = self
-        
-        
+    
     }
     
     override func viewDidAppear(animated: Bool) {

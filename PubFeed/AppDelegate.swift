@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Appearance
         
         UINavigationBar.appearance().barStyle = .Black
-        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().translucent = true
+        UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         UINavigationBar.appearance().tintColor = UIColor().greenTintColor()
         UITabBar.appearance().barStyle = .Black
         UITabBar.appearance().translucent = false

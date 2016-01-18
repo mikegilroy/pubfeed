@@ -10,13 +10,14 @@
         <mutableArray key="CaviarDreams.ttf">
             <string>CaviarDreams</string>
             <string>CaviarDreams</string>
+            <string>CaviarDreams</string>
+            <string>CaviarDreams</string>
+            <string>CaviarDreams</string>
         </mutableArray>
         <mutableArray key="CaviarDreams_BoldItalic.ttf">
             <string>CaviarDreams-BoldItalic</string>
         </mutableArray>
         <mutableArray key="Caviar_Dreams_Bold.ttf">
-            <string>CaviarDreams-Bold</string>
-            <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
@@ -1068,6 +1069,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2So-sB-FPb">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="52"/>
+                                                    <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="15"/>
                                                     <connections>
                                                         <segue destination="rZd-3p-awZ" kind="show" id="qgk-vO-ejw"/>
                                                     </connections>
@@ -1326,48 +1328,51 @@
                         <sections>
                             <tableViewSection id="vvK-hf-qk0">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="159" id="WEW-ep-q6g">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="159"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="185" id="WEW-ep-q6g">
+                                        <rect key="frame" x="0.0" y="64" width="600" height="185"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WEW-ep-q6g" id="X4n-Mc-90F">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqs-qT-s8J">
-                                                    <rect key="frame" x="225" y="8" width="150" height="143"/>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqs-qT-s8J">
+                                                    <rect key="frame" x="225" y="17" width="150" height="150"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Nqs-qT-s8J" secondAttribute="height" multiplier="75:71" id="OiJ-Lq-l1d"/>
+                                                        <constraint firstAttribute="width" secondItem="Nqs-qT-s8J" secondAttribute="height" multiplier="1:1" id="z7V-Fq-hLh"/>
                                                     </constraints>
                                                     <state key="normal">
                                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="20"/>
+                                                            <integer key="value" value="75"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="updatePhotoTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="igh-Cs-qCg"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="centerX" secondItem="X4n-Mc-90F" secondAttribute="centerX" id="1aS-GN-q1y"/>
-                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="top" secondItem="X4n-Mc-90F" secondAttribute="topMargin" id="SeA-Bh-Iqt"/>
-                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="bottom" secondItem="X4n-Mc-90F" secondAttribute="bottomMargin" id="m71-e0-VoC"/>
+                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="centerX" secondItem="X4n-Mc-90F" secondAttribute="centerX" id="4w4-yq-gcb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Nqs-qT-s8J" secondAttribute="bottom" constant="9" id="79a-Pl-7LT"/>
+                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="centerY" secondItem="X4n-Mc-90F" secondAttribute="centerY" id="Mqy-Og-1ph"/>
+                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="top" secondItem="X4n-Mc-90F" secondAttribute="topMargin" constant="9" id="w8c-uk-yma"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="q0D-iF-SMO">
-                                        <rect key="frame" x="0.0" y="223" width="600" height="53"/>
+                                        <rect key="frame" x="0.0" y="249" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q0D-iF-SMO" id="OIV-rV-pJg">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="afz-u9-wlX">
+                                                <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="afz-u9-wlX">
                                                     <rect key="frame" x="8" y="8" width="584" height="37"/>
-                                                    <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
@@ -1385,15 +1390,15 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="Olx-aQ-4be">
-                                        <rect key="frame" x="0.0" y="276" width="600" height="53"/>
+                                        <rect key="frame" x="0.0" y="302" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Olx-aQ-4be" id="cLx-wR-ZMn">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MdS-UE-1V2">
+                                                <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MdS-UE-1V2">
                                                     <rect key="frame" x="8" y="8" width="584" height="37"/>
-                                                    <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
@@ -1411,7 +1416,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="wif-oI-TF5">
-                                        <rect key="frame" x="0.0" y="329" width="600" height="53"/>
+                                        <rect key="frame" x="0.0" y="355" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wif-oI-TF5" id="iao-hH-p3R">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
@@ -1420,7 +1425,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHG-Ya-zsf">
                                                     <rect key="frame" x="8" y="8" width="584" height="36"/>
                                                     <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="20"/>
-                                                    <state key="normal" title="Update Password"/>
+                                                    <state key="normal" title="Update Password">
+                                                        <color key="titleColor" red="0.42352941179999998" green="0.98823529409999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="updatePasswordTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="K0f-yB-gC7"/>
                                                     </connections>
@@ -1435,7 +1442,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="2tq-fO-aNS">
-                                        <rect key="frame" x="0.0" y="382" width="600" height="53"/>
+                                        <rect key="frame" x="0.0" y="408" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2tq-fO-aNS" id="j79-kc-jrY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
@@ -1444,7 +1451,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZn-F8-9eo">
                                                     <rect key="frame" x="8" y="8" width="584" height="36"/>
                                                     <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="20"/>
-                                                    <state key="normal" title="Delete Account"/>
+                                                    <state key="normal" title="Delete Account">
+                                                        <color key="titleColor" red="1" green="0.24094295870812799" blue="0.16262861013163521" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="deleteAccountTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="lNE-fS-p0L"/>
                                                     </connections>
@@ -1459,7 +1468,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="Kkm-i1-0Wn">
-                                        <rect key="frame" x="0.0" y="435" width="600" height="53"/>
+                                        <rect key="frame" x="0.0" y="461" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kkm-i1-0Wn" id="I0b-eN-bms">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
@@ -1468,7 +1477,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bx-j6-aZP">
                                                     <rect key="frame" x="8" y="8" width="584" height="36"/>
                                                     <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="20"/>
-                                                    <state key="normal" title="Logout "/>
+                                                    <state key="normal" title="Logout ">
+                                                        <color key="titleColor" red="1" green="0.24094295870812799" blue="0.16262861013163521" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="logoutTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="0P9-L6-30O"/>
                                                     </connections>
@@ -1513,7 +1524,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xZU-yJ-BF6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2213" y="885"/>
+            <point key="canvasLocation" x="2217" y="868"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KcQ-RH-DXq">
