@@ -34,8 +34,6 @@ class LoginViewController: UIViewController {
         self.activityIndicator.activityIndicatorViewStyle = .Gray
         self.view.addSubview(self.activityIndicator)
         
-
-        
         self.activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
@@ -47,8 +45,6 @@ class LoginViewController: UIViewController {
             ErrorHandling.defaultErrorHandler(nil, title: "Missing information")
         } else {
             UserController.authenticateUser(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) -> Void in
-                
-             
                 
                 self.activityIndicator.stopAnimating()
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()

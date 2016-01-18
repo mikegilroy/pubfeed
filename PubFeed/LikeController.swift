@@ -15,11 +15,25 @@ class LikeController {
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
             if let postIdentifier = post.identifier {
                 
-                let base = FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("\(userIdentifier)")
+//                let base = FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("\(userIdentifier)")
                 var like = Like(userIdentifier: userIdentifier, postIdentifier: postIdentifier)
+//                base.childByAutoId()
                 
-                base.childByAutoId()
+//                base.setValue(like as! AnyObject, withCompletionBlock: { (error, base) -> Void in
+//                    if error != nil {
+//                        completion(like: nil, error: error)
+//                    } else {
+//                        PostController.incrementLikesOnPost(post, completion: { (post, error) -> Void in
+//                            if let error = error {
+//                                completion(like: nil, error: error)
+//                            } else {
+//                                completion(like: like, error: nil)
+//                            }
+//                        })
+//                    }
+//                })
           
+                
                 like.save({ (error) -> Void in
                     if error != nil {
                         completion(like: nil, error: error)
@@ -50,13 +64,14 @@ class LikeController {
                 completion(success: false, post: nil, error: error)
             } else {
                 
-                PostController.decrementCommentsOnPost(post, completion: { (post, error) -> Void in
+                PostController.decrementLikesOnPost(post, completion: { (post, error) -> Void in
                     if error == nil {
                         completion(success: true, post: post, error: nil)
                     } else {
                         completion(success: false, post: nil, error: error)
                     }
                 })
+              
                 PostController.postFromIdentifier(like.postIdentifier) { (post) -> Void in
                     completion(success: true, post: post, error: nil)
                 }
@@ -90,17 +105,22 @@ class LikeController {
 //            
 //        }
 //    }
-    static func likesForPost(user: User, post: Post, completion: (likes: Like?) -> Void) {
+    static func likesForPost(user: User, post: Post, completion: (likes: [Like]?) -> Void) {
         if let postIdentifier = post.identifier {
-            FirebaseController.base.childByAppendingPath("likes").queryOrderedByChild("postIdentifier").queryOrderedByChild("useridentifier").queryEqualToValue(user.identifier!).queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: {
+            FirebaseController.base.childByAppendingPath("likes").childByAppendingPath(user.identifier).queryOrderedByChild("postIdentifier").queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: {
                 snapshot in
                 
-                if let postDictionaries = snapshot.value as? [[String:AnyObject]] {
+                if let postDictionaries = snapshot.value as? [String: AnyObject] {
                     
 //                    let likes = postDictionaries.first
-                    let like = postDictionaries.first! as [String: AnyObject]
-                    let likes = Like(json: like, identifier: snapshot.key)
+//                    let like = postDictionaries.first! as [String: AnyObject]
+                    let likes = postDictionaries.flatMap({Like(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
                     
+
+//                    let comments = commentDictionaries.flatMap({Comment(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
+//                    let sortedComments = comments.sort({$0.0.timestamp > $0.1.timestamp})
+//                    completion(comments: sortedComments)
+
                     completion(likes: likes)
                 } else {
                     completion(likes: nil)

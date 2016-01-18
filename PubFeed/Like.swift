@@ -29,7 +29,7 @@ struct Like: Equatable, FirebaseType {
     // Mark: FirebaseType
     
     var endpoint: String {
-        return "likes"
+        return "likes/\(self.userIdentifier)"
     }
     
     var jsonValue: [String: AnyObject] {

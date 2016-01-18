@@ -76,6 +76,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.updateCellWithPost(post)
             cell.updateUserLikesPost(post)
             cell.delegate = self
+            
         }
         return cell
     }
@@ -118,15 +119,18 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     func likeButtonTapped(sender: PostTableViewCell) {
-        let indexPath = tableView.indexPathForRowAtPoint(sender.frame.origin)
+        
+        let cell = sender.superview?.superview as! UITableViewCell
+        let buttonFrame = sender.convertRect(sender.frame, toView: self.tableView)
+        if let indexPath = tableView.indexPathForCell(cell) {
         
         if let posts = self.posts {
             
-            let post = posts[indexPath!.row]
+            let post = posts[indexPath.row]
             
             LikeController.likesForPost(UserController.sharedController.currentUser!, post: post, completion: { (likes) -> Void in
                 if let likes = likes {
-                    LikeController.deleteLike(likes, post: post, completion: { (success, post, error) -> Void in
+                    LikeController.deleteLike(likes.first!, post: post, completion: { (success, post, error) -> Void in
                         if success {
                             NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
                             print("success")
@@ -148,6 +152,9 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     })
                 }
             })
+        }
+        } else {
+            print("no index")
         }
     }
     //                LikeController.likesForUser(UserController.sharedController.currentUser!, completion: { (likes) -> Void in

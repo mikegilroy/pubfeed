@@ -15,5 +15,4 @@ extension UITableViewCell {
         seperatorView.backgroundColor = lineColor
         self.addSubview(seperatorView)
     }
-    
 }

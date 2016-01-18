@@ -200,9 +200,4 @@ class PostController {
             }
         }
     }
-    
-    
-    
-    
-    
 }
