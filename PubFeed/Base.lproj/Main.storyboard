@@ -767,6 +767,13 @@
                                     <rect key="frame" x="0.0" y="64" width="600" height="218"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VT3-CX-K1t">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>
+                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.25100295610000001" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="46" id="ggg-gT-InE"/>
+                                            </constraints>
+                                        </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mTd-9L-aDc">
                                             <rect key="frame" x="14" y="8" width="30" height="30"/>
                                             <constraints>
@@ -818,12 +825,18 @@
                                                 <constraint firstAttribute="height" constant="89" id="l8c-jZ-slu"/>
                                             </constraints>
                                         </imageView>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YMA-It-7Q0">
+                                            <rect key="frame" x="0.0" y="45" width="600" height="1"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="8uk-ig-LC8" firstAttribute="top" secondItem="jhM-1s-lB9" secondAttribute="bottom" constant="13" id="3bt-dj-Yh3"/>
                                         <constraint firstItem="jhM-1s-lB9" firstAttribute="top" secondItem="4GW-v0-fq2" secondAttribute="top" constant="8" id="ACI-GQ-ca5"/>
                                         <constraint firstAttribute="trailing" secondItem="70f-Gu-3Cr" secondAttribute="trailing" constant="20" id="ArA-sp-9eS"/>
+                                        <constraint firstAttribute="trailing" secondItem="VT3-CX-K1t" secondAttribute="trailing" id="CEC-fv-SjC"/>
+                                        <constraint firstItem="VT3-CX-K1t" firstAttribute="leading" secondItem="4GW-v0-fq2" secondAttribute="leading" id="GrL-dc-QRE"/>
                                         <constraint firstItem="70f-Gu-3Cr" firstAttribute="leading" secondItem="jhM-1s-lB9" secondAttribute="trailing" constant="8" id="MR3-tO-ixU"/>
                                         <constraint firstItem="Nlg-qO-3H6" firstAttribute="leading" secondItem="4GW-v0-fq2" secondAttribute="leading" constant="14" id="Nkx-BN-lrr"/>
                                         <constraint firstAttribute="trailing" secondItem="Nlg-qO-3H6" secondAttribute="trailing" constant="20" id="TmF-eu-xDL"/>
@@ -831,6 +844,7 @@
                                         <constraint firstAttribute="bottom" secondItem="Nlg-qO-3H6" secondAttribute="bottom" constant="8" id="Xpi-Fu-axb"/>
                                         <constraint firstItem="jhM-1s-lB9" firstAttribute="leading" secondItem="mTd-9L-aDc" secondAttribute="trailing" constant="7" id="dp2-Cn-ofa"/>
                                         <constraint firstItem="mTd-9L-aDc" firstAttribute="leading" secondItem="4GW-v0-fq2" secondAttribute="leading" constant="14" id="mZe-cR-zwb"/>
+                                        <constraint firstItem="VT3-CX-K1t" firstAttribute="top" secondItem="4GW-v0-fq2" secondAttribute="top" id="nzV-91-Uel"/>
                                         <constraint firstItem="OiB-Ws-3CP" firstAttribute="top" secondItem="jhM-1s-lB9" secondAttribute="bottom" constant="13" id="rne-lB-NZO"/>
                                         <constraint firstItem="mTd-9L-aDc" firstAttribute="top" secondItem="4GW-v0-fq2" secondAttribute="top" constant="8" id="tNi-Qf-tkx"/>
                                         <constraint firstItem="8uk-ig-LC8" firstAttribute="leading" secondItem="OiB-Ws-3CP" secondAttribute="trailing" constant="5" id="tlE-se-OO8"/>

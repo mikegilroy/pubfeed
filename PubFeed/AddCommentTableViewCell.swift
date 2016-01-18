@@ -27,7 +27,7 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
             CommentController.addCommentToPost(self.post!, text: self.commentTextField.text!, completion: { (comment, error) -> Void in
                 if error == nil {
                     
-                    NSNotificationCenter.defaultCenter().postNotificationName("updateComment", object: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("updateComments", object: nil)
                
                     self.commentTextField.text = ""
                 } else {

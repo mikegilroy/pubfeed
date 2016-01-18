@@ -39,6 +39,8 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCommentTableView", name: "updateComments", object: nil)
+        
         if let post = self.post {
             updateWithPost(post)
         }
