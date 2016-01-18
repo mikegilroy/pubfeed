@@ -17,7 +17,9 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     var comments: [Comment] = []
     var delegate: PostDetailViewControllerDelegate?
     
+    
     // MARK: Outlets
+    
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePhoto: UIImageView!
@@ -25,11 +27,54 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var postText: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var headerView: UIView!
     
     
     // MARK: Actions
     
+    
+    
+    // MARK: viewDid Functions
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let post = self.post {
+            updateWithPost(post)
+        }
+        
+        // Rounded profile photo
+        self.profilePhoto.layer.cornerRadius = 15
+        self.profilePhoto.layer.borderWidth = 1
+        self.profilePhoto.layer.borderColor = UIColor.blackColor().CGColor
+        self.profilePhoto.clipsToBounds = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    
+    // MARK: Helper Functions
+    
+    func reloadCommentTableView() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            
+            if let post = self.post {
+                self.updateWithPost(post)
+            }
+            self.tableView.reloadData()
+        })
+    }
+    
+    func addCustomSeperator(lineColor: UIColor) {
+        let seperatorView = UIView(frame: CGRect(x: 0, y: self.headerView.frame.height - 1, width: self.headerView.frame.width, height: 1))
+        seperatorView.backgroundColor = lineColor
+        self.headerView.addSubview(seperatorView)
+    }
+    
     func updateWithPost(post: Post) {
+        addCustomSeperator(UIColor.lightGrayColor())
         
         self.post = post
         self.timestampLabel.text = "\(post.timestamp.offsetFrom(NSDate()))"
@@ -51,16 +96,21 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
-            
         }
         
         ImageController.profilePhotoForIdentifier(post.userIdentifier) { (photoUrl) -> Void in
             if let photoUrl = photoUrl {
                 ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.profilePhoto.image = image
+                        if let image = image {
+                            self.profilePhoto.image = image
+                        } else {
+                            self.profilePhoto.image = UIImage(named: "defaultProfilePhoto")
+                        }
                     })
                 })
+            } else {
+                self.profilePhoto.image = UIImage(named: "defaultProfilePhoto")
             }
         }
         
@@ -77,41 +127,10 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
         //        }
         
     }
-    
-    
-    // MARK: viewDid Functions
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let post = self.post {
-            updateWithPost(post)
-        }
-        
-        // Rounded profile photo
-        self.profilePhoto.layer.cornerRadius = 26
-        self.profilePhoto.layer.borderWidth = 1
-        self.profilePhoto.layer.borderColor = UIColor.blackColor().CGColor
-        self.profilePhoto.clipsToBounds = true
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCommentTableView", name: "updateComment", object: nil)
-    }
-    
-    func reloadCommentTableView() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            
-            if let post = self.post {
-                self.updateWithPost(post)
-            }
-            self.tableView.reloadData()
-        })
-    }
+
     
     // MARK: TableView Datasource
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -180,17 +199,23 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 44
+            return 68
         default:
             return 89
         }
     }
 }
 
+
+// MARK: PostDetailViewControllerDelegate Protocol Declaration
+
 protocol PostDetailViewControllerDelegate {
     func addComment()
     func addDoneButtonOnKeyboard()
 }
+
+
+// MARK: UITextFieldDelegate
 
 extension PostDetailViewController: UITextFieldDelegate {
     

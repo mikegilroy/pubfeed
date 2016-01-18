@@ -32,7 +32,7 @@ class PostTableViewCell: UITableViewCell {
     
     
     func updateCellWithPost(post: Post) {
-        addCustomSeperator()
+        self.addCustomSeperator(UIColor.lightGrayColor())
         
         self.emojiLabel.text = post.emojis
         
@@ -123,12 +123,6 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func likeButtonTapped(sender: PostTableViewCell) {
         self.delegate?.likeButtonTapped(sender)
-    }
-    
-    func addCustomSeperator() {
-        let seperatorView = UIView(frame: CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1))
-        seperatorView.backgroundColor = UIColor.lightGrayColor()
-        self.addSubview(seperatorView)
     }
     
 }

@@ -16,6 +16,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -24,23 +25,31 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     func updateWithComment(comment: Comment) {
+        self.addCustomSeperator(UIColor.lightGrayColor())
         
         profilePhoto.clipsToBounds = true
-        profilePhoto.layer.cornerRadius = 16
+        profilePhoto.layer.cornerRadius = 15
         profilePhoto.layer.borderWidth = 1
         profilePhoto.layer.borderColor = UIColor.blackColor().CGColor
         
         ImageController.profilePhotoForIdentifier(comment.userIdentifier) { (photoUrl) -> Void in
-                if let photoUrl = photoUrl {
-                    ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if let photoUrl = photoUrl {
+                ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        if let image = image  {
                             self.profilePhoto.image = image
-                        })
+                        } else {
+                            self.profilePhoto.image = UIImage(named: "defaultProfilePhoto")
+                        }
                     })
-                }
+                })
+            } else {
+                self.profilePhoto.image = UIImage(named: "defaultProfilePhoto")
+            }
         }
         self.usernameLabel.text = comment.username
         self.commentLabel.text = comment.text
+        self.timestampLabel.text = "\(comment.timestamp.offsetFrom(NSDate()))"
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

@@ -39,9 +39,10 @@ class AddCommentTableViewCell: UITableViewCell, PostDetailViewControllerDelegate
     
     func updateWithUser(post: Post, user: User) {
         self.post = post
+        self.addCustomSeperator(UIColor.lightGrayColor())
         
         self.profileImage.clipsToBounds = true
-        self.profileImage.layer.cornerRadius = 16
+        self.profileImage.layer.cornerRadius = 15
         self.profileImage.layer.borderWidth = 1
         self.profileImage.layer.borderColor = UIColor.blackColor().CGColor
         
