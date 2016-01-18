@@ -38,7 +38,9 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBarDetails()
-        //loadPostsForBar()
+        
+        
+        loadPostsForBar()
         if let bar = bar {
             bar.setAsCurrent()
         }
@@ -114,9 +116,12 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: PostTableViewCellDelegate
     var isLiked: Bool?
     
+    
     func likeButtonTapped(sender: PostTableViewCell) {
-        if let indexPath = tableView.indexPathForCell(sender) {
+        let indexPath = tableView.indexPathForRowAtPoint(sender.frame.origin)
+       
             if let posts = self.posts {
+<<<<<<< 73de3090ea99882220f39897673d59511797b114
 <<<<<<< c4aaeb35e3e3733a4f041c8a35268b0ed8f34cad
 
 =======
@@ -125,8 +130,71 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 sdfs
                    })
 >>>>>>> spinning added on Login Sign Up
+=======
+                let post = posts[indexPath!.row]
+                
+                LikeController.likesForPost(UserController.sharedController.currentUser!, post: post, completion: { (likes) -> Void in
+                    if let likes = likes {
+                        LikeController.deleteLike(likes, post: post, completion: { (success, post, error) -> Void in
+                            if success {
+                                NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+                                print("success")
+
+                            } else {
+                                print("fail to delete")
+                            }
+                        })
+                    } else {
+                        LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
+                            if error == nil {
+                                NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+
+                                print("success add Like")
+                            } else {
+                                print(error?.localizedDescription)
+                                print("failed to like")
+                            }
+                        })
+                    }
+                })
+//                LikeController.likesForUser(UserController.sharedController.currentUser!, completion: { (likes) -> Void in
+//                    
+//                    if likes.count == 0 {
+//                        LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
+//                            if error == nil {
+////                                NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+//                            }
+//                        })
+//                    } else {
+//                    for like in likes {
+//                        LikeController.likesForPost(post, completion: { (likes) -> Void in
+//                            if likes.count > 0 {
+//                                LikeController.deleteLike(like, post: post, completion: { (success, post, error) -> Void in
+//                                    if success {
+////                                        NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+//                                    } else {
+//                                        print("failed to unlike")
+//                                    }
+//                                   
+//                                })
+//                            } else {
+//                                LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
+//                                    if error == nil {
+////                                        NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+//                                    } else {
+//                                        print("success like")
+//                                    }
+//                                })
+//                                
+//                            }
+//                        })
+//                    }
+//                    }
+                
+//                })
+>>>>>>> Like function
             }
-        }
+        
     }
     
     // MARK: Helper Functions

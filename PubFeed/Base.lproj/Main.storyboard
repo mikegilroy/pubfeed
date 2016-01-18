@@ -197,8 +197,13 @@
                                                     <action selector="forgotPasswordTapped:" destination="ANR-Gl-O4t" eventType="touchUpInside" id="SRf-Af-Hws"/>
                                                 </connections>
                                             </button>
+<<<<<<< 73de3090ea99882220f39897673d59511797b114
                                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-LR-AUl">
                                                 <rect key="frame" x="20" y="551" width="560" height="34"/>
+=======
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOk-EG-NPX">
+                                                <rect key="frame" x="20" y="260" width="560" height="34"/>
+>>>>>>> Like function
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="560" id="aiI-4r-xZh"/>
                                                     <constraint firstAttribute="height" constant="34" id="yuX-jc-zmn"/>

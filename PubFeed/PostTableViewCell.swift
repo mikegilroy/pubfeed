@@ -110,15 +110,15 @@ class PostTableViewCell: UITableViewCell {
     
     func updateUserLikesPost(post: Post) {
         // Check if user likes post
-        LikeController.likesForPost(post) { (likes) -> Void in
-            for like in likes {
-                if like.userIdentifier == UserController.sharedController.currentUser?.identifier {
-                    // Change image to red heart
-                } else {
-                    // Change image to grey heart
-                }
-            }
-        }
+//        LikeController.likesForPost(post) { (likes) -> Void in
+//            for like in likes {
+//                if like.userIdentifier == UserController.sharedController.currentUser?.identifier {
+//                    // Change image to red heart
+//                } else {
+//                    // Change image to grey heart
+//                }
+//            }
+//        }
     }
     
     @IBAction func likeButtonTapped(sender: PostTableViewCell) {

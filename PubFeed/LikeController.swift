@@ -9,18 +9,33 @@
 import Foundation
 
 class LikeController {
-
+    
     // CREATE
     static func addLikeToPost(post: Post, completion: (like: Like?, error: NSError?) -> Void) {
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
             if let postIdentifier = post.identifier {
+                
+                let base = FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("\(userIdentifier)")
                 var like = Like(userIdentifier: userIdentifier, postIdentifier: postIdentifier)
+                
+                base.childByAutoId()
+                
+                base.setValue(like, withCompletionBlock: { (error, base) -> Void in
+                    
+                })
                 like.save({ (error) -> Void in
                     if error != nil {
                         completion(like: nil, error: error)
                     } else {
                         
-                        completion(like: like, error: nil)
+                        PostController.incrementLikesOnPost(post, completion: { (post, error) -> Void in
+                            if let error = error {
+                                completion(like: nil, error: error)
+                            } else {
+                                completion(like: like, error: nil)
+                            }
+                        })
+                        
                     }
                 })
             } else {
@@ -30,13 +45,21 @@ class LikeController {
             completion(like: nil, error: Error.defaultError())
         }
     }
-
     
-    static func deleteLike(like: Like, completion: (success: Bool, post: Post?, error: NSError?) -> Void) {
+    
+    static func deleteLike(like: Like, post: Post, completion: (success: Bool, post: Post?, error: NSError?) -> Void) {
         like.delete { (error) -> Void in
             if let error = error {
                 completion(success: false, post: nil, error: error)
             } else {
+                
+                PostController.decrementCommentsOnPost(post, completion: { (post, error) -> Void in
+                    if error == nil {
+                        completion(success: true, post: post, error: nil)
+                    } else {
+                        completion(success: false, post: nil, error: error)
+                    }
+                })
                 PostController.postFromIdentifier(like.postIdentifier) { (post) -> Void in
                     completion(success: true, post: post, error: nil)
                 }
@@ -47,7 +70,7 @@ class LikeController {
     // READ
     static func likesForUser(user: User, completion: (likes: [Like]) -> Void) {
         if let userIdentifier = user.identifier {
-            FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("userIdentifier").queryEqualToValue(userIdentifier).observeEventType(.Value, withBlock: {
+            FirebaseController.base.childByAppendingPath("likes").queryOrderedByChild("userIdentifier").queryEqualToValue(userIdentifier).observeEventType(.Value, withBlock: {
                 snapshot in
                 
                 if let likeDictionaries = snapshot.value as? [String:AnyObject] {
@@ -61,27 +84,38 @@ class LikeController {
         }
     }
     
-    static func likesForPost(post: Post, completion: (likes: [Like]) -> Void) {
+//    static func likesForPosts(user: User, post: Post, completion: (likes: Like?) -> Void) {
+//        FirebaseController.base.childByAppendingPath("likes").queryOrderedByChild("postIdentifier").queryEqualToValue(post.identifier).queryOrderedByChild("userIdentifier").queryEqualToValue(user.identifier).observeSingleEventOfType(.Value) { (snapshot) -> Void in
+//            if let like = snapshot.value as? Like {
+//                
+//            }
+//            
+//            
+//        }
+//    }
+    static func likesForPost(user: User, post: Post, completion: (likes: Like?) -> Void) {
         if let postIdentifier = post.identifier {
-            FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("postIdentifier").queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: {
+            FirebaseController.base.childByAppendingPath("likes").queryOrderedByChild("postIdentifier").queryOrderedByChild("useridentifier").queryEqualToValue(user.identifier!).queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: {
                 snapshot in
                 
-                if let postDictionaries = snapshot.value as? [String:AnyObject] {
+                if let postDictionaries = snapshot.value as? [[String:AnyObject]] {
                     
-                    let likes = postDictionaries.flatMap({Like(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
+//                    let likes = postDictionaries.first
+                    let like = postDictionaries.first! as [String: AnyObject]
+                    let likes = Like(json: like, identifier: snapshot.key)
                     
                     completion(likes: likes)
                 } else {
-                    completion(likes: [])
+                    completion(likes: nil)
                 }
             })
         }
     }
     
     static func likesForBar(bar: Bar, completion: (likes: [Like]) -> Void) {
-//        if let barID = bar.barID {
-//            FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("barID")
-//        }
+        //        if let barID = bar.barID {
+        //            FirebaseController.base.childByAppendingPath("likes").childByAppendingPath("barID")
+        //        }
     }
     
     //UPDATE
@@ -120,17 +154,17 @@ class LikeController {
     
     // DELETE
     static func deleteAllLikesForPost(post: Post, completion: (error: NSError?) -> Void) {
-        likesForPost(post) { (likes) -> Void in
-            if likes.count > 0 {
-                for like in likes {
-                    like.delete({ (error) -> Void in
-                        if error != nil {
-                            completion(error: error)
-                        }
-                    })
-                }
-            }
-        }
+//        likesForPost(post) { (likes) -> Void in
+//            if likes.count > 0 {
+//                for like in likes {
+//                    like.delete({ (error) -> Void in
+//                        if error != nil {
+//                            completion(error: error)
+//                        }
+//                    })
+//                }
+//            }
+//        }
     }
     
     static func deleteAllLikesForUser(user: User, completion: (error: NSError?) -> Void) {
