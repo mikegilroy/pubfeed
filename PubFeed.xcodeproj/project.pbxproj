@@ -65,6 +65,14 @@
 		E67F0F211C3DB69A00785F12 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F201C3DB69A00785F12 /* DateExtension.swift */; };
 		E67F0F231C3DB6AB00785F12 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F221C3DB6AB00785F12 /* StringExtension.swift */; };
 		E67F0F251C3DB70200785F12 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F0F241C3DB70200785F12 /* User.swift */; };
+		E683C07F1C4D758C005C337B /* Cabin-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E683C0771C4D7216005C337B /* Cabin-Bold.otf */; };
+		E683C0801C4D758C005C337B /* Cabin-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E683C0781C4D7216005C337B /* Cabin-BoldItalic.otf */; };
+		E683C0811C4D758C005C337B /* Cabin-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E683C0791C4D7216005C337B /* Cabin-Italic.otf */; };
+		E683C0821C4D758C005C337B /* Cabin-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E683C07A1C4D7216005C337B /* Cabin-Medium.otf */; };
+		E683C0831C4D758C005C337B /* Cabin-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E683C07B1C4D7216005C337B /* Cabin-MediumItalic.otf */; };
+		E683C0841C4D758C005C337B /* Cabin-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E683C07C1C4D7216005C337B /* Cabin-Regular.otf */; };
+		E683C0851C4D758C005C337B /* Cabin-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E683C07D1C4D7216005C337B /* Cabin-SemiBold.otf */; };
+		E683C0861C4D758C005C337B /* Cabin-SemiBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E683C07E1C4D7216005C337B /* Cabin-SemiBoldItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -154,6 +162,14 @@
 		E67F0F201C3DB69A00785F12 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		E67F0F221C3DB6AB00785F12 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		E67F0F241C3DB70200785F12 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E683C0771C4D7216005C337B /* Cabin-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Bold.otf"; path = "cabin/Cabin-Bold.otf"; sourceTree = "<group>"; };
+		E683C0781C4D7216005C337B /* Cabin-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-BoldItalic.otf"; path = "cabin/Cabin-BoldItalic.otf"; sourceTree = "<group>"; };
+		E683C0791C4D7216005C337B /* Cabin-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Italic.otf"; path = "cabin/Cabin-Italic.otf"; sourceTree = "<group>"; };
+		E683C07A1C4D7216005C337B /* Cabin-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Medium.otf"; path = "cabin/Cabin-Medium.otf"; sourceTree = "<group>"; };
+		E683C07B1C4D7216005C337B /* Cabin-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-MediumItalic.otf"; path = "cabin/Cabin-MediumItalic.otf"; sourceTree = "<group>"; };
+		E683C07C1C4D7216005C337B /* Cabin-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Regular.otf"; path = "cabin/Cabin-Regular.otf"; sourceTree = "<group>"; };
+		E683C07D1C4D7216005C337B /* Cabin-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-SemiBold.otf"; path = "cabin/Cabin-SemiBold.otf"; sourceTree = "<group>"; };
+		E683C07E1C4D7216005C337B /* Cabin-SemiBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-SemiBoldItalic.otf"; path = "cabin/Cabin-SemiBoldItalic.otf"; sourceTree = "<group>"; };
 		EC380EC15DACCA1F388C2727 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -347,6 +363,14 @@
 		E63008FC1C49560200FA0449 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				E683C0771C4D7216005C337B /* Cabin-Bold.otf */,
+				E683C0781C4D7216005C337B /* Cabin-BoldItalic.otf */,
+				E683C0791C4D7216005C337B /* Cabin-Italic.otf */,
+				E683C07A1C4D7216005C337B /* Cabin-Medium.otf */,
+				E683C07B1C4D7216005C337B /* Cabin-MediumItalic.otf */,
+				E683C07C1C4D7216005C337B /* Cabin-Regular.otf */,
+				E683C07D1C4D7216005C337B /* Cabin-SemiBold.otf */,
+				E683C07E1C4D7216005C337B /* Cabin-SemiBoldItalic.otf */,
 				E63008FF1C49564400FA0449 /* CaviarDreams_Italic.ttf */,
 				E63009011C49564A00FA0449 /* CaviarDreams_BoldItalic.ttf */,
 				E63008FD1C49563900FA0449 /* CaviarDreams.ttf */,
@@ -447,6 +471,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E683C07F1C4D758C005C337B /* Cabin-Bold.otf in Resources */,
+				E683C0801C4D758C005C337B /* Cabin-BoldItalic.otf in Resources */,
+				E683C0811C4D758C005C337B /* Cabin-Italic.otf in Resources */,
+				E683C0821C4D758C005C337B /* Cabin-Medium.otf in Resources */,
+				E683C0831C4D758C005C337B /* Cabin-MediumItalic.otf in Resources */,
+				E683C0841C4D758C005C337B /* Cabin-Regular.otf in Resources */,
+				E683C0851C4D758C005C337B /* Cabin-SemiBold.otf in Resources */,
+				E683C0861C4D758C005C337B /* Cabin-SemiBoldItalic.otf in Resources */,
 				1069A52F1C3C4A580018D28F /* LaunchScreen.storyboard in Resources */,
 				E63009041C49565000FA0449 /* Caviar_Dreams_Bold.ttf in Resources */,
 				1069A52C1C3C4A580018D28F /* Assets.xcassets in Resources */,

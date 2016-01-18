@@ -7,20 +7,26 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="Cabin-Italic.otf">
+            <string>Cabin-Italic</string>
+        </mutableArray>
+        <mutableArray key="Cabin-Regular.otf">
+            <string>Cabin-Regular</string>
+            <string>Cabin-Regular</string>
+        </mutableArray>
+        <mutableArray key="Cabin-SemiBold.otf">
+            <string>Cabin-SemiBold</string>
+        </mutableArray>
+        <mutableArray key="Cabin-SemiBoldItalic.otf">
+            <string>Cabin-SemiBoldItalic</string>
+        </mutableArray>
         <mutableArray key="CaviarDreams.ttf">
             <string>CaviarDreams</string>
             <string>CaviarDreams</string>
             <string>CaviarDreams</string>
             <string>CaviarDreams</string>
-            <string>CaviarDreams</string>
-        </mutableArray>
-        <mutableArray key="CaviarDreams_BoldItalic.ttf">
-            <string>CaviarDreams-BoldItalic</string>
         </mutableArray>
         <mutableArray key="Caviar_Dreams_Bold.ttf">
-            <string>CaviarDreams-Bold</string>
-            <string>CaviarDreams-Bold</string>
-            <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
@@ -149,9 +155,9 @@
                                                     <constraint firstAttribute="height" constant="37" id="3mK-ss-nIH"/>
                                                     <constraint firstAttribute="width" constant="98" id="F5u-YA-bZx"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="21"/>
+                                                <fontDescription key="fontDescription" name="Cabin-SemiBold" family="Cabin" pointSize="24"/>
                                                 <state key="normal" title="login">
-                                                    <color key="titleColor" red="0.044586489898989945" green="0.044586489898989945" blue="0.044586489898989945" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16990214649999999" green="0.16990214649999999" blue="0.16990214649999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -168,7 +174,7 @@
                                                     <constraint firstAttribute="height" constant="34" id="7R8-am-Dcy"/>
                                                     <constraint firstAttribute="width" constant="132" id="q5x-bd-dNd"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="CaviarDreams-BoldItalic" family="Caviar Dreams" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="Cabin-SemiBoldItalic" family="Cabin" pointSize="13"/>
                                                 <state key="normal" title="Forgot Password?">
                                                     <color key="titleColor" red="0.98717691620000003" green="0.98717691620000003" blue="0.98717691620000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -176,15 +182,15 @@
                                                     <action selector="forgotPasswordTapped:" destination="ANR-Gl-O4t" eventType="touchUpInside" id="SRf-Af-Hws"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-LR-AUl">
+                                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-LR-AUl">
                                                 <rect key="frame" x="20" y="551" width="560" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="560" id="aiI-4r-xZh"/>
                                                     <constraint firstAttribute="height" constant="34" id="yuX-jc-zmn"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="19"/>
+                                                <fontDescription key="fontDescription" name="Cabin-Italic" family="Cabin" pointSize="15"/>
                                                 <state key="normal" title="Don't have an account? Sign up!">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="0.42352941179999998" green="0.98823529409999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="nPB-Ge-5xc" kind="show" id="f6o-PH-9nZ"/>
@@ -193,7 +199,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-OM-4ch">
                                                 <rect key="frame" x="20" y="298" width="560" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="ANR-Gl-O4t" id="Mpi-dJ-GN8"/>
@@ -202,7 +208,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zbU-3m-CUB">
                                                 <rect key="frame" x="20" y="260" width="560" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="ANR-Gl-O4t" id="Rfj-CQ-eZC"/>
