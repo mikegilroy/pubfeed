@@ -19,10 +19,7 @@ class LikeController {
                 var like = Like(userIdentifier: userIdentifier, postIdentifier: postIdentifier)
                 
                 base.childByAutoId()
-                
-                base.setValue(like, withCompletionBlock: { (error, base) -> Void in
-                    
-                })
+          
                 like.save({ (error) -> Void in
                     if error != nil {
                         completion(like: nil, error: error)

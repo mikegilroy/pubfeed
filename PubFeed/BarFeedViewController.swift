@@ -96,22 +96,22 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? PostTableViewCell {
-//            if let posts = posts {
-//                let post = posts[indexPath.row]
-//                if let _ = post.photo {
-//                    //has photo
-//                    let imageViewHeight = cell.postImageView.frame.height
-//                    return (205 - 80.5) + imageViewHeight
-//                } else {
-//                    //no photo
-//                    return 205 - 80.5
-//                }
-//            }
-//        }
+        //        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? PostTableViewCell {
+        //            if let posts = posts {
+        //                let post = posts[indexPath.row]
+        //                if let _ = post.photo {
+        //                    //has photo
+        //                    let imageViewHeight = cell.postImageView.frame.height
+        //                    return (205 - 80.5) + imageViewHeight
+        //                } else {
+        //                    //no photo
+        //                    return 205 - 80.5
+        //                }
+        //            }
+        //        }
         return 222 - 66.5
     }
-
+    
     
     // MARK: PostTableViewCellDelegate
     var isLiked: Bool?
@@ -119,83 +119,72 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func likeButtonTapped(sender: PostTableViewCell) {
         let indexPath = tableView.indexPathForRowAtPoint(sender.frame.origin)
-       
-            if let posts = self.posts {
-<<<<<<< 73de3090ea99882220f39897673d59511797b114
-<<<<<<< c4aaeb35e3e3733a4f041c8a35268b0ed8f34cad
-
-=======
-                let post = posts[indexPath.row]
-                   LikeController.toggleLike(<#T##like: Like##Like#>, post: post, isLiked: isLiked, completion: { (isLiked, error) -> Void in
-                sdfs
-                   })
->>>>>>> spinning added on Login Sign Up
-=======
-                let post = posts[indexPath!.row]
-                
-                LikeController.likesForPost(UserController.sharedController.currentUser!, post: post, completion: { (likes) -> Void in
-                    if let likes = likes {
-                        LikeController.deleteLike(likes, post: post, completion: { (success, post, error) -> Void in
-                            if success {
-                                NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-                                print("success")
-
-                            } else {
-                                print("fail to delete")
-                            }
-                        })
-                    } else {
-                        LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
-                            if error == nil {
-                                NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-
-                                print("success add Like")
-                            } else {
-                                print(error?.localizedDescription)
-                                print("failed to like")
-                            }
-                        })
-                    }
-                })
-//                LikeController.likesForUser(UserController.sharedController.currentUser!, completion: { (likes) -> Void in
-//                    
-//                    if likes.count == 0 {
-//                        LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
-//                            if error == nil {
-////                                NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-//                            }
-//                        })
-//                    } else {
-//                    for like in likes {
-//                        LikeController.likesForPost(post, completion: { (likes) -> Void in
-//                            if likes.count > 0 {
-//                                LikeController.deleteLike(like, post: post, completion: { (success, post, error) -> Void in
-//                                    if success {
-////                                        NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-//                                    } else {
-//                                        print("failed to unlike")
-//                                    }
-//                                   
-//                                })
-//                            } else {
-//                                LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
-//                                    if error == nil {
-////                                        NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-//                                    } else {
-//                                        print("success like")
-//                                    }
-//                                })
-//                                
-//                            }
-//                        })
-//                    }
-//                    }
-                
-//                })
->>>>>>> Like function
-            }
         
+        if let posts = self.posts {
+            
+            let post = posts[indexPath!.row]
+            
+            LikeController.likesForPost(UserController.sharedController.currentUser!, post: post, completion: { (likes) -> Void in
+                if let likes = likes {
+                    LikeController.deleteLike(likes, post: post, completion: { (success, post, error) -> Void in
+                        if success {
+                            NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+                            print("success")
+                            
+                        } else {
+                            print("fail to delete")
+                        }
+                    })
+                } else {
+                    LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
+                        if error == nil {
+                            NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+                            
+                            print("success add Like")
+                        } else {
+                            print(error?.localizedDescription)
+                            print("failed to like")
+                        }
+                    })
+                }
+            })
+        }
     }
+    //                LikeController.likesForUser(UserController.sharedController.currentUser!, completion: { (likes) -> Void in
+    //
+    //                    if likes.count == 0 {
+    //                        LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
+    //                            if error == nil {
+    ////                                NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+    //                            }
+    //                        })
+    //                    } else {
+    //                    for like in likes {
+    //                        LikeController.likesForPost(post, completion: { (likes) -> Void in
+    //                            if likes.count > 0 {
+    //                                LikeController.deleteLike(like, post: post, completion: { (success, post, error) -> Void in
+    //                                    if success {
+    ////                                        NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+    //                                    } else {
+    //                                        print("failed to unlike")
+    //                                    }
+    //
+    //                                })
+    //                            } else {
+    //                                LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
+    //                                    if error == nil {
+    ////                                        NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
+    //                                    } else {
+    //                                        print("success like")
+    //                                    }
+    //                                })
+    //
+    //                            }
+    //                        })
+    //                    }
+    //                    }
+    
+    //                })
     
     // MARK: Helper Functions
     
