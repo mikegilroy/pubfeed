@@ -21,6 +21,7 @@
 		028A3E9E1C3F33A400B9FC3F /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E971C3F33A400B9FC3F /* GFBase32Utils.m */; };
 		028A3E9F1C3F33A400B9FC3F /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E991C3F33A400B9FC3F /* GFGeoHash.m */; };
 		028A3EA01C3F33A400B9FC3F /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E9B1C3F33A400B9FC3F /* GFGeoHashQuery.m */; };
+		02AB62501C4C8A260076E583 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB624F1C4C8A260076E583 /* UITableViewCellExtension.swift */; };
 		02E9B17A1C45EC29004627D3 /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E9B1791C45EC29004627D3 /* LocationExtension.swift */; };
 		02E9B1A01C48132C004627D3 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E9B19F1C48132C004627D3 /* DoubleExtension.swift */; };
 		100B8DAF1C3EFEF5005C45E4 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B8DAE1C3EFEF5005C45E4 /* BarController.swift */; };
@@ -106,6 +107,7 @@
 		028A3E991C3F33A400B9FC3F /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
 		028A3E9A1C3F33A400B9FC3F /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
 		028A3E9B1C3F33A400B9FC3F /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
+		02AB624F1C4C8A260076E583 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 		02E9B1791C45EC29004627D3 /* LocationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
 		02E9B19F1C48132C004627D3 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		100B8DAE1C3EFEF5005C45E4 /* BarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarController.swift; path = ../BarController.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				DED6E5C91C3DF19F005E17D8 /* UIViewControllerExtension.swift */,
+				02AB624F1C4C8A260076E583 /* UITableViewCellExtension.swift */,
 				E67F0F201C3DB69A00785F12 /* DateExtension.swift */,
 				E67F0F221C3DB6AB00785F12 /* StringExtension.swift */,
 				02E9B19F1C48132C004627D3 /* DoubleExtension.swift */,
@@ -552,6 +555,7 @@
 				0236A3711C3F192B00125BA9 /* Error.swift in Sources */,
 				E67F0F251C3DB70200785F12 /* User.swift in Sources */,
 				DEC8C5CC1C45A0FE00A6C5C1 /* AddCommentTableViewCell.swift in Sources */,
+				02AB62501C4C8A260076E583 /* UITableViewCellExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
