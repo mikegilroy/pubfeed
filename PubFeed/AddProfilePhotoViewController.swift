@@ -11,14 +11,24 @@ import UIKit
 class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var addProfilePhotoButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
+    
     var user: User?
     var profilePhoto: UIImage?
-    @IBOutlet weak var addProfilePhotoButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.submitButton.enabled = false
-        // Do any additional setup after loading the view.
+        
+//        addProfilePhotoButton.layer.borderColor = UIColor.darkGrayColor().CGColor
+//        addProfilePhotoButton.layer.borderWidth = 1
+//        addProfilePhotoButton.layer.cornerRadius = addProfilePhotoButton.frame.size.width/2
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackGround")!)
+        
     }
+    
     
     @IBAction func addProfilePhotoButtonTapped(sender: UIButton) {
         let imagePicker = UIImagePickerController()
@@ -103,4 +113,31 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
             }
         }
     }
+    
+    // MARK: UI Helpers
+    
+    func colorWithHexString (hex:String) -> UIColor {
+        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
+        
+        if (cString.hasPrefix("#")) {
+            cString = (cString as NSString).substringFromIndex(1)
+        }
+        
+        if (cString.characters.count != 6) {
+            return UIColor.grayColor()
+        }
+        
+        let rString = (cString as NSString).substringToIndex(2)
+        let gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
+        let bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
+        
+        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+        NSScanner(string: rString).scanHexInt(&r)
+        NSScanner(string: gString).scanHexInt(&g)
+        NSScanner(string: bString).scanHexInt(&b)
+        
+        
+        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
+    }
+
 }

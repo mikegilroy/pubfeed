@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QaS-jj-1BW">
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sjg-wa-dW2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -103,10 +102,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WFE-pj-cvZ" firstAttribute="top" secondItem="896-En-FGN" secondAttribute="bottom" id="6is-q6-VKs"/>
                             <constraint firstItem="WFE-pj-cvZ" firstAttribute="bottom" secondItem="YHF-kq-MTS" secondAttribute="top" id="UQ0-S7-mQF"/>
                             <constraint firstAttribute="trailing" secondItem="WFE-pj-cvZ" secondAttribute="trailing" id="ey6-2X-CI4"/>
                             <constraint firstItem="WFE-pj-cvZ" firstAttribute="leading" secondItem="I0q-2b-eas" secondAttribute="leading" id="pVP-AY-ck5"/>
-                            <constraint firstItem="WFE-pj-cvZ" firstAttribute="top" secondItem="896-En-FGN" secondAttribute="bottom" id="yKo-BR-Z50"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Bqo-9i-bTB">
@@ -655,7 +654,7 @@
                                         <rect key="frame" x="0.0" y="242" width="600" height="239"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fjl-l1-pdW" id="vdu-PH-4zi">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="238.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="238"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qZf-qy-Dnj">
@@ -887,17 +886,17 @@
                                         <rect key="frame" x="0.0" y="455" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FHN-7M-IbS" id="1Ey-Z4-AQZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1j-BL-miL">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1j-BL-miL">
                                                     <rect key="frame" x="8" y="4" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="35" id="8t1-SJ-JiV"/>
                                                         <constraint firstAttribute="height" constant="35" id="zo0-pT-eee"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add your comment here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-yu-d21">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add your comment here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-yu-d21">
                                                     <rect key="frame" x="51" y="7" width="541" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="V9U-AN-0Dq"/>
@@ -929,7 +928,7 @@
                                         <rect key="frame" x="0.0" y="499" width="600" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxZ-S7-aSn" id="t6t-kn-jMr">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="88.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="82K-2K-MAQ">
@@ -1038,18 +1037,18 @@
                                         <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NIr-wt-9F7" id="Tdo-20-Fy5">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3r5-lS-G06">
-                                                    <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
+                                                    <rect key="frame" x="15" y="12" width="32" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fXL-t5-U7l">
-                                                    <rect key="frame" x="543.5" y="12" width="41.5" height="19.5"/>
+                                                    <rect key="frame" x="543" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -1108,7 +1107,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L95-AO-l2m" id="FkO-jR-vKz">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPO-nU-MOH">
@@ -1118,7 +1117,7 @@
                                                     </constraints>
                                                     <state key="normal" backgroundImage="advance"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a bar to post to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIT-pk-ipp">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select a bar to post to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIT-pk-ipp">
                                                     <rect key="frame" x="8" y="8" width="533" height="36"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" button="YES" staticText="YES"/>
@@ -1127,7 +1126,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2So-sB-FPb">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2So-sB-FPb">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="52"/>
                                                     <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="15"/>
                                                     <connections>
@@ -1155,47 +1154,47 @@
                                         <rect key="frame" x="0.0" y="52" width="600" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zfh-Qw-HiQ" id="Dl4-wX-ss6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="143.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="56m-L7-dLu">
                                                     <rect key="frame" x="8" y="8" width="584" height="127"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9wr-2R-0ud">
-                                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="584" height="42"/>
                                                             <subviews>
                                                                 <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhg-Ua-ea4" userLabel="0">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="nuf-uf-ARt"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBg-SP-ySY" userLabel="1">
-                                                                    <rect key="frame" x="98" y="0.0" width="97" height="43"/>
+                                                                    <rect key="frame" x="97" y="0.0" width="98" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="brx-n3-2lZ"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NI-sy-ir4" userLabel="2">
-                                                                    <rect key="frame" x="195" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="195" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Yuk-Vw-dou"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DS8-7u-DGh" userLabel="3">
-                                                                    <rect key="frame" x="292" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="292" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="qtD-fG-4vz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0U-Du-pHe" userLabel="4">
-                                                                    <rect key="frame" x="390" y="0.0" width="97" height="43"/>
+                                                                    <rect key="frame" x="389" y="0.0" width="98" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Q6x-kY-b9T"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iK-2X-BSu" userLabel="5">
-                                                                    <rect key="frame" x="487" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="487" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Bv5-an-F4g"/>
                                                                     </connections>
@@ -1203,40 +1202,40 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Zek-su-K2u">
-                                                            <rect key="frame" x="0.0" y="43" width="584" height="42"/>
+                                                            <rect key="frame" x="0.0" y="42" width="584" height="43"/>
                                                             <subviews>
                                                                 <button opaque="NO" alpha="0.5" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rN-QW-7Y8" userLabel="6">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="42"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="97" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="UlV-6H-Avz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZs-eO-5qo" userLabel="7">
-                                                                    <rect key="frame" x="98" y="0.0" width="97" height="42"/>
+                                                                    <rect key="frame" x="97" y="0.0" width="98" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="kLP-hH-r3W"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFc-Di-Pgp" userLabel="8">
-                                                                    <rect key="frame" x="195" y="0.0" width="98" height="42"/>
+                                                                    <rect key="frame" x="195" y="0.0" width="97" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="UsF-BR-rH7"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I80-Hy-Ihi" userLabel="9">
-                                                                    <rect key="frame" x="292" y="0.0" width="98" height="42"/>
+                                                                    <rect key="frame" x="292" y="0.0" width="97" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="b7a-WP-iKS"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKT-Kb-kSi" userLabel="10">
-                                                                    <rect key="frame" x="390" y="0.0" width="97" height="42"/>
+                                                                    <rect key="frame" x="389" y="0.0" width="98" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="YUA-Gr-3z0"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knT-LZ-2N2" userLabel="11">
-                                                                    <rect key="frame" x="487" y="0.0" width="98" height="42"/>
+                                                                    <rect key="frame" x="487" y="0.0" width="97" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="NVG-2y-U7u"/>
                                                                     </connections>
@@ -1244,40 +1243,40 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="h0q-cX-73v">
-                                                            <rect key="frame" x="0.0" y="85" width="584" height="43"/>
+                                                            <rect key="frame" x="0.0" y="85" width="584" height="42"/>
                                                             <subviews>
                                                                 <button opaque="NO" alpha="0.5" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRD-XY-NXT" userLabel="12">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="VTM-4t-tr7"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNW-d3-Vk8" userLabel="13">
-                                                                    <rect key="frame" x="98" y="0.0" width="97" height="43"/>
+                                                                    <rect key="frame" x="97" y="0.0" width="98" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="uFA-98-wV1"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C07-F2-0HQ" userLabel="14">
-                                                                    <rect key="frame" x="195" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="195" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="NMj-kL-5bu"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk7-6D-bCq" userLabel="15">
-                                                                    <rect key="frame" x="292" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="292" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="3B0-fh-Zbz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0s-4n-g5V" userLabel="16">
-                                                                    <rect key="frame" x="390" y="0.0" width="97" height="43"/>
+                                                                    <rect key="frame" x="389" y="0.0" width="98" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="V7g-Bq-QKG"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.5" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ah9-Lv-Sln" userLabel="17">
-                                                                    <rect key="frame" x="487" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="487" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="rOy-Vm-o6g"/>
                                                                     </connections>
@@ -1299,10 +1298,10 @@
                                         <rect key="frame" x="0.0" y="196" width="600" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nuR-SK-ALu" id="9Tw-pf-Z8M">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="97.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xx9-S2-l5Z">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xx9-S2-l5Z">
                                                     <rect key="frame" x="8" y="8" width="584" height="82"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1321,7 +1320,7 @@
                                         <rect key="frame" x="0.0" y="294" width="600" height="244"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U5V-56-Dsl" id="nId-e3-iGE">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="243.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="243"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1392,7 +1391,7 @@
                                         <rect key="frame" x="0.0" y="64" width="600" height="185"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WEW-ep-q6g" id="X4n-Mc-90F">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="184.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqs-qT-s8J">
@@ -1414,7 +1413,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="Nqs-qT-s8J" firstAttribute="centerX" secondItem="X4n-Mc-90F" secondAttribute="centerX" id="4w4-yq-gcb"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Nqs-qT-s8J" secondAttribute="bottom" constant="9" id="79a-Pl-7LT"/>
@@ -1427,7 +1426,7 @@
                                         <rect key="frame" x="0.0" y="249" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q0D-iF-SMO" id="OIV-rV-pJg">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="afz-u9-wlX">
@@ -1453,7 +1452,7 @@
                                         <rect key="frame" x="0.0" y="302" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Olx-aQ-4be" id="cLx-wR-ZMn">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MdS-UE-1V2">
@@ -1479,7 +1478,7 @@
                                         <rect key="frame" x="0.0" y="355" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wif-oI-TF5" id="iao-hH-p3R">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHG-Ya-zsf">
@@ -1505,7 +1504,7 @@
                                         <rect key="frame" x="0.0" y="408" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2tq-fO-aNS" id="j79-kc-jrY">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZn-F8-9eo">
@@ -1531,7 +1530,7 @@
                                         <rect key="frame" x="0.0" y="461" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kkm-i1-0Wn" id="I0b-eN-bms">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bx-j6-aZP">

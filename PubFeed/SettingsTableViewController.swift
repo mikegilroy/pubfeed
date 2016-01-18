@@ -85,10 +85,8 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             updateProfilePhotoButton.setTitle("", forState: .Normal)
             updateProfilePhotoButton.alpha = 1
             
-            //            let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editButtonTapped:")
             
             let editButton = UIBarButtonItem(image: UIImage(named: "editButton"), style: .Plain, target: self, action: "editButtonTapped:")
-            
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
             self.navigationItem.setLeftBarButtonItem(editButton, animated: true)
             
@@ -145,22 +143,6 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     }
     
     
-    //    @IBAction func editPencilButtonTapped(sender: UIBarButtonItem) {
-    //
-    //        if let buttonAppearance = sender.image {
-    //
-    //            switch buttonAppearance {
-    //            case UIImage(named: "editButton")!:
-    //                self.mode = .editView
-    //                updateViewForMode(mode)
-    //            case "X":
-    //                self.mode = .defaultView
-    //                updateViewForMode(mode)
-    //            default:
-    //                updateViewForMode(mode)
-    //            }
-    //        }
-    //    }
     
     @IBAction func editButtonTapped(sender: UIBarButtonItem) {
         
