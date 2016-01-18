@@ -92,23 +92,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="search another location" translatesAutoresizingMaskIntoConstraints="NO" id="23E-PM-hBg">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WFE-pj-cvZ">
-                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="23E-PM-hBg" firstAttribute="top" secondItem="896-En-FGN" secondAttribute="bottom" id="C7B-go-5sb"/>
-                            <constraint firstItem="23E-PM-hBg" firstAttribute="leading" secondItem="I0q-2b-eas" secondAttribute="leadingMargin" constant="-20" id="ETO-xg-ooR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="23E-PM-hBg" secondAttribute="trailing" constant="-20" id="RYj-jS-yIX"/>
                             <constraint firstItem="WFE-pj-cvZ" firstAttribute="bottom" secondItem="YHF-kq-MTS" secondAttribute="top" id="UQ0-S7-mQF"/>
                             <constraint firstAttribute="trailing" secondItem="WFE-pj-cvZ" secondAttribute="trailing" id="ey6-2X-CI4"/>
                             <constraint firstItem="WFE-pj-cvZ" firstAttribute="leading" secondItem="I0q-2b-eas" secondAttribute="leading" id="pVP-AY-ck5"/>
-                            <constraint firstItem="WFE-pj-cvZ" firstAttribute="top" secondItem="23E-PM-hBg" secondAttribute="bottom" id="xVr-Qm-Dw4"/>
+                            <constraint firstItem="WFE-pj-cvZ" firstAttribute="top" secondItem="896-En-FGN" secondAttribute="bottom" id="yKo-BR-Z50"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Bqo-9i-bTB">
@@ -123,7 +116,6 @@
                     <connections>
                         <outlet property="mapView" destination="WFE-pj-cvZ" id="5GS-Yj-SxU"/>
                         <outlet property="refreshButton" destination="067-Ua-Vg8" id="TDD-8K-jhn"/>
-                        <outlet property="searchBar" destination="23E-PM-hBg" id="bau-G5-6Gj"/>
                         <segue destination="51t-Te-QpQ" kind="show" identifier="toBarDetail" id="vK1-jv-tsR"/>
                     </connections>
                 </viewController>
