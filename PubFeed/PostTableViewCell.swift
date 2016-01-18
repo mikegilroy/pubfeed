@@ -10,6 +10,7 @@ import UIKit
 
 protocol PostTableViewCellDelegate {
     func likeButtonTapped(sender: PostTableViewCell)
+    func reportButtonTapped(sender: PostTableViewCell)
 }
 
 class PostTableViewCell: UITableViewCell {
@@ -19,6 +20,7 @@ class PostTableViewCell: UITableViewCell {
     var delegate: PostTableViewCellDelegate?
     
     // Outlets
+    @IBOutlet weak var reportButton: UIButton!
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -117,6 +119,9 @@ class PostTableViewCell: UITableViewCell {
         }
     }
 
+    @IBAction func reportButtonTapped(sender: PostTableViewCell) {
+        self.delegate?.reportButtonTapped(sender)
+    }
     
     @IBAction func likeButtonTapped(sender: PostTableViewCell) {
         self.delegate?.likeButtonTapped(sender)

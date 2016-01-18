@@ -140,6 +140,7 @@ class PostController {
             
             if let postDictionaries = snapshot.value as? [String: AnyObject] {
                 let posts = postDictionaries.flatMap({Post(json: $0.1 as! [String : AnyObject], identifier: $0.0)})
+                
                 let orderedPosts = posts.sort({$0.0.timestamp > $0.1.timestamp})
                 completion(posts: orderedPosts)
             } else {
@@ -170,11 +171,11 @@ class PostController {
                 errorArray.append(error)
             }
         })
-//        LikeController.deleteAllLikesForPost(post, completion: { (error) -> Void in
-//            if let error = error {
-//                errorArray.append(error)
-//            }
-//        })
+        //        LikeController.deleteAllLikesForPost(post, completion: { (error) -> Void in
+        //            if let error = error {
+        //                errorArray.append(error)
+        //            }
+        //        })
         post.delete { (error) -> Void in
             if let error = error {
                 errorArray.append(error)
@@ -186,6 +187,33 @@ class PostController {
             completion(errors: errorArray)
         }
     }
+    
+    static func reportPost(user: User, post: Post, text: String, completion: (success: Bool) -> Void) {
+        
+        let base = FirebaseController.base.childByAppendingPath("Report").childByAppendingPath("\(user.identifier)").childByAutoId()
+        print(post.identifier)
+        base.setValue(post.identifier, forKey: "postIdentifier")
+        completion(success: true)
+    }
+    
+    static func queryReport(user: User, post: Post, completion: (post: Post?) -> Void) {
+        FirebaseController.base.childByAppendingPath("Report").childByAppendingPath(user.identifier).queryOrderedByChild("postIdentifier").observeEventType(.Value, withBlock: {snapshot in
+            
+            if let postID = snapshot.value["postIdentifier"] as? String {
+                PostController.postFromIdentifier(postID, completion: { (post) -> Void in
+                    if let post = post {
+                        completion(post: post)
+                    } else {
+                        completion(post: nil)
+                    }
+                })
+            } else {
+                completion(post: nil)
+            }
+            }
+        )
+    }
+    
     
     static func deleteAllPostsForUser(user: User, completion: (errors: [NSError]?) -> Void) {
         postsForUser(user) { (posts) -> Void in

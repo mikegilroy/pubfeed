@@ -16,6 +16,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     var posts: [Post]?
     var selectedPost: Post?
     var myIndexPath: NSIndexPath? = nil
+    var reportText: String?
     
     // MARK: Outlets
     
@@ -28,11 +29,47 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: Actions
     
+    
+    
+    func reportButtonTapped(sender: PostTableViewCell) {
+        
+        let alert = UIAlertController(title: "Why are you reporting this post?", message: "", preferredStyle: .Alert)
+        alert.addTextFieldWithConfigurationHandler { (reportTextField) -> Void in
+            reportTextField.placeholder = "Please enter your reason here"
+            self.reportText = reportTextField.text
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (_) -> Void in
+            if let reportText = self.reportText {
+                let cell = sender.superview?.superview as! UITableViewCell
+                if let indexPath = self.tableView.indexPathForCell(cell) {
+
+                if let posts = self.posts{
+                    
+                    let post = posts[indexPath.row]
+                    PostController.reportPost(UserController.sharedController.currentUser!, post: post, text: reportText, completion: { (success) -> Void in
+                        if success {
+                            sender.reportButton.enabled = false
+                            print("report success")
+                        } else {
+                            print("fail to report")
+                        }
+                    })
+                }
+            }
+            }
+        }))
+            
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
     func likeButtonTapped(sender: PostTableViewCell) {
         
-    
+        
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-
+        
         let cell = sender.superview?.superview as! UITableViewCell
         if let indexPath = tableView.indexPathForCell(cell) {
             self.myIndexPath = indexPath
@@ -43,13 +80,13 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 LikeController.likesForPost(UserController.sharedController.currentUser!, post: post, completion: { (likes) -> Void in
                     if let likes = likes {
-
+                        
                         LikeController.deleteLike(likes.first!, post: post, completion: { (success, post, error) -> Void in
                             
                             if success {
                                 
                                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
-
+                                
                                 self.updateLike()
                                 print("success delete like")
                             } else {
@@ -60,12 +97,12 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                         LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
                             if error == nil {
                                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
-
+                                
                                 self.updateLike()
                                 print("success add Like")
                             } else {
                                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
-
+                                
                                 print(error?.localizedDescription)
                                 print("failed to like")
                             }
@@ -128,7 +165,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     // MARK: PostTableViewCellDelegate
-
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
@@ -196,7 +233,19 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if let bar = self.bar {
             PostController.postsForBar(bar) { (posts) -> Void in
                 self.posts = posts
-          
+                if let indexPath = self.myIndexPath {
+                let post = posts[indexPath.row]
+                PostController.queryReport(UserController.sharedController.currentUser!, post: post, completion: { (post) -> Void in
+                    if let post = post {
+                        if let indexOfPost = self.posts?.indexOf(post) {
+                            
+                            self.posts?.removeAtIndex(indexOfPost)
+                        }
+                    }
+                })
+                }
+                
+                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                 })
@@ -226,6 +275,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             if let postDetailDestination = segue.destinationViewController as? PostDetailViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     if let post = self.posts?[indexPath.row] {
+                        self.selectedPost = post
                         postDetailDestination.post = post
                     }
                 }
