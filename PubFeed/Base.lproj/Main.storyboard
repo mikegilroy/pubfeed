@@ -197,13 +197,8 @@
                                                     <action selector="forgotPasswordTapped:" destination="ANR-Gl-O4t" eventType="touchUpInside" id="SRf-Af-Hws"/>
                                                 </connections>
                                             </button>
-<<<<<<< 73de3090ea99882220f39897673d59511797b114
                                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-LR-AUl">
                                                 <rect key="frame" x="20" y="551" width="560" height="34"/>
-=======
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOk-EG-NPX">
-                                                <rect key="frame" x="20" y="260" width="560" height="34"/>
->>>>>>> Like function
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="560" id="aiI-4r-xZh"/>
                                                     <constraint firstAttribute="height" constant="34" id="yuX-jc-zmn"/>
@@ -821,7 +816,7 @@
                                                 <constraint firstAttribute="height" constant="30" id="ssz-ZT-E5O"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3y" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70f-Gu-3Cr">
@@ -831,7 +826,7 @@
                                                 <constraint firstAttribute="width" constant="43" id="dTv-3N-CkL"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🎉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiB-Ws-3CP">
@@ -963,7 +958,7 @@
                                                         <constraint firstAttribute="width" constant="45" id="feM-0O-6SB"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1065,7 +1060,7 @@
                                                     <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fXL-t5-U7l">

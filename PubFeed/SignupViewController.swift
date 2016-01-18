@@ -34,8 +34,12 @@ class SignupViewController: UIViewController {
         self.activityIndicator.activityIndicatorViewStyle = .Gray
         self.view.addSubview(self.activityIndicator)
         
+        self.activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
         if (usernameTextField.text == "") || (emailTextField.text == "") || (passwordTextField.text == "") {
             self.activityIndicator.stopAnimating()
+            
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
             ErrorHandling.defaultErrorHandler(nil, title: "Missing Information")
             
