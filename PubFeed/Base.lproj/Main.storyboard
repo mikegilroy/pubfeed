@@ -17,11 +17,14 @@
             <string>CaviarDreams</string>
             <string>CaviarDreams</string>
             <string>CaviarDreams</string>
+            <string>CaviarDreams</string>
+            <string>CaviarDreams</string>
         </mutableArray>
         <mutableArray key="CaviarDreams_BoldItalic.ttf">
             <string>CaviarDreams-BoldItalic</string>
         </mutableArray>
         <mutableArray key="Caviar_Dreams_Bold.ttf">
+            <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
             <string>CaviarDreams-Bold</string>
@@ -820,36 +823,36 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addComment" rowHeight="44" id="FHN-7M-IbS" userLabel="addCommentCell" customClass="AddCommentTableViewCell" customModule="PubFeed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="310" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="addComment" rowHeight="59" id="FHN-7M-IbS" userLabel="addCommentCell" customClass="AddCommentTableViewCell" customModule="PubFeed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="310" width="600" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FHN-7M-IbS" id="1Ey-Z4-AQZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="58.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1j-BL-miL">
-                                                    <rect key="frame" x="8" y="6" width="32" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="31.5" id="0BT-s7-4cS"/>
-                                                        <constraint firstAttribute="width" constant="32" id="6Tt-TX-eRD"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add your comment here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-yu-d21">
-                                                    <rect key="frame" x="51" y="7" width="541" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add your comment here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-yu-d21">
+                                                    <rect key="frame" x="52" y="8" width="540" height="42.5"/>
+                                                    <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="r5a-3l-V8N" id="d1S-GC-mjQ"/>
                                                     </connections>
                                                 </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1j-BL-miL">
+                                                    <rect key="frame" x="8" y="8" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="RBh-aB-mTZ"/>
+                                                        <constraint firstAttribute="width" constant="32" id="lzC-br-Ze0"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="J1j-BL-miL" firstAttribute="leading" secondItem="1Ey-Z4-AQZ" secondAttribute="leadingMargin" id="7kr-bA-LUA"/>
-                                                <constraint firstItem="VZt-yu-d21" firstAttribute="leading" secondItem="J1j-BL-miL" secondAttribute="trailing" constant="11" id="KG2-zI-dTh"/>
-                                                <constraint firstItem="J1j-BL-miL" firstAttribute="top" secondItem="1Ey-Z4-AQZ" secondAttribute="topMargin" constant="-2" id="NOV-lI-9NV"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="J1j-BL-miL" secondAttribute="bottom" constant="-2" id="Y8M-iv-uSk"/>
-                                                <constraint firstItem="VZt-yu-d21" firstAttribute="trailing" secondItem="1Ey-Z4-AQZ" secondAttribute="trailingMargin" id="ccQ-0X-fDp"/>
-                                                <constraint firstItem="VZt-yu-d21" firstAttribute="top" secondItem="1Ey-Z4-AQZ" secondAttribute="topMargin" constant="-1" id="jRb-yO-0u6"/>
+                                                <constraint firstItem="J1j-BL-miL" firstAttribute="leading" secondItem="1Ey-Z4-AQZ" secondAttribute="leadingMargin" id="BWD-xl-19k"/>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="bottom" secondItem="1Ey-Z4-AQZ" secondAttribute="bottomMargin" id="WOr-xB-Tcw"/>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="top" secondItem="1Ey-Z4-AQZ" secondAttribute="topMargin" id="e3o-Lt-kLC"/>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="leading" secondItem="J1j-BL-miL" secondAttribute="trailing" constant="12" id="fsI-bg-JdJ"/>
+                                                <constraint firstItem="VZt-yu-d21" firstAttribute="trailing" secondItem="1Ey-Z4-AQZ" secondAttribute="trailingMargin" id="khB-zz-jTg"/>
+                                                <constraint firstItem="J1j-BL-miL" firstAttribute="top" secondItem="1Ey-Z4-AQZ" secondAttribute="topMargin" id="q4L-3z-YrR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -858,7 +861,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" rowHeight="89" id="cxZ-S7-aSn" customClass="CommentTableViewCell" customModule="PubFeed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="354" width="600" height="89"/>
+                                        <rect key="frame" x="0.0" y="369" width="600" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxZ-S7-aSn" id="t6t-kn-jMr">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="88.5"/>
@@ -872,14 +875,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhv-9F-nR8">
-                                                    <rect key="frame" x="51" y="8" width="541" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="51" y="8" width="541" height="23"/>
+                                                    <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtd-ko-0PL">
-                                                    <rect key="frame" x="51" y="37" width="541" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="51" y="39" width="541" height="42"/>
+                                                    <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

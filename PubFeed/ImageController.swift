@@ -109,7 +109,7 @@ class ImageController {
         }
     }
     
-    static func fetchImageAtUrl(url: NSURL, completion: (image: UIImage) -> ()) {
+    static func fetchImageAtUrl(url: NSURL, completion: (image: UIImage?) -> ()) {
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         config.URLCache = NSURLCache.sharedURLCache()
         config.requestCachePolicy = NSURLRequestCachePolicy.UseProtocolCachePolicy
@@ -117,14 +117,14 @@ class ImageController {
         let session = NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) -> Void in
             if let data = data {
                 let image = UIImage(data: data)
-                completion(image: image!)
+                completion(image: image)
             } else {
                 print("no data")
                 print(error?.localizedDescription)
+                completion(image: nil)
             }
         }
         session.resume()
-        
     }
 }
 

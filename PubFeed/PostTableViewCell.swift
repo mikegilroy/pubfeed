@@ -62,12 +62,24 @@ class PostTableViewCell: UITableViewCell {
                         if let photoUrl = photoUrl {
                             ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                    self.profileImageView.image = image
+                                    if let image = image {
+                                        self.profileImageView.image = image
+                                    } else {
+                                        self.profileImageView.image = UIImage(named: "defaultProfilePhoto")
+                                    }
                                 })
+                            })
+                        } else {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.profileImageView.image = UIImage(named: "defaultProfilePhoto")
                             })
                         }
                     })
+                } else {
+                    self.profileImageView.image = UIImage(named: "defaultProfilePhoto")
                 }
+            } else {
+                self.profileImageView.image = UIImage(named: "defaultProfilePhoto")
             }
         }
         
@@ -79,6 +91,7 @@ class PostTableViewCell: UITableViewCell {
         if let imageString = post.photo {
             if let imageURL = NSURL(string: imageString) {
                 ImageController.fetchImageAtUrl(imageURL, completion: { (image) -> () in
+                    if let image = image {
                     self.postImageView.image = image
                     // imageview width = screenwidth - 64
                     let imageViewWidth = self.frame.width - 64
@@ -87,6 +100,7 @@ class PostTableViewCell: UITableViewCell {
                     let imageViewHeight = image.size.height / ratio
                     
                     self.postImageView.frame = CGRect(x: self.postImageView.frame.origin.x, y: self.postImageView.frame.origin.y, width: imageViewWidth, height: imageViewHeight)
+                    }
                 })
             } else {
                 self.postImageView.frame = CGRect(x: self.postImageView.frame.origin.x, y: self.postImageView.frame.origin.y, width: 0, height: 0)

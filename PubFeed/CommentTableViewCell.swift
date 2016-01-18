@@ -24,8 +24,13 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     func updateWithComment(comment: Comment) {
-
-            ImageController.profilePhotoForIdentifier(comment.userIdentifier) { (photoUrl) -> Void in
+        
+        profilePhoto.clipsToBounds = true
+        profilePhoto.layer.cornerRadius = 16
+        profilePhoto.layer.borderWidth = 1
+        profilePhoto.layer.borderColor = UIColor.blackColor().CGColor
+        
+        ImageController.profilePhotoForIdentifier(comment.userIdentifier) { (photoUrl) -> Void in
                 if let photoUrl = photoUrl {
                     ImageController.fetchImageAtUrl(photoUrl, completion: { (image) -> () in
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
