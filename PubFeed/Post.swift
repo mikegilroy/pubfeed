@@ -81,6 +81,7 @@ struct Post: Equatable, FirebaseType {
         }
 
         print("Timestamp date: \(timestampDouble.dateValue()) with doubleValue: \(timestampDouble) ")
+        
         self.timestamp = timestampDouble.dateValue()
         self.userIdentifier = userIdentifier
         self.barID = barID

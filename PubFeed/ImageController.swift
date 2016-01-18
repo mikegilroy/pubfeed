@@ -33,7 +33,7 @@ class ImageController {
         
         uploadRequest.key = fileName
         uploadRequest.body = photoURL
-        print(uploadRequest)
+
         let task = transferManager.upload(uploadRequest)
         task.continueWithBlock({ (task) -> AnyObject! in
             if task.error != nil {

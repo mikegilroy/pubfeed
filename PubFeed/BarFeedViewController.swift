@@ -9,17 +9,13 @@
 import UIKit
 
 class BarFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PostTableViewCellDelegate {
-    
     // MARK: Properties
-    
     
     var user: User?
     var bar: Bar?
     var posts: [Post]?
-    
     var selectedPost: Post?
-    
-    var oldIndexPath: NSIndexPath? = nil
+    var myIndexPath: NSIndexPath? = nil
     
     // MARK: Outlets
     
@@ -32,27 +28,65 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: Actions
     
+    func likeButtonTapped(sender: PostTableViewCell) {
+        
+        let cell = sender.superview?.superview as! UITableViewCell
+        if let indexPath = tableView.indexPathForCell(cell) {
+            self.myIndexPath = indexPath
+            
+            if let posts = self.posts {
+                
+                let post = posts[indexPath.row]
+                
+                LikeController.likesForPost(UserController.sharedController.currentUser!, post: post, completion: { (likes) -> Void in
+                    if let likes = likes {
+                        LikeController.deleteLike(likes.first!, post: post, completion: { (success, post, error) -> Void in
+                            if success {
+                                self.updateLike()
+                                print("success delete like")
+                            } else {
+                                print("fail to delete")
+                            }
+                        })
+                    } else {
+                        LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
+                            if error == nil {
+                                self.updateLike()
+                                print("success add Like")
+                            } else {
+                                print(error?.localizedDescription)
+                                print("failed to like")
+                            }
+                        })
+                    }
+                })
+            }
+        } else {
+            print("no index")
+        }
+    }
     
     // MARK: viewDid Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadBarDetails()
-        
-        
         loadPostsForBar()
+        
         if let bar = bar {
             bar.setAsCurrent()
         }
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        loadPostsForBar()
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.loadPostsForBar()
+        })
+        
     }
-    
     
     // MARK: TableView Datasource
     
@@ -74,13 +108,15 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if let posts = self.posts {
             let post = posts[indexPath.row]
             cell.updateCellWithPost(post)
-            cell.updateUserLikesPost(post)
+            cell.updateLikeButton(post)
             cell.delegate = self
             
         }
         return cell
     }
     
+    // MARK: PostTableViewCellDelegate
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
@@ -112,86 +148,6 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         //        }
         return 222 - 66.5
     }
-    
-    
-    // MARK: PostTableViewCellDelegate
-    var isLiked: Bool?
-    
-    
-    func likeButtonTapped(sender: PostTableViewCell) {
-        
-        let cell = sender.superview?.superview as! UITableViewCell
-        let buttonFrame = sender.convertRect(sender.frame, toView: self.tableView)
-        if let indexPath = tableView.indexPathForCell(cell) {
-        
-        if let posts = self.posts {
-            
-            let post = posts[indexPath.row]
-            
-            LikeController.likesForPost(UserController.sharedController.currentUser!, post: post, completion: { (likes) -> Void in
-                if let likes = likes {
-                    LikeController.deleteLike(likes.first!, post: post, completion: { (success, post, error) -> Void in
-                        if success {
-                            NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-                            print("success")
-                            
-                        } else {
-                            print("fail to delete")
-                        }
-                    })
-                } else {
-                    LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
-                        if error == nil {
-                            NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-                            
-                            print("success add Like")
-                        } else {
-                            print(error?.localizedDescription)
-                            print("failed to like")
-                        }
-                    })
-                }
-            })
-        }
-        } else {
-            print("no index")
-        }
-    }
-    //                LikeController.likesForUser(UserController.sharedController.currentUser!, completion: { (likes) -> Void in
-    //
-    //                    if likes.count == 0 {
-    //                        LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
-    //                            if error == nil {
-    ////                                NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-    //                            }
-    //                        })
-    //                    } else {
-    //                    for like in likes {
-    //                        LikeController.likesForPost(post, completion: { (likes) -> Void in
-    //                            if likes.count > 0 {
-    //                                LikeController.deleteLike(like, post: post, completion: { (success, post, error) -> Void in
-    //                                    if success {
-    ////                                        NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-    //                                    } else {
-    //                                        print("failed to unlike")
-    //                                    }
-    //
-    //                                })
-    //                            } else {
-    //                                LikeController.addLikeToPost(post, completion: { (like, error) -> Void in
-    //                                    if error == nil {
-    ////                                        NSNotificationCenter.defaultCenter().postNotificationName("updateLike", object: nil)
-    //                                    } else {
-    //                                        print("success like")
-    //                                    }
-    //                                })
-    //
-    //                            }
-    //                        })
-    //                    }
-    //                    }
-    
-    //                })
     
     // MARK: Helper Functions
     
@@ -226,12 +182,26 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func loadPostsForBar() {
         if let bar = self.bar {
-            print(bar.barID)
             PostController.postsForBar(bar) { (posts) -> Void in
                 self.posts = posts
+          
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                 })
+            }
+        }
+    }
+    
+    func updateLike() {
+        
+        if let bar = self.bar {
+            PostController.postsForBar(bar) { (posts) -> Void in
+                self.posts = posts
+                if let indexPath = self.myIndexPath as NSIndexPath! {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                    })
+                }
             }
         }
     }

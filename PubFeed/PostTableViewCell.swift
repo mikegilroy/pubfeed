@@ -30,7 +30,6 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     
-    
     func updateCellWithPost(post: Post) {
         self.addCustomSeperator(UIColor.lightGrayColor())
         
@@ -108,18 +107,16 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-    func updateUserLikesPost(post: Post) {
-        // Check if user likes post
-//        LikeController.likesForPost(post) { (likes) -> Void in
-//            for like in likes {
-//                if like.userIdentifier == UserController.sharedController.currentUser?.identifier {
-//                    // Change image to red heart
-//                } else {
-//                    // Change image to grey heart
-//                }
-//            }
-//        }
+    func updateLikeButton(post: Post) {
+        LikeController.likesForPost(UserController.sharedController.currentUser!, post: post) { (likes) -> Void in
+            if let _ = likes {
+                self.likeButton.setBackgroundImage(UIImage(named: "DARKbeers"), forState: .Normal)
+            } else {
+                self.likeButton.setBackgroundImage(UIImage(named: "heartIconGrey"), forState: .Normal)
+            }
+        }
     }
+
     
     @IBAction func likeButtonTapped(sender: PostTableViewCell) {
         self.delegate?.likeButtonTapped(sender)
