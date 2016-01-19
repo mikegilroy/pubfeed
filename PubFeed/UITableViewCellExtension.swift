@@ -12,6 +12,7 @@ extension UITableViewCell {
     
     func addCustomSeperator(lineColor: UIColor) {
         let seperatorView = UIView(frame: CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width + 200, height: 1))
+        seperatorView.tag = 101
         seperatorView.backgroundColor = lineColor
         self.addSubview(seperatorView)
     }

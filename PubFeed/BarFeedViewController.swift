@@ -131,11 +131,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.loadPostsForBar()
-        })
-        
+        self.loadPostsForBar()
     }
     
     // MARK: TableView Datasource
@@ -162,14 +158,16 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.reportButton.setBackgroundImage(UIImage(named: "reportFlag"), forState: .Normal)
             cell.reportButton.setTitle("", forState: .Normal)
             cell.delegate = self
-            
         }
+
+        cell.setNeedsUpdateConstraints()
+        cell.updateConstraintsIfNeeded()
         return cell
     }
     
     func configureTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 239
+        tableView.estimatedRowHeight = 200
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -187,10 +185,16 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         header.textLabel!.text = "Recent Activity"
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+////        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+////            cell.contentView.setNeedsLayout()
+////            cell.contentView.layoutIfNeeded()
+////            cell.updateConstraints()
+////        }
+//        return UITableViewAutomaticDimension
+//    }
     
+
     // MARK: Helper Functions
     
     func loadBarDetails() {

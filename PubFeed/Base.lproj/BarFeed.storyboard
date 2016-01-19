@@ -159,11 +159,14 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Vy-hb-04v">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" placeholderIntrinsicWidth="564" placeholderIntrinsicHeight="80" preservesSuperviewLayoutMargins="YES" image="BackGround" translatesAutoresizingMaskIntoConstraints="NO" id="4Vy-hb-04v">
                                                     <rect key="frame" x="16" y="107" width="564" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="tAL-a2-v89"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBw-vV-HLk">
-                                                    <rect key="frame" x="18.5" y="200" width="25" height="25"/>
+                                                    <rect key="frame" x="18" y="200" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="SvM-TG-1Hu"/>
                                                         <constraint firstAttribute="width" constant="25" id="vyt-5e-BRa"/>
@@ -173,14 +176,15 @@
                                                         <action selector="likeButtonTapped:" destination="fjl-l1-pdW" eventType="touchUpInside" id="o8M-Dy-H1N"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="post text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHj-3w-f8y">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="post text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHj-3w-f8y">
                                                     <rect key="frame" x="54" y="52" width="526" height="47"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="47" id="rYi-7j-S3P"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="47" id="rYi-7j-S3P"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GyW-fQ-RpX">
                                                     <rect key="frame" x="16" y="52" width="30" height="47"/>
@@ -240,7 +244,7 @@
                                                 <constraint firstItem="isC-Nh-1wm" firstAttribute="leading" secondItem="tZp-Zm-iSP" secondAttribute="trailing" constant="8" id="7t0-5C-kmc"/>
                                                 <constraint firstItem="4Vy-hb-04v" firstAttribute="trailing" secondItem="vdu-PH-4zi" secondAttribute="trailingMargin" constant="-12" id="87z-II-5Ih"/>
                                                 <constraint firstItem="zLl-Rc-bB2" firstAttribute="leading" secondItem="pfw-T6-ukf" secondAttribute="trailing" constant="8" id="BB5-L4-2XX"/>
-                                                <constraint firstItem="tZp-Zm-iSP" firstAttribute="leading" secondItem="kBw-vV-HLk" secondAttribute="trailing" constant="8" id="BN1-Q1-IR5"/>
+                                                <constraint firstItem="tZp-Zm-iSP" firstAttribute="leading" secondItem="kBw-vV-HLk" secondAttribute="trailing" constant="9" id="BN1-Q1-IR5"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="isC-Nh-1wm" secondAttribute="bottom" constant="5.5" id="E1G-yc-5rl"/>
                                                 <constraint firstItem="pfw-T6-ukf" firstAttribute="leading" secondItem="qZf-qy-Dnj" secondAttribute="trailing" constant="8" id="EOl-7M-yrC"/>
                                                 <constraint firstItem="SHj-3w-f8y" firstAttribute="top" secondItem="qUq-5Q-20A" secondAttribute="bottom" constant="8" id="FcZ-Yq-wS3"/>
@@ -264,10 +268,16 @@
                                                 <constraint firstItem="SHj-3w-f8y" firstAttribute="leading" secondItem="GyW-fQ-RpX" secondAttribute="trailing" constant="8" id="mam-MD-oz5"/>
                                                 <constraint firstItem="4Vy-hb-04v" firstAttribute="top" secondItem="SHj-3w-f8y" secondAttribute="bottom" constant="8" id="nbe-f1-BQV"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="KlM-Pb-De9"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentCountLabel" destination="enf-rL-BLM" id="EoM-sN-me6"/>
                                             <outlet property="emojiLabel" destination="GyW-fQ-RpX" id="KKL-JA-YGo"/>
+                                            <outlet property="imageViewHeightConstraint" destination="tAL-a2-v89" id="y9C-Dl-NyM"/>
                                             <outlet property="likeButton" destination="kBw-vV-HLk" id="WlI-nw-gV4"/>
                                             <outlet property="likeCountLabel" destination="tZp-Zm-iSP" id="Ldg-gc-PGM"/>
                                             <outlet property="postImageView" destination="4Vy-hb-04v" id="lJ0-Cb-Oqm"/>
@@ -533,6 +543,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BackGround" width="750" height="1330"/>
         <image name="commentIconGrey" width="50" height="48"/>
         <image name="heartIconGrey" width="50" height="50"/>
     </resources>
