@@ -16,7 +16,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     var posts: [Post]?
     var selectedPost: Post?
     var myIndexPath: NSIndexPath? = nil
-    var reportText: String?
+    var textField: UITextField = UITextField()
     
     // MARK: Outlets
     
@@ -29,38 +29,43 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: Actions
     
+    // Report 
+    
     func reportButtonTapped(sender: PostTableViewCell) {
         
-        let alert = UIAlertController(title: "Why are you reporting this post?", message: "", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Why are you reporting this post?", message: "The post will be hidden from your view after reporting.", preferredStyle: .Alert)
         alert.addTextFieldWithConfigurationHandler { (reportTextField) -> Void in
             reportTextField.placeholder = "Please enter your reason here"
-            self.reportText = reportTextField.text
+            self.textField = reportTextField
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (_) -> Void in
-            if let reportText = self.reportText {
+            if self.textField.text == "" {
+               ErrorHandling.defaultErrorHandler(nil, title: "Need to have a reason to report!")
+            } else {
                 let cell = sender.superview?.superview as! UITableViewCell
                 if let indexPath = self.tableView.indexPathForCell(cell) {
-
-                if let posts = self.posts{
                     
-                    let post = posts[indexPath.row]
-                    PostController.reportPost(UserController.sharedController.currentUser!, post: post, text: reportText, completion: { (success) -> Void in
-                        if success {
-//                            sender.reportButton.enabled = false
-                            print("report success")
-                        } else {
-                            print("fail to report")
-                        }
-                    })
+                    if let posts = self.posts{
+                        
+                        let post = posts[indexPath.row]
+                        PostController.reportPost(UserController.sharedController.currentUser!, post: post, text: self.textField.text!, completion: { (success) -> Void in
+                            if success {
+                               ErrorHandling.presentAlert("Report succeeded", message: "Press Ok to dismiss")
+                                print("report success")
+                            } else {
+                                print("fail to report")
+                            }
+                        })
+                    }
                 }
-            }
             }
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    // Like
     
     func likeButtonTapped(sender: PostTableViewCell) {
         
@@ -154,6 +159,8 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             let post = posts[indexPath.row]
             cell.updateCellWithPost(post)
             cell.updateLikeButton(post)
+            cell.reportButton.setBackgroundImage(UIImage(named: "reportFlag"), forState: .Normal)
+            cell.reportButton.setTitle("", forState: .Normal)
             cell.delegate = self
             
         }
@@ -220,20 +227,20 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             PostController.postsForBar(bar) { (var posts) -> Void in
                 self.posts = posts
                 for post in posts {
-                PostController.queryReport(UserController.sharedController.currentUser!, post: post, completion: { (post) -> Void in
-                    if let post = post {
-                        if let indexOfPost = self.posts?.indexOf(post) {
-                         
-                            self.posts?.removeAtIndex(indexOfPost)
-                            posts = self.posts!
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                self.tableView.reloadData()
-                            })
+                    PostController.queryReport(UserController.sharedController.currentUser!, post: post, completion: { (post) -> Void in
+                        if let post = post {
+                            if let indexOfPost = self.posts?.indexOf(post) {
+                                
+                                self.posts?.removeAtIndex(indexOfPost)
+                                posts = self.posts!
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    self.tableView.reloadData()
+                                })
+                            }
+                        } else {
+                            print("no post")
                         }
-                    } else {
-                        print("no post")
-                    }
-                })
+                    })
                 }
                 
                 

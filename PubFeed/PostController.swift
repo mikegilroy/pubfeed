@@ -193,8 +193,9 @@ class PostController {
         let base = FirebaseController.base.childByAppendingPath("report").childByAppendingPath("\(user.identifier!)").childByAutoId()
         print(post.identifier)
         
-        let post = ["postIdentifier": post.identifier!]
+        let post = ["postIdentifier": post.identifier!, "reason": text]
         base.setValue(post)
+        
         completion(success: true)
     }
     
