@@ -29,8 +29,6 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: Actions
     
-    
-    
     func reportButtonTapped(sender: PostTableViewCell) {
         
         let alert = UIAlertController(title: "Why are you reporting this post?", message: "", preferredStyle: .Alert)
@@ -59,14 +57,12 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             }
         }))
-            
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
     
     func likeButtonTapped(sender: PostTableViewCell) {
-        
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
@@ -119,7 +115,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureTableView()
         loadBarDetails()
         loadPostsForBar()
         
@@ -164,7 +160,10 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
-    // MARK: PostTableViewCellDelegate
+    func configureTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 239
+    }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
@@ -182,20 +181,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        //        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? PostTableViewCell {
-        //            if let posts = posts {
-        //                let post = posts[indexPath.row]
-        //                if let _ = post.photo {
-        //                    //has photo
-        //                    let imageViewHeight = cell.postImageView.frame.height
-        //                    return (205 - 80.5) + imageViewHeight
-        //                } else {
-        //                    //no photo
-        //                    return 205 - 80.5
-        //                }
-        //            }
-        //        }
-        return 222 - 66.5
+        return UITableViewAutomaticDimension
     }
     
     // MARK: Helper Functions
