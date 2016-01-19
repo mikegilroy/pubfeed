@@ -72,7 +72,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
-        self.finishSearching()
     }
     
     
@@ -228,6 +227,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func setUpSearchTools() {
         searchController = UISearchController(searchResultsController: nil)
+        definesPresentationContext = true
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
