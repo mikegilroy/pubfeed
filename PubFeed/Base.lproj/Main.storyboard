@@ -67,34 +67,21 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WFE-pj-cvZ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </mapView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sxi-Pm-aly">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hwC-gM-Czq">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hwC-gM-Czq" id="IUZ-sI-TxA">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WFE-pj-cvZ" firstAttribute="leading" secondItem="I0q-2b-eas" secondAttribute="leadingMargin" constant="-20" id="4ZK-ry-P5r"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sxi-Pm-aly" secondAttribute="trailing" constant="-20" id="7zK-08-DQj"/>
                             <constraint firstItem="WFE-pj-cvZ" firstAttribute="top" secondItem="896-En-FGN" secondAttribute="bottom" id="NY6-xl-Lxh"/>
-                            <constraint firstItem="YHF-kq-MTS" firstAttribute="top" secondItem="sxi-Pm-aly" secondAttribute="bottom" id="b3W-CD-xv9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WFE-pj-cvZ" secondAttribute="trailing" constant="-20" id="ioV-uG-DFn"/>
-                            <constraint firstItem="sxi-Pm-aly" firstAttribute="leading" secondItem="I0q-2b-eas" secondAttribute="leadingMargin" constant="-20" id="jbw-Rw-xGa"/>
-                            <constraint firstItem="sxi-Pm-aly" firstAttribute="top" secondItem="896-En-FGN" secondAttribute="bottom" id="lsf-px-P49"/>
                             <constraint firstItem="YHF-kq-MTS" firstAttribute="top" secondItem="WFE-pj-cvZ" secondAttribute="bottom" id="rpc-s9-Noh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Bqo-9i-bTB">
+                        <barButtonItem key="leftBarButtonItem" image="location" id="WYA-dq-MQu">
+                            <connections>
+                                <action selector="locationButtonTapped:" destination="eJp-cG-gxJ" id="b5D-AJ-FAg"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="067-Ua-Vg8">
                             <connections>
                                 <action selector="refreshButtonTapped:" destination="eJp-cG-gxJ" id="kaD-zs-GyS"/>
@@ -106,7 +93,6 @@
                     <connections>
                         <outlet property="mapView" destination="WFE-pj-cvZ" id="5GS-Yj-SxU"/>
                         <outlet property="refreshButton" destination="067-Ua-Vg8" id="TDD-8K-jhn"/>
-                        <outlet property="tableView" destination="sxi-Pm-aly" id="Srs-K9-tZ0"/>
                         <segue destination="QuG-K7-3SR" kind="show" identifier="toBarDetail" id="vK1-jv-tsR"/>
                     </connections>
                 </viewController>
@@ -545,6 +531,7 @@
     </scenes>
     <resources>
         <image name="advance" width="160" height="160"/>
+        <image name="location" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FFj-pW-z9U"/>
