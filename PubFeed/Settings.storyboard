@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xjV-uX-6X5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xjV-uX-6X5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -7,14 +7,14 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="CaviarDreams.ttf">
-            <string>CaviarDreams</string>
-            <string>CaviarDreams</string>
+        <mutableArray key="Cabin-Medium.otf">
+            <string>Cabin-Medium</string>
+            <string>Cabin-Medium</string>
         </mutableArray>
-        <mutableArray key="Caviar_Dreams_Bold.ttf">
-            <string>CaviarDreams-Bold</string>
-            <string>CaviarDreams-Bold</string>
-            <string>CaviarDreams-Bold</string>
+        <mutableArray key="Cabin-Regular.otf">
+            <string>Cabin-Regular</string>
+            <string>Cabin-Regular</string>
+            <string>Cabin-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -22,10 +22,13 @@
         <scene sceneID="T9E-Qq-98V">
             <objects>
                 <tableViewController id="XMn-XD-ptt" customClass="SettingsTableViewController" customModule="PubFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="USE-px-GjC">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="USE-px-GjC" userLabel="Table View Main">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="vvK-hf-qk0">
                                 <cells>
@@ -33,9 +36,29 @@
                                         <rect key="frame" x="0.0" y="64" width="600" height="185"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WEW-ep-q6g" id="X4n-Mc-90F">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="184.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nB-DJ-pMz" userLabel="editUpdateProfilePhotoButton">
+                                                    <rect key="frame" x="225" y="17" width="150" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="guV-ex-Pjn"/>
+                                                        <constraint firstAttribute="height" constant="150" id="w4s-Nx-Sqy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="EDIT PHOTO">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="updatePhotoTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="0dv-nW-fwJ"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqs-qT-s8J">
                                                     <rect key="frame" x="225" y="17" width="150" height="150"/>
                                                     <constraints>
@@ -55,7 +78,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Nqs-qT-s8J" firstAttribute="centerX" secondItem="X4n-Mc-90F" secondAttribute="centerX" id="4w4-yq-gcb"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Nqs-qT-s8J" secondAttribute="bottom" constant="9" id="79a-Pl-7LT"/>
@@ -63,69 +86,104 @@
                                                 <constraint firstItem="Nqs-qT-s8J" firstAttribute="top" secondItem="X4n-Mc-90F" secondAttribute="topMargin" constant="9" id="w8c-uk-yma"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="0nB-DJ-pMz" firstAttribute="top" secondItem="WEW-ep-q6g" secondAttribute="top" constant="17" id="NQr-4Q-Moo"/>
+                                            <constraint firstAttribute="bottom" secondItem="0nB-DJ-pMz" secondAttribute="bottom" constant="18" id="g3u-8S-DUH"/>
+                                            <constraint firstItem="0nB-DJ-pMz" firstAttribute="centerX" secondItem="WEW-ep-q6g" secondAttribute="centerX" id="mrt-tt-SXP"/>
+                                        </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="q0D-iF-SMO">
                                         <rect key="frame" x="0.0" y="249" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q0D-iF-SMO" id="OIV-rV-pJg">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="afz-u9-wlX">
                                                     <rect key="frame" x="8" y="8" width="584" height="37"/>
-                                                    <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="16"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="Cabin-Medium" family="Cabin" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FhU-SJ-JuG" userLabel="usernameLine">
+                                                    <rect key="frame" x="180" y="35" width="240" height="2"/>
+                                                    <color key="backgroundColor" red="0.87549321338383834" green="0.87549321338383834" blue="0.87549321338383834" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="afz-u9-wlX" firstAttribute="top" secondItem="OIV-rV-pJg" secondAttribute="topMargin" id="7ct-bv-YET"/>
+                                                <constraint firstItem="FhU-SJ-JuG" firstAttribute="centerX" secondItem="OIV-rV-pJg" secondAttribute="centerX" id="94Z-Ga-snG"/>
+                                                <constraint firstItem="FhU-SJ-JuG" firstAttribute="centerX" secondItem="afz-u9-wlX" secondAttribute="centerX" id="Ary-yd-Aro"/>
                                                 <constraint firstItem="afz-u9-wlX" firstAttribute="leading" secondItem="OIV-rV-pJg" secondAttribute="leadingMargin" id="GyE-dI-l44"/>
+                                                <constraint firstItem="FhU-SJ-JuG" firstAttribute="leading" secondItem="OIV-rV-pJg" secondAttribute="leadingMargin" constant="172" id="Zwq-79-eb4"/>
                                                 <constraint firstItem="afz-u9-wlX" firstAttribute="trailing" secondItem="OIV-rV-pJg" secondAttribute="trailingMargin" id="ciu-v3-zdd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="FhU-SJ-JuG" secondAttribute="trailing" constant="172" id="hvC-U5-kAL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="FhU-SJ-JuG" secondAttribute="bottom" constant="7" id="jaO-X7-A3W"/>
+                                                <constraint firstItem="FhU-SJ-JuG" firstAttribute="top" secondItem="OIV-rV-pJg" secondAttribute="topMargin" constant="27" id="nt3-hs-CfB"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="afz-u9-wlX" secondAttribute="bottom" constant="-1" id="sB6-3N-ZR0"/>
+                                                <constraint firstItem="FhU-SJ-JuG" firstAttribute="leading" secondItem="OIV-rV-pJg" secondAttribute="leading" constant="180" id="ySD-fz-RYs"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="Olx-aQ-4be">
                                         <rect key="frame" x="0.0" y="302" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Olx-aQ-4be" id="cLx-wR-ZMn">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ex-xO-iQM" userLabel="emailLine">
+                                                    <rect key="frame" x="180" y="35" width="240" height="2"/>
+                                                    <color key="backgroundColor" red="0.86292613636363635" green="0.86292613636363635" blue="0.86292613636363635" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MdS-UE-1V2">
                                                     <rect key="frame" x="8" y="8" width="584" height="37"/>
-                                                    <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="16"/>
+                                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Cabin-Medium" family="Cabin" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="MdS-UE-1V2" firstAttribute="top" secondItem="cLx-wR-ZMn" secondAttribute="topMargin" id="Cab-6U-bpT"/>
                                                 <constraint firstItem="MdS-UE-1V2" firstAttribute="trailing" secondItem="cLx-wR-ZMn" secondAttribute="trailingMargin" id="l0a-To-Z9s"/>
+                                                <constraint firstItem="8ex-xO-iQM" firstAttribute="leading" secondItem="cLx-wR-ZMn" secondAttribute="leadingMargin" constant="172" id="olG-4Q-ha3"/>
                                                 <constraint firstItem="MdS-UE-1V2" firstAttribute="leading" secondItem="cLx-wR-ZMn" secondAttribute="leadingMargin" id="rG5-nv-gQo"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8ex-xO-iQM" secondAttribute="trailing" constant="172" id="rkP-iR-wEx"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="MdS-UE-1V2" secondAttribute="bottom" constant="-1" id="sUD-tD-4Ba"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8ex-xO-iQM" secondAttribute="bottom" constant="7" id="sVe-Q8-ZJL"/>
+                                                <constraint firstItem="8ex-xO-iQM" firstAttribute="top" secondItem="cLx-wR-ZMn" secondAttribute="topMargin" constant="27" id="tD6-oz-KNT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="wif-oI-TF5">
                                         <rect key="frame" x="0.0" y="355" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wif-oI-TF5" id="iao-hH-p3R">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHG-Ya-zsf">
                                                     <rect key="frame" x="8" y="8" width="584" height="36"/>
-                                                    <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="15"/>
                                                     <state key="normal" title="Update Password">
                                                         <color key="titleColor" red="0.42352941179999998" green="0.98823529409999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -141,19 +199,20 @@
                                                 <constraint firstItem="xHG-Ya-zsf" firstAttribute="bottom" secondItem="iao-hH-p3R" secondAttribute="bottomMargin" id="jij-8W-4ky"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="2tq-fO-aNS">
                                         <rect key="frame" x="0.0" y="408" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2tq-fO-aNS" id="j79-kc-jrY">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZn-F8-9eo">
                                                     <rect key="frame" x="8" y="8" width="584" height="36"/>
-                                                    <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="15"/>
                                                     <state key="normal" title="Delete Account">
-                                                        <color key="titleColor" red="1" green="0.24094295870812799" blue="0.16262861013163521" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" red="0.41568627450980389" green="1" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="deleteAccountTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="lNE-fS-p0L"/>
@@ -167,19 +226,20 @@
                                                 <constraint firstItem="SZn-F8-9eo" firstAttribute="leading" secondItem="j79-kc-jrY" secondAttribute="leadingMargin" id="jqP-Km-lJL"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="Kkm-i1-0Wn">
                                         <rect key="frame" x="0.0" y="461" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kkm-i1-0Wn" id="I0b-eN-bms">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bx-j6-aZP">
                                                     <rect key="frame" x="8" y="8" width="584" height="36"/>
-                                                    <fontDescription key="fontDescription" name="CaviarDreams-Bold" family="Caviar Dreams" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="15"/>
                                                     <state key="normal" title="Logout ">
-                                                        <color key="titleColor" red="1" green="0.24094295870812799" blue="0.16262861013163521" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" red="0.41568627450980389" green="1" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="logoutTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="0P9-L6-30O"/>
@@ -193,6 +253,7 @@
                                                 <constraint firstItem="6bx-j6-aZP" firstAttribute="leading" secondItem="I0b-eN-bms" secondAttribute="leadingMargin" id="q4n-Qn-Ibg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -215,10 +276,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editUpdateProfilePhotoButton" destination="0nB-DJ-pMz" id="bNM-j0-vc0"/>
+                        <outlet property="emailLine" destination="8ex-xO-iQM" id="X0f-fV-xR6"/>
                         <outlet property="emailTextField" destination="MdS-UE-1V2" id="2F2-qW-RjW"/>
                         <outlet property="logoutButton" destination="6bx-j6-aZP" id="yF7-dR-pDC"/>
                         <outlet property="saveButton" destination="E0c-zW-MGe" id="cZ6-vL-zI0"/>
+                        <outlet property="tableViewMain" destination="USE-px-GjC" id="3JQ-At-DuI"/>
                         <outlet property="updateProfilePhotoButton" destination="Nqs-qT-s8J" id="bnJ-5B-8bL"/>
+                        <outlet property="usernameLine" destination="FhU-SJ-JuG" id="QZV-Oo-sFv"/>
                         <outlet property="usernameTextField" destination="afz-u9-wlX" id="TXy-jo-4ED"/>
                         <segue destination="Ho9-bY-EYp" kind="showDetail" identifier="fromSettings" id="3Ja-sh-hDx"/>
                     </connections>

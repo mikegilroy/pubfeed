@@ -159,12 +159,12 @@ extension LoginViewController: UITextFieldDelegate {
     
     // MARK: Shift View on Keyboard Appearance and Removal
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            
-            let yCoordinate = self.view.frame.origin.y + keyboardSize.height
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        
+            let yCoordinate = self.view.frame.origin.y + 120
             let scrollDestination = CGPointMake(0.0, yCoordinate)
             scrollView.setContentOffset(scrollDestination, animated: true)
-        }
+//        }
     }
     
     func keyboardWillHide(notification: NSNotification) {

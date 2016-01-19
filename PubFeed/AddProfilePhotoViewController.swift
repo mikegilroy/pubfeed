@@ -25,7 +25,10 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
 //        addProfilePhotoButton.layer.borderWidth = 1
 //        addProfilePhotoButton.layer.cornerRadius = addProfilePhotoButton.frame.size.width/2
         
+        let pubGreen = colorWithHexString("6AFF63").CGColor
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackGround")!)
+        addProfilePhotoButton.layer.borderWidth = 4
+        addProfilePhotoButton.layer.borderColor = pubGreen
         
     }
     

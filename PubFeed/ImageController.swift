@@ -20,6 +20,9 @@ class ImageController {
     
     static func uploadPhoto(photo: UIImage, completion: (String?) -> Void) {
         
+        let imageData : NSData = UIImageJPEGRepresentation(photo, (0.7))!
+        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: kPhoto)
+        
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
         let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".jpg")
         

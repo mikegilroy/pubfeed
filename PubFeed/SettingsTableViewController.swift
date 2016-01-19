@@ -41,8 +41,10 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     @IBOutlet weak var updateProfilePhotoButton: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var logoutButton: UIButton!
-    
-    
+    @IBOutlet var tableViewMain: UITableView!
+    @IBOutlet weak var usernameLine: UIView!
+    @IBOutlet weak var emailLine: UIView!
+    @IBOutlet weak var editUpdateProfilePhotoButton: UIButton!
     
     // MARK: Actions
     
@@ -55,7 +57,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        textField.textColor = UIColor.blackColor()
+        textField.textColor = UIColor.darkGrayColor()
     }
     
     
@@ -64,6 +66,10 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             
         case .defaultView:
             
+            
+//            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackGround")!)
+//            self.view.backgroundColor = UIColor.darkGrayColor()
+            
             if let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as? NSData {
                 let image = UIImage(data: imageData)
                 self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
@@ -71,6 +77,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                 self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
                 
             }
+            
             if let user = UserController.sharedController.currentUser {
                 usernameTextField.text = user.username
                 emailTextField.text = user.email
@@ -81,10 +88,12 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             }
             
             saveButton.enabled = false
+            
+            editUpdateProfilePhotoButton.hidden = true
+            
             updateProfilePhotoButton.userInteractionEnabled = false
             updateProfilePhotoButton.setTitle("", forState: .Normal)
             updateProfilePhotoButton.alpha = 1
-            
             
             let editButton = UIBarButtonItem(image: UIImage(named: "editButton"), style: .Plain, target: self, action: "editButtonTapped:")
             self.navigationController?.navigationItem.leftBarButtonItem = editButton
@@ -115,7 +124,10 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             
         case .editView:
             
-            let textFieldGrayColor = colorWithHexString("d4d4d6")
+//            let textFieldGrayColor = colorWithHexString("d4d4d6")
+            
+            editUpdateProfilePhotoButton.hidden = false
+            editUpdateProfilePhotoButton.alpha = 1.0
             
             usernameTextField.text = UserController.sharedController.currentUser?.username
             emailTextField.text = UserController.sharedController.currentUser?.email
@@ -123,18 +135,18 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             emailTextField.userInteractionEnabled = true
             usernameTextField.enabled = true
             emailTextField.enabled = true
-            usernameTextField.textColor = textFieldGrayColor
-            emailTextField.textColor = textFieldGrayColor
+            usernameTextField.textColor = UIColor.lightGrayColor()
+            emailTextField.textColor = UIColor.lightGrayColor()
             
-            textFieldDidBeginEditing(usernameTextField)
-            textFieldDidBeginEditing(emailTextField)
+            
+            let pubGreen = colorWithHexString("6AFF63")
             
             saveButton.enabled = true
             updateProfilePhotoButton.enabled = true
-            updateProfilePhotoButton.alpha = 0.70
+            updateProfilePhotoButton.alpha = 0.30
             updateProfilePhotoButton.userInteractionEnabled = true
-            updateProfilePhotoButton.setTitle("Edit Profile Photo", forState: .Normal)
-            updateProfilePhotoButton.titleLabel?.textColor = UIColor.blueColor()
+//            updateProfilePhotoButton.setTitle("Edit Profile Photo", forState: .Normal)
+            updateProfilePhotoButton.setTitleColor(pubGreen, forState: .Normal)
             
             let cancelButton = UIBarButtonItem(title: "X", style: .Plain, target: self, action: "editButtonTapped:")
             self.navigationController?.navigationItem.leftBarButtonItem = cancelButton
@@ -167,19 +179,6 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                 updateViewForMode(mode)
             }
         }
-        
-        //        if let buttonTitle = sender.title {
-        //            switch buttonTitle {
-        //            case "Edit":
-        //                self.mode = .editView
-        //                updateViewForMode(mode)
-        //            case "X":
-        //                self.mode = .defaultView
-        //                updateViewForMode(mode)
-        //            default:
-        //                updateViewForMode(mode)
-        //            }
-        //        }
     }
     
     
@@ -341,6 +340,8 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     }
     
     
+    
+    
     //MARK: - Image Picker Controller Delegate Methods
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -394,12 +395,12 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     
     
     // MARK: viewDid Functions
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateProfilePhotoButton.layer.borderColor = UIColor.darkGrayColor().CGColor
-        updateProfilePhotoButton.layer.borderWidth = 2
+        let pubGreen = colorWithHexString("6AFF63").CGColor
+        updateProfilePhotoButton.layer.borderColor = pubGreen
+        updateProfilePhotoButton.layer.borderWidth = 0.5
         updateProfilePhotoButton.layer.cornerRadius = updateProfilePhotoButton.frame.size.width/2
         
         if let identifier = UserController.sharedController.currentUser?.identifier {
@@ -413,14 +414,13 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                             self.updateProfilePhotoButton.titleLabel?.text = ""
                             self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
                         })
-                        
                     })
                 }
             }
+            
         } else {
             print("no photo identifier")
         }
-        
         
         self.updateViewForMode(ViewMode.defaultView)
         
@@ -430,10 +430,13 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     
     }
     
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         BarController.sharedController.currentBar = nil
     }
+    
+    
     
     // MARK: UI Helpers
     

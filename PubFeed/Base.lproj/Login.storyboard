@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -412,7 +412,9 @@
                                     <constraint firstAttribute="width" constant="235" id="ab7-1b-Pej"/>
                                 </constraints>
                                 <color key="tintColor" red="0.25520833333333337" green="0.25520833333333337" blue="0.25520833333333337" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="PhotoButton Copy"/>
+                                <state key="normal" image="PhotoButton Copy">
+                                    <color key="titleColor" red="0.41568627450980394" green="1" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="15"/>
@@ -425,7 +427,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.19979087752525237" green="0.19979087752525237" blue="0.19979087752525237" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="i2X-vO-uHB" firstAttribute="top" secondItem="3iA-yy-Sp4" secondAttribute="bottom" constant="140" id="4PQ-NS-mEz"/>
@@ -467,6 +469,6 @@
         <image name="regular" width="174" height="174"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vu9-Ok-3qe"/>
+        <segue reference="2D4-Nl-CpF"/>
     </inferredMetricsTieBreakers>
 </document>
