@@ -190,14 +190,16 @@ class PostController {
     
     static func reportPost(user: User, post: Post, text: String, completion: (success: Bool) -> Void) {
         
-        let base = FirebaseController.base.childByAppendingPath("Report").childByAppendingPath("\(user.identifier)").childByAutoId()
+        let base = FirebaseController.base.childByAppendingPath("report").childByAppendingPath("\(user.identifier!)").childByAutoId()
         print(post.identifier)
-        base.setValue(post.identifier, forKey: "postIdentifier")
+        
+        let post = ["postIdentifier": post.identifier!]
+        base.setValue(post)
         completion(success: true)
     }
     
     static func queryReport(user: User, post: Post, completion: (post: Post?) -> Void) {
-        FirebaseController.base.childByAppendingPath("Report").childByAppendingPath(user.identifier).queryOrderedByChild("postIdentifier").observeEventType(.Value, withBlock: {snapshot in
+        FirebaseController.base.childByAppendingPath("report").childByAppendingPath(user.identifier).queryOrderedByChild("postIdentifier").observeEventType(.ChildAdded, withBlock: {snapshot in
             
             if let postID = snapshot.value["postIdentifier"] as? String {
                 PostController.postFromIdentifier(postID, completion: { (post) -> Void in

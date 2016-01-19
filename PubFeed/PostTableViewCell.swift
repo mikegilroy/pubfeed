@@ -122,6 +122,7 @@ class PostTableViewCell: UITableViewCell {
     @IBAction func reportButtonTapped(sender: PostTableViewCell) {
         self.delegate?.reportButtonTapped(sender)
     }
+   
     
     @IBAction func likeButtonTapped(sender: PostTableViewCell) {
         self.delegate?.likeButtonTapped(sender)

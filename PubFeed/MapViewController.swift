@@ -286,6 +286,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             let detailScene = segue.destinationViewController as! BarFeedViewController
             detailScene.bar = self.selectedBar
+            
         }
     }
     
