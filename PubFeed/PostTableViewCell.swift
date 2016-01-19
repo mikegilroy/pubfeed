@@ -118,7 +118,8 @@ class PostTableViewCell: UITableViewCell {
         }
     }
 
-    @IBAction func reportButtonTapped(sender: AnyObject) {
+    @IBAction func reportButtonTapped(sender: PostTableViewCell) {
+        self.delegate?.reportButtonTapped(sender)
     }
 
     
