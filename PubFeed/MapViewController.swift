@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate,UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     // MARK: Properties
     
@@ -29,81 +29,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
-    // MAP SEARCH -- CURRENTLY IN PROGRESS
-    func setUpSearchController() {
-        //set up searchController
-        searchController = UISearchController(searchResultsController: nil)
-        definesPresentationContext = true
-        searchController.searchBar.delegate = self
-        //set up searchUpdater
-        let searchUpdater = searchController.searchResultsUpdater
-        searchUpdater?.updateSearchResultsForSearchController(searchController)
-        //define appearance for the searchController
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.searchBarStyle = .Minimal
-        searchController.searchBar.placeholder = "search in another location"
-        let searchBarTextField = searchController.searchBar.valueForKey("searchField") as? UITextField
-        searchBarTextField?.textColor = UIColor.whiteColor()
-        searchController.hidesNavigationBarDuringPresentation = false
-        navigationItem.titleView = searchController.searchBar
-    }
-    
-    func searchWithSearchTerm(searchTerm: String) {
-        if let searchText = searchController.searchBar.text {
-            let searchTerm = searchText.lowercaseString
-            let request = MKLocalSearchRequest()
-            request.naturalLanguageQuery = searchTerm
-            let search = MKLocalSearch(request: request)
-            search.startWithCompletionHandler { (response, error) in
-                if let response = response {
-                    self.searchResults = response.mapItems
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.tableView.hidden = true
-    }
-    
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText != "" {
-            self.tableView.hidden = false
-            let searchTerm = searchText.lowercaseString
-            searchWithSearchTerm(searchTerm)
-        } else if searchText == "" {
-            self.tableView.hidden = true
-        }
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath)
-        cell.textLabel?.text = searchResults[indexPath.row].name
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let placemark = searchResults[indexPath.row].placemark
-        let location = CLLocation(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
-        self.tableView.hidden = true
-        centerMapOnLocation(location)
-        loadBars(location)
-        
-        
-    }
-    
-    
-    
-    
+  
     // MARK: Actions
     
     @IBAction func refreshButtonTapped(sender: AnyObject) {
+        self.finishSearching()
+        searchController.searchBar.text = ""
         self.bars = []
         mapView.removeAnnotations(mapView.annotations)
         let centerLocation = CLLocation(latitude: mapView.region.center.latitude, longitude:mapView.region.center.longitude)
@@ -112,10 +43,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     
     @IBAction func locationButtonTapped(sender: UIBarButtonItem) {
+        self.finishSearching()
+        searchController.searchBar.text = ""
+        self.bars = []
+        mapView.removeAnnotations(mapView.annotations)
         self.locationManager.startUpdatingLocation()
     }
-    
-    
     
     // MARK: viewDid Functions
     
@@ -129,12 +62,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
-        setUpSearchController()
+        setUpSearchTools()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         BarController.sharedController.currentBar = nil
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        self.finishSearching()
     }
     
     
@@ -226,6 +164,46 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
     }
     
+    // MARK: UITableViewDataSource
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResults.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath)
+        cell.textLabel?.text = searchResults[indexPath.row].name
+        return cell
+    }
+    
+    // MARK: UITableViewDelegate
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.bars = []
+        mapView.removeAnnotations(mapView.annotations)
+        let placemark = searchResults[indexPath.row].placemark
+        let location = CLLocation(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+        self.finishSearching()
+        centerMapOnLocation(location)
+        loadBars(location)
+    }
+    
+    // MARK: UISearchBarDelegate
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.finishSearching()
+        searchController.searchBar.text = ""
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            self.tableView.hidden = false
+            let searchTerm = searchText.lowercaseString
+            searchWithSearchTerm(searchTerm)
+        } else if searchText == "" {
+            self.tableView.hidden = true
+        }
+    }
+    
     
     // MARK: CLLocationManagerDelegate
     
@@ -242,8 +220,42 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     
-    // MARK: Helper Functions
+    // MARK: Search Functions
+    func finishSearching() {
+        self.tableView.hidden = true
+        searchController.searchBar.resignFirstResponder()
+    }
     
+    func setUpSearchTools() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.searchBarStyle = .Minimal
+        searchController.searchBar.placeholder = "search in another location"
+        let searchBarTextField = searchController.searchBar.valueForKey("searchField") as? UITextField
+        searchBarTextField?.textColor = UIColor.whiteColor()
+        searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.titleView = searchController.searchBar
+    }
+    
+    func searchWithSearchTerm(searchTerm: String) {
+        if let searchText = searchController.searchBar.text {
+            let searchTerm = searchText.lowercaseString
+            let request = MKLocalSearchRequest()
+            request.naturalLanguageQuery = searchTerm
+            let search = MKLocalSearch(request: request)
+            search.startWithCompletionHandler { (response, error) in
+                if let response = response {
+                    self.searchResults = response.mapItems
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    
+    // MARK: Map Data Functions
     func loadBars(location: CLLocation) {
         BarController.loadBars(location, nextPageToken: nil) { (bars, nextPageToken) ->
             Void in
@@ -277,34 +289,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         })
     }
     
-
-
-    
-    
-//    func setPostsForLocation(location: CLLocation) {
-//        PostController.postsForLocation(location, radius: 1.0) { (posts, error) -> Void in
-//            self.posts = posts
-//            BarController.loadBars(location, nextPageToken: nil, completion: { (bars, nextPageToken) -> Void in
-//                if let bars = bars {
-//                    for bar in bars {
-//                        if let barLocation = bar.location {
-//                            if self.topEmojisForLocation(barLocation).count > 0 {
-//                                print(self.topEmojisForLocation(barLocation))
-//                                self.locationEmojiDictionary[barLocation] = self.topEmojisForLocation(barLocation)
-//                                print("MADE IT: \(self.locationAnnotationDictionary[barLocation])")
-//                                if let annotation = self.locationAnnotationDictionary[barLocation] {
-//                                    print("\(annotation) CHANGED!!!")
-//                                    self.mapView.removeAnnotation(annotation)
-//                                    self.mapView.addAnnotation(annotation)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            })
-//        }
-//    }
-
     func topEmojisForLocation(location: CLLocation) -> [String] {
         if let posts = self.posts {
             var emojis: [String] = []

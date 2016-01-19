@@ -16,7 +16,6 @@
 		0236A3671C3DCA3900125BA9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236A3661C3DCA3900125BA9 /* CoreLocation.framework */; };
 		0236A3711C3F192B00125BA9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236A3701C3F192B00125BA9 /* Error.swift */; };
 		0237966A1C4421FC0090B858 /* GeoFireProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023796691C4421FC0090B858 /* GeoFireProtocol.swift */; };
-		0281F0011C4EB525009473A8 /* MapSearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281F0001C4EB525009473A8 /* MapSearchResultsTableViewController.swift */; };
 		028A3E9C1C3F33A400B9FC3F /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E931C3F33A400B9FC3F /* GeoFire.m */; };
 		028A3E9D1C3F33A400B9FC3F /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E951C3F33A400B9FC3F /* GFQuery.m */; };
 		028A3E9E1C3F33A400B9FC3F /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A3E971C3F33A400B9FC3F /* GFBase32Utils.m */; };
@@ -103,7 +102,6 @@
 		0236A3661C3DCA3900125BA9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0236A3701C3F192B00125BA9 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		023796691C4421FC0090B858 /* GeoFireProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFireProtocol.swift; sourceTree = "<group>"; };
-		0281F0001C4EB525009473A8 /* MapSearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		028A3E891C3F2E1F00B9FC3F /* PubFeed-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PubFeed-Bridging-Header.h"; sourceTree = "<group>"; };
 		028A3E8D1C3F338F00B9FC3F /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
 		028A3E8E1C3F339900B9FC3F /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 				1069A54F1C3D92230018D28F /* Bar Feed */,
 				1069A5501C3D922B0018D28F /* Post Detail */,
 				1069A53E1C3D82910018D28F /* MapViewController.swift */,
-				0281F0001C4EB525009473A8 /* MapSearchResultsTableViewController.swift */,
 				100B8DB41C3F419A005C45E4 /* CustomPin.swift */,
 				1069A5461C3D84A40018D28F /* NewPostTableTableViewController.swift */,
 				1069A5441C3D84270018D28F /* SelectLocationViewController.swift */,
@@ -613,7 +610,6 @@
 				E67F0F181C3DB54600785F12 /* Bar.swift in Sources */,
 				02E9B1A01C48132C004627D3 /* DoubleExtension.swift in Sources */,
 				1069A5371C3D81B90018D28F /* LoginViewController.swift in Sources */,
-				0281F0011C4EB525009473A8 /* MapSearchResultsTableViewController.swift in Sources */,
 				DED6E5CA1C3DF19F005E17D8 /* UIViewControllerExtension.swift in Sources */,
 				1069A5491C3D869B0018D28F /* SettingsTableViewController.swift in Sources */,
 				028A3E9E1C3F33A400B9FC3F /* GFBase32Utils.m in Sources */,
