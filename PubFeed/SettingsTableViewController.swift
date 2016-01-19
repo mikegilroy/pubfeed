@@ -66,16 +66,15 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             
         case .defaultView:
             
+            //colors
+            let defaultTextGrey = colorWithHexString("3c3c3c")
             
-//            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackGround")!)
-//            self.view.backgroundColor = UIColor.darkGrayColor()
-            
+            //loads local profile image data from NSUserDefaults
             if let imageData = NSUserDefaults.standardUserDefaults().objectForKey(self.kPhoto) as? NSData {
                 let image = UIImage(data: imageData)
                 self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
                 self.updateProfilePhotoButton.titleLabel?.text = ""
-                self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
-                
+                self.updateProfilePhotoButton.imageView?.contentMode = .ScaleToFill
             }
             
             if let user = UserController.sharedController.currentUser {
@@ -83,8 +82,8 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                 emailTextField.text = user.email
                 usernameTextField.userInteractionEnabled = false
                 emailTextField.userInteractionEnabled = false
-                usernameTextField.textColor = UIColor.blackColor()
-                emailTextField.textColor = UIColor.blackColor()
+                usernameTextField.textColor = defaultTextGrey
+                emailTextField.textColor = defaultTextGrey
             }
             
             saveButton.enabled = false
@@ -107,7 +106,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                             
                             self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
                             self.updateProfilePhotoButton.titleLabel?.text = ""
-                            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleToFill
                         })
                     })
                 } else {
@@ -116,15 +115,13 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                         let image = UIImage(data: imageData)
                         self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
                         self.updateProfilePhotoButton.titleLabel?.text = ""
-                        self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                        self.updateProfilePhotoButton.imageView?.contentMode = .ScaleToFill
                     }
                 }
             }
             
             
         case .editView:
-            
-//            let textFieldGrayColor = colorWithHexString("d4d4d6")
             
             editUpdateProfilePhotoButton.hidden = false
             editUpdateProfilePhotoButton.alpha = 1.0
@@ -138,14 +135,12 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             usernameTextField.textColor = UIColor.lightGrayColor()
             emailTextField.textColor = UIColor.lightGrayColor()
             
-            
             let pubGreen = colorWithHexString("6AFF63")
             
             saveButton.enabled = true
             updateProfilePhotoButton.enabled = true
             updateProfilePhotoButton.alpha = 0.30
             updateProfilePhotoButton.userInteractionEnabled = true
-//            updateProfilePhotoButton.setTitle("Edit Profile Photo", forState: .Normal)
             updateProfilePhotoButton.setTitleColor(pubGreen, forState: .Normal)
             
             let cancelButton = UIBarButtonItem(title: "X", style: .Plain, target: self, action: "editButtonTapped:")
@@ -196,7 +191,6 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             
         } else {
             
-            
             UserController.updateUser(UserController.sharedController.currentUser!, username: usernameTextField.text!, email: emailTextField.text!, completion: { (user, error) -> Void in
                 
                 if let user = UserController.sharedController.currentUser {
@@ -211,10 +205,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
                     ErrorHandling.defaultErrorHandler(error, title: "\(error?.localizedDescription)")
                 }
             })
-            
-            
         }
-        
         self.updateViewForMode(ViewMode.defaultView)
     }
     
@@ -351,6 +342,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
             
             self.profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
             self.updateProfilePhotoButton.setBackgroundImage(self.profilePhoto, forState: .Normal)
+            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleToFill
             self.updateProfilePhotoButton.setTitle(nil, forState: .Normal)
             
             let successAlertController = UIAlertController(title: "Update Photo?", message: "Press Ok or Cancel.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -398,21 +390,21 @@ class SettingsTableViewController: UITableViewController, UINavigationController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let pubGreen = colorWithHexString("6AFF63").CGColor
-        updateProfilePhotoButton.layer.borderColor = pubGreen
-        updateProfilePhotoButton.layer.borderWidth = 0.5
+//        let pubGreen = colorWithHexString("6AFF63").CGColor
+//        updateProfilePhotoButton.layer.borderColor = pubGreen
+        updateProfilePhotoButton.layer.borderWidth = 1.0
         updateProfilePhotoButton.layer.cornerRadius = updateProfilePhotoButton.frame.size.width/2
         
         if let identifier = UserController.sharedController.currentUser?.identifier {
             
             ImageController.profilePhotoForIdentifier(identifier) { (photoUrl) -> Void in
                 
-                if let url = photoUrl{
+                if let url = photoUrl {
                     ImageController.fetchImageAtUrl(url, completion: { (image) -> () in
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             self.updateProfilePhotoButton.setBackgroundImage(image, forState: .Normal)
                             self.updateProfilePhotoButton.titleLabel?.text = ""
-                            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleAspectFill
+                            self.updateProfilePhotoButton.imageView?.contentMode = .ScaleToFill
                         })
                     })
                 }
@@ -427,7 +419,7 @@ class SettingsTableViewController: UITableViewController, UINavigationController
         //textField delegate
         self.usernameTextField.delegate = self
         self.emailTextField.delegate = self
-    
+        
     }
     
     

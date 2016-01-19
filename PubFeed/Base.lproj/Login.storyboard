@@ -120,7 +120,7 @@
                                                     <outlet property="delegate" destination="ANR-Gl-O4t" id="Rfj-CQ-eZC"/>
                                                 </connections>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="regular" translatesAutoresizingMaskIntoConstraints="NO" id="4k7-vi-lDd">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="regular" translatesAutoresizingMaskIntoConstraints="NO" id="4k7-vi-lDd">
                                                 <rect key="frame" x="225" y="91" width="150" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="DRc-Bh-9yR"/>
@@ -213,7 +213,7 @@
                                                 </connections>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yHK-pF-kgc">
-                                                <rect key="frame" x="20" y="245" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="275" width="560" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Cabin-SemiBold" family="Cabin" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -222,7 +222,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Kr-0a-lnV">
-                                                <rect key="frame" x="20" y="325" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="355" width="560" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Cabin-SemiBold" family="Cabin" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -231,7 +231,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YSe-7p-oen">
-                                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="315" width="560" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Cabin-SemiBold" family="Cabin" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -240,7 +240,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ril-Uu-07P">
-                                                <rect key="frame" x="255" y="377" width="90" height="40"/>
+                                                <rect key="frame" x="255" y="407" width="90" height="40"/>
                                                 <color key="backgroundColor" red="0.42352941179999998" green="0.98823529409999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="PPN-a2-zIo"/>
@@ -248,7 +248,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Cabin-SemiBold" family="Cabin" pointSize="24"/>
                                                 <state key="normal" title="signup">
-                                                    <color key="titleColor" red="0.2085503472222221" green="0.2085503472222221" blue="0.2085503472222221" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.14309106691919182" green="0.14309106691919182" blue="0.14309106691919182" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -260,7 +260,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfd-eH-tev">
-                                                <rect key="frame" x="255" y="439" width="90" height="40"/>
+                                                <rect key="frame" x="255" y="469" width="90" height="40"/>
                                                 <color key="backgroundColor" red="0.42352941179999998" green="0.98823529409999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Lew-db-XfC"/>
@@ -268,7 +268,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Cabin-SemiBold" family="Cabin" pointSize="24"/>
                                                 <state key="normal" title="cancel">
-                                                    <color key="titleColor" red="0.22261679292929282" green="0.22261679292929282" blue="0.22261679292929282" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16571969696969679" green="0.16571969696969679" blue="0.16571969696969679" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -280,7 +280,7 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="regular" translatesAutoresizingMaskIntoConstraints="NO" id="W3f-O8-TgI">
-                                                <rect key="frame" x="225" y="73" width="150" height="150"/>
+                                                <rect key="frame" x="225" y="103" width="150" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="GOS-W2-Lgs"/>
                                                     <constraint firstAttribute="height" constant="150" id="fuy-TH-JP4"/>
@@ -291,7 +291,7 @@
                                         <constraints>
                                             <constraint firstItem="yHK-pF-kgc" firstAttribute="leading" secondItem="TED-Pd-daF" secondAttribute="leading" constant="20" id="4Mj-I9-WZy"/>
                                             <constraint firstItem="Gfd-eH-tev" firstAttribute="top" secondItem="Ril-Uu-07P" secondAttribute="bottom" constant="22" id="4Qf-WH-Z2n"/>
-                                            <constraint firstItem="spA-ah-tSF" firstAttribute="centerY" secondItem="YSe-7p-oen" secondAttribute="centerY" id="4hQ-cD-QaJ"/>
+                                            <constraint firstItem="spA-ah-tSF" firstAttribute="centerY" secondItem="YSe-7p-oen" secondAttribute="centerY" constant="-30" id="4hQ-cD-QaJ"/>
                                             <constraint firstAttribute="bottom" secondItem="spA-ah-tSF" secondAttribute="bottom" id="Cja-fY-dVz"/>
                                             <constraint firstItem="W3f-O8-TgI" firstAttribute="centerX" secondItem="yHK-pF-kgc" secondAttribute="centerX" id="FND-WG-MrJ"/>
                                             <constraint firstItem="spA-ah-tSF" firstAttribute="top" secondItem="TED-Pd-daF" secondAttribute="top" id="ObQ-9D-WUK"/>
@@ -342,7 +342,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Bj-h0-Rkj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="ErL-oO-y0t"/>
             </objects>
-            <point key="canvasLocation" x="1018" y="-1872"/>
+            <point key="canvasLocation" x="1073" y="-1933"/>
         </scene>
         <!--Add Profile Photo View Controller-->
         <scene sceneID="knd-R2-ZEZ">
@@ -469,6 +469,6 @@
         <image name="regular" width="174" height="174"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2D4-Nl-CpF"/>
+        <segue reference="vu9-Ok-3qe"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,9 +20,6 @@ class ImageController {
     
     static func uploadPhoto(photo: UIImage, completion: (String?) -> Void) {
         
-        let imageData : NSData = UIImageJPEGRepresentation(photo, (0.7))!
-        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: kPhoto)
-        
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
         let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".jpg")
         
@@ -49,16 +46,12 @@ class ImageController {
             return nil
         })
         
-//        let imageData : NSData = UIImageJPEGRepresentation(photo, (0.7))!
-//        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: kPhoto)
+        let imageData : NSData = UIImageJPEGRepresentation(photo, (0.7))!
+        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: kPhoto)
     }
 
     
     static func updateProfilePhoto(identifier: String, image: UIImage, completion: (success: Bool, error: NSError?) -> Void) {
-        
-        let imageData : NSData = UIImageJPEGRepresentation(image, (0.7))!
-        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: kPhoto)
-
         
         if let user = UserController.sharedController.currentUser {
             var currentUser = user
@@ -71,14 +64,13 @@ class ImageController {
                                 
                                 if error == nil {
                                     completion(success: true, error: nil)
+                                    print("Photo\(currentUser.photo) uploaded!")
                                 } else {
                                     completion(success: false, error: Error.defaultError())
                                 }
                             })
                         }
                     })
-                
-                
             })
         } else {
             print("no user")
