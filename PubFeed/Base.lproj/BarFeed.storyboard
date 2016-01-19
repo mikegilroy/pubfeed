@@ -227,6 +227,9 @@
                                                         <constraint firstAttribute="height" constant="27" id="Fzq-xJ-4W4"/>
                                                     </constraints>
                                                     <state key="normal" title="Flag"/>
+                                                    <connections>
+                                                        <action selector="reportButtonTapped:" destination="fjl-l1-pdW" eventType="touchUpInside" id="Ic0-RC-kgb"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -270,6 +273,7 @@
                                             <outlet property="postImageView" destination="4Vy-hb-04v" id="lJ0-Cb-Oqm"/>
                                             <outlet property="postTextLabel" destination="SHj-3w-f8y" id="8Ja-nX-RBx"/>
                                             <outlet property="profileImageView" destination="qZf-qy-Dnj" id="6NG-I5-hV3"/>
+                                            <outlet property="reportButton" destination="WJx-bk-XSs" id="hNg-f2-9gi"/>
                                             <outlet property="timestampLabel" destination="zLl-Rc-bB2" id="NgV-1V-I92"/>
                                             <outlet property="usernameLabel" destination="pfw-T6-ukf" id="wE1-PN-uPV"/>
                                             <segue destination="r5a-3l-V8N" kind="show" identifier="toDetailView" id="kTe-HK-tqH"/>

@@ -21,7 +21,6 @@ class PostTableViewCell: UITableViewCell {
     
     // Outlets
     @IBOutlet weak var reportButton: UIButton!
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emojiLabel: UILabel!
@@ -119,10 +118,9 @@ class PostTableViewCell: UITableViewCell {
         }
     }
 
-    @IBAction func reportButtonTapped(sender: PostTableViewCell) {
-        self.delegate?.reportButtonTapped(sender)
+    @IBAction func reportButtonTapped(sender: AnyObject) {
     }
-   
+
     
     @IBAction func likeButtonTapped(sender: PostTableViewCell) {
         self.delegate?.likeButtonTapped(sender)
