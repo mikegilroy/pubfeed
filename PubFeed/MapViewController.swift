@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
     
@@ -20,13 +20,87 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var selectedBar: Bar?
     var posts: [Post]?
     var annotations: [MKAnnotation] = []
+    var searchController: UISearchController!
+    var searchResults: [MKMapItem] = []
+    var searchedLocation: CLLocation?
     
     // MARK: Outlets
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBOutlet weak var tableView: UITableView!
     
-
+    // MAP SEARCH -- CURRENTLY IN PROGRESS
+    func setUpSearchController() {
+        //set up searchController
+        searchController = UISearchController(searchResultsController: nil)
+        definesPresentationContext = true
+        searchController.searchBar.delegate = self
+        //set up searchUpdater
+        let searchUpdater = searchController.searchResultsUpdater
+        searchUpdater?.updateSearchResultsForSearchController(searchController)
+        //define appearance for the searchController
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.searchBarStyle = .Minimal
+        searchController.searchBar.placeholder = "search in another location"
+        let searchBarTextField = searchController.searchBar.valueForKey("searchField") as? UITextField
+        searchBarTextField?.textColor = UIColor.whiteColor()
+        searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.titleView = searchController.searchBar
+    }
+    
+    func searchWithSearchTerm(searchTerm: String) {
+        if let searchText = searchController.searchBar.text {
+            let searchTerm = searchText.lowercaseString
+            let request = MKLocalSearchRequest()
+            request.naturalLanguageQuery = searchTerm
+            let search = MKLocalSearch(request: request)
+            search.startWithCompletionHandler { (response, error) in
+                if let response = response {
+                    self.searchResults = response.mapItems
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.tableView.hidden = true
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            self.tableView.hidden = false
+            let searchTerm = searchText.lowercaseString
+            searchWithSearchTerm(searchTerm)
+        } else if searchText == "" {
+            self.tableView.hidden = true
+        }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResults.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath)
+        cell.textLabel?.text = searchResults[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let placemark = searchResults[indexPath.row].placemark
+        let location = CLLocation(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+        self.tableView.hidden = true
+        centerMapOnLocation(location)
+        loadBars(location)
+        
+        
+    }
+    
+    
+    
+    
     // MARK: Actions
     
     @IBAction func refreshButtonTapped(sender: AnyObject) {
@@ -47,11 +121,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.hidden = true
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+        setUpSearchController()
     }
     
     override func viewDidAppear(animated: Bool) {
