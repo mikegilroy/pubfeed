@@ -273,10 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				1069A5241C3C4A580018D28F /* AppDelegate.swift */,
-				1069A5281C3C4A580018D28F /* Main.storyboard */,
-				10F6D99F1C4DA53900CFA609 /* BarFeed StoryBoard */,
-				10F6D99A1C4DA4F100CFA609 /* Settings.storyboard */,
-				10F6D9971C4DA4A500CFA609 /* Login.storyboard */,
+				10F6D9A31C4DBDB200CFA609 /* Storyboards */,
 				E67F0F1F1C3DB65F00785F12 /* Extensions */,
 				E67F0F121C3DB3E300785F12 /* Models */,
 				0236A35F1C3DB3F200125BA9 /* Controllers */,
@@ -349,6 +346,41 @@
 				10F6D99C1C4DA53200CFA609 /* BarFeed.storyboard */,
 			);
 			name = "BarFeed StoryBoard";
+			sourceTree = "<group>";
+		};
+		10F6D9A01C4DBD9000CFA609 /* Main Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				1069A5281C3C4A580018D28F /* Main.storyboard */,
+			);
+			name = "Main Storyboard";
+			sourceTree = "<group>";
+		};
+		10F6D9A11C4DBD9B00CFA609 /* Settings Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				10F6D99A1C4DA4F100CFA609 /* Settings.storyboard */,
+			);
+			name = "Settings Storyboard";
+			sourceTree = "<group>";
+		};
+		10F6D9A21C4DBDA700CFA609 /* Login Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				10F6D9971C4DA4A500CFA609 /* Login.storyboard */,
+			);
+			name = "Login Storyboard";
+			sourceTree = "<group>";
+		};
+		10F6D9A31C4DBDB200CFA609 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				10F6D9A01C4DBD9000CFA609 /* Main Storyboard */,
+				10F6D99F1C4DA53900CFA609 /* BarFeed StoryBoard */,
+				10F6D9A11C4DBD9B00CFA609 /* Settings Storyboard */,
+				10F6D9A21C4DBDA700CFA609 /* Login Storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		1A4943FBB2315D276982ABB2 /* Frameworks */ = {
@@ -461,7 +493,7 @@
 				TargetAttributes = {
 					1069A5201C3C4A580018D28F = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = WHJ2JK5E8R;
+						DevelopmentTeam = MXD8E5FVZ4;
 					};
 				};
 			};
