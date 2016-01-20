@@ -68,6 +68,11 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
             animateView(emojiStack)
             return
         }
+        guard self.remainingChars > 0 else {
+            animateView(textView)
+            animateView(charCountLabel)
+            return
+        }
         if let user = UserController.sharedController.currentUser {
             if let location = bar.location {
                 PostController.createPost(location, emojis: emojis, text: self.textView.text, photo: selectedPhoto, bar: bar, user: user, completion: { (post, error) -> Void in
@@ -95,11 +100,13 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
     }
     
     
-        // MARK: viewDid Functions
+    // MARK: viewDid Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.delegate = self
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
+        view.addGestureRecognizer(tapRecognizer)
         for button in emojiButton {
             button.setBackgroundImage(UIImage(named: emojiMenu[button.tag]), forState: .Normal)
         }
@@ -160,6 +167,10 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
         animation.toValue = NSValue(CGPoint: CGPointMake(view.center.x + 10, view.center.y))
         view.layer.addAnimation(animation, forKey: "position")
         
+    }
+    
+    func hideKeyboard() {
+        textView.resignFirstResponder()
     }
     
     // MARK: Navigation
