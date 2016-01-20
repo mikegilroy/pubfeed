@@ -232,38 +232,35 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func loadPostsForBar() {
         if let bar = self.bar {
             PostController.postsForBar(bar) { (var posts) -> Void in
-                self.posts = posts
-                for post in posts {
+                var tempPost = posts
+                for post in tempPost {
+                    
                     PostController.queryReport(UserController.sharedController.currentUser!, post: post, completion: { (post) -> Void in
                         if let post = post {
-                            if let indexOfPost = self.posts?.indexOf(post) {
+                            if let indexOfPost = tempPost.indexOf(post) {
                                 
-                                self.posts?.removeAtIndex(indexOfPost)
-                                posts = self.posts!
-                              
-                            } else {
-                                posts = self.posts!
+                                tempPost.removeAtIndex(indexOfPost)
+                               self.posts = tempPost
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     self.tableView.reloadData()
                                 })
                             }
                         } else {
                             print("no post")
-                            posts = self.posts!
+                            self.posts = tempPost
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 self.tableView.reloadData()
                             })
-                          
                         }
-//                        
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.tableView.reloadData()
-                        })
+                       
                     })
-//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        self.tableView.reloadData()
-//                    })
+//                    self.posts = tempPost
+
                 }
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
             }
         }
     }
