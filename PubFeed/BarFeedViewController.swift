@@ -29,7 +29,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: Actions
     
-    // Report 
+    // Report
     
     func reportButtonTapped(sender: PostTableViewCell) {
         
@@ -41,7 +41,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (_) -> Void in
             if self.textField.text == "" {
-               ErrorHandling.defaultErrorHandler(nil, title: "Need to have a reason to report!")
+                ErrorHandling.defaultErrorHandler(nil, title: "Need to have a reason to report!")
             } else {
                 let cell = sender.superview?.superview as! UITableViewCell
                 if let indexPath = self.tableView.indexPathForCell(cell) {
@@ -51,7 +51,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                         let post = posts[indexPath.row]
                         PostController.reportPost(UserController.sharedController.currentUser!, post: post, text: self.textField.text!, completion: { (success) -> Void in
                             if success {
-                               ErrorHandling.presentAlert("Report succeeded", message: "Press Ok to dismiss")
+                                ErrorHandling.presentAlert("Report succeeded", message: "Press Ok to dismiss")
                                 print("report success")
                             } else {
                                 print("fail to report")
@@ -122,8 +122,8 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         configureTableView()
         loadBarDetails()
-//        loadPostsForBar()
-     
+        //        loadPostsForBar()
+        
         
         if let bar = bar {
             bar.setAsCurrent()
@@ -164,7 +164,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.reportButton.setTitle("", forState: .Normal)
             cell.delegate = self
         }
-
+        
         return cell
     }
     
@@ -188,16 +188,16 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         header.textLabel!.text = "Recent Activity"
     }
     
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-////        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-////            cell.contentView.setNeedsLayout()
-////            cell.contentView.layoutIfNeeded()
-////            cell.updateConstraints()
-////        }
-//        return UITableViewAutomaticDimension
-//    }
+    //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    ////        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+    ////            cell.contentView.setNeedsLayout()
+    ////            cell.contentView.layoutIfNeeded()
+    ////            cell.updateConstraints()
+    ////        }
+    //        return UITableViewAutomaticDimension
+    //    }
     
-
+    
     // MARK: Helper Functions
     
     func loadBarDetails() {
@@ -232,30 +232,29 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func loadPostsForBar() {
         if let bar = self.bar {
             PostController.postsForBar(bar) { (var posts) -> Void in
-                var tempPost = posts
-                for post in tempPost {
+          self.posts = posts
+
+                for post in posts {
                     
                     PostController.queryReport(UserController.sharedController.currentUser!, post: post, completion: { (post) -> Void in
                         if let post = post {
-                            if let indexOfPost = tempPost.indexOf(post) {
+                            if let indexOfPost = posts.indexOf(post) {
                                 
-                                tempPost.removeAtIndex(indexOfPost)
-                               self.posts = tempPost
+                                posts.removeAtIndex(indexOfPost)
+                                self.posts = posts
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     self.tableView.reloadData()
                                 })
                             }
                         } else {
                             print("no post")
-                            self.posts = tempPost
+                            self.posts = posts
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 self.tableView.reloadData()
                             })
                         }
-                       
+                        
                     })
-//                    self.posts = tempPost
-
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
