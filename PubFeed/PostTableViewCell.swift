@@ -27,10 +27,10 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postTextLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
-    @IBOutlet weak var postImageView: UIImageView!
+ 
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+   
     
     
     func updateCellWithPost(post: Post) {
@@ -90,28 +90,28 @@ class PostTableViewCell: UITableViewCell {
         self.profileImageView.layer.borderWidth = 1
         self.profileImageView.clipsToBounds = true
         
-        if let imageString = post.photo {
-            if let imageURL = NSURL(string: imageString) {
-                ImageController.fetchImageAtUrl(imageURL, completion: { (image) -> () in
-                    if let image = image {
-                    self.postImageView.image = image
-                    // imageview width = screenwidth - 64
-                    let imageViewWidth = self.frame.width - 64
-                    let imageWidth = image.size.width
-                    let ratio = imageWidth / imageViewWidth
-                    let imageViewHeight = image.size.height / ratio
-                    
-                    self.postImageView.frame = CGRect(x: self.postImageView.frame.origin.x, y: self.postImageView.frame.origin.y, width: imageViewWidth, height: imageViewHeight)
-                    }
-                })
-            } else {
-                self.postImageView.frame = CGRect(x: self.postImageView.frame.origin.x, y: self.postImageView.frame.origin.y, width: 0, height: 0)
-            }
-        } else {
-            if let image = postImageView.image {
-                addImageHeightConstraint(image)
-            }
-        }
+//        if let imageString = post.photo {
+//            if let imageURL = NSURL(string: imageString) {
+//                ImageController.fetchImageAtUrl(imageURL, completion: { (image) -> () in
+//                    if let image = image {
+//                    self.postImageView.image = image
+//                    // imageview width = screenwidth - 64
+//                    let imageViewWidth = self.frame.width - 64
+//                    let imageWidth = image.size.width
+//                    let ratio = imageWidth / imageViewWidth
+//                    let imageViewHeight = image.size.height / ratio
+//                    
+//                    self.postImageView.frame = CGRect(x: self.postImageView.frame.origin.x, y: self.postImageView.frame.origin.y, width: imageViewWidth, height: imageViewHeight)
+//                    }
+//                })
+//            } else {
+//                self.postImageView.frame = CGRect(x: self.postImageView.frame.origin.x, y: self.postImageView.frame.origin.y, width: 0, height: 0)
+//            }
+//        } else {
+//            if let image = postImageView.image {
+//                addImageHeightConstraint(image)
+//            }
+//        }
     }
     
     func updateLikeButton(post: Post) {
@@ -133,15 +133,15 @@ class PostTableViewCell: UITableViewCell {
         self.delegate?.likeButtonTapped(sender)
     }
     
-    func addImageHeightConstraint(image: UIImage) {
-        postImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let imageViewWidth = postImageView.frame.width
-        let imageWidth = image.size.width
-        let imageHeight = image.size.height
-        let ratio = imageHeight / imageWidth
-        let imageViewHeight = imageViewWidth * ratio
-        imageViewHeightConstraint.constant = imageViewHeight
-    }
+//    func addImageHeightConstraint(image: UIImage) {
+//        postImageView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        let imageViewWidth = postImageView.frame.width
+//        let imageWidth = image.size.width
+//        let imageHeight = image.size.height
+//        let ratio = imageHeight / imageWidth
+//        let imageViewHeight = imageViewWidth * ratio
+//        imageViewHeightConstraint.constant = imageViewHeight
+//    }
     
 }
