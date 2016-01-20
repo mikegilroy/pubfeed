@@ -34,7 +34,7 @@ class PostTableViewCell: UITableViewCell {
     
     
     func updateCellWithPost(post: Post) {
-        self.addCustomSeperator(UIColor.lightGrayColor())
+        //self.addCustomSeperator(UIColor.lightGrayColor())
         
         self.emojiLabel.text = post.emojis
         
