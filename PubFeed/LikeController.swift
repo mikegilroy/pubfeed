@@ -76,16 +76,7 @@ class LikeController {
             })
         }
     }
-    
-    //    static func likesForPosts(user: User, post: Post, completion: (likes: Like?) -> Void) {
-    //        FirebaseController.base.childByAppendingPath("likes").queryOrderedByChild("postIdentifier").queryEqualToValue(post.identifier).queryOrderedByChild("userIdentifier").queryEqualToValue(user.identifier).observeSingleEventOfType(.Value) { (snapshot) -> Void in
-    //            if let like = snapshot.value as? Like {
-    //
-    //            }
-    //
-    //
-    //        }
-    //    }
+
     static func likesForPost(user: User, post: Post, completion: (likes: [Like]?) -> Void) {
         if let postIdentifier = post.identifier {
             FirebaseController.base.childByAppendingPath("likes").childByAppendingPath(user.identifier).queryOrderedByChild("postIdentifier").queryEqualToValue(postIdentifier).observeSingleEventOfType(.Value, withBlock: {
@@ -93,14 +84,8 @@ class LikeController {
                 
                 if let postDictionaries = snapshot.value as? [String: AnyObject] {
                     
-                    //                    let likes = postDictionaries.first
-                    //                    let like = postDictionaries.first! as [String: AnyObject]
+    
                     let likes = postDictionaries.flatMap({Like(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
-                    
-                    
-                    //                    let comments = commentDictionaries.flatMap({Comment(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
-                    //                    let sortedComments = comments.sort({$0.0.timestamp > $0.1.timestamp})
-                    //                    completion(comments: sortedComments)
                     
                     completion(likes: likes)
                 } else {
@@ -119,7 +104,7 @@ class LikeController {
     static func deleteAllLikesForUser(user: User, completion: (error: NSError?) -> Void) {
         likesForUser(user) { (var likes) -> Void in
             if likes.count > 0 {
-             likes.removeAll()
+                likes.removeAll()
             }
         }
     }
