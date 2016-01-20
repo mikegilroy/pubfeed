@@ -17,7 +17,7 @@ class NewPostTableTableViewController: UITableViewController {
 
     // MARK: Properties
     var selectedEmoji: String?
-    var selectedPhoto: String?
+    var selectedPhoto: UIImage?
     var selectedButton: UIButton?
 
     // MARK: Outlets

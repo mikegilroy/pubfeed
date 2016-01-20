@@ -12,10 +12,17 @@ class PostController {
     
     
     // CREATE
-    static func createPost(location: CLLocation, emojis: String, text: String?, photo: String?, bar: Bar, user: User, completion: (post: Post?, error: NSError?) -> Void) {
-        // Needs to handle uploading the photo to amazon. This will need correction when the time comes.
+    static func createPost(location: CLLocation, emojis: String, text: String?, photo: UIImage?, bar: Bar, user: User, completion: (post: Post?, error: NSError?) -> Void) {
+        var photoString: String? = nil
+        if let photo = photo {
+            ImageController.uploadPhoto(photo, completion: { (photoURL) -> Void in
+                if let photoURL = photoURL {
+                    photoString = photoURL
+                }
+            })
+        }
         if let userIdentifier = UserController.sharedController.currentUser?.identifier {
-            var post = Post(userIdentifier: userIdentifier, barID: bar.barID, timestamp: NSDate(), emojis: emojis, text: text, photo: photo, likes: 0, comments: 0, latitude: Double(location.coordinate.latitude), longitude: Double(location.coordinate.longitude))
+            var post = Post(userIdentifier: userIdentifier, barID: bar.barID, timestamp: NSDate(), emojis: emojis, text: text, photo: photoString, likes: 0, comments: 0, latitude: Double(location.coordinate.latitude), longitude: Double(location.coordinate.longitude))
             post.saveWithLocation(location, completion: { (error) -> Void in
                 if error != nil {
                     completion(post: nil, error: error)

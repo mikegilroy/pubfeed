@@ -46,8 +46,6 @@ class ImageController {
             return nil
         })
         
-        let imageData : NSData = UIImageJPEGRepresentation(photo, (0.7))!
-        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: kPhoto)
     }
 
     
@@ -127,25 +125,3 @@ class ImageController {
 public extension String {
     var NS: NSString { return (self as NSString) }
 }
-
-//extension UIImage {
-//
-//    var base64String: String? {
-//
-//        guard let data = UIImageJPEGRepresentation(self, 0.8) else {
-//
-//            return nil
-//        }
-//
-//        return data.base64EncodedStringWithOptions(.EncodingEndLineWithCarriageReturn)
-//    }
-//
-//    convenience init?(base64: String) {
-//
-//        if let photoData = NSData(base64EncodedString: base64, options: .IgnoreUnknownCharacters) {
-//            self.init(data: photoData)
-//        } else {
-//            return nil
-//        }
-//    }
-//}
