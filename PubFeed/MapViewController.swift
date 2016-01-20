@@ -29,7 +29,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
-  
+    
     // MARK: Actions
     
     @IBAction func refreshButtonTapped(sender: AnyObject) {
@@ -99,10 +99,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func addBarLocationAnnotation(bar: Bar) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             if let coordinate = bar.location?.coordinate {
-                let annotation = MKPointAnnotation()
-                annotation.title = bar.name
-                annotation.subtitle = bar.address
-                annotation.coordinate = coordinate
+                
+                //                let annotation = MKPointAnnotation()
+                
+                let annotation = CustomCallout(coordinate: coordinate, title: bar.name, subtitle: bar.address, imageName: UIImage(named: "beerIcon")!)
                 print("calling mapView.addAnnotation")
                 self.mapView.addAnnotation(annotation)
             }
@@ -129,10 +129,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.annotations.append(annotation)
         
         let reuseId = "pin"
-        
+
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
         let rightButton = UIButton(type: UIButtonType.DetailDisclosure)
+        let rightImage = UIImage(named: "beerIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        rightButton.setImage(rightImage, forState: .Normal)
         rightButton.titleForState(UIControlState.Normal)
+        rightButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        UIViewContentMode.ScaleAspectFill
+        
+        let leftButton = UIButton(type: UIButtonType.DetailDisclosure)
+        let leftImage = UIImage(named: "beerIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        leftButton.setImage(leftImage, forState: .Normal)
+        leftButton.titleForState(UIControlState.Normal)
+        leftButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         
         pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         pinView!.canShowCallout = true
@@ -150,6 +161,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
         }
         pinView!.rightCalloutAccessoryView = rightButton
+        pinView!.leftCalloutAccessoryView = leftButton
         
         // Check if annotation location matches user location - if so return nil to show user location
         if (annotation.coordinate.latitude == self.mapView.userLocation.coordinate.latitude) && (annotation.coordinate.longitude == self.mapView.userLocation.coordinate.longitude) {
@@ -264,7 +276,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
         }
     }
-
+    
     func loadPosts(location: CLLocation, bars: [Bar]) {
         PostController.postsForLocation(location, radius: 1.0, completion: { (posts, error) -> Void in
             if let posts = posts {
@@ -304,13 +316,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     // 6 hours
                     if (now - postDate) < 21600 {
                         multiplier = 10
-                    // 1 day
+                        // 1 day
                     } else if (now - postDate) < 86400 {
                         multiplier = 7
-                    // 10 days
+                        // 10 days
                     } else if (now - postDate) < 864000 {
                         multiplier = 3
-                    // 30 days
+                        // 30 days
                     } else if (now - postDate) < 2592000 {
                         multiplier = 1
                     }
@@ -339,8 +351,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             return []
         }
     }
-
-
+    
+    
     // MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
