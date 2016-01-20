@@ -9,19 +9,33 @@
 
 import UIKit
 
-class NewPostTableTableViewController: UITableViewController {
+class NewPostTableTableViewController: UITableViewController, UITextViewDelegate {
 
     let emojiMenu = ["☠", "💃", "🙈", "🍴", "😈", "🔥",
                      "🍼", "🍑", "🍆", "👴🏼", "💩", "🎸",
                     "🐌", "🌈", "⚽️", "🎉", "🎤", "🦄"]
 
     // MARK: Properties
+    
     var selectedEmoji: String?
     var selectedPhoto: UIImage?
     var selectedButton: UIButton?
+    var remainingChars: Int {
+        get {
+            return (140 - self.textView.text.characters.count)
+        }
+    }
+    var placeholderText: String {
+        get {
+            if let bar = BarController.sharedController.currentBar {
+                return " What's happening at \(bar.name)?"
+            } else {
+                return " What's happening near you?"
+            }
+        }
+    }
 
     // MARK: Outlets
-
     
     @IBOutlet weak var barLabel: UILabel!
     
@@ -35,14 +49,15 @@ class NewPostTableTableViewController: UITableViewController {
     
     @IBOutlet weak var barCellContent: UIView!
     
+    @IBOutlet weak var charCountLabel: UILabel!
     
+    @IBOutlet weak var placeholderLabel: UILabel!
     
     // MARK: Actions
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("unwindToTabBar", sender: nil)
     }
-    
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         guard let bar = BarController.sharedController.currentBar else {
@@ -54,26 +69,21 @@ class NewPostTableTableViewController: UITableViewController {
             return
         }
         if let user = UserController.sharedController.currentUser {
-            if let bar = BarController.sharedController.currentBar {
-                if let location = bar.location {
-                    PostController.createPost(location, emojis: emojis, text: self.textView.text, photo: selectedPhoto, bar: bar, user: user, completion: { (post, error) -> Void in
-                        if let _ = error {
-                            print("Error creating post")
-                        } else {
-                            self.performSegueWithIdentifier("unwindToTabBar", sender: nil)
-                        }
-                    })
-                } else {
-                    print("selected bar has no location")
-                }
+            if let location = bar.location {
+                PostController.createPost(location, emojis: emojis, text: self.textView.text, photo: selectedPhoto, bar: bar, user: user, completion: { (post, error) -> Void in
+                    if let _ = error {
+                        print("Error creating post")
+                    } else {
+                        self.performSegueWithIdentifier("unwindToTabBar", sender: nil)
+                    }
+                })
             } else {
-                print("selected bar is nil")
+                print("selected bar has no location")
             }
         } else {
             print("current user is nil")
         }
     }
-    
     
     @IBAction func emojiTapped(sender: UIButton) {
         if selectedButton != nil {
@@ -89,6 +99,7 @@ class NewPostTableTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textView.delegate = self
         for button in emojiButton {
             button.setBackgroundImage(UIImage(named: emojiMenu[button.tag]), forState: .Normal)
         }
@@ -99,20 +110,39 @@ class NewPostTableTableViewController: UITableViewController {
         if let currentBar = BarController.sharedController.currentBar {
             self.barLabel.text = currentBar.name
         }
+        if remainingChars < 140 {
+            placeholderLabel.hidden = true
+        } else {
+            placeholderLabel.hidden = false
+        }
+        placeholderLabel.text = placeholderText
+    }
+    
+    // MARK: UITextView Delegate
+    
+    func textViewDidChange(textView: UITextView) {
+        charCountLabel.text = String(self.remainingChars)
+        if self.remainingChars < 0 {
+            charCountLabel.textColor = UIColor.redColor()
+        }
+        if self.remainingChars < 140 {
+            placeholderLabel.hidden = true
+        } else {
+            placeholderLabel.hidden = false
+        }
     }
     
     // MARK: TableView Delegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        if indexPath.row == 1 {
+        if indexPath.row == 0 {
+            return UITableViewAutomaticDimension
+        } else if indexPath.row == 1 {
             let width = emojiStackCell.frame.width - 16
             let height = width/6
             return CGFloat((height * 3) + 15)
-        } else if indexPath.row == 0 {
-            return 51
         } else if indexPath.row == 2 {
-            return 97
+            return emojiStackCell.frame.height * 2/3
         } else {
             return 0
         }
@@ -133,7 +163,7 @@ class NewPostTableTableViewController: UITableViewController {
     }
     
     // MARK: Navigation
-    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+    @IBAction func unwindToNewPost(segue: UIStoryboardSegue) {
     }
 
     
