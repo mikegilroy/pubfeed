@@ -11,32 +11,34 @@ import UIKit
 class SignupViewController: UIViewController {
     
     // MARK: Properties
-    
     var user: User?
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView ()
 
     
     // MARK: Outlet
-    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var addProfilePhotoButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var secondView: UIView!
+    @IBOutlet weak var logo: UIImageView!
+    
     
     // MARK: Actions
-    
     @IBAction func signUpButtonTapped(sender: UIButton) {
         
-        
-        self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        self.activityIndicator.center = self.view.center
+        self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
+        self.activityIndicator.center = self.logo.center
         self.activityIndicator.hidesWhenStopped = true
-        self.activityIndicator.activityIndicatorViewStyle = .Gray
+        self.activityIndicator.activityIndicatorViewStyle = .WhiteLarge
         self.view.addSubview(self.activityIndicator)
         
+        self.logo.alpha = 0.0
+        
         self.activityIndicator.startAnimating()
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.logo.alpha = 1 }, completion: nil)
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
         if (usernameTextField.text == "") || (emailTextField.text == "") || (passwordTextField.text == "") {

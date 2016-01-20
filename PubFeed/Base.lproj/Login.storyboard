@@ -176,6 +176,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="zbU-3m-CUB" id="XQm-7d-esg"/>
+                        <outlet property="logo" destination="4k7-vi-lDd" id="3lb-gI-55k"/>
                         <outlet property="passwordTextField" destination="Hrs-OM-4ch" id="g5m-3W-52S"/>
                         <outlet property="scrollView" destination="K95-e5-CqV" id="Gdl-v7-JKz"/>
                         <outlet property="secondView" destination="Uhh-a0-6t9" id="CcW-cf-ncS"/>
@@ -332,6 +333,7 @@
                     <navigationItem key="navigationItem" id="sm6-De-lFN"/>
                     <connections>
                         <outlet property="emailTextField" destination="YSe-7p-oen" id="3BR-Mz-wtt"/>
+                        <outlet property="logo" destination="W3f-O8-TgI" id="W55-8d-HbV"/>
                         <outlet property="passwordTextField" destination="3Kr-0a-lnV" id="ChP-a2-Wiv"/>
                         <outlet property="scrollView" destination="vwO-Ll-Mq3" id="f4f-SC-uwK"/>
                         <outlet property="secondView" destination="TED-Pd-daF" id="qNP-Qd-u91"/>

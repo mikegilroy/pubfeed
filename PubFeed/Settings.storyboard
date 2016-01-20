@@ -39,32 +39,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nB-DJ-pMz" userLabel="editUpdateProfilePhotoButton">
-                                                    <rect key="frame" x="225" y="17" width="150" height="150"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="guV-ex-Pjn"/>
-                                                        <constraint firstAttribute="height" constant="150" id="w4s-Nx-Sqy"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="EDIT PHOTO">
-                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="75"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="updatePhotoTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="0dv-nW-fwJ"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqs-qT-s8J">
-                                                    <rect key="frame" x="225" y="17" width="150" height="150"/>
+                                                    <rect key="frame" x="225" y="21" width="150" height="150"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Nqs-qT-s8J" secondAttribute="height" multiplier="1:1" id="z7V-Fq-hLh"/>
                                                     </constraints>
-                                                    <state key="normal">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <state key="normal" title="EDIT PHOTO">
                                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -77,21 +58,32 @@
                                                         <action selector="updatePhotoTapped:" destination="XMn-XD-ptt" eventType="touchUpInside" id="igh-Cs-qCg"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zNo-mL-j2b" userLabel="Profile Image View">
+                                                    <rect key="frame" x="225" y="21" width="150" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="97N-2l-9Y6"/>
+                                                        <constraint firstAttribute="width" constant="150" id="enE-bV-Ax4"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Nqs-qT-s8J" firstAttribute="centerX" secondItem="X4n-Mc-90F" secondAttribute="centerX" id="4w4-yq-gcb"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Nqs-qT-s8J" secondAttribute="bottom" constant="9" id="79a-Pl-7LT"/>
-                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="centerY" secondItem="X4n-Mc-90F" secondAttribute="centerY" id="Mqy-Og-1ph"/>
-                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="top" secondItem="X4n-Mc-90F" secondAttribute="topMargin" constant="9" id="w8c-uk-yma"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Nqs-qT-s8J" secondAttribute="bottom" constant="5" id="79a-Pl-7LT"/>
+                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="centerY" secondItem="X4n-Mc-90F" secondAttribute="centerY" constant="4" id="Mqy-Og-1ph"/>
+                                                <constraint firstItem="zNo-mL-j2b" firstAttribute="top" secondItem="X4n-Mc-90F" secondAttribute="topMargin" constant="13" id="lrm-D5-s1o"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="zNo-mL-j2b" secondAttribute="bottom" constant="5" id="p0w-pG-uc2"/>
+                                                <constraint firstItem="Nqs-qT-s8J" firstAttribute="top" secondItem="X4n-Mc-90F" secondAttribute="topMargin" constant="13" id="w8c-uk-yma"/>
+                                                <constraint firstItem="zNo-mL-j2b" firstAttribute="centerX" secondItem="X4n-Mc-90F" secondAttribute="centerX" id="xhf-d9-vfE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="0nB-DJ-pMz" firstAttribute="top" secondItem="WEW-ep-q6g" secondAttribute="top" constant="17" id="NQr-4Q-Moo"/>
-                                            <constraint firstAttribute="bottom" secondItem="0nB-DJ-pMz" secondAttribute="bottom" constant="18" id="g3u-8S-DUH"/>
-                                            <constraint firstItem="0nB-DJ-pMz" firstAttribute="centerX" secondItem="WEW-ep-q6g" secondAttribute="centerX" id="mrt-tt-SXP"/>
-                                        </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="q0D-iF-SMO">
                                         <rect key="frame" x="0.0" y="249" width="600" height="53"/>
@@ -276,10 +268,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editUpdateProfilePhotoButton" destination="0nB-DJ-pMz" id="bNM-j0-vc0"/>
                         <outlet property="emailLine" destination="8ex-xO-iQM" id="X0f-fV-xR6"/>
                         <outlet property="emailTextField" destination="MdS-UE-1V2" id="2F2-qW-RjW"/>
                         <outlet property="logoutButton" destination="6bx-j6-aZP" id="yF7-dR-pDC"/>
+                        <outlet property="profileImageView" destination="zNo-mL-j2b" id="pNZ-8Q-8Hl"/>
                         <outlet property="saveButton" destination="E0c-zW-MGe" id="cZ6-vL-zI0"/>
                         <outlet property="tableViewMain" destination="USE-px-GjC" id="3JQ-At-DuI"/>
                         <outlet property="updateProfilePhotoButton" destination="Nqs-qT-s8J" id="bnJ-5B-8bL"/>

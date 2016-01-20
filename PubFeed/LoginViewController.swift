@@ -11,38 +11,37 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: Properties
-    
     var user: User?
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView ()
-
-    // MARK: Outlet
     
+    
+    // MARK: Outlet
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var secondView: UIView!
-    
+    @IBOutlet weak var logo: UIImageView!
     
     // MARK: Actions
-    
-    
-    
     @IBAction func loginButtonTapped(sender: UIButton) {
         
         //Activity Indicator View
-        
-        self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        self.activityIndicator.center = self.view.center
+        self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
+        self.activityIndicator.center = self.logo.center
         self.activityIndicator.hidesWhenStopped = true
-        self.activityIndicator.activityIndicatorViewStyle = .Gray
+        self.activityIndicator.activityIndicatorViewStyle = .WhiteLarge
         self.view.addSubview(self.activityIndicator)
-        
         self.activityIndicator.startAnimating()
+        
+        self.logo.alpha = 0
+        
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
         if emailTextField.text == "" || passwordTextField.text == "" {
             
             self.activityIndicator.stopAnimating()
+            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.logo.alpha = 1 }, completion: nil)
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
             
             ErrorHandling.defaultErrorHandler(nil, title: "Missing information")
@@ -50,6 +49,8 @@ class LoginViewController: UIViewController {
             UserController.authenticateUser(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) -> Void in
                 
                 self.activityIndicator.stopAnimating()
+                UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    self.logo.alpha = 1 }, completion: nil)
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
                 if error == nil {
@@ -70,8 +71,8 @@ class LoginViewController: UIViewController {
     }
     
     
+    // MARK: Forgot Password Tapped
     @IBAction func forgotPasswordTapped(sender: UIButton) {
-        
         var inputTextField: UITextField?
         let alertController = UIAlertController(title: "It looks like you forgot your account!", message: "Please enter email and press reset.", preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -111,7 +112,6 @@ class LoginViewController: UIViewController {
     
     
     // MARK: viewDid Functions
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -127,10 +127,7 @@ class LoginViewController: UIViewController {
     }
     
     
-    
-    
     // MARK: Navigation
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "fromLogin" {
             if let destinationController = segue.destinationViewController as? MapViewController {
@@ -151,28 +148,23 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
+    
     //     MARK: TEXTFIELDS (DELEGATE) & Keyboard Dismissal
     func userTappedView(sender: AnyObject) -> Void {
         view.endEditing(true)
     }
-        
+    
     
     // MARK: Shift View on Keyboard Appearance and Removal
     func keyboardWillShow(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-        
-            let yCoordinate = self.view.frame.origin.y + 120
-            let scrollDestination = CGPointMake(0.0, yCoordinate)
-            scrollView.setContentOffset(scrollDestination, animated: true)
-//        }
+        let yCoordinate = self.view.frame.origin.y + 120
+        let scrollDestination = CGPointMake(0.0, yCoordinate)
+        scrollView.setContentOffset(scrollDestination, animated: true)
     }
     
     func keyboardWillHide(notification: NSNotification) {
-            
-            let yNewCoordinate = self.view.frame.origin.y
-            let scrollNewDestination = CGPointMake(0.0, yNewCoordinate)
-            scrollView.setContentOffset(scrollNewDestination, animated: true)
+        let yNewCoordinate = self.view.frame.origin.y
+        let scrollNewDestination = CGPointMake(0.0, yNewCoordinate)
+        scrollView.setContentOffset(scrollNewDestination, animated: true)
     }
-    
-    
 }

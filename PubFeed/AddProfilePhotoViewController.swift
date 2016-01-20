@@ -10,30 +10,25 @@ import UIKit
 
 class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    
+    // MARK: Keys
+    private let kPhoto = "photo"
+    
+    
+    // MARK: Outlets
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var addProfilePhotoButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     
+    
+    // MARK: Properties
     var user: User?
     var profilePhoto: UIImage?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.submitButton.enabled = false
-        
-//        addProfilePhotoButton.layer.borderColor = UIColor.darkGrayColor().CGColor
-//        addProfilePhotoButton.layer.borderWidth = 1
-//        addProfilePhotoButton.layer.cornerRadius = addProfilePhotoButton.frame.size.width/2
-        
-        let pubGreen = colorWithHexString("6AFF63").CGColor
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackGround")!)
-        addProfilePhotoButton.layer.borderWidth = 4
-        addProfilePhotoButton.layer.borderColor = pubGreen
-        
-    }
     
-    
+    // MARK: Add Profile Photo Button Tapped
     @IBAction func addProfilePhotoButtonTapped(sender: UIButton) {
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
@@ -61,8 +56,9 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
         })
     }
     
+    
+    // MARK: Submit Button Tapped
     @IBAction func submitButtonTapped(sender: UIButton) {
-        
         ImageController.uploadPhoto(self.profilePhoto!) { (path) -> Void in
             if let path = path {
               
@@ -70,6 +66,9 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
                 self.user?.save({ (error) -> Void in
                     
                     if error == nil {
+                        let imageData : NSData = UIImageJPEGRepresentation(self.profilePhoto!, (0.7))!
+                        NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: self.kPhoto)
+                        
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                              self.performSegueWithIdentifier("toFirstTabView", sender: nil)
                         })
@@ -77,39 +76,38 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
                     } else {
                         ErrorHandling.defaultErrorHandler(error, title: "\(error!.localizedDescription)")
                     }
-                    
                 })
-                
-                
             }
         }
     }
     
+    
+    // Mark: Skip Button Tapped
     @IBAction func skipButtonTapped(sender: UIButton) {
         self.performSegueWithIdentifier("toFirstTabView", sender: nil)
     }
     
-    // MARK: UIImagePickerController Delegate
     
+    // MARK: UIImagePickerController Delegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         self.profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
         self.submitButton.enabled = true
+        
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.addProfilePhotoButton.setImage(self.profilePhoto, forState: .Normal)
-//            self.addProfilePhotoButton.setBackgroundImage(, forState: .Normal)
             self.addProfilePhotoButton.setTitle("", forState: .Normal)
-            
         })
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Navigation
     
+    // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toFirstTabView" {
         if let destinationController = segue.destinationViewController as? MapViewController {
@@ -119,8 +117,21 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
         }
     }
     
-    // MARK: UI Helpers
     
+    // MARK: viewDidLoad
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.submitButton.enabled = false
+        
+        let pubGreen = colorWithHexString("6AFF63").CGColor
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackGround")!)
+        
+        addProfilePhotoButton.layer.borderWidth = 4
+        addProfilePhotoButton.layer.borderColor = pubGreen
+    }
+    
+    
+    // MARK: UI Helpers
     func colorWithHexString (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
@@ -140,9 +151,7 @@ class AddProfilePhotoViewController: UIViewController, UIImagePickerControllerDe
         NSScanner(string: rString).scanHexInt(&r)
         NSScanner(string: gString).scanHexInt(&g)
         NSScanner(string: bString).scanHexInt(&b)
-        
-        
+
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
     }
-
 }
