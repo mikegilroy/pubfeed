@@ -243,9 +243,11 @@
                     <navigationItem key="navigationItem" title="Select Bar" id="OLJ-RU-EuL"/>
                     <connections>
                         <outlet property="tableView" destination="otr-y4-2h1" id="fkx-Eq-zqD"/>
+                        <segue destination="M5b-8b-QU7" kind="unwind" identifier="unwindToNewPost" unwindAction="unwindToVC:" id="MJR-nD-da3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="345-7t-uql" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="M5b-8b-QU7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2877" y="130"/>
         </scene>
