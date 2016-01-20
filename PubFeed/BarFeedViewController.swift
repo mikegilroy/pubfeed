@@ -160,14 +160,12 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.delegate = self
         }
 
-        cell.setNeedsUpdateConstraints()
-        cell.updateConstraintsIfNeeded()
         return cell
     }
     
     func configureTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 259
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

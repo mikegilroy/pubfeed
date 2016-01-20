@@ -135,16 +135,13 @@ class PostTableViewCell: UITableViewCell {
     
     func addImageHeightConstraint(image: UIImage) {
         postImageView.translatesAutoresizingMaskIntoConstraints = false
-        // imageview width = screenwidth - 64
+        
         let imageViewWidth = postImageView.frame.width
         let imageWidth = image.size.width
         let imageHeight = image.size.height
         let ratio = imageHeight / imageWidth
         let imageViewHeight = imageViewWidth * ratio
         imageViewHeightConstraint.constant = imageViewHeight
-        postImageView.updateConstraints()
-//        let imageHeightConstraint = NSLayoutConstraint(item: postImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: imageViewHeight, constant: 0)
-//        self.contentView.addConstraint(imageHeightConstraint)
     }
     
 }

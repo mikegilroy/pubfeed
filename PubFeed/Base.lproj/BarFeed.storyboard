@@ -159,12 +159,6 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" placeholderIntrinsicWidth="564" placeholderIntrinsicHeight="80" preservesSuperviewLayoutMargins="YES" image="BackGround" translatesAutoresizingMaskIntoConstraints="NO" id="4Vy-hb-04v">
-                                                    <rect key="frame" x="16" y="107" width="564" height="80"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="tAL-a2-v89"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBw-vV-HLk">
                                                     <rect key="frame" x="18" y="200" width="25" height="25"/>
                                                     <constraints>
@@ -179,7 +173,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="post text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHj-3w-f8y">
                                                     <rect key="frame" x="54" y="52" width="526" height="47"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="47" id="rYi-7j-S3P"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="47" id="rYi-7j-S3P"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -235,8 +229,15 @@
                                                         <action selector="reportButtonTapped:" destination="fjl-l1-pdW" eventType="touchUpInside" id="Ic0-RC-kgb"/>
                                                     </connections>
                                                 </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" placeholderIntrinsicWidth="564" placeholderIntrinsicHeight="80" preservesSuperviewLayoutMargins="YES" image="pexels-photo_darker" translatesAutoresizingMaskIntoConstraints="NO" id="4Vy-hb-04v">
+                                                    <rect key="frame" x="16" y="107" width="564" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" priority="999" constant="1001" id="tAL-a2-v89"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="4Vy-hb-04v" secondAttribute="bottom" constant="44" id="0EV-un-34B"/>
                                                 <constraint firstItem="kBw-vV-HLk" firstAttribute="centerX" secondItem="GyW-fQ-RpX" secondAttribute="centerX" id="51d-Co-col"/>
                                                 <constraint firstItem="enf-rL-BLM" firstAttribute="leading" secondItem="isC-Nh-1wm" secondAttribute="trailing" constant="8" id="686-fx-DUz"/>
                                                 <constraint firstItem="qUq-5Q-20A" firstAttribute="top" secondItem="vdu-PH-4zi" secondAttribute="topMargin" constant="-8" id="6io-ui-zeJ"/>
@@ -251,7 +252,6 @@
                                                 <constraint firstItem="qZf-qy-Dnj" firstAttribute="top" secondItem="vdu-PH-4zi" secondAttribute="topMargin" id="IAX-ob-G8p"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="WJx-bk-XSs" secondAttribute="bottom" constant="6" id="Jt2-fy-du2"/>
                                                 <constraint firstItem="WJx-bk-XSs" firstAttribute="top" secondItem="4Vy-hb-04v" secondAttribute="bottom" constant="11" id="KlM-Pb-De9"/>
-                                                <constraint firstItem="enf-rL-BLM" firstAttribute="top" secondItem="4Vy-hb-04v" secondAttribute="bottom" constant="13" id="LSB-Zu-AUU"/>
                                                 <constraint firstItem="SHj-3w-f8y" firstAttribute="trailing" secondItem="vdu-PH-4zi" secondAttribute="trailingMargin" constant="-12" id="LqS-ti-ekm"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="enf-rL-BLM" secondAttribute="bottom" constant="5.5" id="PXu-vo-601"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="tZp-Zm-iSP" secondAttribute="bottom" constant="5.5" id="Ply-OR-dr0"/>
@@ -543,8 +543,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BackGround" width="750" height="1330"/>
         <image name="commentIconGrey" width="50" height="48"/>
         <image name="heartIconGrey" width="50" height="50"/>
+        <image name="pexels-photo_darker" width="4000" height="2667"/>
     </resources>
 </document>
