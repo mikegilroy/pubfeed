@@ -496,25 +496,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U5V-56-Dsl" id="nId-e3-iGE">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="243.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhe-eH-XJz">
-                                                    <rect key="frame" x="8" y="8" width="584" height="213.5"/>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scw-j8-7by">
-                                                    <rect key="frame" x="8" y="7" width="584" height="227.5"/>
-                                                    <state key="normal" title="Select Image"/>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="scw-j8-7by" firstAttribute="bottom" secondItem="vhe-eH-XJz" secondAttribute="bottom" id="FGn-bO-fct"/>
-                                                <constraint firstItem="scw-j8-7by" firstAttribute="leading" secondItem="vhe-eH-XJz" secondAttribute="leading" id="KHH-P3-vyB"/>
-                                                <constraint firstItem="scw-j8-7by" firstAttribute="trailing" secondItem="vhe-eH-XJz" secondAttribute="trailing" id="Koc-b2-G8t"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="vhe-eH-XJz" secondAttribute="trailing" id="PjJ-su-vAJ"/>
-                                                <constraint firstItem="scw-j8-7by" firstAttribute="top" secondItem="vhe-eH-XJz" secondAttribute="top" id="bCB-4c-tx2"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="vhe-eH-XJz" secondAttribute="bottom" id="cZE-oH-FTR"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="vhe-eH-XJz" secondAttribute="leading" id="d1V-jY-TOz"/>
-                                                <constraint firstItem="vhe-eH-XJz" firstAttribute="top" secondItem="nId-e3-iGE" secondAttribute="topMargin" id="d9I-hx-995"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
