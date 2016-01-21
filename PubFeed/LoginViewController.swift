@@ -157,7 +157,7 @@ extension LoginViewController: UITextFieldDelegate {
     
     // MARK: Shift View on Keyboard Appearance and Removal
     func keyboardWillShow(notification: NSNotification) {
-        let yCoordinate = self.view.frame.origin.y + 120
+        let yCoordinate = self.view.frame.origin.y + 160
         let scrollDestination = CGPointMake(0.0, yCoordinate)
         scrollView.setContentOffset(scrollDestination, animated: true)
     }
