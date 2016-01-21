@@ -207,7 +207,7 @@ class PostController {
     }
     
     static func queryReport(user: User, post: Post, completion: (post: Post?) -> Void) {
-        FirebaseController.base.childByAppendingPath("report").childByAppendingPath(user.identifier).queryOrderedByChild("postIdentifier").observeEventType(.ChildAdded, withBlock: {snapshot in
+        FirebaseController.base.childByAppendingPath("report").childByAppendingPath(user.identifier).queryOrderedByChild("postIdentifier").queryEqualToValue(post.identifier).observeEventType(.ChildAdded, withBlock: {snapshot in
             
             if let postID = snapshot.value["postIdentifier"] as? String {
                 PostController.postFromIdentifier(postID, completion: { (post) -> Void in
