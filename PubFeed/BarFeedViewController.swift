@@ -122,8 +122,6 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         configureTableView()
         loadBarDetails()
-        //        loadPostsForBar()
-        
         
         if let bar = bar {
             bar.setAsCurrent()
@@ -133,10 +131,6 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.loadPostsForBar()
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.tableView.reloadData()
-        })
-        
     }
     
     // MARK: TableView Datasource

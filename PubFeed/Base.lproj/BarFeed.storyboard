@@ -326,7 +326,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.25100295610000001" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mTd-9L-aDc">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mTd-9L-aDc">
                                             <rect key="frame" x="16" y="8" width="30" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="DFA-qy-kIv"/>
@@ -352,15 +352,6 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="post text" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiB-Ws-3CP">
-                                            <rect key="frame" x="54" y="52" width="526" height="42"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="42" id="RZP-np-Hht"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="18"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🎉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHx-o4-tbn">
                                             <rect key="frame" x="16" y="52" width="30" height="42"/>
                                             <constraints>
@@ -371,21 +362,23 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nlg-qO-3H6">
-                                            <rect key="frame" x="16" y="102" width="564" height="78"/>
-                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="post text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiB-Ws-3CP">
+                                            <rect key="frame" x="54" y="52" width="526" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="RZP-np-Hht"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="uPn-1V-67w" firstAttribute="leading" secondItem="8uk-ig-LC8" secondAttribute="trailing" constant="8" id="8RU-8d-8wM"/>
-                                        <constraint firstAttribute="bottom" secondItem="Nlg-qO-3H6" secondAttribute="bottom" constant="20" id="AU6-7d-4f5"/>
                                         <constraint firstAttribute="trailing" secondItem="OiB-Ws-3CP" secondAttribute="trailing" constant="20" id="CuN-sK-i9n"/>
-                                        <constraint firstItem="Nlg-qO-3H6" firstAttribute="top" secondItem="IHx-o4-tbn" secondAttribute="bottom" constant="8" id="Gbz-k3-cNO"/>
                                         <constraint firstItem="IHx-o4-tbn" firstAttribute="leading" secondItem="4GW-v0-fq2" secondAttribute="leading" constant="16" id="Izp-0I-uwn"/>
                                         <constraint firstItem="8uk-ig-LC8" firstAttribute="leading" secondItem="mTd-9L-aDc" secondAttribute="trailing" constant="8" id="Lk7-iD-mDU"/>
                                         <constraint firstItem="uPn-1V-67w" firstAttribute="top" secondItem="4GW-v0-fq2" secondAttribute="top" constant="8" id="Nu5-5f-gvS"/>
-                                        <constraint firstAttribute="trailing" secondItem="Nlg-qO-3H6" secondAttribute="trailing" constant="20" id="Rrn-fj-zuz"/>
-                                        <constraint firstItem="Nlg-qO-3H6" firstAttribute="leading" secondItem="4GW-v0-fq2" secondAttribute="leading" constant="16" id="Ths-pf-tsv"/>
                                         <constraint firstItem="OiB-Ws-3CP" firstAttribute="leading" secondItem="IHx-o4-tbn" secondAttribute="trailing" constant="8" id="XBZ-s8-QOi"/>
                                         <constraint firstItem="mTd-9L-aDc" firstAttribute="leading" secondItem="4GW-v0-fq2" secondAttribute="leading" constant="16" id="Z0u-he-goJ"/>
                                         <constraint firstAttribute="trailing" secondItem="uPn-1V-67w" secondAttribute="trailing" constant="20" id="e0W-6i-k3F"/>
@@ -514,7 +507,6 @@
                     <connections>
                         <outlet property="emojiLabel" destination="IHx-o4-tbn" id="6Lw-s9-JGV"/>
                         <outlet property="headerView" destination="4GW-v0-fq2" id="xQ5-im-CvH"/>
-                        <outlet property="postImage" destination="Nlg-qO-3H6" id="lU9-Y8-cka"/>
                         <outlet property="postText" destination="OiB-Ws-3CP" id="b4p-jL-6KJ"/>
                         <outlet property="profilePhoto" destination="mTd-9L-aDc" id="c5Z-Bc-eVl"/>
                         <outlet property="tableView" destination="Sqr-2E-KB6" id="nD0-of-vE3"/>

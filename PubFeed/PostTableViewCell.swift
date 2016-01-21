@@ -63,6 +63,8 @@ class PostTableViewCell: UITableViewCell {
         self.commentCountLabel.text = "\(post.comments)"
         
         // Get user for post and set user attributes
+        self.profileImageView.image = UIImage(named: "defaultProfilePhoto")
+        
         UserController.userWithIdentifier(post.userIdentifier) { (user) -> Void in
             if let user = user {
                 self.usernameLabel.text = user.username
@@ -86,10 +88,14 @@ class PostTableViewCell: UITableViewCell {
                         }
                     })
                 } else {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.profileImageView.image = UIImage(named: "defaultProfilePhoto")
+                        })
                 }
             } else {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.profileImageView.image = UIImage(named: "defaultProfilePhoto")
+                    })
             }
         }
         
