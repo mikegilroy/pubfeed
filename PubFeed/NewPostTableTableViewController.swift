@@ -30,12 +30,14 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
             if let bar = BarController.sharedController.currentBar {
                 return " What's happening at \(bar.name)?"
             } else {
-                return " What's happening near you?"
+                return " What's happening here?"
             }
         }
     }
 
     // MARK: Outlets
+    
+    @IBOutlet weak var barCell: UITableViewCell!
     
     @IBOutlet weak var barLabel: UILabel!
     
@@ -92,7 +94,7 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
     
     @IBAction func emojiTapped(sender: UIButton) {
         if selectedButton != nil {
-            selectedButton!.alpha = CGFloat(0.5)
+            selectedButton!.alpha = CGFloat(0.35)
         }
         selectedEmoji = emojiMenu[sender.tag]
         selectedButton = sender
@@ -104,6 +106,8 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let barTapRecognizer = UITapGestureRecognizer(target: self, action: "selectPub")
+        barCell.addGestureRecognizer(barTapRecognizer)
         textView.delegate = self
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
         view.addGestureRecognizer(tapRecognizer)
@@ -116,6 +120,7 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
         super.viewWillAppear(true)
         if let currentBar = BarController.sharedController.currentBar {
             self.barLabel.text = currentBar.name
+            self.barLabel.textColor = UIColor.blackColor()
         }
         if remainingChars < 140 {
             placeholderLabel.hidden = true
@@ -143,7 +148,7 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return UITableViewAutomaticDimension
+            return 60
         } else if indexPath.row == 1 {
             let width = emojiStackCell.frame.width - 16
             let height = width/6
@@ -171,6 +176,10 @@ class NewPostTableTableViewController: UITableViewController, UITextViewDelegate
     
     func hideKeyboard() {
         textView.resignFirstResponder()
+    }
+    
+    func selectPub() {
+        self.performSegueWithIdentifier("selectBar", sender: nil)
     }
     
     // MARK: Navigation
