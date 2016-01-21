@@ -197,10 +197,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                             let rightView = UIImageView(image: rightImage)
                             rightView.frame = CGRectMake(0, 0, 35, 35)
                             rightView.contentMode = UIViewContentMode.ScaleAspectFit
-                            let label = UILabel()
-                            label.frame = CGRectMake(10, 0, 20, 20)
-                            label.text = ">"
-                            pinView.rightCalloutAccessoryView = label
+                            let button = UIButton(type: .DetailDisclosure)
+                            button.frame = CGRectMake(10, 0, 20, 20)
+                            button.setImage(UIImage(named: "arrow"), forState: .Normal)
+                            button.tintColor = UIColor.blackColor()
+                            pinView.rightCalloutAccessoryView = button
                             pinView.leftCalloutAccessoryView = leftView
                         }
                         
@@ -216,10 +217,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                 let leftView = UIImageView(image: leftImage)
                                 leftView.contentMode = UIViewContentMode.ScaleAspectFit
                                 leftView.frame = CGRectMake(0, 0, 30, 30)
-                                let label = UILabel()
-                                label.frame = CGRectMake(10, 0, 20, 20)
-                                label.text = ">"
-                                pinView.rightCalloutAccessoryView = label
+                                let button = UIButton(type: .DetailDisclosure)
+                                button.frame = CGRectMake(10, 0, 20, 20)
+                                button.setImage(UIImage(named: "arrow"), forState: .Normal)
+                                button.tintColor = UIColor.blackColor()
+                                pinView.rightCalloutAccessoryView = button
                                 pinView.leftCalloutAccessoryView = leftView
                             }
                             
