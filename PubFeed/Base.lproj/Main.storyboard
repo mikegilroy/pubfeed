@@ -173,7 +173,7 @@
         <scene sceneID="CeK-YM-Zg4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l8Q-OR-z28" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" id="zUB-sQ-y3l"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="zUB-sQ-y3l"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZqQ-Ce-2Gl">
@@ -598,6 +598,7 @@
     </scenes>
     <resources>
         <image name="beerIcon" width="40" height="58"/>
+        <image name="discover" width="52" height="52"/>
         <image name="location" width="21" height="21"/>
     </resources>
 </document>
