@@ -213,7 +213,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                             
                             if let pinView = pinView {
                                 
-                                let leftImage = UIImage(named: "beerIcon")
+                                let leftImage = UIImage(named: "questionMark")
                                 let leftView = UIImageView(image: leftImage)
                                 leftView.contentMode = UIViewContentMode.ScaleAspectFit
                                 leftView.frame = CGRectMake(0, 0, 30, 30)

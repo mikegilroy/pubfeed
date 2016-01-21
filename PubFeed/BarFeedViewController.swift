@@ -185,7 +185,7 @@ class BarFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         header.textLabel!.frame = header.frame
         header.textLabel!.textAlignment = NSTextAlignment.Left
         header.textLabel?.font = UIFont(name: "Cabin", size: 18)
-        header.textLabel!.text = "Recent Activity"
+        header.textLabel!.text = "   Recent Activity"
     }
     
     //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
