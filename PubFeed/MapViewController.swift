@@ -100,7 +100,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             if let coordinate = bar.location?.coordinate {
                 
-                //                let annotation = MKPointAnnotation()
+//                                let annotation = MKPointAnnotation()
                 
                 let annotation = CustomCallout(coordinate: coordinate, title: bar.name, subtitle: bar.address, imageName: UIImage(named: "beerIcon")!)
                 print("calling mapView.addAnnotation")
@@ -108,6 +108,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
         })
     }
+    
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let coordinate = view.annotation?.coordinate
@@ -125,25 +126,56 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    
+//    func configureAnnotationView(pinView: MKAnnotationView, annotation: MKAnnotation) {
+//        
+//        let width = 200
+//        let height = 10
+//        
+//        let annoView = UIView()
+//        let views = ["annoView": annoView]
+//        annoView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[annoView(200)]", options: [], metrics: nil, views: views))
+//        annoView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[annoView(10)]", options: [], metrics: nil, views: views))
+//        
+////        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+////        imageView.image = pinView.image
+////        annoView.addSubview(imageView)
+//        
+//        if let annotation = annotation as MKAnnotation? {
+//            if let subtitle = annotation.subtitle {
+//                let addressView = UILabel(frame: CGRect(x: 10, y: 0, width: width, height: height))
+//                addressView.text = subtitle
+//                addressView.font = addressView.font.fontWithSize(10)
+//                annoView.addSubview(addressView)
+//            }
+//        }
+//        
+//        // add subView for title
+//        
+//        let rightButton = UIButton(type: UIButtonType.DetailDisclosure)
+//        let rightImage = UIImage(named: "beerIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//        rightButton.setImage(rightImage, forState: .Normal)
+//        rightButton.titleForState(UIControlState.Normal)
+//        rightButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+//        
+//        let leftButton = UIButton(type: UIButtonType.DetailDisclosure)
+//        let leftImage = UIImage(named: "emoji")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//        leftButton.setImage(leftImage, forState: .Normal)
+//        leftButton.titleForState(UIControlState.Normal)
+//        leftButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+//        
+//        pinView.rightCalloutAccessoryView = rightButton
+//        pinView.leftCalloutAccessoryView = leftButton
+//        pinView.detailCalloutAccessoryView = annoView
+//    }
+    
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         self.annotations.append(annotation)
         
         let reuseId = "pin"
 
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-        let rightButton = UIButton(type: UIButtonType.DetailDisclosure)
-        let rightImage = UIImage(named: "beerIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        rightButton.setImage(rightImage, forState: .Normal)
-        rightButton.titleForState(UIControlState.Normal)
-        rightButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        
-        UIViewContentMode.ScaleAspectFill
-        
-        let leftButton = UIButton(type: UIButtonType.DetailDisclosure)
-        let leftImage = UIImage(named: "beerIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        leftButton.setImage(leftImage, forState: .Normal)
-        leftButton.titleForState(UIControlState.Normal)
-        leftButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         
         pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         pinView!.canShowCallout = true
@@ -152,24 +184,64 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             if let barLocation = bar.location {
                 if barLocation == annotationLocation {
                     if let emoji = bar.topEmojis.first {
+                        
+                        if let pinView = pinView {
+                            let emojiPhoto = ("\(emoji)")
+                            
+                            let leftImage = UIImage(named: emojiPhoto)
+                            let rightImage = UIImage(named: emojiPhoto)
+                            
+                            let leftView = UIImageView(image: leftImage)
+                            leftView.contentMode = UIViewContentMode.ScaleAspectFit
+                            leftView.frame = CGRectMake(0, 0, 30, 30)
+                            let rightView = UIImageView(image: rightImage)
+                            rightView.frame = CGRectMake(0, 0, 35, 35)
+                            rightView.contentMode = UIViewContentMode.ScaleAspectFit
+                            let label = UILabel()
+                            label.frame = CGRectMake(10, 0, 20, 20)
+                            label.text = ">"
+                            pinView.rightCalloutAccessoryView = label
+                            pinView.leftCalloutAccessoryView = leftView
+                        }
+                        
                         let imageName = ("\(emoji)pin")
                         pinView!.image = UIImage(named: imageName)
+                        
                     } else {
-                        pinView!.image = UIImage(named: "beerIcon")
+                        // default, no favorite emoji
+                            
+                            if let pinView = pinView {
+                                
+                                let leftImage = UIImage(named: "beerIcon")
+                                let leftView = UIImageView(image: leftImage)
+                                leftView.contentMode = UIViewContentMode.ScaleAspectFit
+                                leftView.frame = CGRectMake(0, 0, 30, 30)
+                                let label = UILabel()
+                                label.frame = CGRectMake(10, 0, 20, 20)
+                                label.text = ">"
+                                pinView.rightCalloutAccessoryView = label
+                                pinView.leftCalloutAccessoryView = leftView
+                            }
+                            
+//                            let imageName = ("\(emoji)pin")
+                            pinView!.image = UIImage(named: "beerIcon")
                     }
                 }
             }
         }
-        pinView!.rightCalloutAccessoryView = rightButton
-        pinView!.leftCalloutAccessoryView = leftButton
         
         // Check if annotation location matches user location - if so return nil to show user location
         if (annotation.coordinate.latitude == self.mapView.userLocation.coordinate.latitude) && (annotation.coordinate.longitude == self.mapView.userLocation.coordinate.longitude) {
             return nil
         } else {
+            if let pinView = pinView {
+//                configureAnnotationView(pinView, annotation: annotation)
+                
+            }
             return pinView
         }
     }
+    
     
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
@@ -244,7 +316,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         searchController.searchBar.searchBarStyle = .Minimal
-        searchController.searchBar.placeholder = "search in another location"
+        searchController.searchBar.placeholder = "search"
         let searchBarTextField = searchController.searchBar.valueForKey("searchField") as? UITextField
         searchBarTextField?.textColor = UIColor.whiteColor()
         searchController.hidesNavigationBarDuringPresentation = false
