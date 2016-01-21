@@ -173,8 +173,9 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         
-        let comment = comments[indexPath.row]
+        
         if indexPath.row != 0 {
+            let comment = comments[indexPath.row]
             if comment.userIdentifier == UserController.sharedController.currentUser?.identifier! {
                 return .Delete
             } else {
