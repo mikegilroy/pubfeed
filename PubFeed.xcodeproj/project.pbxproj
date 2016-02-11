@@ -46,6 +46,7 @@
 		10F6D99B1C4DA4F100CFA609 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F6D99A1C4DA4F100CFA609 /* Settings.storyboard */; };
 		10F6D99E1C4DA53200CFA609 /* BarFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F6D99C1C4DA53200CFA609 /* BarFeed.storyboard */; };
 		6AE39CFBFA9CA1014E052E26 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67669B67958EF44FAAB71027 /* libPods.a */; };
+		DE23F1101C6D4D3000DC3C3B /* SafariHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE23F10F1C6D4D3000DC3C3B /* SafariHandling.swift */; };
 		DE6F1F2A1C40644E001E8356 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F1F291C40644E001E8356 /* IntExtension.swift */; };
 		DE6F1F2E1C40762C001E8356 /* AddProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F1F2D1C40762C001E8356 /* AddProfilePhotoViewController.swift */; };
 		DEC8C5CC1C45A0FE00A6C5C1 /* AddCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC8C5CB1C45A0FE00A6C5C1 /* AddCommentTableViewCell.swift */; };
@@ -146,6 +147,7 @@
 		10F6D99D1C4DA53200CFA609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BarFeed.storyboard; sourceTree = "<group>"; };
 		1C724CBDC9338D547B6CD7A3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		67669B67958EF44FAAB71027 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE23F10F1C6D4D3000DC3C3B /* SafariHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariHandling.swift; sourceTree = "<group>"; };
 		DE6F1F291C40644E001E8356 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		DE6F1F2D1C40762C001E8356 /* AddProfilePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		DEC8C5CB1C45A0FE00A6C5C1 /* AddCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				DE6F1F291C40644E001E8356 /* IntExtension.swift */,
 				105658A91C49B62C00FE3CA9 /* UIColorExtension.swift */,
 				DED6E5C11C3DE294005E17D8 /* ErrorHandling.swift */,
+				DE23F10F1C6D4D3000DC3C3B /* SafariHandling.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				E67F0F231C3DB6AB00785F12 /* StringExtension.swift in Sources */,
 				DED6E5BA1C3DBFFC005E17D8 /* UserController.swift in Sources */,
 				DE6F1F2E1C40762C001E8356 /* AddProfilePhotoViewController.swift in Sources */,
+				DE23F1101C6D4D3000DC3C3B /* SafariHandling.swift in Sources */,
 				028A3E9C1C3F33A400B9FC3F /* GeoFire.m in Sources */,
 				1069A5471C3D84A40018D28F /* NewPostTableTableViewController.swift in Sources */,
 				DED6E5C21C3DE294005E17D8 /* ErrorHandling.swift in Sources */,

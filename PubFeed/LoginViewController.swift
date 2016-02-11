@@ -69,7 +69,16 @@ class LoginViewController: UIViewController {
             })
         }
     }
+    @IBAction func termOfServiceTapped(sender: UIButton) {
+        SafariHandling.presentSafariVC(NSURL(string: "http://www.pupfeed.co/terms/")!)
+    }
     
+    @IBAction func PrivacyTapped(sender: UIButton) {
+        SafariHandling.presentSafariVC(NSURL(string: "http://www.pupfeed.co/privacy/")!)
+    }
+    @IBAction func EULATapped(sender: UIButton) {
+        SafariHandling.presentSafariVC(NSURL(string: "https://pupfeed.wordpress.com/")!)
+    }
     
     // MARK: Forgot Password Tapped
     @IBAction func forgotPasswordTapped(sender: UIButton) {

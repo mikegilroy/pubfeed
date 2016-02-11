@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SignupViewController: UIViewController {
     
@@ -73,6 +74,15 @@ class SignupViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func termOfServiceTapped(sender: UIButton) {
+        SafariHandling.presentSafariVC(NSURL(string: "http://www.pupfeed.co/terms/")!)
+    }
+    @IBAction func privacyTapped(sender: UIButton) {
+        SafariHandling.presentSafariVC(NSURL(string: "http://www.pupfeed.co/privacy/")!)
+    }
+    @IBAction func eulaTapped(sender: UIButton) {
+        SafariHandling.presentSafariVC(NSURL(string: "https://pupfeed.wordpress.com/")!)
+    }
     
     // MARK: viewDid Functions
     
