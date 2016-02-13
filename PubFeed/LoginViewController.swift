@@ -69,6 +69,7 @@ class LoginViewController: UIViewController {
             })
         }
     }
+    
     @IBAction func termOfServiceTapped(sender: UIButton) {
         SafariHandling.presentSafariVC(NSURL(string: "http://www.pupfeed.co/terms/")!)
     }

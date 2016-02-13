@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sjg-wa-dW2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sjg-wa-dW2">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -65,11 +65,11 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ejA-cS-KF3" id="TVc-KM-UTx">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nis-ka-fDs">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,11 +112,11 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Wl-FT-GIb" id="vXc-zm-sBt">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FLB-vN-p4R">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -209,11 +209,11 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NIr-wt-9F7" id="Tdo-20-Fy5">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3r5-lS-G06">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -263,18 +263,18 @@
                                         <rect key="frame" x="0.0" y="64" width="600" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L95-AO-l2m" id="FkO-jR-vKz">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPO-nU-MOH" userLabel="IconButton">
-                                                    <rect key="frame" x="8" y="13" width="16.5" height="24.5"/>
+                                                    <rect key="frame" x="8" y="13" width="17" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="TPO-nU-MOH" secondAttribute="height" multiplier="20:29" id="HEX-nl-F9Q"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="beerIcon"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a bar " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIT-pk-ipp">
-                                                    <rect key="frame" x="32.5" y="11.5" width="123.5" height="29.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select a bar " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIT-pk-ipp">
+                                                    <rect key="frame" x="33" y="12" width="123" height="29"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" button="YES" staticText="YES"/>
                                                     </accessibility>
@@ -298,47 +298,47 @@
                                         <rect key="frame" x="0.0" y="116" width="600" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zfh-Qw-HiQ" id="Dl4-wX-ss6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="143.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="56m-L7-dLu">
                                                     <rect key="frame" x="8" y="8" width="584" height="127"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9wr-2R-0ud">
-                                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="584" height="42"/>
                                                             <subviews>
                                                                 <button opaque="NO" alpha="0.34999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhg-Ua-ea4" userLabel="0">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="nuf-uf-ARt"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBg-SP-ySY" userLabel="1">
-                                                                    <rect key="frame" x="98" y="0.0" width="97" height="43"/>
+                                                                    <rect key="frame" x="97" y="0.0" width="98" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="brx-n3-2lZ"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NI-sy-ir4" userLabel="2">
-                                                                    <rect key="frame" x="195" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="195" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Yuk-Vw-dou"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DS8-7u-DGh" userLabel="3">
-                                                                    <rect key="frame" x="292" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="292" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="qtD-fG-4vz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0U-Du-pHe" userLabel="4">
-                                                                    <rect key="frame" x="390" y="0.0" width="97" height="43"/>
+                                                                    <rect key="frame" x="389" y="0.0" width="98" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Q6x-kY-b9T"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iK-2X-BSu" userLabel="5">
-                                                                    <rect key="frame" x="487" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="487" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="Bv5-an-F4g"/>
                                                                     </connections>
@@ -346,40 +346,40 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Zek-su-K2u">
-                                                            <rect key="frame" x="0.0" y="43" width="584" height="42"/>
+                                                            <rect key="frame" x="0.0" y="42" width="584" height="43"/>
                                                             <subviews>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rN-QW-7Y8" userLabel="6">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="42"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="97" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="UlV-6H-Avz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZs-eO-5qo" userLabel="7">
-                                                                    <rect key="frame" x="98" y="0.0" width="97" height="42"/>
+                                                                    <rect key="frame" x="97" y="0.0" width="98" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="kLP-hH-r3W"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFc-Di-Pgp" userLabel="8">
-                                                                    <rect key="frame" x="195" y="0.0" width="98" height="42"/>
+                                                                    <rect key="frame" x="195" y="0.0" width="97" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="UsF-BR-rH7"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I80-Hy-Ihi" userLabel="9">
-                                                                    <rect key="frame" x="292" y="0.0" width="98" height="42"/>
+                                                                    <rect key="frame" x="292" y="0.0" width="97" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="b7a-WP-iKS"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKT-Kb-kSi" userLabel="10">
-                                                                    <rect key="frame" x="390" y="0.0" width="97" height="42"/>
+                                                                    <rect key="frame" x="389" y="0.0" width="98" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="YUA-Gr-3z0"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knT-LZ-2N2" userLabel="11">
-                                                                    <rect key="frame" x="487" y="0.0" width="98" height="42"/>
+                                                                    <rect key="frame" x="487" y="0.0" width="97" height="43"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="NVG-2y-U7u"/>
                                                                     </connections>
@@ -387,40 +387,40 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="h0q-cX-73v">
-                                                            <rect key="frame" x="0.0" y="85" width="584" height="43"/>
+                                                            <rect key="frame" x="0.0" y="85" width="584" height="42"/>
                                                             <subviews>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRD-XY-NXT" userLabel="12">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="VTM-4t-tr7"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNW-d3-Vk8" userLabel="13">
-                                                                    <rect key="frame" x="98" y="0.0" width="97" height="43"/>
+                                                                    <rect key="frame" x="97" y="0.0" width="98" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="uFA-98-wV1"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C07-F2-0HQ" userLabel="14">
-                                                                    <rect key="frame" x="195" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="195" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="NMj-kL-5bu"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk7-6D-bCq" userLabel="15">
-                                                                    <rect key="frame" x="292" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="292" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="3B0-fh-Zbz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0s-4n-g5V" userLabel="16">
-                                                                    <rect key="frame" x="390" y="0.0" width="97" height="43"/>
+                                                                    <rect key="frame" x="389" y="0.0" width="98" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="V7g-Bq-QKG"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.34999999999999998" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ah9-Lv-Sln" userLabel="17">
-                                                                    <rect key="frame" x="487" y="0.0" width="98" height="43"/>
+                                                                    <rect key="frame" x="487" y="0.0" width="97" height="42"/>
                                                                     <connections>
                                                                         <action selector="emojiTapped:" destination="E9B-tb-cRA" eventType="touchUpInside" id="rOy-Vm-o6g"/>
                                                                     </connections>
@@ -442,17 +442,17 @@
                                         <rect key="frame" x="0.0" y="260" width="600" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nuR-SK-ALu" id="9Tw-pf-Z8M">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="97.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xx9-S2-l5Z">
-                                                    <rect key="frame" x="32" y="8" width="559.5" height="81"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xx9-S2-l5Z">
+                                                    <rect key="frame" x="32" y="8" width="560" height="81"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3OP-6Z-WBq" userLabel="IconButton">
-                                                    <rect key="frame" x="8" y="16" width="16.5" height="24.5"/>
+                                                    <rect key="frame" x="8" y="16" width="17" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24.5" id="QbF-Pd-h1Y"/>
                                                         <constraint firstAttribute="width" secondItem="3OP-6Z-WBq" secondAttribute="height" multiplier="20:29" id="rzG-ID-ElO"/>
@@ -465,8 +465,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a sample string" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWA-Q7-1Hr" userLabel="Fake Placeholder">
-                                                    <rect key="frame" x="32" y="16" width="189.5" height="23"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is a sample string" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWA-Q7-1Hr" userLabel="Fake Placeholder">
+                                                    <rect key="frame" x="32" y="16" width="190" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -491,7 +491,7 @@
                                         <rect key="frame" x="0.0" y="358" width="600" height="244"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U5V-56-Dsl" id="nId-e3-iGE">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="243.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="243"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

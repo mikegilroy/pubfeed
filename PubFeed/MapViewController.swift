@@ -209,7 +209,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         pinView!.image = UIImage(named: imageName)
                         
                     } else {
-                        // default, no favorite emoji
                             
                             if let pinView = pinView {
                                 
@@ -224,8 +223,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                 pinView.rightCalloutAccessoryView = button
                                 pinView.leftCalloutAccessoryView = leftView
                             }
-                            
-//                            let imageName = ("\(emoji)pin")
+                        
                             pinView!.image = UIImage(named: "beerIcon")
                     }
                 }
